@@ -1,0 +1,15 @@
+station,name,lat,lon,elevation_ft,precision,source
+bm,"Big Black Mountain, northeast of Ramona",33.16,-116.81,4055,approx 2dp,https://www.hpwren.ucsd.edu/cameras/S/SD/bm.html
+hp,"High Point, Palomar Mountain",33.36,-116.84,6138,approx 2dp,https://www.hpwren.ucsd.edu/cameras/S/SD/hp.html
+mg,"Mesa Grande, south of Lake Henshaw",33.19,-116.76,4278,approx 2dp,https://www.hpwren.ucsd.edu/cameras/S/SD/mg.html
+vo,"Volcan Mountain",33.14,-116.62,5479,approx 2dp,https://www.hpwren.ucsd.edu/cameras/S/SD/vo.html
+bh,"Boucher Hill, Palomar Mountain",33.33,-116.92,5459,approx 2dp,https://www.hpwren.ucsd.edu/cameras/S/SD/bh.html
+smer-tcs3,"TCS3, SDSU Santa Margarita Ecological Reserve",33.452747,-117.178623,1400,precise,https://www.hpwren.ucsd.edu/cameras/S/SD/smertcs3.html
+stgo,"Santiago Peak, Orange County",33.71,-117.53,5669,approx 2dp,https://www.hpwren.ucsd.edu/cameras/S/SD/stgo.html
+tp,"Toro Peak, Riverside County",33.52,-116.43,8717,approx 2dp,https://www.hpwren.ucsd.edu/cameras/S/SD/tp.html
+lp,"Lyons Peak, east of Jamul",32.70,-116.76,3713,approx 2dp,https://www.hpwren.ucsd.edu/cameras/S/SD/lp.html
+mlo,"Mount Laguna Observatory",32.84,-116.43,6141,approx 2dp,https://www.hpwren.ucsd.edu/cameras/S/SD/mlo.html
+pi,"Los Pinos, south of Pine Valley",32.73,-116.58,4806,approx 2dp,https://www.hpwren.ucsd.edu/cameras/S/SD/pi.html
+ws,"White Star, near Boulevard",32.65,-116.32,4005,approx 2dp,https://www.hpwren.ucsd.edu/cameras/S/SD/ws.html
+om,"Otay Mountain, east of Otay Mesa",32.59,-116.84,3566,approx 2dp,https://www.hpwren.ucsd.edu/cameras/S/SD/om.html
+sm,"San Miguel, west of Jamul",32.70,-116.94,2536,approx 2dp,https://www.hpwren.ucsd.edu/cameras/S/SD/sm.html

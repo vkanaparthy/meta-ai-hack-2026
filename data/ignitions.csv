@@ -1,0 +1,7 @@
+fire,date,lat,lon,location,source,notes
+JunctionFire,2026-06-29,33.190665,-116.703696,"Hwy 79, Santa Ysabel",https://www.fire.ca.gov/incidents/2026/6/29/junction-fire,CAL FIRE incident point; start 17:10
+Kitchenfire,2024-07-01,32.717444,-116.47191,"Kitchen Creek Rd and Old Hwy 80, Campo",https://www.fire.ca.gov/incidents/2024/7/1/kitchen-fire,CAL FIRE incident point; start 10:34
+FairviewFire,2022-09-05,33.714167,-116.891389,"Bautista Rd and Fairview Ave, Hemet",https://inciweb.wildfire.gov/incident/8402,"InciWeb 33°42'51""N 116°53'29""W; large fire, may be incident centroid rather than origin"
+ResortFire,2024-11-08,33.286514,-116.64017,"Hwy 79, northwest of Warner Springs Resort",https://www.fire.ca.gov/incidents/2024/11/8/resort-2-fire,"CAL FIRE ""Resort 2 Fire""; start 15:40; TEST fire, not used for calibration"
+GroveFire,2024-07-24,33.409448,-116.741601,"Northeast of Sunshine Summit",https://www.fire.ca.gov/incidents/2024/7/24/grove-2-fire,"CAL FIRE ""Grove 2 Fire""; start 13:12"
+BonnyFire,2023-07-27,33.4769,-116.7247,"45000 block of Bonny Lane, near Aguanga",https://www.fire.ca.gov/incidents/2023/7/27/bonny-fire,CAL FIRE incident point; start 14:52

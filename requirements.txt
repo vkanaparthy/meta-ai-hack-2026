@@ -1,0 +1,6 @@
+numpy
+pillow
+openai>=1.60
+meta-sam-parser
+imageio-ffmpeg
+pytest

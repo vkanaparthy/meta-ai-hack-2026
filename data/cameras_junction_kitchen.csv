@@ -1,0 +1,13 @@
+# heading_deg = compass bearing of the image centre column; hfov_deg = horizontal field of view.
+# Written by scripts/calibrate.py from fires with known ignition points.
+camera_id,station,direction,heading_deg,hfov_deg,image_width_px,calibrated,notes
+bm-e,bm,e,94.27,99.7,3072,yes,fires: JunctionFire+Kitchenfire; residual 0.0 deg
+hp-e,hp,e,95.54,99.7,3072,yes,fires: JunctionFire+Kitchenfire; residual 0.85 deg
+hp-s,hp,s,185.54,99.7,3072,yes,fires: JunctionFire+Kitchenfire; residual 0.85 deg
+lp-e,lp,e,91.15,99.7,3072,yes,fires: JunctionFire+Kitchenfire; residual 0.0 deg
+mg-e,mg,e,95.11,99.7,3072,yes,fires: JunctionFire+Kitchenfire; residual 0.0 deg
+mlo-s,mlo,s,180.55,99.7,3072,yes,fires: JunctionFire+Kitchenfire; residual 0.0 deg
+pi-e,pi,e,79.07,99.7,3072,yes,fires: JunctionFire+Kitchenfire; residual 0.0 deg
+vo-n,vo,n,354.84,99.7,3072,yes,fires: JunctionFire+Kitchenfire; residual 0.82 deg
+vo-w,vo,w,264.84,99.7,3072,yes,fires: JunctionFire+Kitchenfire; residual 0.82 deg
+ws-w,ws,w,266.76,99.7,3072,yes,fires: JunctionFire+Kitchenfire; residual 0.0 deg

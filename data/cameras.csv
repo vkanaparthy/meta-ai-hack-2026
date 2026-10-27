@@ -1,0 +1,15 @@
+# heading_deg = compass bearing of the image centre column; hfov_deg = horizontal field of view.
+# Written by scripts/calibrate.py from fires with known ignition points.
+camera_id,station,direction,heading_deg,hfov_deg,image_width_px,calibrated,notes
+bm-e,bm,e,96.71,106.0,3072,yes,fires: JunctionFire+Kitchenfire+GroveFire+BonnyFire; camera fit; residual 0.0 deg
+hp-e,hp,e,93.27,106.0,3072,yes,fires: JunctionFire+Kitchenfire+GroveFire+BonnyFire; camera fit; residual 2.43 deg
+hp-n,hp,n,353.75,106.0,3072,yes,fires: JunctionFire+Kitchenfire+GroveFire+BonnyFire; camera fit; residual 0.0 deg
+hp-s,hp,s,187.87,106.0,3072,yes,fires: JunctionFire+Kitchenfire+GroveFire+BonnyFire; camera fit; residual 0.0 deg
+lp-e,lp,e,91.79,106.0,3072,yes,fires: JunctionFire+Kitchenfire+GroveFire+BonnyFire; camera fit; residual 0.0 deg
+mg-e,mg,e,95.81,106.0,3072,yes,fires: JunctionFire+Kitchenfire+GroveFire+BonnyFire; camera fit; residual 0.0 deg
+mlo-s,mlo,s,178.8,106.0,3072,yes,fires: JunctionFire+Kitchenfire+GroveFire+BonnyFire; camera fit; residual 0.0 deg
+pi-e,pi,e,77.01,106.0,3072,yes,fires: JunctionFire+Kitchenfire+GroveFire+BonnyFire; camera fit; residual 0.0 deg
+tp-w,tp,w,277.04,106.0,3072,yes,fires: JunctionFire+Kitchenfire+GroveFire+BonnyFire; camera fit; residual 0.0 deg
+vo-n,vo,n,358.81,106.0,3072,yes,fires: JunctionFire+Kitchenfire+GroveFire+BonnyFire; camera fit; residual 0.0 deg
+vo-w,vo,w,260.8,106.0,3072,yes,fires: JunctionFire+Kitchenfire+GroveFire+BonnyFire; camera fit; residual 0.0 deg
+ws-w,ws,w,263.83,106.0,3072,yes,fires: JunctionFire+Kitchenfire+GroveFire+BonnyFire; camera fit; residual 0.0 deg
