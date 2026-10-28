@@ -1,0 +1,111 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.47086936078537,
+          32.71805253552964
+        ]
+      },
+      "properties": {
+        "kind": "fire_fix",
+        "uncertainty_m": 1481,
+        "line_residual_m": 233,
+        "epoch": 1719856898,
+        "cameras": [
+          "lp-e",
+          "pi-e",
+          "ws-w"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -116.76385407211986,
+            32.70216216216217
+          ],
+          [
+            -116.33695960682248,
+            32.721883483712745
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "bearing",
+        "camera": "lp-e",
+        "track": "0:0",
+        "bearing_deg": 86.74,
+        "sigma_deg": 1.0,
+        "edge_clipped": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -116.57807231569551,
+            32.73486486486486
+          ],
+          [
+            -116.15566060246977,
+            32.679452827126795
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "bearing",
+        "camera": "pi-e",
+        "track": "1:0",
+        "bearing_deg": 98.75,
+        "sigma_deg": 1.0,
+        "edge_clipped": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -116.31743205627545,
+            32.64729729729729
+          ],
+          [
+            -116.69441222102704,
+            32.81712347840883
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "bearing",
+        "camera": "ws-w",
+        "track": "1:0",
+        "bearing_deg": 298.27,
+        "sigma_deg": 1.0,
+        "edge_clipped": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.47191,
+          32.717444
+        ]
+      },
+      "properties": {
+        "kind": "official_ignition"
+      }
+    }
+  ]
+}

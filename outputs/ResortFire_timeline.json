@@ -1,0 +1,508 @@
+{
+  "fire": "ResortFire",
+  "driver": "muse",
+  "muse": "live",
+  "t_start": 1731106846,
+  "t_end": 1731112159,
+  "timeline": [
+    {
+      "time": "15:57 PST",
+      "epoch": 1731110265,
+      "elapsed_min": 57.0,
+      "trigger": [
+        "new plume track bm-n/1:0 on camera bm-n",
+        "new plume track mg-n/1:0 on camera mg-n"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "15:57 PST",
+            "minutes_since_watch_started": 57.0,
+            "cameras_watching": [
+              "bm-n",
+              "hp-e",
+              "mg-n"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-n/1:0",
+                "camera": "bm-n",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 45.6,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              },
+              {
+                "track_id": "mg-n/1:0",
+                "camera": "mg-n",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 42.6,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "No alert: both new tracks are too new to verify."
+        }
+      ]
+    },
+    {
+      "time": "16:00 PST",
+      "epoch": 1731110435,
+      "elapsed_min": 59.8,
+      "trigger": [
+        "track bm-n/1:0 now has enough history to verify",
+        "track mg-n/1:0 now has enough history to verify",
+        "new plume track hp-e/1:0 on camera hp-e"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "16:00 PST",
+            "minutes_since_watch_started": 59.8,
+            "cameras_watching": [
+              "bm-n",
+              "hp-e",
+              "mg-n"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-n/1:0",
+                "camera": "bm-n",
+                "first_seen_min_ago": 5,
+                "bearing_deg": 45.6,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              },
+              {
+                "track_id": "mg-n/1:0",
+                "camera": "mg-n",
+                "first_seen_min_ago": 5,
+                "bearing_deg": 42.6,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              },
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 114.5,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "bm-n/1:0"
+          },
+          "result": {
+            "track_id": "bm-n/1:0",
+            "state": "smoke",
+            "confidence": 0.9,
+            "reason": "A dark column rises from a single ground point and grows larger and denser across the three frames."
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "mg-n/1:0"
+          },
+          "result": {
+            "track_id": "mg-n/1:0",
+            "state": "smoke",
+            "confidence": 0.9,
+            "reason": "Dark column rises from a single ground point and grows/drifts larger over successive minutes."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "bearing lines cross, but too uncertain to place (about 34 km); need a camera from another direction",
+            "bearing_lines": [
+              {
+                "camera": "bm-n",
+                "bearing_deg": 45.6,
+                "uncertainty_deg": 2.5
+              },
+              {
+                "camera": "mg-n",
+                "bearing_deg": 42.6,
+                "uncertainty_deg": 2.5
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "issue_alert",
+          "args": {
+            "headline": "Smoke spotted NE from two cameras, location pending",
+            "level": "spotted",
+            "message": "Two cameras bm-n and mg-n verified smoke columns to the northeast on bearings 45.6 and 42.6 degrees. Triangulation is too uncertain to place at about 34 km, so no location yet. Precise position remains unknown pending a view from another direction including the new hp-e track."
+          },
+          "result": {
+            "issued": true,
+            "level": "spotted",
+            "alert_number": 1
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "Spotted alert issued from two verified smoke bearings; location awaits third-camera view."
+        }
+      ]
+    },
+    {
+      "time": "16:02 PST",
+      "epoch": 1731110555,
+      "elapsed_min": 61.8,
+      "trigger": [
+        "track hp-e/1:0 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "16:02 PST",
+            "minutes_since_watch_started": 61.8,
+            "cameras_watching": [
+              "bm-n",
+              "hp-e",
+              "mg-n"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-n/1:0",
+                "camera": "bm-n",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 45.6,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A dark column rises from a single ground point and grows larger and denser across the three frames."
+              },
+              {
+                "track_id": "mg-n/1:0",
+                "camera": "mg-n",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 42.6,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark column rises from a single ground point and grows/drifts larger over successive minutes."
+              },
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 114.5,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "16:00 PST",
+                "headline": "Smoke spotted NE from two cameras, location pending"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "hp-e/1:0"
+          },
+          "result": {
+            "track_id": "hp-e/1:0",
+            "state": "smoke",
+            "confidence": 0.92,
+            "reason": "A column rises from a single ground point and grows into an expanding dark plume across successive frames."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": true,
+            "lat": 33.2924,
+            "lon": -116.6488,
+            "uncertainty_m": 1010,
+            "cameras": [
+              "bm-n",
+              "hp-e",
+              "mg-n"
+            ],
+            "track_ids": [
+              "bm-n/1:0",
+              "hp-e/1:0",
+              "mg-n/1:0"
+            ],
+            "stations": 3,
+            "unused_tracks": [],
+            "eligible_level": "confirmed",
+            "nearby": [
+              {
+                "name": "Julian",
+                "kind": "town",
+                "distance_km": 24.2,
+                "direction": "N",
+                "phrase": "24.2 km N of Julian"
+              },
+              {
+                "name": "Borrego Springs",
+                "kind": "town",
+                "distance_km": 25.8,
+                "direction": "W",
+                "phrase": "25.8 km W of Borrego Springs"
+              },
+              {
+                "name": "Aguanga",
+                "kind": "town",
+                "distance_km": 26.1,
+                "direction": "SE",
+                "phrase": "26.1 km SE of Aguanga"
+              }
+            ]
+          }
+        },
+        {
+          "tool": "issue_alert",
+          "args": {
+            "headline": "Confirmed fire 24.2 km N of Julian, 3-camera fix",
+            "level": "confirmed",
+            "message": "Three cameras verified smoke columns triangulated to 24.2 km N of Julian. Fix uncertainty is 1010 m using 3 stations including bm-n, hp-e and mg-n. Fire size, behavior and threat remain unknown."
+          },
+          "result": {
+            "issued": true,
+            "level": "confirmed",
+            "alert_number": 2
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "Confirmed alert issued for 3-camera fix 24.2 km N of Julian."
+        }
+      ]
+    }
+  ],
+  "alerts": [
+    {
+      "level": "spotted",
+      "time": "16:00 PST",
+      "epoch": 1731110435,
+      "elapsed_min": 59.8,
+      "headline": "Smoke spotted NE from two cameras, location pending",
+      "message": "Two cameras bm-n and mg-n verified smoke columns to the northeast on bearings 45.6 and 42.6 degrees. Triangulation is too uncertain to place at about 34 km, so no location yet. Precise position remains unknown pending a view from another direction including the new hp-e track.",
+      "location": null,
+      "bearing_lines": [
+        {
+          "camera": "bm-n",
+          "lat": 33.162972972972966,
+          "lon": -116.80892384304393,
+          "bearing_deg": 45.57,
+          "sigma_deg": 2.5,
+          "track_id": "bm-n/1:0"
+        },
+        {
+          "camera": "mg-n",
+          "lat": 33.18972972972973,
+          "lon": -116.75967704238137,
+          "bearing_deg": 42.63,
+          "sigma_deg": 2.5,
+          "track_id": "mg-n/1:0"
+        }
+      ],
+      "evidence": [
+        {
+          "track_id": "bm-n/1:0",
+          "frames": [
+            "data/raw/20241108_ResortFire_bm-n-mobo-c/1731110119_+00360.jpg",
+            "data/raw/20241108_ResortFire_bm-n-mobo-c/1731110239_+00480.jpg",
+            "data/raw/20241108_ResortFire_bm-n-mobo-c/1731110359_+00600.jpg"
+          ],
+          "box": [
+            2775,
+            952,
+            2861,
+            1022
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.9,
+            "reason": "A dark column rises from a single ground point and grows larger and denser across the three frames."
+          }
+        },
+        {
+          "track_id": "mg-n/1:0",
+          "frames": [
+            "data/raw/20241108_ResortFire_mg-n-mobo-c/1731110146_+00900.jpg",
+            "data/raw/20241108_ResortFire_mg-n-mobo-c/1731110265_+01019.jpg",
+            "data/raw/20241108_ResortFire_mg-n-mobo-c/1731110385_+01139.jpg"
+          ],
+          "box": [
+            2731,
+            903,
+            2861,
+            998
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.9,
+            "reason": "Dark column rises from a single ground point and grows/drifts larger over successive minutes."
+          }
+        }
+      ]
+    },
+    {
+      "level": "confirmed",
+      "time": "16:02 PST",
+      "epoch": 1731110555,
+      "elapsed_min": 61.8,
+      "headline": "Confirmed fire 24.2 km N of Julian, 3-camera fix",
+      "message": "Three cameras verified smoke columns triangulated to 24.2 km N of Julian. Fix uncertainty is 1010 m using 3 stations including bm-n, hp-e and mg-n. Fire size, behavior and threat remain unknown.",
+      "location": {
+        "lat": 33.2924,
+        "lon": -116.6488,
+        "uncertainty_m": 1010,
+        "cameras": [
+          "bm-n",
+          "hp-e",
+          "mg-n"
+        ],
+        "track_ids": [
+          "bm-n/1:0",
+          "hp-e/1:0",
+          "mg-n/1:0"
+        ],
+        "stations": 3
+      },
+      "bearing_lines": [
+        {
+          "camera": "bm-n",
+          "lat": 33.162972972972966,
+          "lon": -116.80892384304393,
+          "bearing_deg": 45.57,
+          "sigma_deg": 2.5,
+          "track_id": "bm-n/1:0"
+        },
+        {
+          "camera": "mg-n",
+          "lat": 33.18972972972973,
+          "lon": -116.75967704238137,
+          "bearing_deg": 42.63,
+          "sigma_deg": 2.5,
+          "track_id": "mg-n/1:0"
+        },
+        {
+          "camera": "hp-e",
+          "lat": 33.36378378378378,
+          "lon": -116.83579336801176,
+          "bearing_deg": 114.54,
+          "sigma_deg": 1.0,
+          "track_id": "hp-e/1:0"
+        }
+      ],
+      "evidence": [
+        {
+          "track_id": "bm-n/1:0",
+          "frames": [
+            "data/raw/20241108_ResortFire_bm-n-mobo-c/1731110119_+00360.jpg",
+            "data/raw/20241108_ResortFire_bm-n-mobo-c/1731110239_+00480.jpg",
+            "data/raw/20241108_ResortFire_bm-n-mobo-c/1731110359_+00600.jpg"
+          ],
+          "box": [
+            2775,
+            952,
+            2861,
+            1022
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.9,
+            "reason": "A dark column rises from a single ground point and grows larger and denser across the three frames."
+          }
+        },
+        {
+          "track_id": "mg-n/1:0",
+          "frames": [
+            "data/raw/20241108_ResortFire_mg-n-mobo-c/1731110146_+00900.jpg",
+            "data/raw/20241108_ResortFire_mg-n-mobo-c/1731110265_+01019.jpg",
+            "data/raw/20241108_ResortFire_mg-n-mobo-c/1731110385_+01139.jpg"
+          ],
+          "box": [
+            2731,
+            903,
+            2861,
+            998
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.9,
+            "reason": "Dark column rises from a single ground point and grows/drifts larger over successive minutes."
+          }
+        },
+        {
+          "track_id": "hp-e/1:0",
+          "frames": [
+            "data/raw/20241108_ResortFire_hp-e-mobo-c/1731110315_+01072.jpg",
+            "data/raw/20241108_ResortFire_hp-e-mobo-c/1731110435_+01192.jpg",
+            "data/raw/20241108_ResortFire_hp-e-mobo-c/1731110555_+01312.jpg"
+          ],
+          "box": [
+            2146,
+            956,
+            2307,
+            1103
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.92,
+            "reason": "A column rises from a single ground point and grows into an expanding dark plume across successive frames."
+          }
+        }
+      ]
+    }
+  ],
+  "score": {
+    "spotted_min_after_first_smoke": 19.8,
+    "provisional_min_after_first_smoke": null,
+    "confirmed_min_after_first_smoke": 21.8,
+    "final_error_m": 1035,
+    "final_uncertainty_m": 1010
+  }
+}

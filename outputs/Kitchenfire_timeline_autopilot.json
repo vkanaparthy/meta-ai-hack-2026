@@ -1,0 +1,1539 @@
+{
+  "fire": "Kitchenfire",
+  "driver": "autopilot",
+  "muse": "cached",
+  "t_start": 1719852650,
+  "t_end": 1719857618,
+  "timeline": [
+    {
+      "time": "10:35 PDT",
+      "epoch": 1719855359,
+      "elapsed_min": 45.1,
+      "trigger": [
+        "new plume track pi-e/1:0 on camera pi-e"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "10:35 PDT",
+            "minutes_since_watch_started": 45.1,
+            "cameras_watching": [
+              "lp-e",
+              "mlo-s",
+              "pi-e",
+              "ws-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "pi-e/1:0",
+                "camera": "pi-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 98.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "error": "no verified plume yet"
+          }
+        }
+      ]
+    },
+    {
+      "time": "10:37 PDT",
+      "epoch": 1719855479,
+      "elapsed_min": 47.1,
+      "trigger": [
+        "track pi-e/1:0 now has enough history to verify",
+        "new plume track pi-e/1:1 on camera pi-e"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "10:37 PDT",
+            "minutes_since_watch_started": 47.1,
+            "cameras_watching": [
+              "lp-e",
+              "mlo-s",
+              "pi-e",
+              "ws-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "pi-e/1:0",
+                "camera": "pi-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 98.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              },
+              {
+                "track_id": "pi-e/1:1",
+                "camera": "pi-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 95.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "pi-e/1:0"
+          },
+          "result": {
+            "track_id": "pi-e/1:0",
+            "state": "smoke",
+            "confidence": 0.85,
+            "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "plumes from fewer than two stations, or bearings that do not intersect consistently",
+            "bearing_lines": [
+              {
+                "camera": "pi-e",
+                "bearing_deg": 98.7,
+                "uncertainty_deg": 1.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "10:37 PDT",
+            "minutes_since_watch_started": 47.1,
+            "cameras_watching": [
+              "lp-e",
+              "mlo-s",
+              "pi-e",
+              "ws-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "pi-e/1:0",
+                "camera": "pi-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 98.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+              },
+              {
+                "track_id": "pi-e/1:1",
+                "camera": "pi-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 95.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "issue_alert",
+          "args": {
+            "level": "spotted",
+            "headline": "Smoke spotted; location not yet fixed",
+            "message": "Verified smoke on bearing pi-e 98.7 deg. Waiting for a second station to locate it."
+          },
+          "result": {
+            "issued": true,
+            "level": "spotted",
+            "alert_number": 1
+          }
+        }
+      ]
+    },
+    {
+      "time": "10:40 PDT",
+      "epoch": 1719855600,
+      "elapsed_min": 49.2,
+      "trigger": [
+        "track pi-e/1:1 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "10:40 PDT",
+            "minutes_since_watch_started": 49.2,
+            "cameras_watching": [
+              "lp-e",
+              "mlo-s",
+              "pi-e",
+              "ws-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "pi-e/1:0",
+                "camera": "pi-e",
+                "first_seen_min_ago": 6,
+                "bearing_deg": 98.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+              },
+              {
+                "track_id": "pi-e/1:1",
+                "camera": "pi-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 95.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "10:37 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "pi-e/1:1"
+          },
+          "result": {
+            "track_id": "pi-e/1:1",
+            "state": "smoke",
+            "confidence": 0.85,
+            "reason": "A discrete pale plume rises from a point on the ridgeline and expands and drifts laterally across successive frames, matching new wildfire smoke growth."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "plumes from fewer than two stations, or bearings that do not intersect consistently",
+            "bearing_lines": [
+              {
+                "camera": "pi-e",
+                "bearing_deg": 98.7,
+                "uncertainty_deg": 1.0
+              },
+              {
+                "camera": "pi-e",
+                "bearing_deg": 95.3,
+                "uncertainty_deg": 1.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "10:40 PDT",
+            "minutes_since_watch_started": 49.2,
+            "cameras_watching": [
+              "lp-e",
+              "mlo-s",
+              "pi-e",
+              "ws-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "pi-e/1:0",
+                "camera": "pi-e",
+                "first_seen_min_ago": 6,
+                "bearing_deg": 98.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+              },
+              {
+                "track_id": "pi-e/1:1",
+                "camera": "pi-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 95.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete pale plume rises from a point on the ridgeline and expands and drifts laterally across successive frames, matching new wildfire smoke growth."
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "10:37 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              }
+            ],
+            "last_location": null
+          }
+        }
+      ]
+    },
+    {
+      "time": "10:47 PDT",
+      "epoch": 1719856021,
+      "elapsed_min": 56.2,
+      "trigger": [
+        "new plume track ws-w/1:0 on camera ws-w"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "10:47 PDT",
+            "minutes_since_watch_started": 56.2,
+            "cameras_watching": [
+              "lp-e",
+              "mlo-s",
+              "pi-e",
+              "ws-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "pi-e/1:0",
+                "camera": "pi-e",
+                "first_seen_min_ago": 13,
+                "bearing_deg": 98.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+              },
+              {
+                "track_id": "pi-e/1:1",
+                "camera": "pi-e",
+                "first_seen_min_ago": 11,
+                "bearing_deg": 95.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete pale plume rises from a point on the ridgeline and expands and drifts laterally across successive frames, matching new wildfire smoke growth."
+              },
+              {
+                "track_id": "ws-w/1:0",
+                "camera": "ws-w",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 298.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "10:37 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "plumes from fewer than two stations, or bearings that do not intersect consistently",
+            "bearing_lines": [
+              {
+                "camera": "pi-e",
+                "bearing_deg": 98.7,
+                "uncertainty_deg": 1.0
+              },
+              {
+                "camera": "pi-e",
+                "bearing_deg": 95.3,
+                "uncertainty_deg": 1.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "10:47 PDT",
+            "minutes_since_watch_started": 56.2,
+            "cameras_watching": [
+              "lp-e",
+              "mlo-s",
+              "pi-e",
+              "ws-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "pi-e/1:0",
+                "camera": "pi-e",
+                "first_seen_min_ago": 13,
+                "bearing_deg": 98.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+              },
+              {
+                "track_id": "pi-e/1:1",
+                "camera": "pi-e",
+                "first_seen_min_ago": 11,
+                "bearing_deg": 95.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete pale plume rises from a point on the ridgeline and expands and drifts laterally across successive frames, matching new wildfire smoke growth."
+              },
+              {
+                "track_id": "ws-w/1:0",
+                "camera": "ws-w",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 298.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "10:37 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              }
+            ],
+            "last_location": null
+          }
+        }
+      ]
+    },
+    {
+      "time": "10:49 PDT",
+      "epoch": 1719856141,
+      "elapsed_min": 58.2,
+      "trigger": [
+        "track ws-w/1:0 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "10:49 PDT",
+            "minutes_since_watch_started": 58.2,
+            "cameras_watching": [
+              "lp-e",
+              "mlo-s",
+              "pi-e",
+              "ws-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "pi-e/1:0",
+                "camera": "pi-e",
+                "first_seen_min_ago": 15,
+                "bearing_deg": 98.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+              },
+              {
+                "track_id": "pi-e/1:1",
+                "camera": "pi-e",
+                "first_seen_min_ago": 13,
+                "bearing_deg": 95.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete pale plume rises from a point on the ridgeline and expands and drifts laterally across successive frames, matching new wildfire smoke growth."
+              },
+              {
+                "track_id": "ws-w/1:0",
+                "camera": "ws-w",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 298.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "10:37 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "ws-w/1:0"
+          },
+          "result": {
+            "track_id": "ws-w/1:0",
+            "state": "smoke",
+            "confidence": 0.82,
+            "reason": "A gray column rises from a single point on the ridgeline and expands/drifts across the three frames."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": true,
+            "lat": 32.7227,
+            "lon": -116.484,
+            "uncertainty_m": 1640,
+            "cameras": [
+              "pi-e",
+              "ws-w"
+            ],
+            "track_ids": [
+              "pi-e/1:0",
+              "ws-w/1:0"
+            ],
+            "stations": 2,
+            "unused_tracks": [
+              "pi-e/1:1"
+            ],
+            "eligible_level": "provisional",
+            "nearby": [
+              {
+                "name": "Pine Valley",
+                "kind": "town",
+                "distance_km": 11.8,
+                "direction": "SSE",
+                "phrase": "11.8 km SSE of Pine Valley"
+              },
+              {
+                "name": "Campo",
+                "kind": "town",
+                "distance_km": 13.0,
+                "direction": "N",
+                "phrase": "13.0 km N of Campo"
+              },
+              {
+                "name": "Potrero",
+                "kind": "town",
+                "distance_km": 17.8,
+                "direction": "NE",
+                "phrase": "17.8 km NE of Potrero"
+              }
+            ]
+          }
+        },
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "10:49 PDT",
+            "minutes_since_watch_started": 58.2,
+            "cameras_watching": [
+              "lp-e",
+              "mlo-s",
+              "pi-e",
+              "ws-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "pi-e/1:0",
+                "camera": "pi-e",
+                "first_seen_min_ago": 15,
+                "bearing_deg": 98.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+              },
+              {
+                "track_id": "pi-e/1:1",
+                "camera": "pi-e",
+                "first_seen_min_ago": 13,
+                "bearing_deg": 95.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete pale plume rises from a point on the ridgeline and expands and drifts laterally across successive frames, matching new wildfire smoke growth."
+              },
+              {
+                "track_id": "ws-w/1:0",
+                "camera": "ws-w",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 298.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A gray column rises from a single point on the ridgeline and expands/drifts across the three frames."
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "10:37 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              }
+            ],
+            "last_location": {
+              "lat": 32.7227,
+              "lon": -116.484,
+              "uncertainty_m": 1640,
+              "cameras": [
+                "pi-e",
+                "ws-w"
+              ],
+              "track_ids": [
+                "pi-e/1:0",
+                "ws-w/1:0"
+              ],
+              "stations": 2
+            }
+          }
+        },
+        {
+          "tool": "issue_alert",
+          "args": {
+            "level": "provisional",
+            "headline": "Provisional: smoke 11.8 km SSE of Pine Valley",
+            "message": "Located at 32.7227, -116.484 by pi-e, ws-w with about 1.6 km uncertainty."
+          },
+          "result": {
+            "issued": true,
+            "level": "provisional",
+            "alert_number": 2
+          }
+        }
+      ]
+    },
+    {
+      "time": "11:01 PDT",
+      "epoch": 1719856898,
+      "elapsed_min": 70.8,
+      "trigger": [
+        "new plume track lp-e/0:0 on camera lp-e"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "11:01 PDT",
+            "minutes_since_watch_started": 70.8,
+            "cameras_watching": [
+              "lp-e",
+              "mlo-s",
+              "pi-e",
+              "ws-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "pi-e/1:0",
+                "camera": "pi-e",
+                "first_seen_min_ago": 28,
+                "bearing_deg": 98.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+              },
+              {
+                "track_id": "pi-e/1:1",
+                "camera": "pi-e",
+                "first_seen_min_ago": 26,
+                "bearing_deg": 95.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete pale plume rises from a point on the ridgeline and expands and drifts laterally across successive frames, matching new wildfire smoke growth."
+              },
+              {
+                "track_id": "ws-w/1:0",
+                "camera": "ws-w",
+                "first_seen_min_ago": 17,
+                "bearing_deg": 298.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A gray column rises from a single point on the ridgeline and expands/drifts across the three frames."
+              },
+              {
+                "track_id": "lp-e/0:0",
+                "camera": "lp-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 86.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "10:37 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              },
+              {
+                "level": "provisional",
+                "time": "10:49 PDT",
+                "headline": "Provisional: smoke 11.8 km SSE of Pine Valley"
+              }
+            ],
+            "last_location": {
+              "lat": 32.7227,
+              "lon": -116.484,
+              "uncertainty_m": 1640,
+              "cameras": [
+                "pi-e",
+                "ws-w"
+              ],
+              "track_ids": [
+                "pi-e/1:0",
+                "ws-w/1:0"
+              ],
+              "stations": 2
+            }
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": true,
+            "lat": 32.7227,
+            "lon": -116.484,
+            "uncertainty_m": 1640,
+            "cameras": [
+              "pi-e",
+              "ws-w"
+            ],
+            "track_ids": [
+              "pi-e/1:0",
+              "ws-w/1:0"
+            ],
+            "stations": 2,
+            "unused_tracks": [
+              "pi-e/1:1"
+            ],
+            "eligible_level": "provisional",
+            "nearby": [
+              {
+                "name": "Pine Valley",
+                "kind": "town",
+                "distance_km": 11.8,
+                "direction": "SSE",
+                "phrase": "11.8 km SSE of Pine Valley"
+              },
+              {
+                "name": "Campo",
+                "kind": "town",
+                "distance_km": 13.0,
+                "direction": "N",
+                "phrase": "13.0 km N of Campo"
+              },
+              {
+                "name": "Potrero",
+                "kind": "town",
+                "distance_km": 17.8,
+                "direction": "NE",
+                "phrase": "17.8 km NE of Potrero"
+              }
+            ]
+          }
+        },
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "11:01 PDT",
+            "minutes_since_watch_started": 70.8,
+            "cameras_watching": [
+              "lp-e",
+              "mlo-s",
+              "pi-e",
+              "ws-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "pi-e/1:0",
+                "camera": "pi-e",
+                "first_seen_min_ago": 28,
+                "bearing_deg": 98.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+              },
+              {
+                "track_id": "pi-e/1:1",
+                "camera": "pi-e",
+                "first_seen_min_ago": 26,
+                "bearing_deg": 95.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete pale plume rises from a point on the ridgeline and expands and drifts laterally across successive frames, matching new wildfire smoke growth."
+              },
+              {
+                "track_id": "ws-w/1:0",
+                "camera": "ws-w",
+                "first_seen_min_ago": 17,
+                "bearing_deg": 298.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A gray column rises from a single point on the ridgeline and expands/drifts across the three frames."
+              },
+              {
+                "track_id": "lp-e/0:0",
+                "camera": "lp-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 86.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "10:37 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              },
+              {
+                "level": "provisional",
+                "time": "10:49 PDT",
+                "headline": "Provisional: smoke 11.8 km SSE of Pine Valley"
+              }
+            ],
+            "last_location": {
+              "lat": 32.7227,
+              "lon": -116.484,
+              "uncertainty_m": 1640,
+              "cameras": [
+                "pi-e",
+                "ws-w"
+              ],
+              "track_ids": [
+                "pi-e/1:0",
+                "ws-w/1:0"
+              ],
+              "stations": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "time": "11:07 PDT",
+      "epoch": 1719857271,
+      "elapsed_min": 77.0,
+      "trigger": [
+        "track lp-e/0:0 now has enough history to verify",
+        "new plume track mlo-s/1:1 on camera mlo-s",
+        "new plume track mlo-s/1:2 on camera mlo-s",
+        "track mlo-s/1:1 now has enough history to verify",
+        "track mlo-s/1:2 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "11:07 PDT",
+            "minutes_since_watch_started": 77.0,
+            "cameras_watching": [
+              "lp-e",
+              "mlo-s",
+              "pi-e",
+              "ws-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "pi-e/1:0",
+                "camera": "pi-e",
+                "first_seen_min_ago": 34,
+                "bearing_deg": 98.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+              },
+              {
+                "track_id": "pi-e/1:1",
+                "camera": "pi-e",
+                "first_seen_min_ago": 32,
+                "bearing_deg": 95.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete pale plume rises from a point on the ridgeline and expands and drifts laterally across successive frames, matching new wildfire smoke growth."
+              },
+              {
+                "track_id": "ws-w/1:0",
+                "camera": "ws-w",
+                "first_seen_min_ago": 23,
+                "bearing_deg": 298.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A gray column rises from a single point on the ridgeline and expands/drifts across the three frames."
+              },
+              {
+                "track_id": "lp-e/0:0",
+                "camera": "lp-e",
+                "first_seen_min_ago": 8,
+                "bearing_deg": 86.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              },
+              {
+                "track_id": "mlo-s/1:1",
+                "camera": "mlo-s",
+                "first_seen_min_ago": 5,
+                "bearing_deg": 211.0,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              },
+              {
+                "track_id": "mlo-s/1:2",
+                "camera": "mlo-s",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 220.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "10:37 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              },
+              {
+                "level": "provisional",
+                "time": "10:49 PDT",
+                "headline": "Provisional: smoke 11.8 km SSE of Pine Valley"
+              }
+            ],
+            "last_location": {
+              "lat": 32.7227,
+              "lon": -116.484,
+              "uncertainty_m": 1640,
+              "cameras": [
+                "pi-e",
+                "ws-w"
+              ],
+              "track_ids": [
+                "pi-e/1:0",
+                "ws-w/1:0"
+              ],
+              "stations": 2
+            }
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "lp-e/0:0"
+          },
+          "result": {
+            "track_id": "lp-e/0:0",
+            "state": "smoke",
+            "confidence": 0.85,
+            "reason": "A localized gray column rises from one point on the ridgeline and grows denser and larger across successive frames."
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "mlo-s/1:1"
+          },
+          "result": {
+            "track_id": "mlo-s/1:1",
+            "state": "smoke",
+            "confidence": 0.94,
+            "reason": "A discrete gray-brown column on the right rises from the horizon and rapidly grows and expands across successive frames."
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "mlo-s/1:2"
+          },
+          "result": {
+            "track_id": "mlo-s/1:2",
+            "state": "smoke",
+            "confidence": 0.92,
+            "reason": "Gray plume rises from a single ground point and grows/drifts left across frames."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": true,
+            "lat": 32.7181,
+            "lon": -116.4709,
+            "uncertainty_m": 1480,
+            "cameras": [
+              "lp-e",
+              "pi-e",
+              "ws-w"
+            ],
+            "track_ids": [
+              "lp-e/0:0",
+              "pi-e/1:0",
+              "ws-w/1:0"
+            ],
+            "stations": 3,
+            "unused_tracks": [
+              "pi-e/1:1",
+              "mlo-s/1:1",
+              "mlo-s/1:2"
+            ],
+            "eligible_level": "confirmed",
+            "nearby": [
+              {
+                "name": "Campo",
+                "kind": "town",
+                "distance_km": 12.4,
+                "direction": "N",
+                "phrase": "12.4 km N of Campo"
+              },
+              {
+                "name": "Pine Valley",
+                "kind": "town",
+                "distance_km": 12.7,
+                "direction": "SSE",
+                "phrase": "12.7 km SSE of Pine Valley"
+              },
+              {
+                "name": "Hacienda Tecate",
+                "kind": "town",
+                "distance_km": 17.8,
+                "direction": "NNE",
+                "phrase": "17.8 km NNE of Hacienda Tecate"
+              }
+            ]
+          }
+        },
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "11:07 PDT",
+            "minutes_since_watch_started": 77.0,
+            "cameras_watching": [
+              "lp-e",
+              "mlo-s",
+              "pi-e",
+              "ws-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "pi-e/1:0",
+                "camera": "pi-e",
+                "first_seen_min_ago": 34,
+                "bearing_deg": 98.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+              },
+              {
+                "track_id": "pi-e/1:1",
+                "camera": "pi-e",
+                "first_seen_min_ago": 32,
+                "bearing_deg": 95.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete pale plume rises from a point on the ridgeline and expands and drifts laterally across successive frames, matching new wildfire smoke growth."
+              },
+              {
+                "track_id": "ws-w/1:0",
+                "camera": "ws-w",
+                "first_seen_min_ago": 23,
+                "bearing_deg": 298.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A gray column rises from a single point on the ridgeline and expands/drifts across the three frames."
+              },
+              {
+                "track_id": "lp-e/0:0",
+                "camera": "lp-e",
+                "first_seen_min_ago": 8,
+                "bearing_deg": 86.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A localized gray column rises from one point on the ridgeline and grows denser and larger across successive frames."
+              },
+              {
+                "track_id": "mlo-s/1:1",
+                "camera": "mlo-s",
+                "first_seen_min_ago": 5,
+                "bearing_deg": 211.0,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete gray-brown column on the right rises from the horizon and rapidly grows and expands across successive frames."
+              },
+              {
+                "track_id": "mlo-s/1:2",
+                "camera": "mlo-s",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 220.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Gray plume rises from a single ground point and grows/drifts left across frames."
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "10:37 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              },
+              {
+                "level": "provisional",
+                "time": "10:49 PDT",
+                "headline": "Provisional: smoke 11.8 km SSE of Pine Valley"
+              }
+            ],
+            "last_location": {
+              "lat": 32.7181,
+              "lon": -116.4709,
+              "uncertainty_m": 1480,
+              "cameras": [
+                "lp-e",
+                "pi-e",
+                "ws-w"
+              ],
+              "track_ids": [
+                "lp-e/0:0",
+                "pi-e/1:0",
+                "ws-w/1:0"
+              ],
+              "stations": 3
+            }
+          }
+        },
+        {
+          "tool": "issue_alert",
+          "args": {
+            "level": "confirmed",
+            "headline": "Confirmed: smoke 12.4 km N of Campo",
+            "message": "Located at 32.7181, -116.4709 by lp-e, pi-e, ws-w with about 1.5 km uncertainty."
+          },
+          "result": {
+            "issued": true,
+            "level": "confirmed",
+            "alert_number": 3
+          }
+        }
+      ]
+    }
+  ],
+  "alerts": [
+    {
+      "level": "spotted",
+      "time": "10:37 PDT",
+      "epoch": 1719855479,
+      "elapsed_min": 47.1,
+      "headline": "Smoke spotted; location not yet fixed",
+      "message": "Verified smoke on bearing pi-e 98.7 deg. Waiting for a second station to locate it.",
+      "location": null,
+      "bearing_lines": [
+        {
+          "camera": "pi-e",
+          "lat": 32.73486486486486,
+          "lon": -116.57807231569551,
+          "bearing_deg": 98.75,
+          "sigma_deg": 1.0,
+          "track_id": "pi-e/1:0"
+        }
+      ],
+      "evidence": [
+        {
+          "track_id": "pi-e/1:0",
+          "frames": [
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855239_+00181.jpg",
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855359_+00301.jpg",
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855479_+00421.jpg"
+          ],
+          "box": [
+            1933,
+            1121,
+            2018,
+            1152
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.85,
+            "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+          }
+        }
+      ]
+    },
+    {
+      "level": "provisional",
+      "time": "10:49 PDT",
+      "epoch": 1719856141,
+      "elapsed_min": 58.2,
+      "headline": "Provisional: smoke 11.8 km SSE of Pine Valley",
+      "message": "Located at 32.7227, -116.484 by pi-e, ws-w with about 1.6 km uncertainty.",
+      "location": {
+        "lat": 32.7227,
+        "lon": -116.484,
+        "uncertainty_m": 1640,
+        "cameras": [
+          "pi-e",
+          "ws-w"
+        ],
+        "track_ids": [
+          "pi-e/1:0",
+          "ws-w/1:0"
+        ],
+        "stations": 2
+      },
+      "bearing_lines": [
+        {
+          "camera": "pi-e",
+          "lat": 32.73486486486486,
+          "lon": -116.57807231569551,
+          "bearing_deg": 98.75,
+          "sigma_deg": 1.0,
+          "track_id": "pi-e/1:0"
+        },
+        {
+          "camera": "pi-e",
+          "lat": 32.73486486486486,
+          "lon": -116.57807231569551,
+          "bearing_deg": 95.3,
+          "sigma_deg": 1.0,
+          "track_id": "pi-e/1:1"
+        },
+        {
+          "camera": "ws-w",
+          "lat": 32.64729729729729,
+          "lon": -116.31743205627545,
+          "bearing_deg": 298.27,
+          "sigma_deg": 1.0,
+          "track_id": "ws-w/1:0"
+        }
+      ],
+      "evidence": [
+        {
+          "track_id": "pi-e/1:0",
+          "frames": [
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855239_+00181.jpg",
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855359_+00301.jpg",
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855479_+00421.jpg"
+          ],
+          "box": [
+            1933,
+            1121,
+            2018,
+            1152
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.85,
+            "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+          }
+        },
+        {
+          "track_id": "pi-e/1:1",
+          "frames": [
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855359_+00301.jpg",
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855479_+00421.jpg",
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855600_+00542.jpg"
+          ],
+          "box": [
+            1802,
+            1103,
+            1970,
+            1159
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.85,
+            "reason": "A discrete pale plume rises from a point on the ridgeline and expands and drifts laterally across successive frames, matching new wildfire smoke growth."
+          }
+        },
+        {
+          "track_id": "ws-w/1:0",
+          "frames": [
+            "data/raw/20240701_Kitchenfire_ws-w-mobo-c/1719855900_+00719.jpg",
+            "data/raw/20240701_Kitchenfire_ws-w-mobo-c/1719856021_+00840.jpg",
+            "data/raw/20240701_Kitchenfire_ws-w-mobo-c/1719856141_+00960.jpg"
+          ],
+          "box": [
+            2287,
+            1010,
+            2383,
+            1038
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.82,
+            "reason": "A gray column rises from a single point on the ridgeline and expands/drifts across the three frames."
+          }
+        }
+      ]
+    },
+    {
+      "level": "confirmed",
+      "time": "11:07 PDT",
+      "epoch": 1719857271,
+      "elapsed_min": 77.0,
+      "headline": "Confirmed: smoke 12.4 km N of Campo",
+      "message": "Located at 32.7181, -116.4709 by lp-e, pi-e, ws-w with about 1.5 km uncertainty.",
+      "location": {
+        "lat": 32.7181,
+        "lon": -116.4709,
+        "uncertainty_m": 1480,
+        "cameras": [
+          "lp-e",
+          "pi-e",
+          "ws-w"
+        ],
+        "track_ids": [
+          "lp-e/0:0",
+          "pi-e/1:0",
+          "ws-w/1:0"
+        ],
+        "stations": 3
+      },
+      "bearing_lines": [
+        {
+          "camera": "pi-e",
+          "lat": 32.73486486486486,
+          "lon": -116.57807231569551,
+          "bearing_deg": 98.75,
+          "sigma_deg": 1.0,
+          "track_id": "pi-e/1:0"
+        },
+        {
+          "camera": "pi-e",
+          "lat": 32.73486486486486,
+          "lon": -116.57807231569551,
+          "bearing_deg": 95.3,
+          "sigma_deg": 1.0,
+          "track_id": "pi-e/1:1"
+        },
+        {
+          "camera": "ws-w",
+          "lat": 32.64729729729729,
+          "lon": -116.31743205627545,
+          "bearing_deg": 298.27,
+          "sigma_deg": 1.0,
+          "track_id": "ws-w/1:0"
+        },
+        {
+          "camera": "lp-e",
+          "lat": 32.70216216216217,
+          "lon": -116.76385407211986,
+          "bearing_deg": 86.74,
+          "sigma_deg": 1.0,
+          "track_id": "lp-e/0:0"
+        },
+        {
+          "camera": "mlo-s",
+          "lat": 32.83693693693694,
+          "lon": -116.43075058257111,
+          "bearing_deg": 211.02,
+          "sigma_deg": 1.0,
+          "track_id": "mlo-s/1:1"
+        },
+        {
+          "camera": "mlo-s",
+          "lat": 32.83693693693694,
+          "lon": -116.43075058257111,
+          "bearing_deg": 220.31,
+          "sigma_deg": 1.0,
+          "track_id": "mlo-s/1:2"
+        }
+      ],
+      "evidence": [
+        {
+          "track_id": "pi-e/1:0",
+          "frames": [
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855239_+00181.jpg",
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855359_+00301.jpg",
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855479_+00421.jpg"
+          ],
+          "box": [
+            1933,
+            1121,
+            2018,
+            1152
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.85,
+            "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+          }
+        },
+        {
+          "track_id": "pi-e/1:1",
+          "frames": [
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855359_+00301.jpg",
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855479_+00421.jpg",
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855600_+00542.jpg"
+          ],
+          "box": [
+            1802,
+            1103,
+            1970,
+            1159
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.85,
+            "reason": "A discrete pale plume rises from a point on the ridgeline and expands and drifts laterally across successive frames, matching new wildfire smoke growth."
+          }
+        },
+        {
+          "track_id": "ws-w/1:0",
+          "frames": [
+            "data/raw/20240701_Kitchenfire_ws-w-mobo-c/1719855900_+00719.jpg",
+            "data/raw/20240701_Kitchenfire_ws-w-mobo-c/1719856021_+00840.jpg",
+            "data/raw/20240701_Kitchenfire_ws-w-mobo-c/1719856141_+00960.jpg"
+          ],
+          "box": [
+            2287,
+            1010,
+            2383,
+            1038
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.82,
+            "reason": "A gray column rises from a single point on the ridgeline and expands/drifts across the three frames."
+          }
+        },
+        {
+          "track_id": "lp-e/0:0",
+          "frames": [
+            "data/raw/20240701_Kitchenfire_lp-e-mobo-c/1719856778_+01560.jpg",
+            "data/raw/20240701_Kitchenfire_lp-e-mobo-c/1719856898_+01680.jpg",
+            "data/raw/20240701_Kitchenfire_lp-e-mobo-c/1719857018_+01800.jpg"
+          ],
+          "box": [
+            1390,
+            993,
+            1457,
+            1039
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.85,
+            "reason": "A localized gray column rises from one point on the ridgeline and grows denser and larger across successive frames."
+          }
+        },
+        {
+          "track_id": "mlo-s/1:1",
+          "frames": [
+            "data/raw/20240701_Kitchenfire_mlo-s-mobo-c/1719856971_+01921.jpg",
+            "data/raw/20240701_Kitchenfire_mlo-s-mobo-c/1719857091_+02041.jpg",
+            "data/raw/20240701_Kitchenfire_mlo-s-mobo-c/1719857211_+02161.jpg"
+          ],
+          "box": [
+            1754,
+            1023,
+            1959,
+            1080
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.94,
+            "reason": "A discrete gray-brown column on the right rises from the horizon and rapidly grows and expands across successive frames."
+          }
+        },
+        {
+          "track_id": "mlo-s/1:2",
+          "frames": [
+            "data/raw/20240701_Kitchenfire_mlo-s-mobo-c/1719857031_+01981.jpg",
+            "data/raw/20240701_Kitchenfire_mlo-s-mobo-c/1719857151_+02101.jpg",
+            "data/raw/20240701_Kitchenfire_mlo-s-mobo-c/1719857271_+02221.jpg"
+          ],
+          "box": [
+            1907,
+            977,
+            2227,
+            1142
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.92,
+            "reason": "Gray plume rises from a single ground point and grows/drifts left across frames."
+          }
+        }
+      ]
+    }
+  ],
+  "score": {
+    "spotted_min_after_first_smoke": 7.2,
+    "provisional_min_after_first_smoke": 18.2,
+    "confirmed_min_after_first_smoke": 37.0,
+    "final_error_m": 119,
+    "final_uncertainty_m": 1480
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "1:2": {
+    "is_smoke": false,
+    "confidence": 0.88,
+    "reason": "Detached bright-white puffy mass with no ground-anchored rising column and little drift or growth is consistent with a small cumulus cloud, not wildfire smoke.",
+    "at_edge": false
+  },
+  "0:0": {
+    "is_smoke": true,
+    "confidence": 0.88,
+    "reason": "A localized column rises from a single ground point and grows taller and more defined across successive frames.",
+    "at_edge": false
+  },
+  "1:0": {
+    "is_smoke": false,
+    "confidence": 0.9,
+    "reason": "The isolated bright white puff is detached aloft with no ground origin and dissipates rather than growing upward, indicating a small cumulus cloud not smoke.",
+    "at_edge": false
+  },
+  "1:1": {
+    "is_smoke": false,
+    "confidence": 0.9,
+    "reason": "The isolated dark feature is high in the sky with no ground origin and shrinks over time instead of growing and rising like smoke.",
+    "at_edge": false
+  }
+}

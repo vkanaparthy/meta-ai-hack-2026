@@ -1,0 +1,23 @@
+{
+  "sequence": "20240908_BridgeFire_wilson-e-mobo-c",
+  "frames": 80,
+  "tracks": 0,
+  "sam": {
+    "detected": false,
+    "time_to_detect_s": null,
+    "false_alarm_frames": 0,
+    "pre_ignition_frames": 40,
+    "first_detection_frame": null
+  },
+  "verified": {
+    "detected": false,
+    "time_to_detect_s": null,
+    "false_alarm_frames": 0,
+    "pre_ignition_frames": 40,
+    "first_detection_frame": null
+  },
+  "verdicts": {},
+  "image_width": 3072,
+  "track_summaries": [],
+  "detections": []
+}

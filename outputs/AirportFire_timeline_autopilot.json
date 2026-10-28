@@ -1,0 +1,776 @@
+{
+  "fire": "AirportFire",
+  "driver": "autopilot",
+  "muse": "cached",
+  "t_start": 1725909813,
+  "t_end": 1725915758,
+  "timeline": [
+    {
+      "time": "13:25 PDT",
+      "epoch": 1725913534,
+      "elapsed_min": 62.0,
+      "trigger": [
+        "new plume track starr-n/0:0 on camera starr-n",
+        "new plume track stgo-e/1:0 on camera stgo-e"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:25 PDT",
+            "minutes_since_watch_started": 62.0,
+            "cameras_watching": [
+              "marconi-n",
+              "starr-n",
+              "stgo-e"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "starr-n/0:0",
+                "camera": "starr-n",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 354.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              },
+              {
+                "track_id": "stgo-e/1:0",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 138.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "error": "no verified plume yet"
+          }
+        }
+      ]
+    },
+    {
+      "time": "13:27 PDT",
+      "epoch": 1725913654,
+      "elapsed_min": 64.0,
+      "trigger": [
+        "track starr-n/0:0 now has enough history to verify",
+        "track stgo-e/1:0 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:27 PDT",
+            "minutes_since_watch_started": 64.0,
+            "cameras_watching": [
+              "marconi-n",
+              "starr-n",
+              "stgo-e"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "starr-n/0:0",
+                "camera": "starr-n",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 354.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              },
+              {
+                "track_id": "stgo-e/1:0",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 138.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "starr-n/0:0"
+          },
+          "result": {
+            "track_id": "starr-n/0:0",
+            "state": "smoke",
+            "confidence": 0.9,
+            "reason": "A discrete gray column rises from a single ground point in the valley and grows taller and drifts rightward across frames under clear sky."
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "stgo-e/1:0"
+          },
+          "result": {
+            "track_id": "stgo-e/1:0",
+            "state": "smoke",
+            "confidence": 0.9,
+            "reason": "Dark gray column rises from behind the ridgeline and grows and drifts leftward across the three frames."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "plumes from fewer than two stations, or bearings that do not intersect consistently",
+            "bearing_lines": [
+              {
+                "camera": "starr-n",
+                "bearing_deg": 354.3,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "stgo-e",
+                "bearing_deg": 138.7,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:27 PDT",
+            "minutes_since_watch_started": 64.0,
+            "cameras_watching": [
+              "marconi-n",
+              "starr-n",
+              "stgo-e"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "starr-n/0:0",
+                "camera": "starr-n",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 354.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete gray column rises from a single ground point in the valley and grows taller and drifts rightward across frames under clear sky."
+              },
+              {
+                "track_id": "stgo-e/1:0",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 138.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray column rises from behind the ridgeline and grows and drifts leftward across the three frames."
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "issue_alert",
+          "args": {
+            "level": "spotted",
+            "headline": "Smoke spotted; location not yet fixed",
+            "message": "Verified smoke on bearing starr-n 354.3 deg, stgo-e 138.7 deg. Waiting for a second station to locate it."
+          },
+          "result": {
+            "issued": true,
+            "level": "spotted",
+            "alert_number": 1
+          }
+        }
+      ]
+    },
+    {
+      "time": "13:30 PDT",
+      "epoch": 1725913835,
+      "elapsed_min": 67.0,
+      "trigger": [
+        "new plume track stgo-e/1:1 on camera stgo-e"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:30 PDT",
+            "minutes_since_watch_started": 67.0,
+            "cameras_watching": [
+              "marconi-n",
+              "starr-n",
+              "stgo-e"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "starr-n/0:0",
+                "camera": "starr-n",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 354.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete gray column rises from a single ground point in the valley and grows taller and drifts rightward across frames under clear sky."
+              },
+              {
+                "track_id": "stgo-e/1:0",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 138.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray column rises from behind the ridgeline and grows and drifts leftward across the three frames."
+              },
+              {
+                "track_id": "stgo-e/1:1",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 143.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "13:27 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "stgo-e/1:1"
+          },
+          "result": {
+            "track_id": "stgo-e/1:1",
+            "state": "smoke",
+            "confidence": 0.9,
+            "reason": "Dark gray turbulent plume expands and thickens rapidly across frames while foreground remains clear, consistent with growing wildfire smoke rather than fog or cloud."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "plumes from fewer than two stations, or bearings that do not intersect consistently",
+            "bearing_lines": [
+              {
+                "camera": "starr-n",
+                "bearing_deg": 354.3,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "stgo-e",
+                "bearing_deg": 138.7,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "stgo-e",
+                "bearing_deg": 143.3,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:30 PDT",
+            "minutes_since_watch_started": 67.0,
+            "cameras_watching": [
+              "marconi-n",
+              "starr-n",
+              "stgo-e"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "starr-n/0:0",
+                "camera": "starr-n",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 354.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete gray column rises from a single ground point in the valley and grows taller and drifts rightward across frames under clear sky."
+              },
+              {
+                "track_id": "stgo-e/1:0",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 138.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray column rises from behind the ridgeline and grows and drifts leftward across the three frames."
+              },
+              {
+                "track_id": "stgo-e/1:1",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 143.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray turbulent plume expands and thickens rapidly across frames while foreground remains clear, consistent with growing wildfire smoke rather than fog or cloud."
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "13:27 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              }
+            ],
+            "last_location": null
+          }
+        }
+      ]
+    },
+    {
+      "time": "13:40 PDT",
+      "epoch": 1725914438,
+      "elapsed_min": 77.1,
+      "trigger": [
+        "new plume track marconi-n/0:0 on camera marconi-n"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:40 PDT",
+            "minutes_since_watch_started": 77.1,
+            "cameras_watching": [
+              "marconi-n",
+              "starr-n",
+              "stgo-e"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "starr-n/0:0",
+                "camera": "starr-n",
+                "first_seen_min_ago": 17,
+                "bearing_deg": 354.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete gray column rises from a single ground point in the valley and grows taller and drifts rightward across frames under clear sky."
+              },
+              {
+                "track_id": "stgo-e/1:0",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 17,
+                "bearing_deg": 138.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray column rises from behind the ridgeline and grows and drifts leftward across the three frames."
+              },
+              {
+                "track_id": "stgo-e/1:1",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 12,
+                "bearing_deg": 143.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray turbulent plume expands and thickens rapidly across frames while foreground remains clear, consistent with growing wildfire smoke rather than fog or cloud."
+              },
+              {
+                "track_id": "marconi-n/0:0",
+                "camera": "marconi-n",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 332.0,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "13:27 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "plumes from fewer than two stations, or bearings that do not intersect consistently",
+            "bearing_lines": [
+              {
+                "camera": "starr-n",
+                "bearing_deg": 354.3,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "stgo-e",
+                "bearing_deg": 138.7,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "stgo-e",
+                "bearing_deg": 143.3,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:40 PDT",
+            "minutes_since_watch_started": 77.1,
+            "cameras_watching": [
+              "marconi-n",
+              "starr-n",
+              "stgo-e"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "starr-n/0:0",
+                "camera": "starr-n",
+                "first_seen_min_ago": 17,
+                "bearing_deg": 354.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete gray column rises from a single ground point in the valley and grows taller and drifts rightward across frames under clear sky."
+              },
+              {
+                "track_id": "stgo-e/1:0",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 17,
+                "bearing_deg": 138.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray column rises from behind the ridgeline and grows and drifts leftward across the three frames."
+              },
+              {
+                "track_id": "stgo-e/1:1",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 12,
+                "bearing_deg": 143.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray turbulent plume expands and thickens rapidly across frames while foreground remains clear, consistent with growing wildfire smoke rather than fog or cloud."
+              },
+              {
+                "track_id": "marconi-n/0:0",
+                "camera": "marconi-n",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 332.0,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "13:27 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              }
+            ],
+            "last_location": null
+          }
+        }
+      ]
+    },
+    {
+      "time": "13:42 PDT",
+      "epoch": 1725914558,
+      "elapsed_min": 79.1,
+      "trigger": [
+        "track marconi-n/0:0 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:42 PDT",
+            "minutes_since_watch_started": 79.1,
+            "cameras_watching": [
+              "marconi-n",
+              "starr-n",
+              "stgo-e"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "starr-n/0:0",
+                "camera": "starr-n",
+                "first_seen_min_ago": 19,
+                "bearing_deg": 354.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete gray column rises from a single ground point in the valley and grows taller and drifts rightward across frames under clear sky."
+              },
+              {
+                "track_id": "stgo-e/1:0",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 19,
+                "bearing_deg": 138.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray column rises from behind the ridgeline and grows and drifts leftward across the three frames."
+              },
+              {
+                "track_id": "stgo-e/1:1",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 14,
+                "bearing_deg": 143.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray turbulent plume expands and thickens rapidly across frames while foreground remains clear, consistent with growing wildfire smoke rather than fog or cloud."
+              },
+              {
+                "track_id": "marconi-n/0:0",
+                "camera": "marconi-n",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 332.0,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "13:27 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "marconi-n/0:0"
+          },
+          "result": {
+            "track_id": "marconi-n/0:0",
+            "state": "smoke",
+            "confidence": 0.95,
+            "reason": "Vertical gray column anchored behind the ridge grows taller and develops a bright cauliflower top across frames."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "bearing lines cross, but too uncertain to place (about 11 km); need a camera from another direction",
+            "bearing_lines": [
+              {
+                "camera": "starr-n",
+                "bearing_deg": 354.3,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "stgo-e",
+                "bearing_deg": 138.7,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "stgo-e",
+                "bearing_deg": 143.3,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "marconi-n",
+                "bearing_deg": 332.0,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:42 PDT",
+            "minutes_since_watch_started": 79.1,
+            "cameras_watching": [
+              "marconi-n",
+              "starr-n",
+              "stgo-e"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "starr-n/0:0",
+                "camera": "starr-n",
+                "first_seen_min_ago": 19,
+                "bearing_deg": 354.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete gray column rises from a single ground point in the valley and grows taller and drifts rightward across frames under clear sky."
+              },
+              {
+                "track_id": "stgo-e/1:0",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 19,
+                "bearing_deg": 138.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray column rises from behind the ridgeline and grows and drifts leftward across the three frames."
+              },
+              {
+                "track_id": "stgo-e/1:1",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 14,
+                "bearing_deg": 143.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray turbulent plume expands and thickens rapidly across frames while foreground remains clear, consistent with growing wildfire smoke rather than fog or cloud."
+              },
+              {
+                "track_id": "marconi-n/0:0",
+                "camera": "marconi-n",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 332.0,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Vertical gray column anchored behind the ridge grows taller and develops a bright cauliflower top across frames."
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "13:27 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              }
+            ],
+            "last_location": null
+          }
+        }
+      ]
+    }
+  ],
+  "alerts": [
+    {
+      "level": "spotted",
+      "time": "13:27 PDT",
+      "epoch": 1725913654,
+      "elapsed_min": 64.0,
+      "headline": "Smoke spotted; location not yet fixed",
+      "message": "Verified smoke on bearing starr-n 354.3 deg, stgo-e 138.7 deg. Waiting for a second station to locate it.",
+      "location": null,
+      "bearing_lines": [
+        {
+          "camera": "starr-n",
+          "lat": 33.612252252252254,
+          "lon": -117.54913460687456,
+          "bearing_deg": 354.27,
+          "sigma_deg": 6.0,
+          "track_id": "starr-n/0:0"
+        },
+        {
+          "camera": "stgo-e",
+          "lat": 33.70918918918919,
+          "lon": -117.53021659987415,
+          "bearing_deg": 138.66,
+          "sigma_deg": 6.0,
+          "track_id": "stgo-e/1:0"
+        }
+      ],
+      "evidence": [
+        {
+          "track_id": "starr-n/0:0",
+          "frames": [
+            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20240909_BridgeFire_starr-n-mobo-c/1725913413_+01201.jpg",
+            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20240909_BridgeFire_starr-n-mobo-c/1725913532_+01320.jpg",
+            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20240909_BridgeFire_starr-n-mobo-c/1725913653_+01441.jpg"
+          ],
+          "box": [
+            1398,
+            614,
+            1688,
+            1037
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.9,
+            "reason": "A discrete gray column rises from a single ground point in the valley and grows taller and drifts rightward across frames under clear sky."
+          }
+        },
+        {
+          "track_id": "stgo-e/1:0",
+          "frames": [
+            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20240909_BridgeFire_stgo-e-mobo-c/1725913415_+00901.jpg",
+            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20240909_BridgeFire_stgo-e-mobo-c/1725913534_+01020.jpg",
+            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20240909_BridgeFire_stgo-e-mobo-c/1725913654_+01140.jpg"
+          ],
+          "box": [
+            2431,
+            673,
+            2971,
+            1339
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.9,
+            "reason": "Dark gray column rises from behind the ridgeline and grows and drifts leftward across the three frames."
+          }
+        }
+      ]
+    }
+  ],
+  "score": {
+    "spotted_min_after_first_smoke": 24.0,
+    "provisional_min_after_first_smoke": null,
+    "confirmed_min_after_first_smoke": null
+  }
+}

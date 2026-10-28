@@ -1,0 +1,8 @@
+{
+  "1:0": {
+    "is_smoke": true,
+    "confidence": 0.92,
+    "reason": "A column rises from a single ground point and grows into an expanding dark plume across successive frames.",
+    "at_edge": false
+  }
+}

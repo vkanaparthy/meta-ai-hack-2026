@@ -1,0 +1,8 @@
+{
+  "1:0": {
+    "is_smoke": false,
+    "confidence": 0.8,
+    "reason": "The gray layer remains broad and static across frames without point-source rising and growing behavior, consistent with haze or low cloud rather than new smoke.",
+    "at_edge": true
+  }
+}

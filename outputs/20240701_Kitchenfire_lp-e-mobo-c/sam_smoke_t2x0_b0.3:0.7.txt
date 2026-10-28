@@ -1,0 +1,15 @@
+<66f>0<|box;x1=1270;y1=355;x2=1320;y2=385;w=1536;h=744;c=0.7229437232017517|><|mask;x=0;y=0;c=0.7229437232017517;data=31,51,!!!!!HDOM3[)=g43JuIn)8SCBKvKifaZJq4f@U5'fAHkS8!!!|>
+<67f>0<|box;x1=1269;y1=355;x2=1321;y2=386;w=1536;h=744;c=0.7229437232017517|><|mask;x=0;y=0;c=0.7229437232017517;data=32,53,!!!!!LDOWc/R()uG6QAerVhd:qe5jv8:.Wuv2e'3]-h`IbXjk+{4`S|>
+<68f>0<|box;x1=1270;y1=355;x2=1323;y2=385;w=1536;h=744;c=0.7229437232017517|><|mask;x=0;y=0;c=0.7229437232017517;data=31,54,!!!!!LDl%OzrCBjTj(dzg6*I9dxY5DQ]uv'hFoWUia`X3*@It&G^@e|>
+<69f>0<|box;x1=1267;y1=349;x2=1324;y2=385;w=1536;h=744;c=0.7229437232017517|><|mask;x=0;y=0;c=0.7229437232017517;data=37,58,!!!!!MDv2wmE73Cv/Fs%wN`j:fUXQlQ=1bkYG%/!WMFXqIy)ohusRi/|>
+<70f>0<|box;x1=1265;y1=345;x2=1325;y2=386;w=1536;h=744;c=0.7229437232017517|><|mask;x=0;y=0;c=0.7229437232017517;data=42,61,!!!!!VDg/FG/]a5kN5H--v1J.-?.woRs$Wc!qU=k5Pf/sT-KqhCc'_luv^:fSW%lx9|>
+<71f>0<|box;x1=1264;y1=340;x2=1326;y2=386;w=1536;h=744;c=0.7229437232017517|><|mask;x=0;y=0;c=0.7229437232017517;data=47,63,!!!!!RDKHwt7TnNe^m_S(]J&l9_.mu'I*0p`@s[Z#Ed7xA.KccbCfziRhPPwj|>
+<72f>0<|box;x1=1263;y1=338;x2=1328;y2=385;w=1536;h=744;c=0.7229437232017517|><|mask;x=0;y=0;c=0.7229437232017517;data=48,66,!!!!!TEP1^.APMPXY?*kTm&G:!!mTxk22b.Ynhf&F@/?[RD9c+qIO:WsRzlCHtLo|>
+<73f>0<|box;x1=1266;y1=329;x2=1333;y2=384;w=1536;h=744;c=0.7229437232017517|><|mask;x=0;y=0;c=0.7229437232017517;data=56,68,!!!!!VEg))&M@{pKv7jla.!^RQKXHQhB`Q'rAwid(cnxqR):hQv6^KL65XKyl2P=&6|>
+<74f>0<|box;x1=1263;y1=322;x2=1337;y2=385;w=1536;h=744;c=0.7229437232017517|><|mask;x=0;y=0;c=0.7229437232017517;data=64,75,!!!!!_E-`qp*A)#tZ3`o&iRyJpA/oIErW[4'rGm9W7Ua(NcA4b4p&v'eMsL+!]DOy&Ggs#A-PUUH|>
+<75f>0<|box;x1=1259;y1=317;x2=1327;y2=385;w=1536;h=744;c=0.7229437232017517|><|mask;x=0;y=0;c=0.7229437232017517;data=69,69,!!!!!_E#.KzVlP3]xPd_gJYD5ZF7x?o@b@F'_TBb!_^cM4Lf.l_tcg^8ty.uI8l@CR/bd0yU'QH%|>
+<76f>0<|box;x1=1258;y1=313;x2=1325;y2=385;w=1536;h=744;c=0.7229437232017517|><|mask;x=0;y=0;c=0.7229437232017517;data=73,68,!!!!!^Enu($?(T)U5xs]Q#66e9kU&M4A0l6e?^gGf$lzEfYu&'.uV.={?589QQ8VSq`F&)LUEpp|>
+<77f>0<|box;x1=1253;y1=312;x2=1327;y2=385;w=1536;h=744;c=0.7229437232017517|><|mask;x=0;y=0;c=0.7229437232017517;data=74,75,!!!!!bED_yQpZfsIde#FaK+wZzNM/]9!GNF]5E?ccoP!EK7HI[Z5%hM+oMYyELSw@A`-Ii?bZQ'2e{Pi|>
+<78f>0<|box;x1=1246;y1=315;x2=1330;y2=384;w=1536;h=744;c=0.7229437232017517|><|mask;x=0;y=0;c=0.7229437232017517;data=70,85,!!!!!eDb6/*$9.Xfn/UW#!c:!qVjds^FRz4Dhi?z)+l%Vsk6z1^23p$'PeQ$=3?:{[B*(e9XQRQFw's4?bL{|>
+<79f>0<|box;x1=1242;y1=316;x2=1336;y2=385;w=1536;h=744;c=0.7229437232017517|><|mask;x=0;y=0;c=0.7229437232017517;data=70,95,!!!!!eE3SU5'Kho5Ho7=9CgBR_!t&FPKPVDjdltj[i4{F=GfAFlID!:XBXsPCKEI5!kUF[a`5v5)8rW)Qm{X|>
+<80f>0<|box;x1=1237;y1=317;x2=1340;y2=385;w=1536;h=744;c=0.7229437232017517|><|mask;x=0;y=0;c=0.7229437232017517;data=69,104,!!!!!lF%o:%R.6q?y'$%M]e)IdUCAvTnp-bkP*L-A5H-Y])@LxA4B$Wy?t2Cqk3mx4t1]fpPw?49EnW.?#dv_?7]Ru+!!|>

@@ -1,0 +1,8 @@
+{
+  "0:0": {
+    "is_smoke": false,
+    "confidence": 0.85,
+    "reason": "The bright white regions are diffuse clouds with severe overexposure/sun glare that fluctuate rather than showing a discrete column rising, growing and drifting from a point.",
+    "at_edge": true
+  }
+}

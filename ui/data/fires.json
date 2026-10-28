@@ -1,0 +1,88 @@
+[
+ {
+  "fire": "JunctionFire",
+  "label": "Junction Fire",
+  "date": "2026-06-29",
+  "alerts": [
+   "spotted",
+   "confirmed"
+  ],
+  "score": {
+   "spotted_min_after_first_smoke": 19.1,
+   "provisional_min_after_first_smoke": null,
+   "confirmed_min_after_first_smoke": 27.0,
+   "final_error_m": 1906,
+   "final_uncertainty_m": 2060
+  }
+ },
+ {
+  "fire": "ResortFire",
+  "label": "Resort Fire",
+  "date": "2024-11-08",
+  "alerts": [
+   "spotted",
+   "confirmed"
+  ],
+  "score": {
+   "spotted_min_after_first_smoke": 19.8,
+   "provisional_min_after_first_smoke": null,
+   "confirmed_min_after_first_smoke": 21.8,
+   "final_error_m": 1035,
+   "final_uncertainty_m": 1010
+  }
+ },
+ {
+  "fire": "AirportFire",
+  "label": "Airport Fire",
+  "date": "2024-09-09",
+  "alerts": [
+   "spotted"
+  ],
+  "score": {
+   "spotted_min_after_first_smoke": 24.0,
+   "provisional_min_after_first_smoke": null,
+   "confirmed_min_after_first_smoke": null
+  }
+ },
+ {
+  "fire": "BridgeFire",
+  "label": "Bridge Fire",
+  "date": "2024-09-08",
+  "alerts": [],
+  "score": {
+   "spotted_min_after_first_smoke": null,
+   "provisional_min_after_first_smoke": null,
+   "confirmed_min_after_first_smoke": null
+  }
+ },
+ {
+  "fire": "GroveFire",
+  "label": "Grove Fire",
+  "date": "2024-07-24",
+  "alerts": [
+   "spotted"
+  ],
+  "score": {
+   "spotted_min_after_first_smoke": 7.0,
+   "provisional_min_after_first_smoke": null,
+   "confirmed_min_after_first_smoke": null
+  }
+ },
+ {
+  "fire": "Kitchenfire",
+  "label": "Kitchen Fire",
+  "date": "2024-07-01",
+  "alerts": [
+   "spotted",
+   "provisional",
+   "confirmed"
+  ],
+  "score": {
+   "spotted_min_after_first_smoke": 7.2,
+   "provisional_min_after_first_smoke": 18.2,
+   "confirmed_min_after_first_smoke": 37.0,
+   "final_error_m": 119,
+   "final_uncertainty_m": 1480
+  }
+ }
+]

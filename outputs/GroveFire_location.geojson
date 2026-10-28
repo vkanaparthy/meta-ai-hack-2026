@@ -1,0 +1,86 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.82759276682934,
+          33.36197478351288
+        ]
+      },
+      "properties": {
+        "kind": "fire_fix",
+        "uncertainty_m": 9423,
+        "line_residual_m": 0,
+        "epoch": 1721852625,
+        "cameras": [
+          "hp-e",
+          "tp-w"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -116.8364405421638,
+            33.36324324324324
+          ],
+          [
+            -116.4122502277552,
+            33.301608971090594
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "bearing",
+        "camera": "hp-e",
+        "track": "1:1",
+        "bearing_deg": 99.75,
+        "sigma_deg": 6.0,
+        "edge_clipped": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -116.42546141890425,
+            33.52324324324324
+          ],
+          [
+            -116.81367995017901,
+            33.36681163340025
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "bearing",
+        "camera": "tp-w",
+        "track": "0:0",
+        "bearing_deg": 244.33,
+        "sigma_deg": 6.0,
+        "edge_clipped": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.741601,
+          33.409448
+        ]
+      },
+      "properties": {
+        "kind": "official_ignition"
+      }
+    }
+  ]
+}

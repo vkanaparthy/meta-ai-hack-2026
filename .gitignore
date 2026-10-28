@@ -1,9 +1,21 @@
 *.pyc
-.env
+__pycache__/
 .pytest_cache/
 .venv/
-__pycache__/
-data/dem/
+.env
+
+# large, re-downloadable inputs
 data/raw/
-outputs/
-ui/data/
+data/dem/
+
+# outputs: keep only the small results needed to reproduce without an API key
+outputs/**
+!outputs/**/
+!outputs/**/sam_smoke_t2*.txt
+!outputs/**/dets_*.json
+!outputs/**/camera_model.json
+!outputs/**/camera_model_free.json
+!outputs/**/verdicts.json
+!outputs/**/results.json
+!outputs/*_timeline*.json
+!outputs/*_location.geojson

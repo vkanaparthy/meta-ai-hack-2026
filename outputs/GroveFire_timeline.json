@@ -1,0 +1,714 @@
+{
+  "fire": "GroveFire",
+  "driver": "muse",
+  "muse": "live",
+  "t_start": 1721848775,
+  "t_end": 1721853825,
+  "timeline": [
+    {
+      "time": "12:38 PDT",
+      "epoch": 1721849914,
+      "elapsed_min": 19.0,
+      "trigger": [
+        "new plume track hp-e/1:0 on camera hp-e"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "12:38 PDT",
+            "minutes_since_watch_started": 19.0,
+            "cameras_watching": [
+              "hp-e",
+              "tp-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 121.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "Track hp-e/1:0 is too new to verify, so no alert yet."
+        }
+      ]
+    },
+    {
+      "time": "12:40 PDT",
+      "epoch": 1721850034,
+      "elapsed_min": 21.0,
+      "trigger": [
+        "track hp-e/1:0 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "12:40 PDT",
+            "minutes_since_watch_started": 21.0,
+            "cameras_watching": [
+              "hp-e",
+              "tp-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 121.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "hp-e/1:0"
+          },
+          "result": {
+            "track_id": "hp-e/1:0",
+            "state": "not smoke",
+            "confidence": 0.9,
+            "reason": "The isolated bright white puff is detached aloft with no ground origin and dissipates rather than growing upward, indicating a small cumulus cloud not smoke."
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "No alert: the only track was judged not smoke."
+        }
+      ]
+    },
+    {
+      "time": "12:54 PDT",
+      "epoch": 1721850873,
+      "elapsed_min": 35.0,
+      "trigger": [
+        "new plume track hp-e/1:1 on camera hp-e",
+        "new plume track hp-e/1:2 on camera hp-e"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "12:54 PDT",
+            "minutes_since_watch_started": 35.0,
+            "cameras_watching": [
+              "hp-e",
+              "tp-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 18,
+                "bearing_deg": 121.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "The isolated bright white puff is detached aloft with no ground origin and dissipates rather than growing upward, indicating a small cumulus cloud not smoke."
+              },
+              {
+                "track_id": "hp-e/1:1",
+                "camera": "hp-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 99.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              },
+              {
+                "track_id": "hp-e/1:2",
+                "camera": "hp-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 111.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "hp-e/1:1"
+          },
+          "result": {
+            "track_id": "hp-e/1:1",
+            "state": "not smoke",
+            "confidence": 0.9,
+            "reason": "The isolated dark feature is high in the sky with no ground origin and shrinks over time instead of growing and rising like smoke."
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "No alert: no verified smoke yet, other track still too new."
+        }
+      ]
+    },
+    {
+      "time": "12:56 PDT",
+      "epoch": 1721850995,
+      "elapsed_min": 37.0,
+      "trigger": [
+        "track hp-e/1:2 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "12:56 PDT",
+            "minutes_since_watch_started": 37.0,
+            "cameras_watching": [
+              "hp-e",
+              "tp-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 20,
+                "bearing_deg": 121.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "The isolated bright white puff is detached aloft with no ground origin and dissipates rather than growing upward, indicating a small cumulus cloud not smoke."
+              },
+              {
+                "track_id": "hp-e/1:1",
+                "camera": "hp-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 99.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "The isolated dark feature is high in the sky with no ground origin and shrinks over time instead of growing and rising like smoke."
+              },
+              {
+                "track_id": "hp-e/1:2",
+                "camera": "hp-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 111.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "hp-e/1:2"
+          },
+          "result": {
+            "track_id": "hp-e/1:2",
+            "state": "not smoke",
+            "confidence": 0.88,
+            "reason": "Detached bright-white puffy mass with no ground-anchored rising column and little drift or growth is consistent with a small cumulus cloud, not wildfire smoke."
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "No alert: all tracks to date judged not smoke."
+        }
+      ]
+    },
+    {
+      "time": "13:04 PDT",
+      "epoch": 1721851475,
+      "elapsed_min": 45.0,
+      "trigger": [
+        "new plume track hp-e/0:0 on camera hp-e"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:04 PDT",
+            "minutes_since_watch_started": 45.0,
+            "cameras_watching": [
+              "hp-e",
+              "tp-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 28,
+                "bearing_deg": 121.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "The isolated bright white puff is detached aloft with no ground origin and dissipates rather than growing upward, indicating a small cumulus cloud not smoke."
+              },
+              {
+                "track_id": "hp-e/1:1",
+                "camera": "hp-e",
+                "first_seen_min_ago": 12,
+                "bearing_deg": 99.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "The isolated dark feature is high in the sky with no ground origin and shrinks over time instead of growing and rising like smoke."
+              },
+              {
+                "track_id": "hp-e/1:2",
+                "camera": "hp-e",
+                "first_seen_min_ago": 12,
+                "bearing_deg": 111.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "Detached bright-white puffy mass with no ground-anchored rising column and little drift or growth is consistent with a small cumulus cloud, not wildfire smoke."
+              },
+              {
+                "track_id": "hp-e/0:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 59.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "New track too new to verify, no verified smoke yet so no alert."
+        }
+      ]
+    },
+    {
+      "time": "13:06 PDT",
+      "epoch": 1721851595,
+      "elapsed_min": 47.0,
+      "trigger": [
+        "track hp-e/0:0 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:06 PDT",
+            "minutes_since_watch_started": 47.0,
+            "cameras_watching": [
+              "hp-e",
+              "tp-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 30,
+                "bearing_deg": 121.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "The isolated bright white puff is detached aloft with no ground origin and dissipates rather than growing upward, indicating a small cumulus cloud not smoke."
+              },
+              {
+                "track_id": "hp-e/1:1",
+                "camera": "hp-e",
+                "first_seen_min_ago": 14,
+                "bearing_deg": 99.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "The isolated dark feature is high in the sky with no ground origin and shrinks over time instead of growing and rising like smoke."
+              },
+              {
+                "track_id": "hp-e/1:2",
+                "camera": "hp-e",
+                "first_seen_min_ago": 14,
+                "bearing_deg": 111.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "Detached bright-white puffy mass with no ground-anchored rising column and little drift or growth is consistent with a small cumulus cloud, not wildfire smoke."
+              },
+              {
+                "track_id": "hp-e/0:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 59.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "hp-e/0:0"
+          },
+          "result": {
+            "track_id": "hp-e/0:0",
+            "state": "smoke",
+            "confidence": 0.88,
+            "reason": "A localized column rises from a single ground point and grows taller and more defined across successive frames."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "plumes from fewer than two stations, or bearings that do not intersect consistently",
+            "bearing_lines": [
+              {
+                "camera": "hp-e",
+                "bearing_deg": 59.7,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "issue_alert",
+          "args": {
+            "headline": "Smoke column spotted from hp-e camera",
+            "level": "spotted",
+            "message": "Camera hp-e shows a growing ground-anchored smoke column bearing 59.7 degrees. Detection is single-camera with 6.0 degrees bearing uncertainty, so direction only with no triangulated location yet. Awaiting a second camera view to locate and confirm; fire size and behavior remain unknown."
+          },
+          "result": {
+            "issued": true,
+            "level": "spotted",
+            "alert_number": 1
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "Spotted alert issued for single-camera smoke on hp-e; no location yet."
+        }
+      ]
+    },
+    {
+      "time": "13:23 PDT",
+      "epoch": 1721852625,
+      "elapsed_min": 64.2,
+      "trigger": [
+        "new plume track tp-w/0:0 on camera tp-w"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:23 PDT",
+            "minutes_since_watch_started": 64.2,
+            "cameras_watching": [
+              "hp-e",
+              "tp-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 47,
+                "bearing_deg": 121.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "The isolated bright white puff is detached aloft with no ground origin and dissipates rather than growing upward, indicating a small cumulus cloud not smoke."
+              },
+              {
+                "track_id": "hp-e/1:1",
+                "camera": "hp-e",
+                "first_seen_min_ago": 31,
+                "bearing_deg": 99.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "The isolated dark feature is high in the sky with no ground origin and shrinks over time instead of growing and rising like smoke."
+              },
+              {
+                "track_id": "hp-e/1:2",
+                "camera": "hp-e",
+                "first_seen_min_ago": 31,
+                "bearing_deg": 111.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "Detached bright-white puffy mass with no ground-anchored rising column and little drift or growth is consistent with a small cumulus cloud, not wildfire smoke."
+              },
+              {
+                "track_id": "hp-e/0:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 21,
+                "bearing_deg": 59.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A localized column rises from a single ground point and grows taller and more defined across successive frames."
+              },
+              {
+                "track_id": "tp-w/0:0",
+                "camera": "tp-w",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 244.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "13:06 PDT",
+                "headline": "Smoke column spotted from hp-e camera"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "No alert: new tp-w track too new to verify yet."
+        }
+      ]
+    },
+    {
+      "time": "13:25 PDT",
+      "epoch": 1721852745,
+      "elapsed_min": 66.2,
+      "trigger": [
+        "track tp-w/0:0 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:25 PDT",
+            "minutes_since_watch_started": 66.2,
+            "cameras_watching": [
+              "hp-e",
+              "tp-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 49,
+                "bearing_deg": 121.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "The isolated bright white puff is detached aloft with no ground origin and dissipates rather than growing upward, indicating a small cumulus cloud not smoke."
+              },
+              {
+                "track_id": "hp-e/1:1",
+                "camera": "hp-e",
+                "first_seen_min_ago": 33,
+                "bearing_deg": 99.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "The isolated dark feature is high in the sky with no ground origin and shrinks over time instead of growing and rising like smoke."
+              },
+              {
+                "track_id": "hp-e/1:2",
+                "camera": "hp-e",
+                "first_seen_min_ago": 33,
+                "bearing_deg": 111.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "Detached bright-white puffy mass with no ground-anchored rising column and little drift or growth is consistent with a small cumulus cloud, not wildfire smoke."
+              },
+              {
+                "track_id": "hp-e/0:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 23,
+                "bearing_deg": 59.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A localized column rises from a single ground point and grows taller and more defined across successive frames."
+              },
+              {
+                "track_id": "tp-w/0:0",
+                "camera": "tp-w",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 244.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "13:06 PDT",
+                "headline": "Smoke column spotted from hp-e camera"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "tp-w/0:0"
+          },
+          "result": {
+            "track_id": "tp-w/0:0",
+            "state": "smoke",
+            "confidence": 0.9,
+            "reason": "A distinct column rises from a single ground point and grows taller and denser across successive frames."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "plumes from fewer than two stations, or bearings that do not intersect consistently",
+            "bearing_lines": [
+              {
+                "camera": "hp-e",
+                "bearing_deg": 59.7,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "tp-w",
+                "bearing_deg": 244.3,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "recheck_track",
+          "args": {
+            "track_id": "hp-e/1:0"
+          },
+          "result": {
+            "error": "no located or roughly located fire yet; call locate first"
+          }
+        },
+        {
+          "tool": "recheck_track",
+          "args": {
+            "track_id": "hp-e/1:1"
+          },
+          "result": {
+            "error": "no located or roughly located fire yet; call locate first"
+          }
+        },
+        {
+          "tool": "recheck_track",
+          "args": {
+            "track_id": "hp-e/1:2"
+          },
+          "result": {
+            "error": "no located or roughly located fire yet; call locate first"
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "No alert: second smoke view doesn't yet give a consistent location."
+        }
+      ]
+    }
+  ],
+  "alerts": [
+    {
+      "level": "spotted",
+      "time": "13:06 PDT",
+      "epoch": 1721851595,
+      "elapsed_min": 47.0,
+      "headline": "Smoke column spotted from hp-e camera",
+      "message": "Camera hp-e shows a growing ground-anchored smoke column bearing 59.7 degrees. Detection is single-camera with 6.0 degrees bearing uncertainty, so direction only with no triangulated location yet. Awaiting a second camera view to locate and confirm; fire size and behavior remain unknown.",
+      "location": null,
+      "bearing_lines": [
+        {
+          "camera": "hp-e",
+          "lat": 33.36378378378378,
+          "lon": -116.83579336801176,
+          "bearing_deg": 59.75,
+          "sigma_deg": 6.0,
+          "track_id": "hp-e/0:0"
+        }
+      ],
+      "evidence": [
+        {
+          "track_id": "hp-e/0:0",
+          "frames": [
+            "data/raw/20240724_GroveFire_hp-e-mobo-c/1721851355_+00210.jpg",
+            "data/raw/20240724_GroveFire_hp-e-mobo-c/1721851475_+00330.jpg",
+            "data/raw/20240724_GroveFire_hp-e-mobo-c/1721851595_+00450.jpg"
+          ],
+          "box": [
+            571,
+            1010,
+            680,
+            1173
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.88,
+            "reason": "A localized column rises from a single ground point and grows taller and more defined across successive frames."
+          }
+        }
+      ]
+    }
+  ],
+  "score": {
+    "spotted_min_after_first_smoke": 7.0,
+    "provisional_min_after_first_smoke": null,
+    "confirmed_min_after_first_smoke": null
+  }
+}

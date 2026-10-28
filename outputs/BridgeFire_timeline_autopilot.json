@@ -1,0 +1,14 @@
+{
+  "fire": "BridgeFire",
+  "driver": "autopilot",
+  "muse": "cached",
+  "t_start": 1725827454,
+  "t_end": 1725832193,
+  "timeline": [],
+  "alerts": [],
+  "score": {
+    "spotted_min_after_first_smoke": null,
+    "provisional_min_after_first_smoke": null,
+    "confirmed_min_after_first_smoke": null
+  }
+}

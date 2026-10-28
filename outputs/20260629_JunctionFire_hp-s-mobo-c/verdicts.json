@@ -1,0 +1,14 @@
+{
+  "0:0": {
+    "is_smoke": true,
+    "confidence": 0.88,
+    "reason": "A column rises from a single bright point on the hillside and grows and drifts left across successive frames.",
+    "at_edge": false
+  },
+  "0:1": {
+    "is_smoke": false,
+    "confidence": 0.9,
+    "reason": "The features are flat distant clouds persisting along the horizon without rising from a ground point or growing over time.",
+    "at_edge": false
+  }
+}

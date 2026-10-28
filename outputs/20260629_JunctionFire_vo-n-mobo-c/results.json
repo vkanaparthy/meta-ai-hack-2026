@@ -1,0 +1,30 @@
+{
+  "sequence": "20260629_JunctionFire_vo-n-mobo-c",
+  "frames": 81,
+  "tracks": 1,
+  "sam": {
+    "detected": true,
+    "time_to_detect_s": 1200,
+    "false_alarm_frames": 0,
+    "pre_ignition_frames": 40,
+    "first_detection_frame": 60
+  },
+  "verified": {
+    "detected": false,
+    "time_to_detect_s": null,
+    "false_alarm_frames": 0,
+    "pre_ignition_frames": 40,
+    "first_detection_frame": null
+  },
+  "verdicts": {
+    "0:0": {
+      "is_smoke": false,
+      "confidence": 0.85,
+      "reason": "The bright white regions are diffuse clouds with severe overexposure/sun glare that fluctuate rather than showing a discrete column rising, growing and drifting from a point.",
+      "at_edge": true
+    }
+  },
+  "image_width": 3072,
+  "track_summaries": [],
+  "detections": []
+}

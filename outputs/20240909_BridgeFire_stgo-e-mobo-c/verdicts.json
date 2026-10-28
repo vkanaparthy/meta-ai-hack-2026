@@ -1,0 +1,14 @@
+{
+  "1:0": {
+    "is_smoke": true,
+    "confidence": 0.9,
+    "reason": "Dark gray column rises from behind the ridgeline and grows and drifts leftward across the three frames.",
+    "at_edge": false
+  },
+  "1:1": {
+    "is_smoke": true,
+    "confidence": 0.9,
+    "reason": "Dark gray turbulent plume expands and thickens rapidly across frames while foreground remains clear, consistent with growing wildfire smoke rather than fog or cloud.",
+    "at_edge": false
+  }
+}

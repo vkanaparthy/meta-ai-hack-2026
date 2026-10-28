@@ -1,0 +1,8 @@
+{
+  "0:0": {
+    "is_smoke": true,
+    "confidence": 0.95,
+    "reason": "Vertical gray column anchored behind the ridge grows taller and develops a bright cauliflower top across frames.",
+    "at_edge": false
+  }
+}

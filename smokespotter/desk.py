@@ -20,6 +20,14 @@ from zoneinfo import ZoneInfo
 LOCAL = ZoneInfo("America/Los_Angeles")
 
 
+def _rel(p) -> str:
+    from .config import ROOT
+    try:
+        return str(p.resolve().relative_to(ROOT))
+    except ValueError:
+        return str(p)
+
+
 def hhmm(epoch: int) -> str:
     """Local wall-clock time (PST or PDT as appropriate)."""
     return dt.datetime.fromtimestamp(epoch, LOCAL).strftime("%H:%M %Z")
@@ -260,7 +268,7 @@ class FireDesk:
                  "bearing_lines": [{"camera": t.camera_id, "lat": t.lat, "lon": t.lon,
                                     "bearing_deg": round(t.bearing_deg, 2), "sigma_deg": t.sigma_deg,
                                     "track_id": t.track_id} for t in acc],
-                 "evidence": [{"track_id": t.track_id, "frames": [str(p) for p in t.verify_frames()],
+                 "evidence": [{"track_id": t.track_id, "frames": [_rel(p) for p in t.verify_frames()],
                                "box": [round(v) for v in t.verify_box()],
                                "status": self.status[t.track_id]} for t in acc]}
         self.alerts.append(alert)

@@ -1,0 +1,921 @@
+{
+  "fire": "JunctionFire",
+  "driver": "autopilot",
+  "muse": "cached",
+  "t_start": 1782775670,
+  "t_end": 1782780942,
+  "timeline": [
+    {
+      "time": "17:26",
+      "epoch": 1782779213,
+      "elapsed_min": 59.0,
+      "trigger": [
+        "new plume track bm-e/0:0 on camera bm-e",
+        "new plume track mg-e/0:0 on camera mg-e",
+        "new plume track vo-w/1:0 on camera vo-w",
+        "track bm-e/0:0 now has enough history to verify",
+        "track mg-e/0:0 now has enough history to verify",
+        "track vo-w/1:0 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "17:26",
+            "minutes_since_watch_started": 59.0,
+            "cameras_watching": [
+              "bm-e",
+              "hp-e",
+              "hp-s",
+              "mg-e",
+              "vo-n",
+              "vo-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-e/0:0",
+                "camera": "bm-e",
+                "first_seen_min_ago": 5,
+                "bearing_deg": 76.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              },
+              {
+                "track_id": "mg-e/0:0",
+                "camera": "mg-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 87.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              },
+              {
+                "track_id": "vo-w/1:0",
+                "camera": "vo-w",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 285.5,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "bm-e/0:0"
+          },
+          "result": {
+            "track_id": "bm-e/0:0",
+            "state": "smoke",
+            "confidence": 0.95,
+            "reason": "A dark column rises from a single point on the ridge and grows larger and denser over successive minutes."
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "mg-e/0:0"
+          },
+          "result": {
+            "track_id": "mg-e/0:0",
+            "state": "smoke",
+            "confidence": 0.95,
+            "reason": "Dark gray plume rises from a single point on the ridgeline and grows denser and larger across successive frames."
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "vo-w/1:0"
+          },
+          "result": {
+            "track_id": "vo-w/1:0",
+            "state": "smoke",
+            "confidence": 0.9,
+            "reason": "A distinct column anchored to the ridgeline grows taller and wider across successive frames consistent with rising smoke"
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "bearing lines cross, but too uncertain to place (about 20 km); need a camera from another direction",
+            "bearing_lines": [
+              {
+                "camera": "bm-e",
+                "bearing_deg": 76.2,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "mg-e",
+                "bearing_deg": 87.7,
+                "uncertainty_deg": 1.0
+              },
+              {
+                "camera": "vo-w",
+                "bearing_deg": 285.5,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "issue_alert",
+          "args": {
+            "level": "spotted",
+            "headline": "Smoke spotted; location not yet fixed",
+            "message": "Verified smoke on bearing bm-e 76.2 deg, mg-e 87.7 deg, vo-w 285.5 deg. Waiting for a second station to locate it."
+          },
+          "result": {
+            "issued": true,
+            "level": "spotted",
+            "alert_number": 1
+          }
+        }
+      ]
+    },
+    {
+      "time": "17:29",
+      "epoch": 1782779371,
+      "elapsed_min": 61.7,
+      "trigger": [
+        "new plume track hp-s/0:0 on camera hp-s"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "17:29",
+            "minutes_since_watch_started": 61.7,
+            "cameras_watching": [
+              "bm-e",
+              "hp-e",
+              "hp-s",
+              "mg-e",
+              "vo-n",
+              "vo-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-e/0:0",
+                "camera": "bm-e",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 76.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A dark column rises from a single point on the ridge and grows larger and denser over successive minutes."
+              },
+              {
+                "track_id": "mg-e/0:0",
+                "camera": "mg-e",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 87.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray plume rises from a single point on the ridgeline and grows denser and larger across successive frames."
+              },
+              {
+                "track_id": "vo-w/1:0",
+                "camera": "vo-w",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 285.5,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A distinct column anchored to the ridgeline grows taller and wider across successive frames consistent with rising smoke"
+              },
+              {
+                "track_id": "hp-s/0:0",
+                "camera": "hp-s",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 165.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "17:26",
+                "headline": "Smoke spotted; location not yet fixed"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "bearing lines cross, but too uncertain to place (about 20 km); need a camera from another direction",
+            "bearing_lines": [
+              {
+                "camera": "bm-e",
+                "bearing_deg": 76.2,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "mg-e",
+                "bearing_deg": 87.7,
+                "uncertainty_deg": 1.0
+              },
+              {
+                "camera": "vo-w",
+                "bearing_deg": 285.5,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        }
+      ]
+    },
+    {
+      "time": "17:32",
+      "epoch": 1782779549,
+      "elapsed_min": 64.7,
+      "trigger": [
+        "track hp-s/0:0 now has enough history to verify",
+        "new plume track hp-e/1:0 on camera hp-e"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "17:32",
+            "minutes_since_watch_started": 64.7,
+            "cameras_watching": [
+              "bm-e",
+              "hp-e",
+              "hp-s",
+              "mg-e",
+              "vo-n",
+              "vo-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-e/0:0",
+                "camera": "bm-e",
+                "first_seen_min_ago": 10,
+                "bearing_deg": 76.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A dark column rises from a single point on the ridge and grows larger and denser over successive minutes."
+              },
+              {
+                "track_id": "mg-e/0:0",
+                "camera": "mg-e",
+                "first_seen_min_ago": 10,
+                "bearing_deg": 87.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray plume rises from a single point on the ridgeline and grows denser and larger across successive frames."
+              },
+              {
+                "track_id": "vo-w/1:0",
+                "camera": "vo-w",
+                "first_seen_min_ago": 10,
+                "bearing_deg": 285.5,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A distinct column anchored to the ridgeline grows taller and wider across successive frames consistent with rising smoke"
+              },
+              {
+                "track_id": "hp-s/0:0",
+                "camera": "hp-s",
+                "first_seen_min_ago": 5,
+                "bearing_deg": 165.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              },
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 143.4,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": true,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "17:26",
+                "headline": "Smoke spotted; location not yet fixed"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "hp-s/0:0"
+          },
+          "result": {
+            "track_id": "hp-s/0:0",
+            "state": "smoke",
+            "confidence": 0.88,
+            "reason": "A column rises from a single bright point on the hillside and grows and drifts left across successive frames."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "bearing lines cross, but too uncertain to place (about 20 km); need a camera from another direction",
+            "bearing_lines": [
+              {
+                "camera": "bm-e",
+                "bearing_deg": 76.2,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "mg-e",
+                "bearing_deg": 87.7,
+                "uncertainty_deg": 1.0
+              },
+              {
+                "camera": "vo-w",
+                "bearing_deg": 285.5,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "hp-s",
+                "bearing_deg": 165.9,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        }
+      ]
+    },
+    {
+      "time": "17:34",
+      "epoch": 1782779691,
+      "elapsed_min": 67.0,
+      "trigger": [
+        "track hp-e/1:0 now has enough history to verify",
+        "new plume track vo-n/0:0 on camera vo-n"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "17:34",
+            "minutes_since_watch_started": 67.0,
+            "cameras_watching": [
+              "bm-e",
+              "hp-e",
+              "hp-s",
+              "mg-e",
+              "vo-n",
+              "vo-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-e/0:0",
+                "camera": "bm-e",
+                "first_seen_min_ago": 13,
+                "bearing_deg": 76.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A dark column rises from a single point on the ridge and grows larger and denser over successive minutes."
+              },
+              {
+                "track_id": "mg-e/0:0",
+                "camera": "mg-e",
+                "first_seen_min_ago": 12,
+                "bearing_deg": 87.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray plume rises from a single point on the ridgeline and grows denser and larger across successive frames."
+              },
+              {
+                "track_id": "vo-w/1:0",
+                "camera": "vo-w",
+                "first_seen_min_ago": 12,
+                "bearing_deg": 285.5,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A distinct column anchored to the ridgeline grows taller and wider across successive frames consistent with rising smoke"
+              },
+              {
+                "track_id": "hp-s/0:0",
+                "camera": "hp-s",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 165.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A column rises from a single bright point on the hillside and grows and drifts left across successive frames."
+              },
+              {
+                "track_id": "vo-n/0:0",
+                "camera": "vo-n",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 320.4,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": true,
+                "status": "too new to verify (ready in 6 min)",
+                "reason": null
+              },
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 143.4,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": true,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "17:26",
+                "headline": "Smoke spotted; location not yet fixed"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "hp-e/1:0"
+          },
+          "result": {
+            "track_id": "hp-e/1:0",
+            "state": "not smoke",
+            "confidence": 0.8,
+            "reason": "The gray layer remains broad and static across frames without point-source rising and growing behavior, consistent with haze or low cloud rather than new smoke."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "bearing lines cross, but too uncertain to place (about 20 km); need a camera from another direction",
+            "bearing_lines": [
+              {
+                "camera": "bm-e",
+                "bearing_deg": 76.2,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "mg-e",
+                "bearing_deg": 87.7,
+                "uncertainty_deg": 1.0
+              },
+              {
+                "camera": "vo-w",
+                "bearing_deg": 285.5,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "hp-s",
+                "bearing_deg": 165.9,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        }
+      ]
+    },
+    {
+      "time": "17:37",
+      "epoch": 1782779851,
+      "elapsed_min": 69.7,
+      "trigger": [
+        "new plume track hp-s/0:1 on camera hp-s"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "17:37",
+            "minutes_since_watch_started": 69.7,
+            "cameras_watching": [
+              "bm-e",
+              "hp-e",
+              "hp-s",
+              "mg-e",
+              "vo-n",
+              "vo-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-e/0:0",
+                "camera": "bm-e",
+                "first_seen_min_ago": 15,
+                "bearing_deg": 76.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A dark column rises from a single point on the ridge and grows larger and denser over successive minutes."
+              },
+              {
+                "track_id": "mg-e/0:0",
+                "camera": "mg-e",
+                "first_seen_min_ago": 15,
+                "bearing_deg": 87.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray plume rises from a single point on the ridgeline and grows denser and larger across successive frames."
+              },
+              {
+                "track_id": "vo-w/1:0",
+                "camera": "vo-w",
+                "first_seen_min_ago": 15,
+                "bearing_deg": 285.5,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A distinct column anchored to the ridgeline grows taller and wider across successive frames consistent with rising smoke"
+              },
+              {
+                "track_id": "hp-s/0:0",
+                "camera": "hp-s",
+                "first_seen_min_ago": 10,
+                "bearing_deg": 165.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A column rises from a single bright point on the hillside and grows and drifts left across successive frames."
+              },
+              {
+                "track_id": "vo-n/0:0",
+                "camera": "vo-n",
+                "first_seen_min_ago": 10,
+                "bearing_deg": 320.4,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": true,
+                "status": "too new to verify (ready in 3 min)",
+                "reason": null
+              },
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 143.4,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": true,
+                "status": "not smoke",
+                "reason": "The gray layer remains broad and static across frames without point-source rising and growing behavior, consistent with haze or low cloud rather than new smoke."
+              },
+              {
+                "track_id": "hp-s/0:1",
+                "camera": "hp-s",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 188.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "17:26",
+                "headline": "Smoke spotted; location not yet fixed"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "bearing lines cross, but too uncertain to place (about 20 km); need a camera from another direction",
+            "bearing_lines": [
+              {
+                "camera": "bm-e",
+                "bearing_deg": 76.2,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "mg-e",
+                "bearing_deg": 87.7,
+                "uncertainty_deg": 1.0
+              },
+              {
+                "camera": "vo-w",
+                "bearing_deg": 285.5,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "hp-s",
+                "bearing_deg": 165.9,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        }
+      ]
+    },
+    {
+      "time": "17:40",
+      "epoch": 1782780051,
+      "elapsed_min": 73.0,
+      "trigger": [
+        "track hp-s/0:1 now has enough history to verify",
+        "track vo-n/0:0 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "17:40",
+            "minutes_since_watch_started": 73.0,
+            "cameras_watching": [
+              "bm-e",
+              "hp-e",
+              "hp-s",
+              "mg-e",
+              "vo-n",
+              "vo-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-e/0:0",
+                "camera": "bm-e",
+                "first_seen_min_ago": 19,
+                "bearing_deg": 76.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A dark column rises from a single point on the ridge and grows larger and denser over successive minutes."
+              },
+              {
+                "track_id": "mg-e/0:0",
+                "camera": "mg-e",
+                "first_seen_min_ago": 18,
+                "bearing_deg": 87.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray plume rises from a single point on the ridgeline and grows denser and larger across successive frames."
+              },
+              {
+                "track_id": "vo-w/1:0",
+                "camera": "vo-w",
+                "first_seen_min_ago": 18,
+                "bearing_deg": 285.5,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A distinct column anchored to the ridgeline grows taller and wider across successive frames consistent with rising smoke"
+              },
+              {
+                "track_id": "hp-s/0:0",
+                "camera": "hp-s",
+                "first_seen_min_ago": 13,
+                "bearing_deg": 165.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A column rises from a single bright point on the hillside and grows and drifts left across successive frames."
+              },
+              {
+                "track_id": "vo-n/0:0",
+                "camera": "vo-n",
+                "first_seen_min_ago": 13,
+                "bearing_deg": 320.4,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": true,
+                "status": "unverified",
+                "reason": null
+              },
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 10,
+                "bearing_deg": 143.4,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": true,
+                "status": "not smoke",
+                "reason": "The gray layer remains broad and static across frames without point-source rising and growing behavior, consistent with haze or low cloud rather than new smoke."
+              },
+              {
+                "track_id": "hp-s/0:1",
+                "camera": "hp-s",
+                "first_seen_min_ago": 5,
+                "bearing_deg": 188.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "17:26",
+                "headline": "Smoke spotted; location not yet fixed"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "vo-n/0:0"
+          },
+          "result": {
+            "track_id": "vo-n/0:0",
+            "state": "not smoke",
+            "confidence": 0.85,
+            "reason": "The bright white regions are diffuse clouds with severe overexposure/sun glare that fluctuate rather than showing a discrete column rising, growing and drifting from a point."
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "hp-s/0:1"
+          },
+          "result": {
+            "track_id": "hp-s/0:1",
+            "state": "not smoke",
+            "confidence": 0.9,
+            "reason": "The features are flat distant clouds persisting along the horizon without rising from a ground point or growing over time."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "bearing lines cross, but too uncertain to place (about 20 km); need a camera from another direction",
+            "bearing_lines": [
+              {
+                "camera": "bm-e",
+                "bearing_deg": 76.2,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "mg-e",
+                "bearing_deg": 87.7,
+                "uncertainty_deg": 1.0
+              },
+              {
+                "camera": "vo-w",
+                "bearing_deg": 285.5,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "hp-s",
+                "bearing_deg": 165.9,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        }
+      ]
+    }
+  ],
+  "alerts": [
+    {
+      "level": "spotted",
+      "time": "17:26",
+      "epoch": 1782779213,
+      "elapsed_min": 59.0,
+      "headline": "Smoke spotted; location not yet fixed",
+      "message": "Verified smoke on bearing bm-e 76.2 deg, mg-e 87.7 deg, vo-w 285.5 deg. Waiting for a second station to locate it.",
+      "location": null,
+      "bearing_lines": [
+        {
+          "camera": "bm-e",
+          "lat": 33.162972972972966,
+          "lon": -116.80892384304393,
+          "bearing_deg": 76.16,
+          "sigma_deg": 6.0,
+          "track_id": "bm-e/0:0"
+        },
+        {
+          "camera": "mg-e",
+          "lat": 33.18972972972973,
+          "lon": -116.75967704238137,
+          "bearing_deg": 87.69,
+          "sigma_deg": 1.0,
+          "track_id": "mg-e/0:0"
+        },
+        {
+          "camera": "vo-w",
+          "lat": 33.14036036036036,
+          "lon": -116.6184937237128,
+          "bearing_deg": 285.51,
+          "sigma_deg": 6.0,
+          "track_id": "vo-w/1:0"
+        }
+      ],
+      "evidence": [
+        {
+          "track_id": "bm-e/0:0",
+          "frames": [
+            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20260629_JunctionFire_bm-e-mobo-c/1782778934_+00720.jpg",
+            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20260629_JunctionFire_bm-e-mobo-c/1782779054_+00840.jpg",
+            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20260629_JunctionFire_bm-e-mobo-c/1782779174_+00960.jpg"
+          ],
+          "box": [
+            770,
+            949,
+            1010,
+            1062
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.95,
+            "reason": "A dark column rises from a single point on the ridge and grows larger and denser over successive minutes."
+          }
+        },
+        {
+          "track_id": "mg-e/0:0",
+          "frames": [
+            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20260629_JunctionFire_mg-e-mobo-c/1782778962_+00378.jpg",
+            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20260629_JunctionFire_mg-e-mobo-c/1782779082_+00498.jpg",
+            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20260629_JunctionFire_mg-e-mobo-c/1782779202_+00618.jpg"
+          ],
+          "box": [
+            1073,
+            766,
+            1519,
+            936
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.95,
+            "reason": "Dark gray plume rises from a single point on the ridgeline and grows denser and larger across successive frames."
+          }
+        },
+        {
+          "track_id": "vo-w/1:0",
+          "frames": [
+            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20260629_JunctionFire_vo-w-mobo-c/1782778972_+00902.jpg",
+            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20260629_JunctionFire_vo-w-mobo-c/1782779092_+01022.jpg",
+            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20260629_JunctionFire_vo-w-mobo-c/1782779213_+01143.jpg"
+          ],
+          "box": [
+            2642,
+            976,
+            2969,
+            1122
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.9,
+            "reason": "A distinct column anchored to the ridgeline grows taller and wider across successive frames consistent with rising smoke"
+          }
+        }
+      ]
+    }
+  ],
+  "score": {
+    "spotted_min_after_first_smoke": 19.1,
+    "provisional_min_after_first_smoke": null,
+    "confirmed_min_after_first_smoke": null
+  }
+}

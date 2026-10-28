@@ -1,0 +1,8 @@
+{
+  "1:0": {
+    "is_smoke": true,
+    "confidence": 0.9,
+    "reason": "A distinct column anchored to the ridgeline grows taller and wider across successive frames consistent with rising smoke",
+    "at_edge": false
+  }
+}

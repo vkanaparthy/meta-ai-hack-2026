@@ -1,0 +1,30 @@
+{
+  "sequence": "20260629_JunctionFire_hp-e-mobo-c",
+  "frames": 77,
+  "tracks": 1,
+  "sam": {
+    "detected": true,
+    "time_to_detect_s": 1138,
+    "false_alarm_frames": 0,
+    "pre_ignition_frames": 40,
+    "first_detection_frame": 58
+  },
+  "verified": {
+    "detected": false,
+    "time_to_detect_s": null,
+    "false_alarm_frames": 0,
+    "pre_ignition_frames": 40,
+    "first_detection_frame": null
+  },
+  "verdicts": {
+    "1:0": {
+      "is_smoke": false,
+      "confidence": 0.8,
+      "reason": "The gray layer remains broad and static across frames without point-source rising and growing behavior, consistent with haze or low cloud rather than new smoke.",
+      "at_edge": true
+    }
+  },
+  "image_width": 3072,
+  "track_summaries": [],
+  "detections": []
+}
