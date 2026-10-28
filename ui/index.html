@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smoke Spotter replay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<style>
+:root {
+  --paper: #EEF0E6;
+  --paper-2: #E2E6D8;
+  --ink: #1F2A24;
+  --ink-2: #4B5750;
+  --contour: #8A6A45;
+  --water: #2F6F8F;
+  --doubt: #7C8580;
+  --spotted: #E0A21B;
+  --provisional: #E2571E;
+  --confirmed: #B3261E;
+  --line: #C9CFBE;
+  --instrument: "Saira Condensed", "Arial Narrow", sans-serif;
+  --prose: "Source Serif 4", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--prose); font-size: 15px; line-height: 1.5;
+  display: grid; grid-template-columns: minmax(0, 1fr) 380px; grid-template-rows: auto minmax(0, 1fr);
+  grid-template-areas: "bar bar" "stage desk"; height: 100vh;
+}
+button, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--water); outline-offset: 2px; }
+
+/* ---------- top bar: fire picker, clock, transport ---------- */
+.bar {
+  grid-area: bar; display: grid; grid-template-columns: auto auto minmax(0, 1fr);
+  align-items: center; gap: 20px; padding: 10px 18px; border-bottom: 1px solid var(--line);
+}
+.brand { font-family: var(--instrument); font-weight: 700; font-size: 22px; letter-spacing: .02em; line-height: 1; }
+.brand small { display: block; font-weight: 500; font-size: 13px; color: var(--ink-2); letter-spacing: 0; }
+.fires { display: flex; gap: 4px; flex-wrap: wrap; }
+.fires button {
+  font-family: var(--instrument); font-size: 15px; font-weight: 600;
+  background: transparent; border: 1px solid var(--line); border-radius: 3px; padding: 4px 10px; cursor: pointer;
+}
+.fires button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.fires button span { font-weight: 400; opacity: .75; margin-left: 6px; }
+
+.transport { display: grid; grid-template-columns: auto auto minmax(160px, 1fr) auto; align-items: center; gap: 12px; }
+.clock { font-family: var(--instrument); line-height: 1; min-width: 130px; }
+.clock .hm { font-size: 34px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.clock .tz { font-size: 15px; color: var(--ink-2); margin-left: 4px; }
+.clock .rel { display: block; font-size: 14px; color: var(--ink-2); margin-top: 3px; font-variant-numeric: tabular-nums; }
+.play {
+  width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--ink); background: var(--paper);
+  cursor: pointer; display: grid; place-items: center;
+}
+.play svg { width: 16px; height: 16px; fill: var(--ink); }
+.scrub { position: relative; height: 40px; }
+.scrub input { position: absolute; inset: 0; width: 100%; margin: 0; opacity: 0; cursor: pointer; z-index: 2; }
+.scrub .rail { position: absolute; left: 0; right: 0; top: 19px; height: 2px; background: var(--line); }
+.scrub .done { position: absolute; left: 0; top: 19px; height: 2px; background: var(--ink); }
+.scrub .head { position: absolute; top: 11px; width: 2px; height: 18px; background: var(--ink); transform: translateX(-1px); }
+.scrub .notch { position: absolute; top: 12px; width: 10px; height: 16px; border-radius: 2px; transform: translateX(-5px); }
+.scrub .smoke { position: absolute; top: 30px; font-family: var(--instrument); font-size: 12px; color: var(--contour); transform: translateX(-2px); white-space: nowrap; }
+.scrub .smoke::before { content: ""; position: absolute; left: 1px; top: -12px; width: 1px; height: 10px; background: var(--contour); }
+.scrub input:focus-visible + .rail { outline: 2px solid var(--water); outline-offset: 8px; }
+.speed { font-family: var(--instrument); font-size: 15px; background: transparent; border: 1px solid var(--line); border-radius: 3px; padding: 4px 6px; }
+.toggles { position: absolute; top: 10px; left: 10px; z-index: 3; display: flex; gap: 6px; }
+.toggles button { font-family: var(--instrument); font-size: 14px; background: var(--paper); border: 1px solid var(--line); border-radius: 3px; padding: 4px 9px; cursor: pointer; }
+.toggles button[aria-pressed="true"] { border-color: var(--ink); background: var(--paper-2); }
+
+/* ---------- stage: map + cameras ---------- */
+.stage { grid-area: stage; display: grid; grid-template-rows: minmax(0, 1fr) auto; min-height: 0; }
+#map { position: relative; min-height: 300px; }
+.maplibregl-ctrl-attrib { font-family: var(--prose); font-size: 11px; }
+
+.ring { width: 76px; height: 76px; pointer-events: none; }
+.ring-label {
+  position: absolute; left: 50%; top: 66px; transform: translateX(-50%); white-space: nowrap;
+  font-family: var(--instrument); font-weight: 600; font-size: 14px; color: var(--ink);
+  text-shadow: 0 0 3px var(--paper), 0 0 3px var(--paper), 0 0 3px var(--paper);
+}
+.pin { width: 22px; height: 22px; border-radius: 50%; border: 3px solid var(--paper); box-shadow: 0 0 0 1.5px var(--ink); }
+.pin.drop { animation: drop .6s cubic-bezier(.2,.9,.3,1.3); }
+@keyframes drop { from { transform: translateY(-36px) scale(.6); opacity: 0; } }
+.truth { width: 14px; height: 14px; transform: rotate(45deg); border: 2px solid var(--ink); background: var(--paper); }
+
+.cams { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(140px, 1fr); gap: 10px; padding: 10px 14px 12px; overflow-x: auto; border-top: 1px solid var(--line); }
+.cam { margin: 0; cursor: pointer; border: 0; background: none; padding: 0; text-align: left; }
+.cam .frame { position: relative; aspect-ratio: 3 / 2; background: var(--paper-2); border-radius: 3px; overflow: hidden; outline: 2px solid transparent; }
+.cam[aria-pressed="true"] .frame { outline-color: var(--ink); }
+.cam img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cam svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cam figcaption { font-family: var(--instrument); font-size: 14px; margin-top: 4px; display: flex; justify-content: space-between; gap: 8px; }
+.cam figcaption b { font-weight: 600; white-space: nowrap; }
+.cam figcaption span { color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ---------- desk: score, alerts, reasoning ---------- */
+.desk { grid-area: desk; border-left: 1px solid var(--line); display: grid; grid-template-rows: auto auto minmax(0, 1fr); min-height: 0; }
+.score { padding: 14px 18px 12px; border-bottom: 1px solid var(--line); }
+.score h1 { font-family: var(--instrument); font-weight: 700; font-size: 26px; line-height: 1.1; margin: 0 0 6px; }
+.score p { margin: 0; color: var(--ink-2); font-size: 14px; }
+.score dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 12px; margin: 10px 0 0; }
+.score dt { font-size: 13px; color: var(--ink-2); }
+.score dd { margin: 0; font-family: var(--instrument); font-weight: 600; font-size: 22px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+
+.alerts { padding: 12px 18px; border-bottom: 1px solid var(--line); max-height: 46vh; overflow-y: auto; }
+.alerts .empty { color: var(--ink-2); font-style: italic; margin: 2px 0; }
+.alert { border-left: 5px solid var(--c); padding: 2px 0 2px 12px; margin: 0 0 14px; }
+.alert:last-child { margin-bottom: 2px; }
+.alert.fresh { animation: arrive .5s ease-out; }
+@keyframes arrive { from { opacity: 0; transform: translateX(14px); } }
+.alert .lvl { font-family: var(--instrument); font-weight: 700; font-size: 16px; color: var(--c); }
+.alert .lvl time { color: var(--ink-2); font-weight: 500; margin-left: 8px; }
+.alert h2 { font-size: 17px; line-height: 1.3; margin: 2px 0 4px; font-weight: 600; }
+.alert p { margin: 0; font-size: 14.5px; }
+
+.log { padding: 12px 18px 18px; overflow-y: auto; }
+.log h3 { font-family: var(--instrument); font-weight: 600; font-size: 16px; margin: -12px -18px 8px; padding: 10px 18px 6px; color: var(--ink-2); position: sticky; top: -12px; background: var(--paper); }
+.step { margin: 0 0 12px; }
+.step time { font-family: var(--instrument); font-weight: 600; font-size: 15px; }
+.step .why { color: var(--ink-2); font-size: 13.5px; }
+.step ol { list-style: none; margin: 4px 0 0; padding: 0 0 0 12px; border-left: 1px solid var(--line); }
+.step li { font-size: 14px; margin: 2px 0; }
+.step li.says { font-style: italic; }
+.step li.alert-line { font-weight: 600; }
+.step li.refused { color: var(--contour); }
+
+@media (max-width: 1000px) {
+  body { grid-template-columns: 1fr; grid-template-rows: auto 70vh auto; grid-template-areas: "bar" "stage" "desk"; height: auto; }
+  .desk { border-left: 0; border-top: 1px solid var(--line); }
+  .bar { grid-template-columns: 1fr; gap: 10px; }
+  .transport { grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "clock play speed" "scrub scrub scrub"; gap: 6px 10px; }
+  .transport .clock { grid-area: clock; } .transport .play { grid-area: play; }
+  .transport .scrub { grid-area: scrub; } .transport .speed { grid-area: speed; }
+  .clock { min-width: 0; }
+  .clock .hm { font-size: 28px; }
+  .cams { grid-auto-columns: minmax(150px, 1fr); }
+  .alerts { max-height: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pin.drop, .alert.fresh { animation: none; }
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="brand">Smoke Spotter<small>Replay of an archived fire, as the agent saw it</small></div>
+  <nav class="fires" id="fires" aria-label="Choose a fire"></nav>
+  <div class="transport">
+    <div class="clock" aria-live="off"><span class="hm" id="hm">--:--</span><span class="tz" id="tz"></span><span class="rel" id="rel"></span></div>
+    <button class="play" id="play" aria-label="Play"><svg viewBox="0 0 16 16" id="playIcon"><path d="M3 1.5v13l11-6.5z"/></svg></button>
+    <div class="scrub" id="scrub">
+      <input type="range" id="range" min="0" max="1000" step="1" value="0" aria-label="Replay time">
+      <div class="rail"></div><div class="done" id="done"></div><div class="head" id="head"></div>
+    </div>
+    <select class="speed" id="speed" aria-label="Playback speed">
+      <option value="15">15×</option><option value="30" selected>30×</option><option value="60">60×</option><option value="120">120×</option>
+    </select>
+  </div>
+</header>
+
+<main class="stage">
+  <div id="map">
+    <div class="toggles">
+      <button id="tSat" aria-pressed="false">Satellite</button>
+      <button id="tTruth" aria-pressed="false">Official origin</button>
+    </div>
+  </div>
+  <section class="cams" id="cams" aria-label="Camera views"></section>
+</main>
+
+<aside class="desk">
+  <section class="score" id="score"></section>
+  <section class="alerts" id="alerts" aria-live="polite"></section>
+  <section class="log" id="log"><h3>What the agent did</h3><div id="steps"></div></section>
+</aside>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script>
+const LEVEL = { spotted: 1, provisional: 2, confirmed: 3 };
+const LEVEL_COLOR = { spotted: "#E0A21B", provisional: "#E2571E", confirmed: "#B3261E", update: "#B3261E" };
+const STATE_COLOR = { smoke: "#1F2A24", corroborated: "#2F6F8F", "not smoke": "#7C8580", unverified: "#8A6A45", new: "#8A6A45" };
+const R_EARTH = 6371000;
+const fmt = new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", minute: "2-digit", hour12: false });
+const fmtTz = new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", timeZoneName: "short" });
+const $ = id => document.getElementById(id);
+
+let D = null, t = 0, playing = false, lastFrame = 0, map, markers = [], pin = null, truthMarker = null;
+let shownAlerts = 0, lastFixKey = "", selectedCam = null;
+
+/* ---------- geometry ---------- */
+function dest(lat, lon, brg, d) {
+  const φ1 = lat * Math.PI / 180, λ1 = lon * Math.PI / 180, θ = brg * Math.PI / 180, δ = d / R_EARTH;
+  const φ2 = Math.asin(Math.sin(φ1) * Math.cos(δ) + Math.cos(φ1) * Math.sin(δ) * Math.cos(θ));
+  const λ2 = λ1 + Math.atan2(Math.sin(θ) * Math.sin(δ) * Math.cos(φ1), Math.cos(δ) - Math.sin(φ1) * Math.sin(φ2));
+  return [λ2 * 180 / Math.PI, φ2 * 180 / Math.PI];
+}
+function circle(lat, lon, r) {
+  const pts = []; for (let a = 0; a <= 360; a += 6) pts.push(dest(lat, lon, a, r)); return pts;
+}
+function wedge(lat, lon, brg, sig, range) {
+  const pts = [[lon, lat]];
+  for (let a = brg - sig; a <= brg + sig + 1e-6; a += Math.max(sig / 6, 0.25)) pts.push(dest(lat, lon, a, range));
+  pts.push([lon, lat]); return pts;
+}
+
+/* ---------- state at time t ---------- */
+function trackState(tr, at) {
+  let s = null;
+  for (const e of D.states) if (e.track === tr.id && e.epoch <= at) s = e;
+  if (s) return s.state;
+  return tr.verify_ready > at ? "new" : "unverified";
+}
+function frameAt(cam, at) {
+  const f = cam.frames; let lo = 0, hi = f.length - 1, best = 0;
+  while (lo <= hi) { const m = (lo + hi) >> 1; if (f[m][0] <= at) { best = m; lo = m + 1; } else hi = m - 1; }
+  return f[best];
+}
+const lastBefore = (arr, at) => { let r = null; for (const x of arr) if (x.epoch <= at) r = x; return r; };
+
+/* ---------- loading ---------- */
+async function loadIndex() {
+  const res = await fetch("data/fires.json").catch(() => null);
+  if (!res || !res.ok) {
+    $("score").innerHTML = `<h1>No replays yet</h1><p>Run <code>python scripts/run_agent.py --fire Kitchenfire</code> and <code>python scripts/export_ui.py</code>, then serve this folder with <code>python -m http.server -d ui 8000</code>.</p>`;
+    return;
+  }
+  const fires = await res.json();
+  const nav = $("fires");
+  for (const f of fires) {
+    const b = document.createElement("button");
+    b.innerHTML = `${f.label}<span>${f.date.slice(0, 4)}</span>`;
+    b.setAttribute("aria-pressed", "false");
+    b.onclick = () => loadFire(f.fire);
+    b.dataset.fire = f.fire; nav.appendChild(b);
+  }
+  const want = new URLSearchParams(location.search).get("fire") || fires[0].fire;
+  await loadFire(want);
+}
+
+async function loadFire(name) {
+  pause();
+  const res = await fetch(`data/${name}.json`).catch(() => null);
+  if (!res || !res.ok) {
+    $("score").innerHTML = `<h1>${esc(name)}</h1><p>This fire's replay data is missing. Run <code>python scripts/export_ui.py --fire ${esc(name)}</code>, then reload.</p>`;
+    return;
+  }
+  D = await res.json();
+  document.querySelectorAll("#fires button").forEach(b => b.setAttribute("aria-pressed", b.dataset.fire === name));
+  t = D.t0; shownAlerts = 0; lastFixKey = ""; selectedCam = null;
+  $("tz").textContent = fmtTz.formatToParts(new Date(D.t0 * 1000)).find(p => p.type === "timeZoneName").value;
+  buildScrub(); buildScore(); buildCams(); setupMapFire();
+  $("alerts").innerHTML = ""; render();
+}
+
+function buildScrub() {
+  const s = $("scrub"); s.querySelectorAll(".notch,.smoke").forEach(n => n.remove());
+  const pct = e => ((e - D.t0) / (D.t1 - D.t0) * 100) + "%";
+  for (const a of D.alerts) {
+    const n = document.createElement("div"); n.className = "notch";
+    n.style.left = pct(a.epoch); n.style.background = LEVEL_COLOR[a.level]; n.title = `${a.time} ${a.level}`;
+    s.appendChild(n);
+  }
+  if (D.t_first_visible) {
+    const m = document.createElement("div"); m.className = "smoke"; m.style.left = pct(D.t_first_visible);
+    m.textContent = "smoke first visible"; s.appendChild(m);
+  }
+}
+
+function minutesAfter(m) { return m == null ? "–" : `${Math.round(m)} min`; }
+function buildScore() {
+  const sc = D.score || {};
+  const err = sc.final_error_m != null ? (sc.final_error_m >= 1000 ? `${(sc.final_error_m / 1000).toFixed(1)} km` : `${sc.final_error_m} m`) : "–";
+  const date = new Date(D.t0 * 1000).toLocaleDateString("en-US", { timeZone: "America/Los_Angeles", month: "long", day: "numeric", year: "numeric" });
+  $("score").innerHTML = `
+    <h1>${D.label}</h1>
+    <p>${date}. ${D.cameras.length} cameras watching. Smoke first visible at ${D.first_visible_time || "–"}.</p>
+    <dl>
+      <div><dt>First alert</dt><dd>${minutesAfter(sc.spotted_min_after_first_smoke ?? sc.provisional_min_after_first_smoke)}</dd></div>
+      <div><dt>Confirmed</dt><dd>${minutesAfter(sc.confirmed_min_after_first_smoke)}</dd></div>
+      <div><dt>Off by</dt><dd>${err}</dd></div>
+    </dl>`;
+}
+
+function buildCams() {
+  const wrap = $("cams"); wrap.innerHTML = "";
+  for (const c of D.cameras) {
+    const b = document.createElement("button"); b.className = "cam"; b.dataset.cam = c.id; b.setAttribute("aria-pressed", "false");
+    b.innerHTML = `<div class="frame"><img alt="${c.station_name}, facing ${c.id.split("-").pop().toUpperCase()}"><svg viewBox="0 0 480 320" preserveAspectRatio="xMidYMid slice"></svg></div>
+      <figcaption><b>${c.id}</b><span>${c.station_name}</span></figcaption>`;
+    b.onclick = () => { selectedCam = selectedCam === c.id ? null : c.id; render(true); };
+    wrap.appendChild(b);
+  }
+}
+
+/* ---------- map ---------- */
+function initMap() {
+  map = new maplibregl.Map({
+    container: "map", attributionControl: { compact: false },
+    style: {
+      version: 8,
+      sources: {
+        topo: { type: "raster", tileSize: 256, maxzoom: 16,
+          tiles: ["https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}"],
+          attribution: "Base map: USGS The National Map" },
+        sat: { type: "raster", tileSize: 256, maxzoom: 16,
+          tiles: ["https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}"],
+          attribution: "Imagery: USGS The National Map" },
+      },
+      layers: [
+        { id: "topo", type: "raster", source: "topo", paint: { "raster-saturation": -0.35, "raster-opacity": 0.9 } },
+        { id: "sat", type: "raster", source: "sat", layout: { visibility: "none" }, paint: { "raster-saturation": -0.2 } },
+      ],
+    },
+    center: [-116.7, 33.1], zoom: 9,
+  });
+  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+  for (const ev of ["dragstart", "zoomstart"]) map.on(ev, e => { if (e.originalEvent) userMoved = true; });
+  let rt = null;
+  new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(() => { if (!userMoved) fitView(); }, 120); })
+    .observe(document.getElementById("map"));
+  return new Promise(res => map.on("load", () => {
+    const empty = { type: "FeatureCollection", features: [] };
+    for (const id of ["wedges", "lines", "fix", "fov"]) map.addSource(id, { type: "geojson", data: empty });
+    map.addLayer({ id: "fov", type: "fill", source: "fov", paint: { "fill-color": "#1F2A24", "fill-opacity": 0.05 } });
+    map.addLayer({ id: "wedges", type: "fill", source: "wedges", paint: { "fill-color": ["get", "color"], "fill-opacity": ["get", "opacity"] } });
+    map.addLayer({ id: "lines-doubt", type: "line", source: "lines", filter: ["==", ["get", "solid"], false],
+      paint: { "line-color": ["get", "color"], "line-width": ["get", "width"], "line-opacity": ["get", "opacity"], "line-dasharray": [2, 2] } });
+    map.addLayer({ id: "lines-solid", type: "line", source: "lines", filter: ["==", ["get", "solid"], true],
+      paint: { "line-color": ["get", "color"], "line-width": ["get", "width"], "line-opacity": ["get", "opacity"] } });
+    map.addLayer({ id: "fix-fill", type: "fill", source: "fix", paint: { "fill-color": ["get", "color"], "fill-opacity": 0.16 } });
+    map.addLayer({ id: "fix-line", type: "line", source: "fix", paint: { "line-color": ["get", "color"], "line-width": 2 } });
+    res();
+  }));
+}
+
+function ringSVG(cam) {
+  // fire-finder azimuth ring: ticks every 10 degrees, longer every 30, plus the camera's field of view
+  const c = 38, r = 30; let ticks = "";
+  for (let a = 0; a < 360; a += 10) {
+    const len = a % 90 === 0 ? 9 : a % 30 === 0 ? 6 : 3.5, rad = a * Math.PI / 180;
+    const x1 = c + Math.sin(rad) * r, y1 = c - Math.cos(rad) * r, x2 = c + Math.sin(rad) * (r - len), y2 = c - Math.cos(rad) * (r - len);
+    ticks += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="#1F2A24" stroke-width="${a % 90 === 0 ? 1.6 : 1}"/>`;
+  }
+  const arc = (h, fov) => {
+    const a0 = (h - fov / 2) * Math.PI / 180, a1 = (h + fov / 2) * Math.PI / 180, rr = r + 4;
+    return `M${c + Math.sin(a0) * rr} ${c - Math.cos(a0) * rr} A${rr} ${rr} 0 ${fov > 180 ? 1 : 0} 1 ${c + Math.sin(a1) * rr} ${c - Math.cos(a1) * rr}`;
+  };
+  const views = cam.views.map(v => `<path d="${arc(v.heading, v.hfov)}" fill="none" stroke="#8A6A45" stroke-width="3" stroke-linecap="round" opacity=".75"/>`).join("");
+  return `<svg class="ring" viewBox="0 0 76 76" aria-hidden="true">
+    <circle cx="${c}" cy="${c}" r="${r}" fill="rgba(238,240,230,.82)" stroke="#1F2A24" stroke-width="1.2"/>
+    ${ticks}${views}
+    <text x="${c}" y="${c - r + 18}" text-anchor="middle" font-family="Saira Condensed" font-weight="600" font-size="9" fill="#1F2A24">N</text>
+    <circle cx="${c}" cy="${c}" r="3.2" fill="#1F2A24"/>
+  </svg>`;
+}
+
+function setupMapFire() {
+  markers.forEach(m => m.remove()); markers = [];
+  if (pin) { pin.remove(); pin = null; }
+  if (truthMarker) { truthMarker.remove(); truthMarker = null; }
+  const stations = {};
+  for (const c of D.cameras) {
+    const s = stations[c.station] ||= { lat: c.lat, lon: c.lon, name: c.station_name, views: [] };
+    s.views.push({ heading: c.heading, hfov: c.hfov });
+  }
+  const bounds = new maplibregl.LngLatBounds();
+  for (const s of Object.values(stations)) {
+    const el = document.createElement("div");
+    el.innerHTML = ringSVG(s) + `<div class="ring-label">${s.name.split(",")[0]}</div>`;
+    markers.push(new maplibregl.Marker({ element: el, anchor: "center" }).setLngLat([s.lon, s.lat]).addTo(map));
+    bounds.extend([s.lon, s.lat]);
+  }
+  if (D.truth) {
+    bounds.extend([D.truth.lon, D.truth.lat]);
+    const el = document.createElement("div"); el.className = "truth"; el.title = `Official origin: ${D.truth.location}`;
+    truthMarker = new maplibregl.Marker({ element: el }).setLngLat([D.truth.lon, D.truth.lat]);
+    if ($("tTruth").getAttribute("aria-pressed") === "true") truthMarker.addTo(map);
+  }
+  fitBox = bounds; userMoved = false;
+  requestAnimationFrame(fitView);
+}
+let fitBox = null, userMoved = false;
+function fitView() {
+  if (!fitBox) return;
+  map.resize();
+  const w = document.getElementById("map").clientWidth, pad = Math.round(Math.max(36, Math.min(70, w * 0.07)));
+  map.fitBounds(fitBox, { padding: { top: pad + 20, bottom: pad, left: pad, right: pad }, maxZoom: 11, duration: 0 });
+}
+
+/* ---------- render ---------- */
+function render(force) {
+  if (!D) return;
+  const span = D.t1 - D.t0, frac = (t - D.t0) / span;
+  $("range").value = Math.round(frac * 1000);
+  $("done").style.width = (frac * 100) + "%"; $("head").style.left = (frac * 100) + "%";
+  $("hm").textContent = fmt.format(new Date(t * 1000));
+  if (D.t_first_visible) {
+    const m = Math.round((t - D.t_first_visible) / 60);
+    $("rel").textContent = m < 0 ? `${-m} min before smoke is visible` : `${m} min after smoke first visible`;
+  }
+
+  // tracks and their states
+  const visible = D.tracks.filter(tr => tr.bearing_ready <= t).map(tr => ({ ...tr, state: trackState(tr, t) }));
+  const lines = [], wedges = [];
+  for (const tr of visible) {
+    if (tr.state === "new") continue;
+    const solid = tr.state === "smoke" || tr.state === "corroborated";
+    const highlight = selectedCam && tr.camera === selectedCam;
+    const color = STATE_COLOR[tr.state];
+    const weak = tr.sigma > 3;
+    lines.push({ type: "Feature", properties: { color, solid, width: highlight ? 4 : solid ? (weak ? 1.6 : 2.6) : 1.4,
+      opacity: weak && !highlight ? 0.6 : 1 },
+      geometry: { type: "LineString", coordinates: [[tr.lon, tr.lat], dest(tr.lat, tr.lon, tr.bearing, 55000)] } });
+    if (solid && !weak) wedges.push({ type: "Feature", properties: { color, opacity: 0.14 },
+      geometry: { type: "Polygon", coordinates: [wedge(tr.lat, tr.lon, tr.bearing, tr.sigma, 55000)] } });
+  }
+  map.getSource("lines").setData({ type: "FeatureCollection", features: lines });
+  map.getSource("wedges").setData({ type: "FeatureCollection", features: wedges });
+
+  // selected camera field of view
+  const fov = [];
+  if (selectedCam) {
+    const c = D.cameras.find(c => c.id === selectedCam);
+    fov.push({ type: "Feature", properties: {}, geometry: { type: "Polygon", coordinates: [wedge(c.lat, c.lon, c.heading, c.hfov / 2, 60000)] } });
+  }
+  map.getSource("fov").setData({ type: "FeatureCollection", features: fov });
+
+  // alerts and fix
+  const alerts = D.alerts.filter(a => a.epoch <= t);
+  const top = alerts.reduce((m, a) => Math.max(m, LEVEL[a.level] || 0), 0);
+  const level = Object.keys(LEVEL).find(k => LEVEL[k] === top);
+  const loc = lastBefore(D.locations, t);
+  const fixColor = LEVEL_COLOR[level] || "#E2571E";
+  if (loc && top >= 2) {
+    map.getSource("fix").setData({ type: "FeatureCollection", features: [{ type: "Feature", properties: { color: fixColor },
+      geometry: { type: "Polygon", coordinates: [circle(loc.lat, loc.lon, loc.uncertainty_m)] } }] });
+    const key = `${loc.lat},${loc.lon},${loc.uncertainty_m}`;
+    if (!pin) {
+      const el = document.createElement("div"); el.className = "pin";
+      pin = new maplibregl.Marker({ element: el }).setLngLat([loc.lon, loc.lat]).addTo(map);
+    }
+    pin.getElement().style.background = fixColor;
+    if (key !== lastFixKey) {
+      pin.setLngLat([loc.lon, loc.lat]);
+      const el = pin.getElement(); el.classList.remove("drop"); void el.offsetWidth; el.classList.add("drop");
+      pin.getElement().title = `${loc.place || ""} ±${loc.uncertainty_m} m`;
+      lastFixKey = key;
+    }
+  } else {
+    map.getSource("fix").setData({ type: "FeatureCollection", features: [] });
+    if (pin) { pin.remove(); pin = null; lastFixKey = ""; }
+  }
+
+  renderAlerts(alerts);
+  renderLog();
+  renderCams(visible);
+}
+
+function renderAlerts(alerts) {
+  const box = $("alerts");
+  if (!alerts.length) {
+    box.innerHTML = `<p class="empty">Watching ${D.cameras.length} cameras. No smoke confirmed yet.</p>`;
+    shownAlerts = 0; return;
+  }
+  if (alerts.length === shownAlerts) return;
+  const fresh = alerts.length > shownAlerts && shownAlerts > 0 ? alerts.length - 1 : -1;
+  box.innerHTML = alerts.map((a, i) => `
+    <article class="alert${i === fresh ? " fresh" : ""}" style="--c:${LEVEL_COLOR[a.level]}">
+      <div class="lvl">${a.level[0].toUpperCase() + a.level.slice(1)}<time>${a.time}</time></div>
+      <h2>${esc(a.headline)}</h2><p>${esc(a.message)}</p>
+    </article>`).reverse().join("");
+  shownAlerts = alerts.length;
+}
+
+let shownSteps = -1;
+function renderLog() {
+  const steps = D.log.filter(s => s.epoch <= t);
+  if (steps.length === shownSteps) return;
+  shownSteps = steps.length;
+  $("steps").innerHTML = steps.length ? steps.map(s => `
+    <div class="step"><time>${s.time}</time> <span class="why">${esc(summarizeTrigger(s.trigger))}</span>
+      <ol>${s.lines.map(l => `<li class="${l.tool === "_agent_says" ? "says" : l.tool === "issue_alert" ? (l.text.startsWith("Alert refused") ? "refused" : "alert-line") : ""}">${esc(l.text)}</li>`).join("")}</ol>
+    </div>`).join("") : `<p class="empty">The agent wakes when a camera picks up something new.</p>`;
+  const log = $("log"); log.scrollTop = log.scrollHeight;
+}
+function summarizeTrigger(tr) {
+  const n = tr.filter(x => x.startsWith("new plume")).length, v = tr.filter(x => x.includes("enough history")).length;
+  const parts = [];
+  if (n) parts.push(`${n} new plume${n > 1 ? "s" : ""}`);
+  if (v) parts.push(`${v} ready to check`);
+  return parts.join(", ");
+}
+
+function renderCams(visible) {
+  for (const el of document.querySelectorAll(".cam")) {
+    const cam = D.cameras.find(c => c.id === el.dataset.cam);
+    el.setAttribute("aria-pressed", selectedCam === cam.id);
+    const f = frameAt(cam, t);
+    const img = el.querySelector("img");
+    if (f && img.dataset.src !== f[1]) { img.src = "data/" + f[1]; img.dataset.src = f[1]; }
+    const svg = el.querySelector("svg"); let html = "", status = cam.station_name;
+    for (const tr of D.tracks.filter(x => x.camera === cam.id && x.first <= t)) {
+      const box = tr.boxes.filter(b => b[0] <= t).pop();
+      if (!box || t - box[0] > 90) continue;
+      const st = trackState(tr, t), col = STATE_COLOR[st];
+      html += `<rect x="${box[1]}" y="${box[2]}" width="${box[3] - box[1]}" height="${box[4] - box[2]}" fill="none" stroke="${col}" stroke-width="2.5" ${st === "not smoke" ? 'stroke-dasharray="5 4"' : ""}/>`;
+      if (st === "smoke" || st === "corroborated") status = `smoke at ${Math.round(tr.bearing)}°`;
+    }
+    svg.innerHTML = html;
+    el.querySelector("figcaption span").textContent = status;
+  }
+}
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+/* ---------- transport ---------- */
+function tick(now) {
+  if (!playing) return;
+  const dt = lastFrame ? (now - lastFrame) / 1000 : 0; lastFrame = now;
+  t = Math.min(D.t1, t + dt * Number($("speed").value));
+  render();
+  if (t >= D.t1) { pause(); return; }
+  requestAnimationFrame(tick);
+}
+function play() { if (t >= D.t1) t = D.t0; playing = true; lastFrame = 0; setIcon(); requestAnimationFrame(tick); }
+function pause() { playing = false; setIcon(); }
+function setIcon() {
+  $("playIcon").innerHTML = playing ? '<path d="M3 1.5h3.5v13H3zM9.5 1.5H13v13H9.5z"/>' : '<path d="M3 1.5v13l11-6.5z"/>';
+  $("play").setAttribute("aria-label", playing ? "Pause" : "Play");
+}
+$("play").onclick = () => playing ? pause() : play();
+$("range").oninput = e => { t = D.t0 + (D.t1 - D.t0) * e.target.value / 1000; shownSteps = -1; render(); };
+document.addEventListener("keydown", e => {
+  if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
+  if (e.code === "Space") { e.preventDefault(); playing ? pause() : play(); }
+});
+$("tSat").onclick = e => {
+  const on = e.currentTarget.getAttribute("aria-pressed") !== "true"; e.currentTarget.setAttribute("aria-pressed", on);
+  map.setLayoutProperty("sat", "visibility", on ? "visible" : "none");
+};
+$("tTruth").onclick = e => {
+  const on = e.currentTarget.getAttribute("aria-pressed") !== "true"; e.currentTarget.setAttribute("aria-pressed", on);
+  if (truthMarker) on ? truthMarker.addTo(map) : truthMarker.remove();
+};
+// test hook: ?t=<minutes after first visible smoke> renders a still
+initMap().then(loadIndex).then(() => {
+  const q = new URLSearchParams(location.search).get("t");
+  if (q != null && D && D.t_first_visible) { t = D.t_first_visible + Number(q) * 60; shownSteps = -1; render(); }
+  if (new URLSearchParams(location.search).get("truth")) $("tTruth").click();
+});
+</script>
+</body>
+</html>

@@ -1,8 +1,9 @@
-data/raw/
-__pycache__/
 *.pyc
-.venv/
 .env
-outputs/
 .pytest_cache/
+.venv/
+__pycache__/
 data/dem/
+data/raw/
+outputs/
+ui/data/
