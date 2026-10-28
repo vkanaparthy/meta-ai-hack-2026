@@ -37,12 +37,12 @@ button, select { font: inherit; color: inherit; }
 
 /* ---------- top bar: fire picker, clock, transport ---------- */
 .bar {
-  grid-area: bar; display: grid; grid-template-columns: auto auto minmax(0, 1fr);
+  grid-area: bar; display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(440px, 1.15fr);
   align-items: center; gap: 20px; padding: 10px 18px; border-bottom: 1px solid var(--line);
 }
 .brand { font-family: var(--instrument); font-weight: 700; font-size: 22px; letter-spacing: .02em; line-height: 1; }
 .brand small { display: block; font-weight: 500; font-size: 13px; color: var(--ink-2); letter-spacing: 0; }
-.fires { display: flex; gap: 4px; flex-wrap: wrap; }
+.fires { display: flex; gap: 4px; flex-wrap: wrap; min-width: 0; }
 .fires button {
   font-family: var(--instrument); font-size: 15px; font-weight: 600;
   background: transparent; border: 1px solid var(--line); border-radius: 3px; padding: 4px 10px; cursor: pointer;
@@ -88,9 +88,20 @@ button, select { font: inherit; color: inherit; }
 .pin { width: 22px; height: 22px; border-radius: 50%; border: 3px solid var(--paper); box-shadow: 0 0 0 1.5px var(--ink); }
 .pin.drop { animation: drop .6s cubic-bezier(.2,.9,.3,1.3); }
 @keyframes drop { from { transform: translateY(-36px) scale(.6); opacity: 0; } }
+.inset {
+  position: absolute; left: 12px; bottom: 12px; z-index: 3; width: min(560px, 58%);
+  background: var(--paper); border: 1px solid var(--ink); border-radius: 4px; padding: 6px;
+  box-shadow: 0 6px 24px rgba(31, 42, 36, .25);
+}
+.inset[hidden] { display: none; }
+.inset .frame { position: relative; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 2px; background: var(--paper-2); }
+.inset img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.inset svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.inset figcaption { font-family: var(--instrument); font-size: 15px; display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 4px; }
+.inset button { font-family: var(--instrument); font-size: 14px; background: transparent; border: 1px solid var(--line); border-radius: 3px; padding: 2px 8px; cursor: pointer; }
 .truth { width: 14px; height: 14px; transform: rotate(45deg); border: 2px solid var(--ink); background: var(--paper); }
 
-.cams { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(140px, 1fr); gap: 10px; padding: 10px 14px 12px; overflow-x: auto; border-top: 1px solid var(--line); }
+.cams { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(210px, 330px); justify-content: start; gap: 12px; padding: 10px 14px 12px; overflow-x: auto; border-top: 1px solid var(--line); }
 .cam { margin: 0; cursor: pointer; border: 0; background: none; padding: 0; text-align: left; }
 .cam .frame { position: relative; aspect-ratio: 3 / 2; background: var(--paper-2); border-radius: 3px; overflow: hidden; outline: 2px solid transparent; }
 .cam[aria-pressed="true"] .frame { outline-color: var(--ink); }
@@ -140,7 +151,7 @@ button, select { font: inherit; color: inherit; }
   .transport .scrub { grid-area: scrub; } .transport .speed { grid-area: speed; }
   .clock { min-width: 0; }
   .clock .hm { font-size: 28px; }
-  .cams { grid-auto-columns: minmax(150px, 1fr); }
+  .cams { grid-auto-columns: minmax(200px, 280px); }
   .alerts { max-height: none; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -167,6 +178,10 @@ button, select { font: inherit; color: inherit; }
 
 <main class="stage">
   <div id="map">
+    <figure class="inset" id="inset" hidden>
+      <div class="frame"><img alt=""><svg viewBox="0 0 480 320" preserveAspectRatio="xMidYMid slice"></svg></div>
+      <figcaption><span id="insetCap"></span><button id="insetClose" aria-label="Close camera view">Close</button></figcaption>
+    </figure>
     <div class="toggles">
       <button id="tSat" aria-pressed="false">Satellite</button>
       <button id="tTruth" aria-pressed="false">Official origin</button>
@@ -328,7 +343,11 @@ function initMap() {
   return new Promise(res => map.on("load", () => {
     const empty = { type: "FeatureCollection", features: [] };
     for (const id of ["wedges", "lines", "fix", "fov"]) map.addSource(id, { type: "geojson", data: empty });
-    map.addLayer({ id: "fov", type: "fill", source: "fov", paint: { "fill-color": "#1F2A24", "fill-opacity": 0.05 } });
+    map.addLayer({ id: "fov", type: "fill", source: "fov",
+      paint: { "fill-color": "#8A6A45", "fill-opacity": ["case", ["get", "sel"], 0.2, 0.035] } });
+    map.addLayer({ id: "fov-edge", type: "line", source: "fov",
+      paint: { "line-color": "#8A6A45", "line-width": ["case", ["get", "sel"], 2, 1], "line-opacity": ["case", ["get", "sel"], 0.9, 0.35],
+               "line-dasharray": [3, 2] } });
     map.addLayer({ id: "wedges", type: "fill", source: "wedges", paint: { "fill-color": ["get", "color"], "fill-opacity": ["get", "opacity"] } });
     map.addLayer({ id: "lines-doubt", type: "line", source: "lines", filter: ["==", ["get", "solid"], false],
       paint: { "line-color": ["get", "color"], "line-width": ["get", "width"], "line-opacity": ["get", "opacity"], "line-dasharray": [2, 2] } });
@@ -352,7 +371,8 @@ function ringSVG(cam) {
     const a0 = (h - fov / 2) * Math.PI / 180, a1 = (h + fov / 2) * Math.PI / 180, rr = r + 4;
     return `M${c + Math.sin(a0) * rr} ${c - Math.cos(a0) * rr} A${rr} ${rr} 0 ${fov > 180 ? 1 : 0} 1 ${c + Math.sin(a1) * rr} ${c - Math.cos(a1) * rr}`;
   };
-  const views = cam.views.map(v => `<path d="${arc(v.heading, v.hfov)}" fill="none" stroke="#8A6A45" stroke-width="3" stroke-linecap="round" opacity=".75"/>`).join("");
+  const views = cam.views.map(v => `<path d="${arc(v.heading, v.hfov)}" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".8"/>`
+    + `<path d="${arc(v.heading, v.hfov)}" fill="none" stroke="#8A6A45" stroke-width="4.5" stroke-linecap="round"/>`).join("");
   return `<svg class="ring" viewBox="0 0 76 76" aria-hidden="true">
     <circle cx="${c}" cy="${c}" r="${r}" fill="rgba(238,240,230,.82)" stroke="#1F2A24" stroke-width="1.2"/>
     ${ticks}${views}
@@ -425,11 +445,8 @@ function render(force) {
   map.getSource("wedges").setData({ type: "FeatureCollection", features: wedges });
 
   // selected camera field of view
-  const fov = [];
-  if (selectedCam) {
-    const c = D.cameras.find(c => c.id === selectedCam);
-    fov.push({ type: "Feature", properties: {}, geometry: { type: "Polygon", coordinates: [wedge(c.lat, c.lon, c.heading, c.hfov / 2, 60000)] } });
-  }
+  const fov = D.cameras.map(c => ({ type: "Feature", properties: { sel: c.id === selectedCam },
+    geometry: { type: "Polygon", coordinates: [wedge(c.lat, c.lon, c.heading, c.hfov / 2, c.id === selectedCam ? 40000 : 16000)] } }));
   map.getSource("fov").setData({ type: "FeatureCollection", features: fov });
 
   // alerts and fix
@@ -499,6 +516,7 @@ function summarizeTrigger(tr) {
 }
 
 function renderCams(visible) {
+  $("inset").hidden = !selectedCam;
   for (const el of document.querySelectorAll(".cam")) {
     const cam = D.cameras.find(c => c.id === el.dataset.cam);
     el.setAttribute("aria-pressed", selectedCam === cam.id);
@@ -509,12 +527,22 @@ function renderCams(visible) {
     for (const tr of D.tracks.filter(x => x.camera === cam.id && x.first <= t)) {
       const box = tr.boxes.filter(b => b[0] <= t).pop();
       if (!box || t - box[0] > 90) continue;
-      const st = trackState(tr, t), col = STATE_COLOR[st];
-      html += `<rect x="${box[1]}" y="${box[2]}" width="${box[3] - box[1]}" height="${box[4] - box[2]}" fill="none" stroke="${col}" stroke-width="2.5" ${st === "not smoke" ? 'stroke-dasharray="5 4"' : ""}/>`;
+      const st = trackState(tr, t), col = st === "smoke" ? "#E2571E" : STATE_COLOR[st];
+      const MIN = 22, cx = (box[1] + box[3]) / 2, cy = (box[2] + box[4]) / 2;
+      const w = Math.max(MIN, box[3] - box[1]), h = Math.max(MIN, box[4] - box[2]);
+      const x = cx - w / 2, y = cy - h / 2, dash = st === "not smoke" ? 'stroke-dasharray="6 5"' : "";
+      html += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="2" fill="none" stroke="#fff" stroke-opacity=".85" stroke-width="7"/>`
+           + `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="2" fill="none" stroke="${col}" stroke-width="3.5" ${dash}/>`;
       if (st === "smoke" || st === "corroborated") status = `smoke at ${Math.round(tr.bearing)}°`;
     }
     svg.innerHTML = html;
     el.querySelector("figcaption span").textContent = status;
+    if (cam.id === selectedCam) {
+      const inset = $("inset"), iimg = inset.querySelector("img");
+      if (f && iimg.dataset.src !== f[1]) { iimg.src = "data/" + f[1]; iimg.dataset.src = f[1]; iimg.alt = img.alt; }
+      inset.querySelector("svg").innerHTML = html;
+      $("insetCap").textContent = `${cam.id}, ${cam.station_name}: ${status === cam.station_name ? "no plume" : status}`;
+    }
   }
 }
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -540,6 +568,7 @@ document.addEventListener("keydown", e => {
   if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
   if (e.code === "Space") { e.preventDefault(); playing ? pause() : play(); }
 });
+$("insetClose").onclick = () => { selectedCam = null; render(true); };
 $("tSat").onclick = e => {
   const on = e.currentTarget.getAttribute("aria-pressed") !== "true"; e.currentTarget.setAttribute("aria-pressed", on);
   map.setLayoutProperty("sat", "visibility", on ? "visible" : "none");
@@ -553,6 +582,8 @@ initMap().then(loadIndex).then(() => {
   const q = new URLSearchParams(location.search).get("t");
   if (q != null && D && D.t_first_visible) { t = D.t_first_visible + Number(q) * 60; shownSteps = -1; render(); }
   if (new URLSearchParams(location.search).get("truth")) $("tTruth").click();
+  const camQ = new URLSearchParams(location.search).get("cam");
+  if (camQ && D) { selectedCam = camQ; render(true); }
 });
 </script>
 </body>
