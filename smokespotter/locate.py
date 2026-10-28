@@ -91,7 +91,7 @@ def set_loglik(members, mis) -> float:
 
 
 def best_location(tracks: list[TrackBearing], n_sigma: float = 4.0,
-                  max_range_m: float = 80_000.0) -> Location | None:
+                  max_range_m: float = 120_000.0) -> Location | None:
     """Robust choice of which tracks belong to one fire. Each station that saw a
     plume either contributes one inlier track (Gaussian error with its sigma) or
     counts as an outlier (uniform). Picks the subset with the highest

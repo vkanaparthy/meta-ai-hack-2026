@@ -6,6 +6,8 @@ from collections import defaultdict
 from dataclasses import replace
 from pathlib import Path
 
+import json
+
 from .sam import Detection, parse_detections
 
 VIDEO_MAX_WIDTH = 1536
@@ -79,15 +81,23 @@ def raw_tag(prompt: str, tiles: int, band: str, i: int) -> str:
 def detections_from_cache(out_dir: Path, width: int, height: int, n_frames: int,
                           prompt: str = "smoke", tiles: int = 2, band: str = "0.3:0.7",
                           min_conf: float = 0.3, min_area: float = 200.0) -> list[Detection] | None:
-    """Detections in original-image pixels from cached SAM output (None if not cached)."""
-    dets = []
-    for i, (cx, cy, cw, ch) in enumerate(tiles_for(width, height, tiles, band)):
-        raw = out_dir / f"sam_{raw_tag(prompt, tiles, band, i)}.txt"
-        if not raw.exists():
-            return None
-        for d in parse_detections(raw.read_text(), cw / min(VIDEO_MAX_WIDTH, cw)):
-            dets.append(replace(d, object_id=f"{i}:{d.object_id}", x0=d.x0 + cx, x1=d.x1 + cx,
-                                y0=d.y0 + cy, y1=d.y1 + cy, base_x=d.base_x + cx))
+    """Detections in original-image pixels from cached SAM output (None if not cached).
+    Decoding large masks is slow, so parsed detections are cached next to the raw
+    output and reused while the raw files are unchanged."""
+    raws = [out_dir / f"sam_{raw_tag(prompt, tiles, band, i)}.txt" for i in range(tiles)]
+    if not all(r.exists() for r in raws):
+        return None
+    cache = out_dir / f"dets_{raw_tag(prompt, tiles, band, 0)}.json"
+    newest = max(r.stat().st_mtime for r in raws)
+    if cache.exists() and cache.stat().st_mtime >= newest:
+        dets = [Detection(**d) for d in json.loads(cache.read_text())]
+    else:
+        dets = []
+        for i, (cx, cy, cw, ch) in enumerate(tiles_for(width, height, tiles, band)):
+            for d in parse_detections(raws[i].read_text(), cw / min(VIDEO_MAX_WIDTH, cw)):
+                dets.append(replace(d, object_id=f"{i}:{d.object_id}", x0=d.x0 + cx, x1=d.x1 + cx,
+                                    y0=d.y0 + cy, y1=d.y1 + cy, base_x=d.base_x + cx))
+        cache.write_text(json.dumps([d.to_dict() for d in dets]))
     return [d for d in dets if d.frame < n_frames
             and (d.confidence is None or d.confidence >= min_conf) and d.area_px >= min_area]
 

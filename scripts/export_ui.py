@@ -141,7 +141,10 @@ def export(fire: str) -> dict | None:
     alerts = [{k: a.get(k) for k in ("level", "time", "epoch", "headline", "message", "location")}
               for a in tl["alerts"]]
     ign = {r["fire"]: r for r in rows("ignitions.csv")}.get(fire, {})
-    data = {"fire": fire, "label": fire.replace("fire", " Fire").replace("Fire", " Fire").replace("  ", " ").strip(),
+    label = fire.replace("Day2", "").replace("fire", " Fire").replace("Fire", " Fire").replace("  ", " ").strip()
+    if fire.endswith("Day2"):
+        label += ", day 2"
+    data = {"fire": fire, "label": label,
             "driver": tl["driver"], "t0": t0, "t1": obs.t_end, "t_first_visible": obs.t_first_visible,
             "first_visible_time": hhmm(obs.t_first_visible) if obs.t_first_visible else None,
             "cameras": list(cameras.values()), "tracks": tracks, "states": states, "locations": locations,
@@ -151,7 +154,7 @@ def export(fire: str) -> dict | None:
     (UI / f"{fire}.json").write_text(json.dumps(data))
     print(f"{fire}: {len(cameras)} cameras, {sum(len(c['frames']) for c in cameras.values())} frames, "
           f"{len(alerts)} alerts ({tl['driver']})")
-    return {"fire": fire, "label": data["label"], "date": next((r["date"] for r in rows("fires.csv") if r["fire"] == fire), ""),
+    return {"fire": fire, "label": label, "date": next((r["date"] for r in rows("fires.csv") if r["fire"] == fire), ""),
             "alerts": [a["level"] for a in alerts], "score": tl["score"]}
 
 

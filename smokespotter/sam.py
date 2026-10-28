@@ -93,16 +93,18 @@ def _mask_stats(m: SegmentationMaskRecord | None, b: SegmentationBoxRecord) -> t
     """Area and plume-base column in video pixels. Falls back to the box."""
     if m is None:
         return (b.right - b.left) * (b.bottom - b.top), (b.left + b.right) / 2
+    import numpy as np
+
     H, W = m.mask.height, m.mask.width
-    raster = decode_mask_to_raster(m.mask)
+    grid = np.frombuffer(decode_mask_to_raster(m.mask), dtype=np.uint8).reshape(H, W) > 0
     bx = m.bounds
     sx = (bx.right - bx.left) / W if W else 1.0
     sy = (bx.bottom - bx.top) / H if H else 1.0
-    rows = [r for r in range(H) if any(raster[r * W:(r + 1) * W])]
-    if not rows:
+    rows = np.flatnonzero(grid.any(axis=1))
+    if rows.size == 0:
         return 0.0, (b.left + b.right) / 2
     # lowest 15% of occupied rows ~ where the plume leaves the ground
-    base_rows = rows[-max(1, len(rows) * 15 // 100):]
-    cols = [c for r in base_rows for c in range(W) if raster[r * W + c]]
-    area = sum(raster) * sx * sy
-    return area, bx.left + (sum(cols) / len(cols) + 0.5) * sx
+    base_rows = rows[-max(1, rows.size * 15 // 100):]
+    cols = np.nonzero(grid[base_rows])[1]
+    area = float(grid.sum()) * sx * sy
+    return area, bx.left + (float(cols.mean()) + 0.5) * sx
