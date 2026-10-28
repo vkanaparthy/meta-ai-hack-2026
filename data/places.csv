@@ -1,0 +1,486 @@
+name,lat,lon,kind,population,country
+Héroes de la Independencia,31.61086,-115.8904,town,752,MX
+Uruapan,31.62307,-116.43981,town,521,MX
+Villa de Juárez,31.96913,-116.65511,town,947,MX
+Francisco Zarco,32.09498,-116.57192,town,2664,MX
+Primo Tapia,32.22095,-116.91551,town,4921,MX
+Progreso,32.58165,-115.58434,town,12557,MX
+Santa Isabel,32.63075,-115.57039,town,29311,MX
+Ejido Sinaloa,32.54603,-115.27075,town,2505,MX
+Ejido Tamaulipas,32.54967,-115.23169,town,598,MX
+Islas Agrarias Grupo B,32.59994,-115.27111,town,1054,MX
+Islas Agrarias Grupo A,32.61141,-115.33148,town,1979,MX
+Zaragoza Segunda Sección,32.60039,-115.53273,town,954,MX
+Tijuana,32.5027,-117.00371,town,1922523,MX
+Tecate,32.566,-116.63187,town,64764,MX
+Rosarito,32.36044,-117.04645,town,100660,MX
+La Joya,32.44363,-117.00371,town,26860,MX
+Mexicali,32.62781,-115.45446,town,1032686,MX
+Rodolfo Sánchez Taboada,31.72294,-116.57196,town,22957,MX
+La Rumorosa,32.52623,-116.05463,town,1836,MX
+Ensenada,31.87149,-116.60071,town,443807,MX
+El Sauzal de Rodríguez,31.89491,-116.69323,town,8832,MX
+Ejido Sonora,32.287,-115.2318,town,1507,MX
+Puebla,32.56645,-115.35387,town,15168,MX
+Michoacán de Ocampo,32.46576,-115.30849,town,3086,MX
+Ejido Guanajuato,32.5184,-115.33834,town,994,MX
+El Porvenir,32.07668,-116.62462,town,1416,MX
+Ejido Durango,32.24792,-115.2518,town,1593,MX
+Ejido Chihuahua,32.48652,-115.23951,town,628,MX
+El Descanso,32.20458,-116.90296,town,567,MX
+Colonia la Puerta,32.32915,-115.33119,town,885,MX
+Ampliación Ejido Lázaro Cárdenas,32.42639,-116.98806,town,684,MX
+Jesús Sansón Flores,32.44222,-115.37306,town,626,MX
+Venustiano Carranza,32.16676,-116.89784,town,538,MX
+San Luis,32.43167,-116.95361,town,8571,MX
+Las Delicias,32.40889,-116.94361,town,15486,MX
+Ejido Javier Rojo Gómez,32.49389,-116.82222,town,2408,MX
+Ejido Ojo de Agua,32.47556,-116.78917,town,1241,MX
+Valle Bonito,32.42556,-116.88306,town,595,MX
+Pórticos de San Antonio,32.4425,-117.03417,town,34234,MX
+Terrazas del Valle,32.4875,-116.82667,town,20421,MX
+Villa del Prado 2da Sección,32.42389,-116.97167,town,18226,MX
+Villa del Campo,32.5075,-116.73833,town,13906,MX
+El Niño,32.5075,-116.79194,town,8999,MX
+Maclovio Rojas,32.47306,-116.80278,town,7279,MX
+Lomas de Santa Anita,32.54278,-116.65139,town,6604,MX
+Benito García (El Zorrillo),31.67111,-116.51139,town,6598,MX
+Quinta del Cedro,32.4375,-117.06583,town,5704,MX
+Cereso del Hongo,32.48417,-116.25056,town,4278,MX
+Los Valles,32.3925,-116.955,town,3135,MX
+Rancho Verde,31.91611,-116.58833,town,2758,MX
+Viñas del Sol,32.62694,-115.54667,town,2509,MX
+Ciudad Morelos,32.34389,-117.01056,town,2040,MX
+Hacienda Tecate,32.565,-116.525,town,1871,MX
+Buenos Aires,32.42278,-116.94111,town,1761,MX
+Salvador Rosas Magallón,31.90139,-116.54778,town,1520,MX
+Colonia Gómez Morín,31.88167,-116.54389,town,1362,MX
+Colinas del Sol,32.40306,-117.03056,town,1361,MX
+Santa Anita,32.10083,-116.86917,town,1284,MX
+Maclovio Herrera (Colonia Aviación),32.54194,-116.63611,town,1219,MX
+Alfonso Garzón [Granjas Familiares],32.54667,-116.61722,town,1188,MX
+La Esperanza [Granjas Familiares],32.46278,-117.105,town,1173,MX
+Colinas del Sol,32.46583,-117.03694,town,1145,MX
+Lomas de Tlatelolco,32.48306,-116.80167,town,1086,MX
+Fraccionamiento del Valle,31.91139,-116.26056,town,1052,MX
+Vista Marina,32.25278,-116.93972,town,939,MX
+Lomas del Pedregal,32.48889,-116.79417,town,922,MX
+Tres M (Pérez),32.50194,-116.79083,town,917,MX
+Nuevo Progreso,32.46556,-116.78194,town,821,MX
+San Rafael,31.90167,-116.55361,town,814,MX
+Artículo Ciento Quince,32.08139,-116.575,town,784,MX
+Los Volcanes,32.32,-117.00639,town,783,MX
+Partido del Trabajo,32.47694,-116.79583,town,779,MX
+Isla Cedros,32.43306,-117.04417,town,747,MX
+Ejido el Choropo (Colonia Colorado Número Uno),32.52778,-115.41472,town,723,MX
+Los Girasoles,32.47056,-116.7775,town,698,MX
+Misión del Mar 1ra. y 2da. Sección,32.3025,-117.02306,town,663,MX
+Colonia Esperanza (Cañón San Carlos),31.75583,-116.55,town,661,MX
+Francisco Zarco,32.46361,-117.04806,town,656,MX
+Isla Cozumel,32.43556,-117.04333,town,652,MX
+Lomas del Mar,32.45361,-117.065,town,649,MX
+Batalla Nacional,32.47611,-116.82139,town,646,MX
+Ladrillera Pescador,32.25,-116.93556,town,636,MX
+Lomas de Abasolo,32.62111,-115.36472,town,632,MX
+Reacomodo Río Colorado,32.6025,-115.52611,town,605,MX
+Hacienda del Mar,32.42806,-117.09389,town,584,MX
+Los Alcatraces,32.42278,-117.01028,town,565,MX
+Fuentes del Sol,32.43,-117.03778,town,538,MX
+Genaro Vázquez Sección Tres,32.43833,-116.97556,town,535,MX
+Acton,34.46999,-118.19674,town,7596,US
+Adelanto,34.58277,-117.40922,town,33166,US
+Agua Dulce,34.49638,-118.32563,town,3342,US
+Aguanga,33.44281,-116.86502,town,1128,US
+Alhambra,34.09529,-118.12701,town,85551,US
+Aliso Viejo,33.56504,-117.72712,town,50195,US
+Alondra Park,33.88946,-118.33091,town,8592,US
+Alpine,32.83505,-116.76641,town,14236,US
+Altadena,34.18973,-118.13118,town,42777,US
+Anaheim,33.83529,-117.9145,town,350742,US
+Anza,33.55503,-116.67363,town,3014,US
+Apple Valley,34.50083,-117.18588,town,72174,US
+Arcadia,34.13973,-118.03534,town,58408,US
+Artesia,33.86585,-118.08312,town,16961,US
+Atwater Village,34.1164,-118.25646,town,15455,US
+Avalon,33.34281,-118.32785,town,3799,US
+Avocado Heights,34.03612,-117.99118,town,15411,US
+Azusa,34.13362,-117.90756,town,49690,US
+Baldwin Park,34.08529,-117.9609,town,77071,US
+Banning,33.92557,-116.87641,town,30945,US
+Beaumont,33.92946,-116.97725,town,43811,US
+Bel Air,34.08334,-118.44869,town,8253,US
+Bell,33.97751,-118.18702,town,36205,US
+Bell Gardens,33.96529,-118.15146,town,43106,US
+Bellflower,33.88168,-118.11701,town,78441,US
+Belvedere,34.04057,-118.16924,town,2072,US
+Bermuda Dunes,33.7428,-116.28918,town,7282,US
+Beverly Hills,34.07362,-118.40036,town,34869,US
+Big Bear City,34.26112,-116.84503,town,12304,US
+Big Bear Lake,34.2439,-116.91142,town,5213,US
+Bloomington,34.07029,-117.39588,town,23851,US
+Bonita,32.65783,-117.03003,town,12538,US
+Bonsall,33.28892,-117.22559,town,3982,US
+Borrego Springs,33.25587,-116.37501,town,3429,US
+Bostonia,32.813,-116.944,town,15379,US
+Boyle Heights,34.0339,-118.20535,town,92785,US
+Bradbury,34.14695,-117.9709,town,1089,US
+Brawley,32.97866,-115.53027,town,25897,US
+Brea,33.91668,-117.90006,town,41944,US
+Brentwood,34.05195,-118.47397,town,33312,US
+Buena Park,33.86751,-117.99812,town,83270,US
+Burbank,34.18084,-118.30897,town,105319,US
+Cabazon,33.91752,-116.78724,town,2535,US
+Calexico,32.67895,-115.49888,town,40053,US
+Calipatria,33.1256,-115.51415,town,7424,US
+Calimesa,34.0039,-117.06198,town,8542,US
+Campo,32.60645,-116.46891,town,2684,US
+Canoga Park,34.20112,-118.59814,town,60578,US
+Canyon Country,34.42333,-118.47203,town,59530,US
+Canyon Lake,33.68502,-117.27309,town,11080,US
+Carlsbad,33.15809,-117.35059,town,114746,US
+Carson,33.83141,-118.28202,town,93281,US
+Cathedral City,33.77974,-116.46529,town,53826,US
+Century City,34.05557,-118.41786,town,5513,US
+Cerritos,33.85835,-118.06479,town,49975,US
+Charter Oak,34.10306,-117.84589,town,9310,US
+Cherry Valley,33.97252,-116.97725,town,6362,US
+Chino,34.01223,-117.68894,town,85595,US
+Chino Hills,33.9938,-117.75888,town,78309,US
+Chula Vista,32.64005,-117.0842,town,265757,US
+Citrus,34.11501,-117.89173,town,10866,US
+Claremont,34.09668,-117.71978,town,36283,US
+Coachella,33.6803,-116.17389,town,44635,US
+Colton,34.0739,-117.31365,town,54621,US
+Commerce,34.00057,-118.15979,town,13081,US
+Compton,33.89585,-118.22007,town,98462,US
+Corona,33.87529,-117.56644,town,164226,US
+Coronado,32.68589,-117.18309,town,24812,US
+Costa Mesa,33.64113,-117.91867,town,113204,US
+Coto De Caza,33.60419,-117.58699,town,14866,US
+Covina,34.09001,-117.89034,town,48984,US
+Crest,32.80727,-116.86808,town,2593,US
+Crestline,34.24195,-117.2856,town,10770,US
+Cudahy,33.96057,-118.18535,town,24311,US
+Culver City,34.02112,-118.39647,town,39717,US
+Cypress,33.81696,-118.03729,town,49290,US
+Dana Point,33.46697,-117.69811,town,34181,US
+Del Mar,32.95949,-117.26531,town,4351,US
+Del Aire,33.91613,-118.36952,town,10001,US
+Descanso,32.85283,-116.61585,town,1423,US
+Desert Hot Springs,33.96173,-116.50353,town,28335,US
+Desert Shores,33.4042,-116.03972,town,1104,US
+Desert View Highlands,34.59082,-118.15257,town,2360,US
+Diamond Bar,34.02862,-117.81034,town,56897,US
+Downey,33.94001,-118.13257,town,114219,US
+Duarte,34.13945,-117.97729,town,21990,US
+East Rancho Dominguez,33.89807,-118.19535,town,15135,US
+East Hemet,33.74002,-116.93891,town,17418,US
+East La Mirada,33.92446,-117.98895,town,9757,US
+East Los Angeles,34.0239,-118.17202,town,126496,US
+East Pasadena,34.13814,-118.07384,town,6144,US
+East San Gabriel,34.113,-118.085,town,14874,US
+El Cajon,32.79477,-116.96253,town,103679,US
+El Centro,32.792,-115.56305,town,43956,US
+El Cerrito Corona,33.84057,-117.52283,town,5100,US
+El Monte,34.06862,-118.02757,town,116732,US
+El Segundo,33.91918,-118.41647,town,17037,US
+Encinitas,33.03699,-117.29198,town,62930,US
+Encino,34.15917,-118.50119,town,44581,US
+Escondido,33.11921,-117.08642,town,151038,US
+Eucalyptus Hills,32.87977,-116.94669,town,5313,US
+Fairbanks Ranch,32.99393,-117.18726,town,3148,US
+Fallbrook,33.37642,-117.25115,town,30534,US
+Fontana,34.09223,-117.43505,town,212704,US
+Foothill Ranch,33.68641,-117.66088,town,11698,US
+Fountain Valley,33.70918,-117.95367,town,56987,US
+Fullerton,33.87029,-117.92534,town,140847,US
+Garden Grove,33.77391,-117.94145,town,175393,US
+Gardena,33.88835,-118.30896,town,60447,US
+Garnet,33.927,-116.477,town,7543,US
+Glen Avon,34.01168,-117.48477,town,20199,US
+Glendale,34.14251,-118.25508,town,201020,US
+Glendora,34.13612,-117.86534,town,52009,US
+Good Hope,33.76474,-117.26698,town,9192,US
+Grand Terrace,34.0339,-117.31365,town,12464,US
+Granite Hills,32.80311,-116.90475,town,3035,US
+Green Acres,33.73808,-117.07642,town,1805,US
+Hacienda Heights,33.99307,-117.96868,town,54038,US
+Harbison Canyon,32.82033,-116.83002,town,3841,US
+Hawaiian Gardens,33.8314,-118.07284,town,14592,US
+Hawthorne,33.9164,-118.35257,town,88451,US
+Heber,32.73089,-115.52972,town,4275,US
+Hemet,33.74761,-116.97307,town,83861,US
+Hermosa Beach,33.86224,-118.39952,town,19860,US
+Hesperia,34.42639,-117.30088,town,93295,US
+Hidden Meadows,33.22531,-117.11253,town,3485,US
+Highgrove,34.01585,-117.33338,town,3988,US
+Highland,34.12834,-117.20865,town,54854,US
+Hollywood,34.09834,-118.32674,town,167664,US
+Holtville,32.81116,-115.38026,town,6404,US
+Home Gardens,33.87807,-117.52088,town,11570,US
+Homeland,33.74308,-117.1092,town,5969,US
+Huntington Beach,33.6603,-117.99923,town,201899,US
+Huntington Park,33.98168,-118.22507,town,59430,US
+Idyllwild,33.74002,-116.71891,town,3583,US
+Imperial,32.84755,-115.56944,town,17095,US
+Imperial Beach,32.58394,-117.11308,town,27408,US
+Indian Wells,33.71791,-116.34311,town,5289,US
+Indio,33.7207,-116.21677,town,87533,US
+Indio Hills,33.83113,-116.2314,town,972,US
+Inglewood,33.96168,-118.35313,town,111666,US
+Irvine,33.66946,-117.82311,town,256927,US
+Irwindale,34.10695,-117.93534,town,1437,US
+Jacumba Hot Springs,32.61756,-116.18974,town,561,US
+Jamul,32.717,-116.87613,town,6163,US
+Joshua Tree,34.13473,-116.31307,town,7414,US
+Julian,33.07866,-116.60196,town,1502,US
+Koreatown,34.05779,-118.30091,town,124281,US
+La Cañada Flintridge,34.19917,-118.18785,town,20246,US
+La Habra,33.93196,-117.94617,town,62131,US
+La Habra Heights,33.96085,-117.95062,town,5454,US
+La Jolla,32.84727,-117.2742,town,42808,US
+La Mesa,32.76783,-117.02308,town,60089,US
+La Mirada,33.91724,-118.01201,town,49520,US
+La Palma,33.8464,-118.04673,town,15904,US
+La Presa,32.70811,-116.99725,town,34169,US
+La Puente,34.02001,-117.94951,town,40745,US
+La Quinta,33.66336,-116.31001,town,40476,US
+La Verne,34.10084,-117.76784,town,32681,US
+Ladera Heights,33.99418,-118.37535,town,6498,US
+Ladera Ranch,33.57086,-117.63561,town,22980,US
+Laguna Beach,33.54225,-117.78311,town,23365,US
+Laguna Hills,33.61252,-117.71283,town,31748,US
+Laguna Niguel,33.52253,-117.70755,town,65806,US
+Laguna Woods,33.6103,-117.72533,town,16406,US
+Lake Arrowhead,34.24834,-117.18921,town,12424,US
+Lake Elsinore,33.66808,-117.32726,town,61981,US
+Lake Forest,33.64697,-117.68922,town,82492,US
+Lake San Marcos,33.12615,-117.20837,town,4437,US
+Lakeland Village,33.63863,-117.34393,town,11541,US
+Lakeside,32.85727,-116.92225,town,20648,US
+Lakeview,33.83863,-117.11809,town,2104,US
+Lakewood,33.85363,-118.13396,town,81611,US
+Las Flores,33.58808,-117.62672,town,5971,US
+Lawndale,33.88724,-118.35257,town,33430,US
+Lemon Grove,32.74255,-117.03142,town,26709,US
+Lennox,33.93807,-118.35258,town,22753,US
+Littlerock,34.5211,-117.98368,town,1377,US
+Loma Linda,34.04835,-117.26115,town,24045,US
+Lomita,33.79224,-118.31507,town,20785,US
+Long Beach,33.76696,-118.18923,town,474140,US
+Los Alamitos,33.80307,-118.07256,town,11449,US
+Los Angeles,34.05223,-118.24368,town,3820914,US
+Los Serranos,33.97279,-117.70811,town,7099,US
+Lucerne Valley,34.44389,-116.96781,town,5811,US
+Lynwood,33.93029,-118.21146,town,71989,US
+Lytle Creek,34.25917,-117.50005,town,701,US
+Manhattan Beach,33.88474,-118.41091,town,35818,US
+Marina del Rey,33.98162,-118.45371,town,8866,US
+Mayflower Village,34.11501,-118.00979,town,5515,US
+Maywood,33.98668,-118.18535,town,27888,US
+Mead Valley,33.83335,-117.29615,town,18510,US
+Mecca,33.57219,-116.0782,town,8577,US
+Menifee,33.72835,-117.14642,town,87174,US
+Mentone,34.07001,-117.13448,town,8720,US
+Midway City,33.74474,-117.98923,town,8485,US
+Jurupa Valley,33.99251,-117.51644,town,21930,US
+Mira Mesa,32.9156,-117.14392,town,70000,US
+Mission Viejo,33.60002,-117.672,town,97156,US
+Monrovia,34.14806,-117.99895,town,37463,US
+Montclair,34.07751,-117.68978,town,38690,US
+Montebello,34.00946,-118.10535,town,63921,US
+Monterey Park,34.06251,-118.12285,town,61468,US
+Moreno Valley,33.93752,-117.23059,town,204198,US
+Morongo Valley,34.04695,-116.58085,town,3552,US
+Mountain View Acres,34.49666,-117.34894,town,3130,US
+Murrieta,33.55391,-117.21392,town,109830,US
+Murrieta Hot Springs,33.56058,-117.15809,town,3644,US
+Muscoy,34.15418,-117.34421,town,10644,US
+National City,32.67811,-117.0992,town,61060,US
+Newport Beach,33.61891,-117.92895,town,87127,US
+Niland,33.24004,-115.51888,town,1006,US
+Norco,33.93113,-117.54866,town,26289,US
+North El Monte,34.10279,-118.02423,town,3723,US
+North Hollywood,34.17223,-118.37897,town,64587,US
+Northridge,34.22834,-118.53675,town,68469,US
+Norwalk,33.90224,-118.08173,town,107140,US
+Nuevo,33.80141,-117.14587,town,6447,US
+Oak Glen,34.04946,-116.9478,town,638,US
+Oak Hills,34.38313,-117.38135,town,8879,US
+Oasis,33.46586,-116.09889,town,6890,US
+Oceanside,33.19587,-117.37948,town,175691,US
+Ontario,34.06334,-117.65089,town,171214,US
+Orange,33.78779,-117.85311,town,140992,US
+Pacific Palisades,34.04806,-118.52647,town,23121,US
+Palm Desert,33.72255,-116.37697,town,51869,US
+Palm Springs,33.8303,-116.54529,town,47371,US
+Palmdale,34.57943,-118.11646,town,158351,US
+Palos Verdes Estates,33.80105,-118.39245,town,13682,US
+Paramount,33.88946,-118.15979,town,55412,US
+Pasadena,34.14778,-118.14452,town,142250,US
+Pedley,33.97529,-117.47588,town,12672,US
+Perris,33.78252,-117.22865,town,74971,US
+Phelan,34.42611,-117.57228,town,14304,US
+Pico Rivera,33.98307,-118.09673,town,64218,US
+Pine Valley,32.82144,-116.52918,town,1510,US
+Piñon Hills,34.43333,-117.64672,town,7272,US
+Placentia,33.87224,-117.87034,town,52495,US
+Pomona,34.05529,-117.75228,town,153266,US
+Portola Hills,33.67919,-117.63116,town,9083,US
+Potrero,32.60478,-116.61307,town,656,US
+Poway,32.96282,-117.03586,town,50157,US
+Quail Valley,33.70697,-117.24504,town,1538,US
+Rainbow,33.41031,-117.14781,town,1832,US
+Ramona,33.04171,-116.86808,town,20292,US
+Rancho Cucamonga,34.1064,-117.59311,town,175236,US
+Rancho Mirage,33.73974,-116.41279,town,18083,US
+Rancho Palos Verdes,33.74446,-118.38702,town,42732,US
+Rancho Penasquitos,32.95949,-117.11531,town,60000,US
+Rancho San Diego,32.74727,-116.9353,town,21208,US
+Rancho Santa Fe,33.02032,-117.20281,town,3117,US
+Rancho Santa Margarita,33.64086,-117.6031,town,49324,US
+Redlands,34.05557,-117.18254,town,71035,US
+Redondo Beach,33.84918,-118.38841,town,68166,US
+Reseda,34.20112,-118.53647,town,65000,US
+Rialto,34.1064,-117.37032,town,103132,US
+Riverside,33.95335,-117.39616,town,317261,US
+Rolling Hills,33.75739,-118.35752,town,1893,US
+Rolling Hills Estates,33.78779,-118.35813,town,8258,US
+Romoland,33.74585,-117.17503,town,1684,US
+Rosemead,34.08057,-118.07285,town,54908,US
+Rossmoor,33.78557,-118.08506,town,10244,US
+Rowland Heights,33.97612,-117.90534,town,48993,US
+Rubidoux,33.99613,-117.4056,town,34280,US
+Running Springs,34.20779,-117.1092,town,4862,US
+Salton City,33.29865,-115.95611,town,3763,US
+San Antonio Heights,34.15556,-117.65644,town,3371,US
+San Bernardino,34.10834,-117.28977,town,216108,US
+San Clemente,33.42697,-117.61199,town,65526,US
+San Diego,32.71571,-117.16472,town,1404452,US
+San Diego Country Estates,33.00671,-116.78364,town,10109,US
+San Dimas,34.10668,-117.80673,town,34630,US
+San Fernando,34.28195,-118.43897,town,24931,US
+San Gabriel,34.09611,-118.10583,town,40424,US
+San Jacinto,33.78391,-116.95864,town,46951,US
+San Joaquin Hills,33.61169,-117.83672,town,3176,US
+San Juan Capistrano,33.50169,-117.66255,town,36454,US
+San Marcos,33.14337,-117.16614,town,92931,US
+San Marino,34.1214,-118.10646,town,13464,US
+San Pasqual,33.09171,-116.95392,town,2041,US
+San Pedro,33.73585,-118.29229,town,83556,US
+Santa Ana,33.74557,-117.86783,town,310227,US
+Santa Clarita,34.39166,-118.54259,town,182371,US
+Santa Fe Springs,33.94724,-118.08535,town,18026,US
+Santa Monica,34.01949,-118.49138,town,93220,US
+Santee,32.83838,-116.97392,town,57787,US
+Sawtelle,34.0363,-118.44949,town,39757,US
+Seal Beach,33.74141,-118.10479,town,24619,US
+Sedco Hills,33.64169,-117.29087,town,3158,US
+Seeley,32.79311,-115.69111,town,1739,US
+North Hills,34.23639,-118.48472,town,56946,US
+Shadow Hills,34.26195,-118.35175,town,13000,US
+Sherman Oaks,34.15112,-118.44925,town,52677,US
+Sierra Madre,34.16167,-118.05285,town,11163,US
+Signal Hill,33.80446,-118.16785,town,11565,US
+Sky Valley,33.89001,-116.35251,town,2406,US
+Solana Beach,32.99115,-117.27115,town,13449,US
+Sorrento Valley,32.89991,-117.19451,town,5000,US
+South El Monte,34.05195,-118.04673,town,20878,US
+South Gate,33.95474,-118.21202,town,96401,US
+South Pasadena,34.11612,-118.15035,town,26151,US
+South San Gabriel,34.04915,-118.09462,town,8070,US
+South San Jose Hills,34.01279,-117.90478,town,20551,US
+South Whittier,33.95015,-118.03917,town,57156,US
+Spring Valley,32.74477,-116.99892,town,28205,US
+Stanton,33.80252,-117.99312,town,38872,US
+Studio City,34.14862,-118.39647,town,34034,US
+Sun City,33.70919,-117.19726,town,19579,US
+Sunland,34.26695,-118.3023,town,15316,US
+Sunnyslope,34.01196,-117.43338,town,5153,US
+Sunset Beach,33.71641,-118.06895,town,971,US
+Sylmar,34.30778,-118.44925,town,79614,US
+Temecula,33.49364,-117.14836,town,110003,US
+Temple City,34.10723,-118.05785,town,36365,US
+Thermal,33.6403,-116.13945,town,2865,US
+Thousand Palms,33.82002,-116.39029,town,7715,US
+Torrance,33.83585,-118.34063,town,143592,US
+Trabuco Canyon,33.66252,-117.59033,town,3000,US
+Tujunga,34.25223,-118.28841,town,26527,US
+Tustin,33.74585,-117.82617,town,80583,US
+North Tustin,33.76446,-117.79394,town,24917,US
+Twentynine Palms,34.13556,-116.05417,town,26025,US
+Universal City,34.1389,-118.35341,town,105000,US
+Upland,34.09751,-117.64839,town,76443,US
+Valinda,34.04529,-117.94367,town,22822,US
+Valle Vista,33.7478,-116.89336,town,14578,US
+Valley Center,33.21837,-117.0342,town,9277,US
+Van Nuys,34.18667,-118.44897,town,136443,US
+Venice,33.99084,-118.46008,town,40885,US
+Victorville,34.53611,-117.29116,town,122225,US
+Villa Park,33.81446,-117.81311,town,5964,US
+Vincent,34.50055,-118.11646,town,15922,US
+Vista,33.20004,-117.24254,town,100890,US
+Vista Santa Rosa,33.6278,-116.21806,town,2926,US
+Walnut,34.02029,-117.86534,town,30237,US
+Walnut Park,33.96807,-118.22507,town,15966,US
+West Athens,33.92335,-118.30341,town,8729,US
+West Carson,33.82168,-118.29257,town,21699,US
+West Rancho Dominguez,33.8939,-118.27063,town,5669,US
+West Covina,34.06862,-117.93895,town,108484,US
+West Hollywood,34.09001,-118.36174,town,36222,US
+West Puente Valley,34.05168,-117.9684,town,22636,US
+Westminster,33.75918,-118.00673,town,92114,US
+Westmont,33.9414,-118.3023,town,31853,US
+Westmorland,33.03727,-115.62138,town,2267,US
+Westwood,34.05612,-118.43063,town,2019,US
+Whittier,33.97918,-118.03284,town,87438,US
+Wildomar,33.59891,-117.28004,town,35632,US
+Willowbrook,33.91696,-118.25507,town,35983,US
+Wilmington,33.78002,-118.26257,town,52000,US
+Winchester,33.70697,-117.08447,town,2534,US
+Winnetka,34.21334,-118.57203,town,47000,US
+Winter Gardens,32.83116,-116.93336,town,20631,US
+Woodcrest,33.88224,-117.35727,town,14347,US
+Wrightwood,34.36083,-117.63339,town,4525,US
+Yorba Linda,33.88863,-117.81311,town,67973,US
+Yucaipa,34.03363,-117.04309,town,53328,US
+Yucca Valley,34.11417,-116.43224,town,21600,US
+Stevenson Ranch,34.39048,-118.57372,town,17557,US
+Hidden Trails,33.1395,-117.02295,town,750,US
+Larchmont,34.07974,-118.31758,town,9195,US
+Desert Edge,33.92417,-116.44139,town,3822,US
+Camp Pendleton North,33.31465,-117.31603,town,5200,US
+Camp Pendleton South,33.22844,-117.37929,town,10616,US
+Casa de Oro-Mount Helix,32.76397,-116.96877,town,18762,US
+March Air Force Base,33.89209,-117.2631,town,1159,US
+Florence-Graham,33.96772,-118.24438,town,63387,US
+Idyllwild-Pine Cove,33.74429,-116.72587,town,3874,US
+La Crescenta-Montrose,34.23216,-118.23529,town,19653,US
+View Park-Windsor Hills,33.99551,-118.34835,town,11075,US
+Vincent,34.09836,-117.92383,town,15922,US
+West Whittier-Los Nietos,33.976,-118.06909,town,25540,US
+Meadowbrook,33.72578,-117.28509,town,3185,US
+Sun Village,34.55952,-117.95676,town,11565,US
+Eastvale,33.96358,-117.56418,town,59039,US
+Spring Valley Lake,34.49364,-117.26832,town,8220,US
+Silver Lake,34.08668,-118.27023,town,32890,US
+Echo Park,34.07808,-118.26066,town,43832,US
+Valley Glen,34.18568,-118.42032,town,60000,US
+Turtle Rock,33.64335,-117.81015,town,12288,US
+Woodbridge,33.67724,-117.79442,town,24966,US
+University Town Center,33.65157,-117.83427,town,6455,US
+University Park,33.66246,-117.80953,town,7885,US
+University Research Park,33.64344,-117.8559,town,976,US
+Westpark,33.68527,-117.81371,town,22993,US
+UC Irvine,33.63967,-117.84164,town,15807,US
+Quail Hill,33.65114,-117.77551,town,7651,US
+Irvine Health and Science Complex,33.65803,-117.76525,town,8644,US
+Oak Creek,33.67398,-117.77123,town,10018,US
+Cypress Village,33.68787,-117.75916,town,9610,US
+El Camino Real,33.69662,-117.77668,town,15999,US
+Walnut Village,33.70972,-117.79655,town,7675,US
+Stonegate,33.70534,-117.74009,town,18938,US
+Northwood,33.71372,-117.76091,town,22218,US
+Tustin Legacy,33.70006,-117.82588,town,21428,US
+Vermont Square,34.00204,-118.29896,town,47555,US
+Mid-City,34.04126,-118.36058,town,83000,US

@@ -33,6 +33,11 @@ data/raw/             downloaded sequences (git-ignored)
 scripts/download_figlib.py   fetch sequences
 scripts/baseline_detect.py   day-one baseline: time-to-detect with change detection
 scripts/run_sam.py           SAM 3.1 tracking (+ --verify with Muse Spark), metrics, overlays
+scripts/download_dem.py      Copernicus 30 m elevation tiles -> data/dem/region.npz
+scripts/calibrate_skyline.py per-sequence camera calibration by matching the terrain skyline
+scripts/locate.py            cross-camera matching and triangulation, scored vs official ignition points
+scripts/download_places.py   GeoNames place names for plain-language alerts
+scripts/run_agent.py         replay a fire as if live; Muse Spark runs the dispatch desk and issues alerts
 smokespotter/         core package (frames, detect, geo, models)
 tests/                unit tests
 ```
@@ -60,6 +65,28 @@ so reruns are free unless you pass `--refresh`.
 - **Location error:** metres between the triangulated fix and the official ignition point.
 - Fires are split into `dev` (tune on) and `test` (report on) in `data/fires.csv`.
 
+## The agent
+
+`scripts/run_agent.py` replays an archived fire minute by minute. Whenever something new
+becomes observable, Muse Spark is woken with a set of tools (`get_situation`, `verify_track`,
+`recheck_track`, `locate`, `nearby_places`, `issue_alert`) and decides what to do. Alerts escalate
+from **spotted** (smoke seen, bearing only) to **provisional** and **confirmed** (located, with an
+error circle). Guardrails in code: an alert can never claim more than the evidence supports, and
+it may only cite numbers that a tool returned. `--autopilot` runs the same tools with a fixed
+policy (offline fallback). Every tool call is saved in `outputs/<fire>_timeline.json`.
+
+## Camera calibration
+
+Each sequence is calibrated against the mountains it sees: the skyline predicted from a
+30 m elevation model (with earth curvature and refraction) is aligned with the
+sky/terrain edge in the image, fitting heading, pitch, roll, focal length and lens
+distortion. Cameras are re-aimed over the years, so every fire's footage gets its own
+calibration, and no fire data is used, so every fire is an independent location test.
+`outputs/<sequence>/skyline_fit.jpg` shows the fitted skyline in magenta.
+
 ## Data credit
 
 Fire imagery: HPWREN Fire Ignition images Library, http://hpwren.ucsd.edu/
+Elevation: Copernicus DEM GLO-30, (c) DLR e.V. 2010-2014 and (c) Airbus Defence and Space GmbH
+2014-2018, provided under COPERNICUS by the European Union and ESA.
+Ignition points: CAL FIRE incident data (data/ignitions.csv lists sources).

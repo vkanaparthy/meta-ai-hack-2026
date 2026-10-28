@@ -21,6 +21,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from smokespotter.calibrate import NOMINAL  # noqa: E402
+from smokespotter.camera import CameraModel  # noqa: E402
 from smokespotter.frames import load_sequence  # noqa: E402
 from smokespotter.geo import haversine_m, pixel_to_bearing  # noqa: E402
 from smokespotter.locate import TrackBearing, best_location, first_location, to_geojson  # noqa: E402
@@ -39,8 +40,8 @@ def rows(name: str) -> list[dict]:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--fire", required=True)
-    ap.add_argument("--sigma", type=float, default=1.0, help="bearing uncertainty, degrees")
-    ap.add_argument("--max-resid", type=float, default=400.0, help="metres, line agreement threshold")
+    ap.add_argument("--n-sigma", type=float, default=3.0, help="bearing agreement threshold, in sigmas")
+    ap.add_argument("--legacy", action="store_true", help="ignore skyline camera models (fire calibration only)")
     args = ap.parse_args()
 
     stations = {r["station"]: r for r in rows("stations.csv")}
@@ -59,7 +60,7 @@ def main() -> int:
         print(f"{args.fire} not in data/fires.csv")
         return 1
 
-    tracks, first_visible, skipped, calib_fires = [], [], [], set()
+    tracks, first_visible, skipped, calib_fires, sources = [], [], [], set(), {}
     for r in seqs:
         cam = f"{r['station']}-{r['direction']}"
         if cam not in cams and r["station"] in offsets and r["direction"] in NOMINAL and hfovs:
@@ -67,11 +68,18 @@ def main() -> int:
                          "heading_deg": (NOMINAL[r["direction"]] + offsets[r["station"]]) % 360,
                          "hfov_deg": hfovs[0], "notes": "derived from station offset"}
         res_path = ROOT / "outputs" / r["sequence"] / "results.json"
-        if cam not in cams or not res_path.exists() or r["station"] not in stations:
+        model_path = ROOT / "outputs" / r["sequence"] / "camera_model.json"
+        model = CameraModel.load(model_path) if model_path.exists() and not args.legacy else None
+        if model is not None and res_path.exists():
+            sources[cam] = "skyline"
+        elif cam in cams and res_path.exists():
+            sources[cam] = "fire-calibrated" if "derived" not in cams[cam].get("notes", "") else "station offset"
+        if model is None and (cam not in cams or not res_path.exists() or r["station"] not in stations):
             skipped.append(f"{cam} ({'not calibrated' if cam not in cams else 'no SAM results'})")
             continue
-        c, st = cams[cam], stations[r["station"]]
-        calib_fires.update(c.get("notes", "").replace("fires:", "").split(";")[0].strip().split("+"))
+        c, st = cams.get(cam, {}), stations[r["station"]]
+        if model is None:
+            calib_fires.update(c.get("notes", "").replace("fires:", "").split(";")[0].strip().split("+"))
         frames = load_sequence(ROOT / "data" / "raw" / r["sequence"])
         first_visible += [f.epoch for f in frames if f.offset >= 0][:1]
         res = json.loads(res_path.read_text())
@@ -81,15 +89,28 @@ def main() -> int:
         for t in res.get("track_summaries", []):
             ds = sorted(dets[t["object_id"]], key=lambda d: d["frame"])
             x = statistics.median(t["base_x_first3"])
-            bearing = pixel_to_bearing(x, int(res["image_width"]), float(c["heading_deg"]), float(c["hfov_deg"]))
+            xfrac = x / float(res["image_width"])
+            edge = xfrac < 0.10 or xfrac > 0.88
+            if model is not None:
+                y = statistics.median(d["y1"] - 1 for d in ds[:3])       # plume base row
+                bearing = float(model.pixel_to_azel(x, y)[0])
+                cam_lat, cam_lon = model.lat, model.lon
+                q = json.loads(model_path.read_text()).get("quality", {})
+                weak = (q.get("median_abs_px") or 99) > 2.0 or (q.get("edge_coverage") or 0) < 0.75
+                sigma = 6.0 if weak else (2.5 if edge else 1.0)
+            else:
+                bearing = pixel_to_bearing(x, int(res["image_width"]), float(c["heading_deg"]), float(c["hfov_deg"]))
+                cam_lat, cam_lon = float(st["lat"]), float(st["lon"])
+                sigma = 3.0
             avail = frames[ds[min(2, len(ds) - 1)]["frame"]].epoch
-            tracks.append(TrackBearing(cam, r["station"], t["object_id"], float(st["lat"]), float(st["lon"]),
-                                       bearing, avail, bool(t["edge_clipped"])))
+            tracks.append(TrackBearing(cam, r["station"], t["object_id"], cam_lat, cam_lon,
+                                       bearing, avail, bool(t["edge_clipped"]), sigma))
 
     if args.fire in calib_fires:
         print(f"NOTE: {args.fire} was used to calibrate these cameras, so location accuracy here is "
               f"not an independent test.\n")
-    print(f"{len(tracks)} plume track(s) from {len({t.camera_id for t in tracks})} camera(s)")
+    print(f"{len(tracks)} plume track(s) from {len({t.camera_id for t in tracks})} camera(s); calibration: "
+          + ", ".join(f"{k} {v}" for k, v in sorted(sources.items())))
     for s in skipped:
         print(f"  skipped {s}")
     t0 = min(first_visible) if first_visible else None
@@ -99,7 +120,7 @@ def main() -> int:
             return dt.datetime.utcfromtimestamp(epoch).strftime("%H:%M UTC")
         return f"+{(epoch - t0) / 60:.1f} min after first visible smoke"
 
-    kw = dict(max_resid_m=args.max_resid, sigma_deg=args.sigma)
+    kw = dict(n_sigma=args.n_sigma)
     first = first_location(tracks, **kw)
     final = best_location(tracks, **kw)
     if final is None:
@@ -110,11 +131,19 @@ def main() -> int:
         if loc is None:
             continue
         line = (f"{label}: {loc.fix.lat:.5f}, {loc.fix.lon:.5f}  ({when(loc.epoch)})\n"
-                f"  cameras: {', '.join(m.camera_id + ('*' if m.edge_clipped else '') for m in loc.members)}\n"
+                f"  cameras: {', '.join(f'{m.camera_id}{chr(42) if m.edge_clipped else chr(32)}(+-{m.sigma_deg:g} deg)' for m in loc.members)}\n"
                 f"  uncertainty (90%): {loc.uncertainty_m:,.0f} m; lines agree within {loc.fix.error_m:,.0f} m")
         if truth:
             line += f"\n  distance to official ignition point: {haversine_m(loc.fix.lat, loc.fix.lon, *truth):,.0f} m"
         print(line)
+    if truth:
+        from smokespotter.geo import bearing_deg
+        print("Bearing error vs official ignition point:")
+        for m in final.members:
+            tb = bearing_deg(m.lat, m.lon, *truth)
+            err = (m.bearing_deg - tb + 180) % 360 - 180
+            rng = haversine_m(m.lat, m.lon, *truth)
+            print(f"  {m.camera_id:<7} {err:+5.2f} deg at {rng / 1000:4.1f} km  (~{abs(err) * 3.14159 / 180 * rng:,.0f} m sideways)")
     unused = [t for t in tracks if t not in final.members]
     if unused:
         print("Tracks not matched to this fire: " +

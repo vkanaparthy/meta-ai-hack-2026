@@ -31,5 +31,34 @@ def test_inconsistent_bearings_give_no_fix():
     # two lines always intersect somewhere; range limit + residual can't reject, so
     # with exactly two this is a fix -- three mutually inconsistent lines are rejected
     tracks.append(tb("vo", (32.9, -116.9), 1))
-    loc = best_location(tracks, max_resid_m=200)
+    loc = best_location(tracks, n_sigma=2)
     assert loc is None or len(loc.members) == 2
+
+
+def test_weights_favour_trusted_bearings():
+    from smokespotter.geo import haversine_m
+    good = [tb("bm", FIRE, 1), tb("vo", FIRE, 1)]
+    bad = TrackBearing("hp-x", "hp", "0", *CAMS["hp"],
+                       bearing_deg(*CAMS["hp"], *FIRE) + 6.0, 1, sigma_deg=6.0)
+    loc = best_location(good + [bad])
+    assert len(loc.members) == 3
+    assert haversine_m(loc.fix.lat, loc.fix.lon, *FIRE) < 300
+
+
+def test_fragments_of_one_plume_are_merged():
+    from smokespotter.locate import merge_fragments
+    a = tb("bm", FIRE, 100, tid="a")
+    b = tb("bm", FIRE, 220, tid="b", err=2.5)        # same plume, split mask
+    c = tb("bm", OTHER, 230, tid="c")                # different plume
+    kept = {t.track_id for t in merge_fragments([b, a, c])}
+    assert kept == {"a", "c"}
+
+
+def test_desk_guardrails():
+    from smokespotter.desk import FireDesk, MuseBackend
+    from smokespotter.observations import FireObservations
+    desk = FireDesk(FireObservations("x", [], [], 0, 1, None), MuseBackend(lambda t: None, lambda t, c: None))
+    desk._note({"lat": 33.1930, "lon": -116.6635, "uncertainty_m": 1480})
+    assert desk._citable(116.6635) and desk._citable(1.5) and desk._citable(1480)
+    assert not desk._citable(250.0)
+    assert desk.issue_alert("confirmed", "x", "y")["error"].startswith("no verified smoke")

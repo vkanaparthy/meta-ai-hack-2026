@@ -1,5 +1,7 @@
 numpy
 pillow
+scipy
+rasterio
 openai>=1.60
 meta-sam-parser
 imageio-ffmpeg

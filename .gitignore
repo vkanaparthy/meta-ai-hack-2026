@@ -5,3 +5,4 @@ __pycache__/
 .env
 outputs/
 .pytest_cache/
+data/dem/

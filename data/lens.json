@@ -1,0 +1,16 @@
+{
+  "f_norm": 0.5470311475584128,
+  "k1": -0.2929043746102523,
+  "k2": 0.06533864958281477,
+  "hfov_deg": 84.85616808796055,
+  "n_fits": 7,
+  "sequences": [
+    "20260629_JunctionFire_hp-e-mobo-c",
+    "20260629_JunctionFire_mg-e-mobo-c",
+    "20240701_Kitchenfire_lp-e-mobo-c",
+    "20240701_Kitchenfire_pi-e-mobo-c",
+    "20241108_ResortFire_bm-n-mobo-c",
+    "20241108_ResortFire_hp-e-mobo-c",
+    "20230727.144836-BonnyFire-hp-e-mobo-c"
+  ]
+}

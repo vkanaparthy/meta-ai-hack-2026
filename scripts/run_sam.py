@@ -27,67 +27,11 @@ from smokespotter.sam import Detection, parse_detections, segment_video  # noqa:
 from smokespotter.video import frames_to_mp4  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-VIDEO_MAX_WIDTH = 1536
 
 
-def tiles_for(w: int, h: int, n: int, band: str) -> list[tuple[int, int, int, int]]:
-    """n side-by-side crops of the horizontal band ``band`` ("top:bottom" as
-    fractions of image height), each overlapping its neighbour by 10%."""
-    top, bottom = (float(v) for v in band.split(":"))
-    y0, y1 = int(h * top) // 2 * 2, int(h * bottom) // 2 * 2
-    if n <= 1:
-        return [(0, y0, w, y1 - y0)]
-    tw = int(w / n * 1.1) // 2 * 2
-    step = (w - tw) / (n - 1)
-    return [(int(i * step) // 2 * 2, y0, tw, y1 - y0) for i in range(n)]
-
-
-def tracks_of(dets: list[Detection]) -> dict[str, list[Detection]]:
-    t = defaultdict(list)
-    for d in dets:
-        t[d.object_id].append(d)
-    return {k: sorted(v, key=lambda d: d.frame) for k, v in t.items()}
-
-
-def overlap(a: Detection, b: Detection) -> float:
-    ix = max(0.0, min(a.x1, b.x1) - max(a.x0, b.x0))
-    iy = max(0.0, min(a.y1, b.y1) - max(a.y0, b.y0))
-    inter = ix * iy
-    smaller = min((a.x1 - a.x0) * (a.y1 - a.y0), (b.x1 - b.x0) * (b.y1 - b.y0))
-    return inter / smaller if smaller else 0.0   # overlap of the smaller box
-
-
-def dedupe_tiles(tracks: dict[str, list[Detection]]) -> dict[str, list[Detection]]:
-    """Drop a track that duplicates a longer one from another tile (tile overlap)."""
-    keep = dict(tracks)
-    for a in sorted(tracks, key=lambda k: len(tracks[k])):
-        if a not in keep:
-            continue
-        for b in keep:
-            if b == a or b.split(":")[0] == a.split(":")[0] or len(keep[b]) < len(keep[a]):
-                continue
-            fb = {d.frame: d for d in keep[b]}
-            shared = [(d, fb[d.frame]) for d in keep[a] if d.frame in fb]
-            if len(shared) >= len(keep[a]) / 2 and sum(overlap(x, y) > 0.5 for x, y in shared) >= len(shared) / 2:
-                del keep[a]
-                break
-    return keep
-
-
-def track_summary(oid: str, ds: list[Detection], width: int) -> dict:
-    first = ds[:3]
-    margin = 0.01 * width
-    return {
-        "object_id": oid, "first_frame": ds[0].frame, "last_frame": ds[-1].frame, "n_frames": len(ds),
-        "confidence": ds[0].confidence,
-        "base_x_first3": [round(d.base_x, 1) for d in first],
-        "edge_clipped": any(d.x0 <= margin or d.x1 >= width - margin for d in first),
-    }
-
-
-def union_box(ds: list[Detection]) -> tuple[float, float, float, float]:
-    return (min(d.x0 for d in ds), min(d.y0 for d in ds),
-            max(d.x1 for d in ds), max(d.y1 for d in ds))
+from smokespotter.tracks import (  # noqa: E402
+    VIDEO_MAX_WIDTH, dedupe_tiles, overlap, tiles_for, track_summary, tracks_of, union_box,
+)
 
 
 def score(frames, dets) -> dict:
@@ -153,15 +97,20 @@ def run(folder: Path, args) -> dict | None:
         from smokespotter.muse import verify_track
 
         cache_path = out / "verdicts.json"
-        cache = json.loads(cache_path.read_text()) if cache_path.exists() and not args.refresh else {}
+        cache = (json.loads(cache_path.read_text())
+                 if cache_path.exists() and not (args.refresh or args.reverify) else {})
         ranked = sorted(tracks, key=lambda k: -len(tracks[k]))[: args.max_verify]
         kept = []
         for oid in ranked:
             ds = tracks[oid]
             if oid not in cache:
-                picks = [ds[0], ds[len(ds) // 2], ds[-1]]
-                v = verify_track([frames[d.frame].path for d in picks], union_box(ds))
-                cache[oid] = {"is_smoke": v.is_smoke, "confidence": v.confidence, "reason": v.reason}
+                # judge from the first few minutes only: a live system can't see the
+                # future, and small fires get contained and fade later
+                picks = [ds[0], ds[min(2, len(ds) - 1)], ds[min(4, len(ds) - 1)]]
+                at_edge = track_summary(oid, ds, orig_w)["edge_clipped"]
+                v = verify_track([frames[d.frame].path for d in picks], union_box(picks), at_edge=at_edge)
+                cache[oid] = {"is_smoke": v.is_smoke, "confidence": v.confidence, "reason": v.reason,
+                              "at_edge": at_edge}
             if cache[oid]["is_smoke"]:
                 kept.append(oid)
         cache_path.write_text(json.dumps(cache, indent=2))
@@ -207,6 +156,7 @@ def main() -> int:
     ap.add_argument("--verify", action="store_true", help="check tracks with Muse Spark")
     ap.add_argument("--max-verify", type=int, default=5, help="max Muse calls per camera")
     ap.add_argument("--refresh", action="store_true", help="ignore cached API results")
+    ap.add_argument("--reverify", action="store_true", help="redo Muse checks only (SAM stays cached)")
     args = ap.parse_args()
     for f in args.folders:
         try:
