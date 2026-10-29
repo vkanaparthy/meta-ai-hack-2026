@@ -1,4 +1,4 @@
-# Smoke Spotter
+# FireFinder
 
 > 🔥 Turn any fixed mountaintop camera into a calibrated fire finder: detect wildfire smoke with Meta's
 > models, work out where every camera is pointing from the shape of the mountains, and triangulate the
@@ -28,7 +28,7 @@ To rerun the analysis itself rather than just watch it, see [Installation](#inst
 ## What It Does
 
 Fire lookouts have located fires the same way for a century: two towers take a bearing on the same smoke,
-and where the lines cross is the fire. Smoke Spotter automates that with existing camera networks,
+and where the lines cross is the fire. FireFinder automates that with existing camera networks,
 with no training data and no surveying.
 
 1. **Watches** each camera's image stream (one frame a minute, replayed from the HPWREN archive).
@@ -294,4 +294,4 @@ track, theme **Push the Frontier**. Bonus categories in view: **Best Agentic Use
 
 ## License
 
-To be added before submission.
+Code is released under the [MIT License](LICENSE), © 2026 Venu Kanaparthy. Camera imagery, terrain, ignition and place data keep their own terms; see Data Credits.

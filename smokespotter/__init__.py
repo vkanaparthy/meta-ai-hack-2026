@@ -1,1 +1,1 @@
-"""Smoke Spotter: detect wildfire smoke across fixed cameras and triangulate its origin."""
+"""FireFinder: detect wildfire smoke across fixed cameras and triangulate its origin."""
