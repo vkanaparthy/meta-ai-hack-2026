@@ -7,7 +7,8 @@ Guidance for AI coding agents (and humans) working in this repository. Read it b
 
 FireFinder detects wildfire smoke in fixed mountaintop camera footage (HPWREN), works out where each
 camera points by matching the terrain skyline, triangulates the fire from several cameras, and runs a
-Muse Spark agent that verifies plumes and issues escalating alerts. It is a Meta Global AI Developer
+Muse Spark agent that verifies plumes and issues escalating alerts. Every Muse call can also run on the
+open-weight **Muse Spark Open** (Baseten) with `MUSE_PROVIDER=open` or `--provider open`. It is a Meta Global AI Developer
 Hackathon entry (Indie track; submission due **Nov 4, 2026, 9 PM ET**). Fires are replayed from archives;
 there is no live feed yet.
 
@@ -22,7 +23,9 @@ there is no live feed yet.
 | Station position refinement | `scripts/refine_stations.py` | updates `camera_model.json`, `data/stations_refined.csv` |
 | Triangulation | `smokespotter/locate.py`, `scripts/locate.py` | `outputs/<fire>_location.geojson` |
 | Agent replay | `smokespotter/observations.py`, `desk.py`, `agent.py`, `scripts/run_agent.py` | `outputs/<fire>_timeline.json` (live), `_timeline_autopilot.json` (offline) |
+| Open-weights runs | `smokespotter/models.py` (provider switch, cost meter), `agent.OpenMuseAgent`, `scripts/check_open_model.py`, `eval_verifier.py`, `compare_models.py` | `outputs/<seq>/verdicts_open.json`, `<fire>_timeline_open_r*.json`, `verifier_eval_open.json`, `model_comparison.json`, `usage_open.jsonl` |
 | Replay page | `scripts/export_ui.py`, `ui/index.html` | `ui/data/` |
+| Demo slides | `ui/slides.html` (numbers typed in by hand from `model_comparison.json`) | |
 
 Registry files: `data/fires.csv` (fire → camera sequences, role), `data/stations.csv` (station
 coordinates, approximate), `data/ignitions.csv` (official origins with sources; **scoring only**).
@@ -32,7 +35,7 @@ coordinates, approximate), `data/ignitions.csv` (official origins with sources; 
 ```
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-python -m pytest -q                                   # must pass before you finish (currently 25 tests)
+python -m pytest -q                                   # must pass before you finish (currently 27 tests)
 python scripts/run_agent.py --fire Kitchenfire --autopilot   # offline smoke test, no API calls
 python -m http.server -d ui 8000                      # replay page
 ```
@@ -69,6 +72,13 @@ change moves that number, say so explicitly and explain why.
 - **SAM 3.1 and Muse Spark calls cost money and time.** Results are cached in `outputs/`. Don't pass
   `--refresh` or `--reverify`, and don't run live agent runs, unless the user asks. Use `--autopilot` and
   cached verdicts to test logic.
+- **The Baseten credit is limited ($100).** Every open-weights call is metered in `outputs/usage_open.jsonl`
+  and refused once the total reaches `OPEN_MODEL_BUDGET_USD` (default 90). Never raise the cap, delete the log,
+  or start multi-run evaluations without the user asking. A full five-fire, five-run evaluation costs about $7.
+- **Keep the two models' results apart.** Muse Spark 1.3 verdicts live in `verdicts.json`, Muse Spark Open's in
+  `verdicts_open.json` (`models.verdicts_name()`). Never copy one into the other or compare runs that mixed them.
+- **Muse Spark Open reasons before answering.** Keep `OPEN_MODEL_MAX_TOKENS` generous (default 8192) and keep the
+  retry on empty replies in `muse._ask_verdict`; an empty reply is a transport failure, never a "not smoke" verdict.
 - **HPWREN is a research server.** Download only through `scripts/download_figlib.py` (one request at a
   time, delays, backoff, stops on 403). No parallel or ad-hoc scraping.
 - Never print, log or commit API keys. `.env` is git-ignored; `.env.example` holds names only.
@@ -83,6 +93,7 @@ change moves that number, say so explicitly and explain why.
   recalibrating, rerun `refine_stations.py` for the affected stations.
 - FIgLib folder names are not always right: `20240909_BridgeFire_*` actually shows the **Airport Fire**
   (registered as `AirportFire`). Trust timestamps and geometry over folder names.
+- If you change results, update `ui/slides.html` and the README tables by hand; they are not generated.
 - Keep attribution intact (HPWREN, Copernicus, GeoNames, CAL FIRE, USGS) in the README and on the page.
 
 ### 5. Git

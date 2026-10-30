@@ -58,6 +58,11 @@ with no training data and no surveying.
 
 No false alerts on any fire. Times are measured from the first frame where smoke is visible in any camera.
 
+**Same results on Meta's open weights.** With every Muse call moved to **Muse Spark Open** on Baseten, five
+replays of each fire gave the same alerts and the same locations as the hosted Muse Spark 1.3. On 32 hard
+negatives (the same crop from the same camera before smoke appeared) it raised 0 false alarms in 96 checks.
+The whole evaluation cost $6.64. Details and commands: [path D](#d-run-on-muse-spark-open-open-weights).
+
 * * *
 
 ## Technology Stack
@@ -71,7 +76,7 @@ No false alerts on any fire. Times are measured from the first frame where smoke
 | Triangulation | Robust least squares with inlier/outlier selection and Monte Carlo uncertainty |
 | Replay page | Plain HTML/JS, MapLibre GL, USGS National Map basemap |
 | Camera data | HPWREN Fire Ignition images Library (FIgLib) |
-| Open-weights mode | Muse Spark Open on Baseten or Fireworks; Muse Glimmer at the edge *(planned)* |
+| Open weights | **Muse Spark Open** (`meta-models/muse-spark-open-1026`) on Baseten, Chat Completions: smoke checks, rechecks and the agent |
 
 * * *
 
@@ -81,6 +86,7 @@ No false alerts on any fire. Times are measured from the first frame where smoke
 - **git**: `git --version`
 - **About 1 GB of free disk** for footage (path B), about 2 GB for the full pipeline (path C)
 - **Meta Model API key**: only for path C (live SAM 3.1 and Muse Spark calls)
+- **Baseten API key**: only for path D (Muse Spark Open)
 
 ffmpeg is installed automatically through the `imageio-ffmpeg` package.
 
@@ -133,6 +139,19 @@ Set `MODEL_API_KEY`. The other values have working defaults (`https://api.meta.a
 `sam-3.1`). **Never commit `.env`**; it is git-ignored.
 
 Paths A and B need no key.
+
+### Open weights on Baseten (`.env`, path D only)
+
+```
+OPEN_MODEL_API_KEY=<your Baseten key>
+OPEN_MODEL_NAME=meta-models/muse-spark-open-1026
+OPEN_MODEL_BASE_URL=https://inference.baseten.co/v1
+OPEN_MODEL_BUDGET_USD=90
+```
+
+Every call to the open-weights endpoint is logged with its tokens and cost in `outputs/usage_open.jsonl`, and
+calls stop once the total reaches `OPEN_MODEL_BUDGET_USD`. Set `MUSE_PROVIDER=open` to make it the default,
+or pass `--provider open` per command.
 
 * * *
 
@@ -205,6 +224,36 @@ python scripts/export_ui.py --fire Kitchenfire                                  
 
 SAM output and Muse verdicts are cached in `outputs/`, so reruns are free unless you pass `--refresh` or `--reverify`.
 
+### D. Run on Muse Spark Open (open weights)
+
+The same desk, tools and guardrails, with every smoke check, recheck and agent turn on Muse Spark Open.
+SAM 3.1 stays on the Meta API, but its outputs are already cached, so this path needs only a Baseten key.
+
+```
+python scripts/check_open_model.py                                   # text, image and tool call (< $0.01)
+python scripts/eval_verifier.py --provider open --repeats 3          # smoke checks incl. hard negatives
+python scripts/run_agent.py --provider open --runs 5 --fire Kitchenfire --fire ResortFire \
+    --fire JunctionFire --fire GroveFire --fire AirportFire          # five replays per fire
+python scripts/compare_models.py                                     # scorecard vs Muse Spark 1.3
+```
+
+Open-model verdicts are cached separately (`verdicts_open.json`), so they never mix with Muse Spark 1.3's.
+Our results are committed: `outputs/model_comparison.json`, `outputs/verifier_eval_open.json` and
+`outputs/<fire>_timeline_open_r1..r5.json`.
+
+| Fire | Muse Spark 1.3 (1 run) | Muse Spark Open (5 runs) |
+|---|---|---|
+| Kitchen | confirmed, 119 m | confirmed 5/5, 119 m |
+| Resort | confirmed, 1.0 km | confirmed 5/5, 1.0 km |
+| Junction | confirmed, 1.9 km | confirmed 5/5, 1.9 km |
+| Grove | declined to place | declined 5/5 |
+| Airport | spotted only | spotted only 5/5 |
+
+Smoke checks agreed with Muse Spark 1.3 on 21 of 22 real plumes; the one difference is Junction's edge-clipped
+`hp-e` view, which the open model called smoke and which was the fire. One lesson: Muse Spark Open reasons before
+it answers, so it needs a generous output cap (`OPEN_MODEL_MAX_TOKENS`, default 8192); with a small one, 27% of
+replies came back empty.
+
 * * *
 
 ## Verify the Setup
@@ -218,7 +267,7 @@ python -m pytest -q
 Expected:
 
 ```
-25 passed
+27 passed
 ```
 
 2. After step 3, run the offline agent on the Kitchen Fire:
@@ -244,18 +293,20 @@ score: {"spotted_min_after_first_smoke": 7.2, ..., "final_error_m": 119, "final_
 
 ```
 smokespotter/          core package
+  models.py              model clients: Meta Model API, Muse Spark Open endpoint, cost meter
   sam.py, tracks.py      SAM 3.1 calls, mask parsing, plume tracks
   muse.py                Muse Spark smoke checks and rechecks
   camera.py, dem.py      camera model (heading, tilt, roll, lens) and elevation/skyline rendering
   skyline.py             skyline calibration, shared-lens fit
   geo.py, locate.py      bearings, robust triangulation, uncertainty
   observations.py        everything the agent can observe about a fire
-  desk.py, agent.py      agent tools + guardrails, replay clock, Muse agent and autopilot
+  desk.py, agent.py      agent tools + guardrails, replay clock, Muse agents (1.3 and Open) and autopilot
   places.py              nearest towns for plain-language alerts
-scripts/               command-line steps (download, run_sam, calibrate_skyline, locate, run_agent, export_ui, ...)
+scripts/               command-line steps (download, run_sam, calibrate_skyline, locate, run_agent, export_ui,
+                       check_open_model, eval_verifier, compare_models, ...)
 data/                  fires.csv, stations.csv, ignitions.csv (official origins with sources), lens.json
 outputs/               cached SAM outputs, Muse verdicts, camera models, agent timelines
-ui/                    replay page (index.html) and its exported data
+ui/                    replay page (index.html), its exported data, and slides.html for the demo video
 tests/                 unit tests, including a synthetic-terrain calibration round trip
 ```
 
@@ -263,8 +314,8 @@ tests/                 unit tests, including a synthetic-terrain calibration rou
 
 ## Planned Features (Future Phases)
 
-- **Open-weights mode**: the agent on Muse Spark Open (Baseten or Fireworks) and smoke checks on Muse Glimmer
-  at the edge, compared side by side with the Meta API
+- **Muse Glimmer at the edge**: smoke checks on the 30B open model next to the camera, scored with
+  `eval_verifier.py` against Muse Spark Open
 - **Live mode**: poll current HPWREN images every minute (e.g. a scheduled Modal job) instead of replaying archives
 - **Faster detection of distant plumes**: tighter crops and tracking SAM backwards from a confirmed plume
 - **Calibration for fisheye cameras** whose skylines are too featureless for the current lens model
