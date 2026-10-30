@@ -377,6 +377,12 @@ tests/                 unit tests, including a synthetic-terrain calibration rou
   mast, and the agent itself on Glimmer
 - **Live mode**: poll current HPWREN images every minute (e.g. a scheduled Modal job) instead of replaying archives
 - **Faster detection of distant plumes**: tighter crops and tracking SAM backwards from a confirmed plume
+- **More cameras (ALERTCalifornia)**: `scripts/network_whatif.py` checks which of the 843 ALERTCalifornia and
+  fire-camera sites in Cal OES's public camera layer could see each fire (terrain line of sight, 45 km, 500 m
+  plume). For the fires we couldn't pin, 9 to 12 were in view, and the best three would fix Grove to ~0.6 km
+  (ours 8.8 km), Airport to ~0.5 km (ours 3.3 km) and Bridge to ~0.3 km (ours: one camera). Most pan and tilt;
+  the layer's live heading/tilt/zoom would seed the skyline fit. Geometry only; data: `python
+  scripts/download_caloes_cameras.py` (imagery credit: "ALERTCalifornia | UC San Diego")
 - **Calibration for fisheye cameras** whose skylines are too featureless for the current lens model
 - **A fine-tuned smoke checker**: Glimmer trained on FIgLib, using ignition timestamps as free labels
 
@@ -399,6 +405,7 @@ track, theme **Push the Frontier**. Bonus categories in view: **Best Agentic Use
 - Ignition points: **CAL FIRE** and InciWeb incident records (sources listed in `data/ignitions.csv`)
 - Base map: **USGS The National Map**
 - Satellite hotspots: **NASA FIRMS** (VIIRS and MODIS active fire data, LANCE/FIRMS, NASA ESDIS)
+- Camera locations: **Cal OES California Webcams** layer (includes ALERTCalifornia | UC San Diego)
 - GOES fire pixels: **NOAA GOES-18/19 ABI L2 Fire/Hot Spot Characterization**, NOAA Open Data Dissemination on AWS
 
 * * *

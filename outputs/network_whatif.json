@@ -1,0 +1,244 @@
+{
+  "Kitchenfire": {
+    "our_result": "confirmed, 119 m",
+    "our_stations": [
+      "lp",
+      "mlo",
+      "pi",
+      "ws"
+    ],
+    "our_stations_in_view": [
+      "lp",
+      "mlo",
+      "pi",
+      "ws"
+    ],
+    "our_fix_m": 510.74833839541253,
+    "network_sites_in_view": 6,
+    "best2_m": 539.8538557912212,
+    "best3_m": 497.9456539164806,
+    "all_m": 473.25780362167023,
+    "best3": [
+      {
+        "lat": 32.839649,
+        "lon": -116.426521,
+        "kind": "ALERTCalifornia",
+        "name": "Mt. Laguna Obsv North",
+        "km": 14.2
+      },
+      {
+        "lat": 32.734673,
+        "lon": -116.577751,
+        "kind": "ALERTCalifornia",
+        "name": "Los Pinos North",
+        "km": 10.1
+      },
+      {
+        "lat": 32.946434,
+        "lon": -116.606575,
+        "kind": "ALERTCalifornia",
+        "name": "Cuyamaca Peak North",
+        "km": 28.4
+      }
+    ]
+  },
+  "ResortFire": {
+    "our_result": "confirmed, 1.0 km",
+    "our_stations": [
+      "bm",
+      "hp",
+      "mg"
+    ],
+    "our_stations_in_view": [
+      "bm",
+      "hp",
+      "mg"
+    ],
+    "our_fix_m": 859.2584841664752,
+    "network_sites_in_view": 7,
+    "best2_m": 861.234156632462,
+    "best3_m": 728.3262478671165,
+    "all_m": 586.9683442428724,
+    "best3": [
+      {
+        "lat": 33.188869,
+        "lon": -116.760651,
+        "kind": "ALERTCalifornia",
+        "name": "Mesa Grande North",
+        "km": 15.6
+      },
+      {
+        "lat": 33.363017,
+        "lon": -116.836221,
+        "kind": "ALERTCalifornia",
+        "name": "High Point (North)",
+        "km": 20.1
+      },
+      {
+        "lat": 33.3582,
+        "lon": -116.862,
+        "kind": "ALERTCalifornia",
+        "name": "Palomar Observatory South",
+        "km": 22.1
+      }
+    ]
+  },
+  "JunctionFire": {
+    "our_result": "confirmed, 1.9 km",
+    "our_stations": [
+      "bm",
+      "hp",
+      "mg",
+      "vo"
+    ],
+    "our_stations_in_view": [
+      "bm",
+      "hp",
+      "vo"
+    ],
+    "our_fix_m": 526.2422159132617,
+    "network_sites_in_view": 14,
+    "best2_m": 578.0476398753588,
+    "best3_m": 477.83793724614804,
+    "all_m": 352.91432559655516,
+    "best3": [
+      {
+        "lat": 33.15992,
+        "lon": -116.808075,
+        "kind": "ALERTCalifornia",
+        "name": "Big Black Mtn.",
+        "km": 10.3
+      },
+      {
+        "lat": 33.138256,
+        "lon": -116.617058,
+        "kind": "ALERTCalifornia",
+        "name": "Volcan Tract III North",
+        "km": 9.9
+      },
+      {
+        "lat": 33.378658,
+        "lon": -116.622292,
+        "kind": "ALERTCalifornia",
+        "name": "Sky Oaks North",
+        "km": 22.2
+      }
+    ]
+  },
+  "GroveFire": {
+    "our_result": "no pin",
+    "our_stations": [
+      "hp",
+      "tp"
+    ],
+    "our_stations_in_view": [
+      "hp",
+      "tp"
+    ],
+    "our_fix_m": 8793.590682063385,
+    "network_sites_in_view": 9,
+    "best2_m": 696.1065551646295,
+    "best3_m": 556.0234710169195,
+    "all_m": 397.6257319889443,
+    "best3": [
+      {
+        "lat": 33.307892,
+        "lon": -116.855042,
+        "kind": "ALERTCalifornia",
+        "name": "Birch Hill 1 (Palomar)",
+        "km": 15.4
+      },
+      {
+        "lat": 33.378658,
+        "lon": -116.622292,
+        "kind": "ALERTCalifornia",
+        "name": "Sky Oaks North",
+        "km": 11.6
+      },
+      {
+        "lat": 33.188869,
+        "lon": -116.760651,
+        "kind": "ALERTCalifornia",
+        "name": "Mesa Grande North",
+        "km": 24.6
+      }
+    ]
+  },
+  "AirportFire": {
+    "our_result": "no pin",
+    "our_stations": [
+      "marconi",
+      "starr",
+      "stgo"
+    ],
+    "our_stations_in_view": [
+      "marconi",
+      "starr"
+    ],
+    "our_fix_m": 3289.121905945836,
+    "network_sites_in_view": 12,
+    "best2_m": 704.8271931281779,
+    "best3_m": 525.670490159541,
+    "all_m": 359.44583893875125,
+    "best3": [
+      {
+        "lat": 33.612446,
+        "lon": -117.548645,
+        "kind": "ALERTCalifornia",
+        "name": "Bell Canyon North",
+        "km": 6.4
+      },
+      {
+        "lat": 33.604383,
+        "lon": -117.752683,
+        "kind": "ALERTCalifornia",
+        "name": "Rimel 1",
+        "km": 18.6
+      },
+      {
+        "lat": 33.577641,
+        "lon": -117.755257,
+        "kind": "ALERTCalifornia",
+        "name": "Aliso Laguna 1",
+        "km": 20.2
+      }
+    ]
+  },
+  "BridgeFire": {
+    "our_result": "missed",
+    "our_stations": [
+      "wilson"
+    ],
+    "our_stations_in_view": [
+      "wilson"
+    ],
+    "our_fix_m": Infinity,
+    "network_sites_in_view": 11,
+    "best2_m": 457.30037600091623,
+    "best3_m": 344.07040781005657,
+    "all_m": 292.6308838139204,
+    "best3": [
+      {
+        "lat": 34.154583,
+        "lon": -117.801003,
+        "kind": "ALERTCalifornia",
+        "name": "Johnstone Peak 1",
+        "km": 10.1
+      },
+      {
+        "lat": 34.187599,
+        "lon": -117.700302,
+        "kind": "ALERTCalifornia",
+        "name": "Sunset Peak 1",
+        "km": 8.1
+      },
+      {
+        "lat": 34.223752,
+        "lon": -117.901348,
+        "kind": "ALERTCalifornia",
+        "name": "Pine Mtn. (Los Angeles) 1",
+        "km": 12.9
+      }
+    ]
+  }
+}
