@@ -1,10 +1,54 @@
 {
   "fire": "AirportFire",
   "driver": "muse",
+  "model": "muse-spark-1.3",
   "muse": "live",
   "t_start": 1725909813,
   "t_end": 1725915758,
   "timeline": [
+    {
+      "time": "13:14 PDT",
+      "epoch": 1725912840,
+      "elapsed_min": 50.5,
+      "trigger": [
+        "satellite hotspot report from N VIIRS"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:14 PDT",
+            "minutes_since_watch_started": 50.5,
+            "cameras_watching": [
+              "marconi-n",
+              "starr-n",
+              "stgo-e"
+            ],
+            "plume_tracks": [],
+            "alerts_issued": [],
+            "last_location": null,
+            "satellite_hotspots_reported": 9
+          }
+        },
+        {
+          "tool": "check_satellite",
+          "args": {},
+          "result": {
+            "hotspots_reported": 9,
+            "matches": [],
+            "unmatched_hotspots": 9,
+            "new_since_last_alert": 0,
+            "note": "Satellites pass a few times a day and often miss small or new fires, so no hotspot is not evidence against a fire. A matching hotspot supports the camera evidence; it does not change the alert level."
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "No alert: no camera plume tracks and no matching satellite hotspot."
+        }
+      ]
+    },
     {
       "time": "13:25 PDT",
       "epoch": 1725913534,
@@ -48,13 +92,14 @@
               }
             ],
             "alerts_issued": [],
-            "last_location": null
+            "last_location": null,
+            "satellite_hotspots_reported": 9
           }
         },
         {
           "tool": "_agent_says",
           "args": {},
-          "result": "Both new tracks are too new to verify, so no alert yet."
+          "result": "No alert: both new tracks are too new to verify yet."
         }
       ]
     },
@@ -101,7 +146,8 @@
               }
             ],
             "alerts_issued": [],
-            "last_location": null
+            "last_location": null,
+            "satellite_hotspots_reported": 9
           }
         },
         {
@@ -150,11 +196,47 @@
           }
         },
         {
+          "tool": "check_satellite",
+          "args": {},
+          "result": {
+            "hotspots_reported": 9,
+            "matches": [
+              {
+                "on_bearing_of_camera": "starr-n",
+                "bearing_from_camera_deg": 350.1,
+                "offset_from_plume_bearing_deg": 4.1,
+                "distance_from_camera_km": 6.2,
+                "observed": "13:13 PDT",
+                "satellite": "N VIIRS",
+                "lat": 33.6668,
+                "lon": -117.5605,
+                "confidence": "n",
+                "near": "2.8 km E of Trabuco Canyon"
+              },
+              {
+                "on_bearing_of_camera": "starr-n",
+                "bearing_from_camera_deg": 349.8,
+                "offset_from_plume_bearing_deg": 4.5,
+                "distance_from_camera_km": 6.7,
+                "observed": "13:13 PDT",
+                "satellite": "N VIIRS",
+                "lat": 33.6716,
+                "lon": -117.562,
+                "confidence": "n",
+                "near": "2.8 km ENE of Trabuco Canyon"
+              }
+            ],
+            "unmatched_hotspots": 7,
+            "new_since_last_alert": 2,
+            "note": "Satellites pass a few times a day and often miss small or new fires, so no hotspot is not evidence against a fire. A matching hotspot supports the camera evidence; it does not change the alert level."
+          }
+        },
+        {
           "tool": "issue_alert",
           "args": {
-            "headline": "Smoke spotted on starr-n and stgo-e cameras",
+            "headline": "Smoke on two cameras, hotspot near Trabuco Canyon",
             "level": "spotted",
-            "message": "Discrete gray smoke columns were verified on starr-n bearing 354.3 deg and stgo-e bearing 138.7 deg, each with 6.0 deg uncertainty and 0.9 confidence. Triangulation from the 2 cameras does not yet intersect consistently, so no location is available. Source size and exact position remain unknown pending additional views."
+            "message": "starr-n bearing 354.3 deg and stgo-e bearing 138.7 deg both verified as wildfire smoke with 0.9 confidence. A 13:13 PDT N VIIRS hotspot 2.8 km E of Trabuco Canyon lies on starr-n's bearing, offset 4.1 deg at 6.2 km distance. Triangulation fails as the two bearings do not intersect consistently, each with 6.0 deg uncertainty, so only direction from two cameras is known. Still unknown whether the two plumes are the same fire or its exact location."
           },
           "result": {
             "issued": true,
@@ -165,7 +247,7 @@
         {
           "tool": "_agent_says",
           "args": {},
-          "result": "Spotted alert issued; location not yet triangulable."
+          "result": "Spotted alert issued for smoke on two cameras with supporting hotspot."
         }
       ]
     },
@@ -224,10 +306,11 @@
               {
                 "level": "spotted",
                 "time": "13:27 PDT",
-                "headline": "Smoke spotted on starr-n and stgo-e cameras"
+                "headline": "Smoke on two cameras, hotspot near Trabuco Canyon"
               }
             ],
-            "last_location": null
+            "last_location": null,
+            "satellite_hotspots_reported": 9
           }
         },
         {
@@ -271,7 +354,161 @@
         {
           "tool": "_agent_says",
           "args": {},
-          "result": "No new alert: third smoke adds no locatable cross beyond the spotted level already issued."
+          "result": "No new alert: third smoke track verified but triangulation still fails, so evidence remains at spotted level already issued."
+        }
+      ]
+    },
+    {
+      "time": "13:38 PDT",
+      "epoch": 1725914280,
+      "elapsed_min": 74.5,
+      "trigger": [
+        "satellite hotspot report from N20 VIIRS"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:38 PDT",
+            "minutes_since_watch_started": 74.5,
+            "cameras_watching": [
+              "marconi-n",
+              "starr-n",
+              "stgo-e"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "starr-n/0:0",
+                "camera": "starr-n",
+                "first_seen_min_ago": 14,
+                "bearing_deg": 354.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete gray column rises from a single ground point in the valley and grows taller and drifts rightward across frames under clear sky."
+              },
+              {
+                "track_id": "stgo-e/1:0",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 14,
+                "bearing_deg": 138.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray column rises from behind the ridgeline and grows and drifts leftward across the three frames."
+              },
+              {
+                "track_id": "stgo-e/1:1",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 9,
+                "bearing_deg": 143.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray turbulent plume expands and thickens rapidly across frames while foreground remains clear, consistent with growing wildfire smoke rather than fog or cloud."
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "13:27 PDT",
+                "headline": "Smoke on two cameras, hotspot near Trabuco Canyon"
+              }
+            ],
+            "last_location": null,
+            "satellite_hotspots_reported": 21
+          }
+        },
+        {
+          "tool": "check_satellite",
+          "args": {},
+          "result": {
+            "hotspots_reported": 21,
+            "matches": [
+              {
+                "on_bearing_of_camera": "starr-n",
+                "bearing_from_camera_deg": 350.1,
+                "offset_from_plume_bearing_deg": 4.1,
+                "distance_from_camera_km": 6.2,
+                "observed": "13:13 PDT",
+                "satellite": "N VIIRS",
+                "lat": 33.6668,
+                "lon": -117.5605,
+                "confidence": "n",
+                "near": "2.8 km E of Trabuco Canyon"
+              },
+              {
+                "on_bearing_of_camera": "starr-n",
+                "bearing_from_camera_deg": 349.8,
+                "offset_from_plume_bearing_deg": 4.5,
+                "distance_from_camera_km": 6.7,
+                "observed": "13:13 PDT",
+                "satellite": "N VIIRS",
+                "lat": 33.6716,
+                "lon": -117.562,
+                "confidence": "n",
+                "near": "2.8 km ENE of Trabuco Canyon"
+              },
+              {
+                "on_bearing_of_camera": "starr-n",
+                "bearing_from_camera_deg": 347.5,
+                "offset_from_plume_bearing_deg": 6.8,
+                "distance_from_camera_km": 5.2,
+                "observed": "13:37 PDT",
+                "satellite": "N20 VIIRS",
+                "lat": 33.6579,
+                "lon": -117.5613,
+                "confidence": "l",
+                "near": "2.7 km E of Trabuco Canyon"
+              },
+              {
+                "on_bearing_of_camera": "starr-n",
+                "bearing_from_camera_deg": 352.8,
+                "offset_from_plume_bearing_deg": 1.5,
+                "distance_from_camera_km": 5.2,
+                "observed": "13:37 PDT",
+                "satellite": "N20 VIIRS",
+                "lat": 33.6588,
+                "lon": -117.5562,
+                "confidence": "l",
+                "near": "3.2 km E of Trabuco Canyon"
+              },
+              {
+                "on_bearing_of_camera": "starr-n",
+                "bearing_from_camera_deg": 347.5,
+                "offset_from_plume_bearing_deg": 6.8,
+                "distance_from_camera_km": 5.6,
+                "observed": "13:37 PDT",
+                "satellite": "N20 VIIRS",
+                "lat": 33.6614,
+                "lon": -117.5622,
+                "confidence": "l",
+                "near": "2.6 km E of Trabuco Canyon"
+              }
+            ],
+            "unmatched_hotspots": 7,
+            "new_since_last_alert": 12,
+            "note": "Satellites pass a few times a day and often miss small or new fires, so no hotspot is not evidence against a fire. A matching hotspot supports the camera evidence; it does not change the alert level."
+          }
+        },
+        {
+          "tool": "issue_alert",
+          "args": {
+            "headline": "Satellite hotspots confirm smoke near Trabuco Canyon",
+            "level": "update",
+            "message": "Three new 13:37 PDT N20 VIIRS hotspots align with starr-n smoke bearing 354.3 deg, including one 3.2 km E of Trabuco Canyon offset 1.5 deg at 5.2 km distance. Smoke remains verified on two cameras in three tracks with 6.0 deg bearing uncertainty, plus two earlier 13:13 PDT hotspots 2.8 km E of Trabuco Canyon. Triangulation still fails as starr-n and stgo-e bearings do not intersect consistently, so exact fire location and size remain unknown."
+          },
+          "result": {
+            "issued": true,
+            "level": "update",
+            "alert_number": 2
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "Update alert issued for new satellite hotspots supporting the two-camera smoke."
         }
       ]
     },
@@ -340,16 +577,22 @@
               {
                 "level": "spotted",
                 "time": "13:27 PDT",
-                "headline": "Smoke spotted on starr-n and stgo-e cameras"
+                "headline": "Smoke on two cameras, hotspot near Trabuco Canyon"
+              },
+              {
+                "level": "update",
+                "time": "13:38 PDT",
+                "headline": "Satellite hotspots confirm smoke near Trabuco Canyon"
               }
             ],
-            "last_location": null
+            "last_location": null,
+            "satellite_hotspots_reported": 21
           }
         },
         {
           "tool": "_agent_says",
           "args": {},
-          "result": "New marconi-n track too new to verify, so no action yet."
+          "result": "No alert: new marconi-n track is too new to verify yet."
         }
       ]
     },
@@ -418,10 +661,16 @@
               {
                 "level": "spotted",
                 "time": "13:27 PDT",
-                "headline": "Smoke spotted on starr-n and stgo-e cameras"
+                "headline": "Smoke on two cameras, hotspot near Trabuco Canyon"
+              },
+              {
+                "level": "update",
+                "time": "13:38 PDT",
+                "headline": "Satellite hotspots confirm smoke near Trabuco Canyon"
               }
             ],
-            "last_location": null
+            "last_location": null,
+            "satellite_hotspots_reported": 21
           }
         },
         {
@@ -468,9 +717,81 @@
           }
         },
         {
+          "tool": "check_satellite",
+          "args": {},
+          "result": {
+            "hotspots_reported": 21,
+            "matches": [
+              {
+                "on_bearing_of_camera": "starr-n",
+                "bearing_from_camera_deg": 350.1,
+                "offset_from_plume_bearing_deg": 4.1,
+                "distance_from_camera_km": 6.2,
+                "observed": "13:13 PDT",
+                "satellite": "N VIIRS",
+                "lat": 33.6668,
+                "lon": -117.5605,
+                "confidence": "n",
+                "near": "2.8 km E of Trabuco Canyon"
+              },
+              {
+                "on_bearing_of_camera": "starr-n",
+                "bearing_from_camera_deg": 349.8,
+                "offset_from_plume_bearing_deg": 4.5,
+                "distance_from_camera_km": 6.7,
+                "observed": "13:13 PDT",
+                "satellite": "N VIIRS",
+                "lat": 33.6716,
+                "lon": -117.562,
+                "confidence": "n",
+                "near": "2.8 km ENE of Trabuco Canyon"
+              },
+              {
+                "on_bearing_of_camera": "starr-n",
+                "bearing_from_camera_deg": 347.5,
+                "offset_from_plume_bearing_deg": 6.8,
+                "distance_from_camera_km": 5.2,
+                "observed": "13:37 PDT",
+                "satellite": "N20 VIIRS",
+                "lat": 33.6579,
+                "lon": -117.5613,
+                "confidence": "l",
+                "near": "2.7 km E of Trabuco Canyon"
+              },
+              {
+                "on_bearing_of_camera": "starr-n",
+                "bearing_from_camera_deg": 352.8,
+                "offset_from_plume_bearing_deg": 1.5,
+                "distance_from_camera_km": 5.2,
+                "observed": "13:37 PDT",
+                "satellite": "N20 VIIRS",
+                "lat": 33.6588,
+                "lon": -117.5562,
+                "confidence": "l",
+                "near": "3.2 km E of Trabuco Canyon"
+              },
+              {
+                "on_bearing_of_camera": "starr-n",
+                "bearing_from_camera_deg": 347.5,
+                "offset_from_plume_bearing_deg": 6.8,
+                "distance_from_camera_km": 5.6,
+                "observed": "13:37 PDT",
+                "satellite": "N20 VIIRS",
+                "lat": 33.6614,
+                "lon": -117.5622,
+                "confidence": "l",
+                "near": "2.6 km E of Trabuco Canyon"
+              }
+            ],
+            "unmatched_hotspots": 7,
+            "new_since_last_alert": 0,
+            "note": "Satellites pass a few times a day and often miss small or new fires, so no hotspot is not evidence against a fire. A matching hotspot supports the camera evidence; it does not change the alert level."
+          }
+        },
+        {
           "tool": "_agent_says",
           "args": {},
-          "result": "No new alert: bearings cross but remain too uncertain to locate beyond spotted level already issued."
+          "result": "No alert: third-camera smoke verified but triangulation stays too uncertain with no new level."
         }
       ]
     }
@@ -481,8 +802,8 @@
       "time": "13:27 PDT",
       "epoch": 1725913654,
       "elapsed_min": 64.0,
-      "headline": "Smoke spotted on starr-n and stgo-e cameras",
-      "message": "Discrete gray smoke columns were verified on starr-n bearing 354.3 deg and stgo-e bearing 138.7 deg, each with 6.0 deg uncertainty and 0.9 confidence. Triangulation from the 2 cameras does not yet intersect consistently, so no location is available. Source size and exact position remain unknown pending additional views.",
+      "headline": "Smoke on two cameras, hotspot near Trabuco Canyon",
+      "message": "starr-n bearing 354.3 deg and stgo-e bearing 138.7 deg both verified as wildfire smoke with 0.9 confidence. A 13:13 PDT N VIIRS hotspot 2.8 km E of Trabuco Canyon lies on starr-n's bearing, offset 4.1 deg at 6.2 km distance. Triangulation fails as the two bearings do not intersect consistently, each with 6.0 deg uncertainty, so only direction from two cameras is known. Still unknown whether the two plumes are the same fire or its exact location.",
       "location": null,
       "bearing_lines": [
         {
@@ -540,6 +861,188 @@
             "confidence": 0.9,
             "reason": "Dark gray column rises from behind the ridgeline and grows and drifts leftward across the three frames."
           }
+        }
+      ],
+      "satellite": [
+        {
+          "on_bearing_of_camera": "starr-n",
+          "bearing_from_camera_deg": 350.1,
+          "offset_from_plume_bearing_deg": 4.1,
+          "distance_from_camera_km": 6.2,
+          "observed": "13:13 PDT",
+          "satellite": "N VIIRS",
+          "lat": 33.6668,
+          "lon": -117.5605,
+          "confidence": "n",
+          "near": "2.8 km E of Trabuco Canyon"
+        },
+        {
+          "on_bearing_of_camera": "starr-n",
+          "bearing_from_camera_deg": 349.8,
+          "offset_from_plume_bearing_deg": 4.5,
+          "distance_from_camera_km": 6.7,
+          "observed": "13:13 PDT",
+          "satellite": "N VIIRS",
+          "lat": 33.6716,
+          "lon": -117.562,
+          "confidence": "n",
+          "near": "2.8 km ENE of Trabuco Canyon"
+        }
+      ]
+    },
+    {
+      "level": "update",
+      "time": "13:38 PDT",
+      "epoch": 1725914280,
+      "elapsed_min": 74.5,
+      "headline": "Satellite hotspots confirm smoke near Trabuco Canyon",
+      "message": "Three new 13:37 PDT N20 VIIRS hotspots align with starr-n smoke bearing 354.3 deg, including one 3.2 km E of Trabuco Canyon offset 1.5 deg at 5.2 km distance. Smoke remains verified on two cameras in three tracks with 6.0 deg bearing uncertainty, plus two earlier 13:13 PDT hotspots 2.8 km E of Trabuco Canyon. Triangulation still fails as starr-n and stgo-e bearings do not intersect consistently, so exact fire location and size remain unknown.",
+      "location": null,
+      "bearing_lines": [
+        {
+          "camera": "starr-n",
+          "lat": 33.612252252252254,
+          "lon": -117.54913460687456,
+          "bearing_deg": 354.27,
+          "sigma_deg": 6.0,
+          "track_id": "starr-n/0:0"
+        },
+        {
+          "camera": "stgo-e",
+          "lat": 33.70918918918919,
+          "lon": -117.53021659987415,
+          "bearing_deg": 138.66,
+          "sigma_deg": 6.0,
+          "track_id": "stgo-e/1:0"
+        },
+        {
+          "camera": "stgo-e",
+          "lat": 33.70918918918919,
+          "lon": -117.53021659987415,
+          "bearing_deg": 143.27,
+          "sigma_deg": 6.0,
+          "track_id": "stgo-e/1:1"
+        }
+      ],
+      "evidence": [
+        {
+          "track_id": "starr-n/0:0",
+          "frames": [
+            "data/raw/20240909_BridgeFire_starr-n-mobo-c/1725913413_+01201.jpg",
+            "data/raw/20240909_BridgeFire_starr-n-mobo-c/1725913532_+01320.jpg",
+            "data/raw/20240909_BridgeFire_starr-n-mobo-c/1725913653_+01441.jpg"
+          ],
+          "box": [
+            1398,
+            614,
+            1688,
+            1037
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.9,
+            "reason": "A discrete gray column rises from a single ground point in the valley and grows taller and drifts rightward across frames under clear sky."
+          }
+        },
+        {
+          "track_id": "stgo-e/1:0",
+          "frames": [
+            "data/raw/20240909_BridgeFire_stgo-e-mobo-c/1725913415_+00901.jpg",
+            "data/raw/20240909_BridgeFire_stgo-e-mobo-c/1725913534_+01020.jpg",
+            "data/raw/20240909_BridgeFire_stgo-e-mobo-c/1725913654_+01140.jpg"
+          ],
+          "box": [
+            2431,
+            673,
+            2971,
+            1339
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.9,
+            "reason": "Dark gray column rises from behind the ridgeline and grows and drifts leftward across the three frames."
+          }
+        },
+        {
+          "track_id": "stgo-e/1:1",
+          "frames": [
+            "data/raw/20240909_BridgeFire_stgo-e-mobo-c/1725913715_+01201.jpg",
+            "data/raw/20240909_BridgeFire_stgo-e-mobo-c/1725913835_+01321.jpg",
+            "data/raw/20240909_BridgeFire_stgo-e-mobo-c/1725913835_+01321.jpg"
+          ],
+          "box": [
+            2803,
+            1138,
+            2992,
+            1324
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.9,
+            "reason": "Dark gray turbulent plume expands and thickens rapidly across frames while foreground remains clear, consistent with growing wildfire smoke rather than fog or cloud."
+          }
+        }
+      ],
+      "satellite": [
+        {
+          "on_bearing_of_camera": "starr-n",
+          "bearing_from_camera_deg": 347.5,
+          "offset_from_plume_bearing_deg": 6.8,
+          "distance_from_camera_km": 6.4,
+          "observed": "13:37 PDT",
+          "satellite": "N20 VIIRS",
+          "lat": 33.6684,
+          "lon": -117.5641,
+          "confidence": "h",
+          "near": "2.5 km ENE of Trabuco Canyon"
+        },
+        {
+          "on_bearing_of_camera": "starr-n",
+          "bearing_from_camera_deg": 351.6,
+          "offset_from_plume_bearing_deg": 2.6,
+          "distance_from_camera_km": 6.4,
+          "observed": "13:37 PDT",
+          "satellite": "N20 VIIRS",
+          "lat": 33.6693,
+          "lon": -117.5592,
+          "confidence": "h",
+          "near": "3.0 km ENE of Trabuco Canyon"
+        },
+        {
+          "on_bearing_of_camera": "starr-n",
+          "bearing_from_camera_deg": 355.8,
+          "offset_from_plume_bearing_deg": 1.5,
+          "distance_from_camera_km": 6.5,
+          "observed": "13:37 PDT",
+          "satellite": "N20 VIIRS",
+          "lat": 33.6701,
+          "lon": -117.5543,
+          "confidence": "n",
+          "near": "3.4 km ENE of Trabuco Canyon"
+        },
+        {
+          "on_bearing_of_camera": "starr-n",
+          "bearing_from_camera_deg": 351.5,
+          "offset_from_plume_bearing_deg": 2.7,
+          "distance_from_camera_km": 6.8,
+          "observed": "13:37 PDT",
+          "satellite": "N20 VIIRS",
+          "lat": 33.6728,
+          "lon": -117.56,
+          "confidence": "l",
+          "near": "3.0 km ENE of Trabuco Canyon"
+        },
+        {
+          "on_bearing_of_camera": "starr-n",
+          "bearing_from_camera_deg": 351.6,
+          "offset_from_plume_bearing_deg": 2.7,
+          "distance_from_camera_km": 7.2,
+          "observed": "13:37 PDT",
+          "satellite": "N20 VIIRS",
+          "lat": 33.6764,
+          "lon": -117.5605,
+          "confidence": "n",
+          "near": "3.2 km ENE of Trabuco Canyon"
         }
       ]
     }

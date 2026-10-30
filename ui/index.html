@@ -342,7 +342,7 @@ function initMap() {
     .observe(document.getElementById("map"));
   return new Promise(res => map.on("load", () => {
     const empty = { type: "FeatureCollection", features: [] };
-    for (const id of ["wedges", "lines", "fix", "fov"]) map.addSource(id, { type: "geojson", data: empty });
+    for (const id of ["wedges", "lines", "fix", "fov", "sats"]) map.addSource(id, { type: "geojson", data: empty });
     map.addLayer({ id: "fov", type: "fill", source: "fov",
       paint: { "fill-color": "#8A6A45", "fill-opacity": ["case", ["get", "sel"], 0.2, 0.035] } });
     map.addLayer({ id: "fov-edge", type: "line", source: "fov",
@@ -355,6 +355,11 @@ function initMap() {
       paint: { "line-color": ["get", "color"], "line-width": ["get", "width"], "line-opacity": ["get", "opacity"] } });
     map.addLayer({ id: "fix-fill", type: "fill", source: "fix", paint: { "fill-color": ["get", "color"], "fill-opacity": 0.16 } });
     map.addLayer({ id: "fix-line", type: "line", source: "fix", paint: { "line-color": ["get", "color"], "line-width": 2 } });
+    // NASA FIRMS satellite hotspots: filled when they agree with the cameras, hollow otherwise
+    map.addLayer({ id: "sats", type: "circle", source: "sats", paint: {
+      "circle-radius": ["case", ["get", "matched"], 6, 4.5],
+      "circle-color": ["case", ["get", "matched"], "#7A2FBF", "rgba(122,47,191,0)"],
+      "circle-stroke-color": "#7A2FBF", "circle-stroke-width": 1.8 } });
     res();
   }));
 }
@@ -474,6 +479,11 @@ function render(force) {
     map.getSource("fix").setData({ type: "FeatureCollection", features: [] });
     if (pin) { pin.remove(); pin = null; lastFixKey = ""; }
   }
+
+  // satellite hotspots, from the moment a live system would have had them
+  const sats = (D.hotspots || []).filter(h => h.at <= t).map(h => ({ type: "Feature",
+    properties: { matched: h.matched }, geometry: { type: "Point", coordinates: [h.lon, h.lat] } }));
+  map.getSource("sats").setData({ type: "FeatureCollection", features: sats });
 
   renderAlerts(alerts);
   renderLog();

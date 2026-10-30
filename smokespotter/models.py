@@ -9,8 +9,9 @@ Three providers serve the Muse reasoning/vision model, picked by MUSE_PROVIDER:
                      by GPU time, so not metered per call)
 SAM 3.1 always comes from the Meta Model API.
 
-Every open-weights call is metered (outputs/usage_open.jsonl) and refused once the
-running cost passes OPEN_MODEL_BUDGET_USD.
+Every model call is logged with its latency, tokens and cost in outputs/usage_<provider>.jsonl
+(scripts/usage_report.py summarizes them). Open-weights calls are refused once their running
+cost passes OPEN_MODEL_BUDGET_USD.
 """
 from __future__ import annotations
 
@@ -106,9 +107,38 @@ def verdicts_name() -> str:
     return "verdicts.json" if provider() == "meta" else f"verdicts_{provider()}.json"
 
 
-# ---- cost meter for the open-weights endpoint ---------------------------------
+# ---- latency and cost meter ---------------------------------------------------
 
-USAGE_LOG = ROOT / "outputs" / "usage_open.jsonl"
+USAGE_LOG = ROOT / "outputs" / "usage_open.jsonl"       # the open-weights budget is summed from this
+
+
+def usage_log(p: str) -> "Path":
+    return ROOT / "outputs" / f"usage_{p}.jsonl"
+
+
+def _prices(p: str, purpose: str) -> tuple[float, float] | None:
+    """USD per million input/output tokens, or None if unpriced."""
+    if p == "open":
+        return _price("OPEN_MODEL_USD_PER_M_IN", 1.25), _price("OPEN_MODEL_USD_PER_M_OUT", 4.25)
+    if p == "meta":
+        if purpose.startswith("sam"):
+            return None                          # SAM 3.1 has no published per-token price
+        return _price("META_USD_PER_M_IN", 1.25), _price("META_USD_PER_M_OUT", 4.25)
+    return 0.0, 0.0                              # glimmer: runs on your own hardware
+
+
+def record_call(p: str, purpose: str, model: str, seconds: float, usage=None) -> float:
+    """Log one model call: provider, purpose, latency, tokens, cost. Returns the cost in USD."""
+    tin = (getattr(usage, "prompt_tokens", None) or getattr(usage, "input_tokens", 0) or 0) if usage else 0
+    tout = (getattr(usage, "completion_tokens", None) or getattr(usage, "output_tokens", 0) or 0) if usage else 0
+    pr = _prices(p, purpose)
+    usd = None if pr is None else round((tin * pr[0] + tout * pr[1]) / 1e6, 6)
+    path = usage_log(p)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "a") as fh:
+        fh.write(json.dumps({"t": round(time.time()), "purpose": purpose, "model": model, "seconds": round(seconds, 2),
+                             "in": tin, "out": tout, "usd": usd}) + "\n")
+    return usd or 0.0
 
 
 def _price(name: str, default: float) -> float:
@@ -137,25 +167,12 @@ def check_budget() -> None:
                              "(OPEN_MODEL_BUDGET_USD)")
 
 
-def record_usage(usage, purpose: str) -> float:
-    """Log one call's tokens and cost; returns the cost in USD."""
-    if usage is None:
-        return 0.0
-    tin = getattr(usage, "prompt_tokens", None) or getattr(usage, "input_tokens", 0) or 0
-    tout = getattr(usage, "completion_tokens", None) or getattr(usage, "output_tokens", 0) or 0
-    usd = (tin * _price("OPEN_MODEL_USD_PER_M_IN", 1.25) + tout * _price("OPEN_MODEL_USD_PER_M_OUT", 4.25)) / 1e6
-    USAGE_LOG.parent.mkdir(parents=True, exist_ok=True)
-    with open(USAGE_LOG, "a") as fh:
-        fh.write(json.dumps({"t": round(time.time()), "purpose": purpose, "model": open_model(),
-                             "in": tin, "out": tout, "usd": round(usd, 6)}) + "\n")
-    return usd
-
-
 def open_chat(messages: list[dict], purpose: str, **kw):
     """One metered Chat Completions call to the open-weights model."""
     check_budget()
+    t0 = time.time()
     resp = open_client().chat.completions.create(model=open_model(), messages=messages, **kw)
-    record_usage(getattr(resp, "usage", None), purpose)
+    record_call("open", purpose, open_model(), time.time() - t0, getattr(resp, "usage", None))
     return resp
 
 
@@ -173,7 +190,10 @@ def glimmer_chat(messages: list[dict], purpose: str, **kw):
     effort = os.getenv("GLIMMER_REASONING", "medium")      # low | medium | high | xhigh
     if effort and not (messages and messages[0].get("role") == "system"):
         messages = [{"role": "system", "content": f"Reasoning strength: {effort}"}] + messages
-    return glimmer_client().chat.completions.create(model=glimmer_model(), messages=messages, **kw)
+    t0 = time.time()
+    resp = glimmer_client().chat.completions.create(model=glimmer_model(), messages=messages, **kw)
+    record_call("glimmer", purpose, glimmer_model(), time.time() - t0, getattr(resp, "usage", None))
+    return resp
 
 
 def ask_vision(prompt: str, image_urls: list[str], purpose: str = "verify") -> str:
@@ -186,6 +206,8 @@ def ask_vision(prompt: str, image_urls: list[str], purpose: str = "verify") -> s
         return resp.choices[0].message.content or ""
     content = [{"type": "input_text", "text": prompt}]
     content += [{"type": "input_image", "image_url": u} for u in image_urls]
+    t0 = time.time()
     resp = client().responses.create(model=reasoning_model(),
                                      input=[{"type": "message", "role": "user", "content": content}])
+    record_call("meta", purpose, reasoning_model(), time.time() - t0, getattr(resp, "usage", None))
     return resp.output_text

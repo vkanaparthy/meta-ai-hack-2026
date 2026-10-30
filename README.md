@@ -64,6 +64,15 @@ negatives (the same crop from the same camera before smoke appeared) it raised 0
 The whole evaluation cost $6.64. The smaller **Muse Glimmer 30B**, running on a 48 GB Mac, gave the same verdict
 on all 61 crops it checked, at a median 27 s per check. Details and commands: [path D](#d-run-on-muse-spark-open-open-weights).
 
+**Cameras and satellites.** The agent also checks NASA FIRMS hotspots and GOES-18 fire pixels, counted only from
+the moment they were published and matched only to camera evidence; they can support an alert but never raise
+its level. GOES was first on Resort and Airport by 6 to 13 minutes; the cameras were first on Kitchen and Grove,
+and placed fires more precisely (GOES pixels landed 0.7 to 2.2 km from the origins). See [path E](#e-satellite-cross-check).
+
+**Speed and cost.** A new frame becomes an alert in about 15 to 20 s of model time: SAM 3.1 on a 10-frame clip
+6.1 s, a Muse Spark smoke check 4.6 s ($0.004), an agent turn 1.5 s ($0.007). A whole Airport Fire replay cost
+$0.17 on the Meta Model API. `python scripts/usage_report.py` prints the table from every logged call.
+
 * * *
 
 ## Technology Stack
@@ -268,6 +277,41 @@ python scripts/compare_models.py
 On a 48 GB Mac it agreed with Muse Spark Open on all 61 crops (24 of 26 real plumes, 0 of 32 hard negatives),
 at a median 27 s per check, well inside the one-minute frame interval. Results: `outputs/verifier_eval_glimmer.json`.
 
+### E. Satellite cross-check
+
+Free data, no Meta spend. FIRMS needs a free MAP_KEY (`FIRMS_MAP_KEY` in `.env`); GOES comes from NOAA's
+public AWS bucket with no key.
+
+```
+python scripts/download_firms.py
+python scripts/download_goes.py
+python scripts/compare_firms.py
+python scripts/run_agent.py --fire Kitchenfire --autopilot
+```
+
+Hotspots are searched in a box around each fire's cameras, never around the official origin. A FIRMS hotspot
+counts from its observation time plus 60 s (NASA's US real-time feed); a GOES pixel from its file's measured
+publication time (median 3.1 min). Pixels already hot before the replay (solar farms and the like) don't wake
+the agent, and each satellite system can trigger at most one update.
+
+| Fire | Cameras | GOES-18, first pixel published | Polar satellites |
+|---|---|---|---|
+| Kitchen | located 10:49, confirmed 11:07, 119 m | 10:59, 0.7 km | 13:00 |
+| Resort | spotted 16:00, confirmed 16:02 | 15:54, 2.2 km | none in 3 days |
+| Junction | spotted 17:26, confirmed 17:34 | not found in NOAA's archive | none in 3 days |
+| Grove | spotted 13:06, no pin | none | 14:09 |
+| Airport | spotted 13:27, no pin | 13:14, 0.9 km | 13:13 |
+| Bridge | missed | none during the replay | 14:47 |
+
+### Latency and cost
+
+Every model call is logged to `outputs/usage_<provider>.jsonl` with its time, tokens and cost.
+
+```
+python scripts/benchmark_latency.py --provider meta --provider open --sam
+python scripts/usage_report.py
+```
+
 * * *
 
 ## Verify the Setup
@@ -281,7 +325,7 @@ python -m pytest -q
 Expected:
 
 ```
-27 passed
+36 passed
 ```
 
 2. After step 3, run the offline agent on the Kitchen Fire:
@@ -316,6 +360,7 @@ smokespotter/          core package
   observations.py        everything the agent can observe about a fire
   desk.py, agent.py      agent tools + guardrails, replay clock, Muse agents (1.3 and Open) and autopilot
   places.py              nearest towns for plain-language alerts
+  satellite.py, goes.py  NASA FIRMS and GOES-18 hotspots for the satellite cross-check
 scripts/               command-line steps (download, run_sam, calibrate_skyline, locate, run_agent, export_ui,
                        check_open_model, eval_verifier, compare_models, ...)
 data/                  fires.csv, stations.csv, ignitions.csv (official origins with sources), lens.json
@@ -333,7 +378,6 @@ tests/                 unit tests, including a synthetic-terrain calibration rou
 - **Live mode**: poll current HPWREN images every minute (e.g. a scheduled Modal job) instead of replaying archives
 - **Faster detection of distant plumes**: tighter crops and tracking SAM backwards from a confirmed plume
 - **Calibration for fisheye cameras** whose skylines are too featureless for the current lens model
-- **Satellite cross-check**: confirm or flag detections against NASA FIRMS hotspots
 - **A fine-tuned smoke checker**: Glimmer trained on FIgLib, using ignition timestamps as free labels
 
 * * *
@@ -354,6 +398,8 @@ track, theme **Push the Frontier**. Bonus categories in view: **Best Agentic Use
 - Place names: **GeoNames** (CC BY 4.0)
 - Ignition points: **CAL FIRE** and InciWeb incident records (sources listed in `data/ignitions.csv`)
 - Base map: **USGS The National Map**
+- Satellite hotspots: **NASA FIRMS** (VIIRS and MODIS active fire data, LANCE/FIRMS, NASA ESDIS)
+- GOES fire pixels: **NOAA GOES-18/19 ABI L2 Fire/Hot Spot Characterization**, NOAA Open Data Dissemination on AWS
 
 * * *
 

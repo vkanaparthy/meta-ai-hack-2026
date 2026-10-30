@@ -36,7 +36,8 @@
   "label": "Airport Fire",
   "date": "2024-09-09",
   "alerts": [
-   "spotted"
+   "spotted",
+   "update"
   ],
   "score": {
    "spotted_min_after_first_smoke": 24.0,

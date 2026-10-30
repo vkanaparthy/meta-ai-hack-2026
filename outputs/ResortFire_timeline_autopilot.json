@@ -1,12 +1,58 @@
 {
   "fire": "ResortFire",
   "driver": "autopilot",
+  "model": null,
   "muse": "cached",
   "t_start": 1731106846,
   "t_end": 1731112159,
   "timeline": [
     {
-      "time": "16:57",
+      "time": "15:54 PST",
+      "epoch": 1731110081,
+      "elapsed_min": 53.9,
+      "trigger": [
+        "satellite hotspot report from GOES-18 ABI"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "15:54 PST",
+            "minutes_since_watch_started": 53.9,
+            "cameras_watching": [
+              "bm-n",
+              "hp-e",
+              "mg-n"
+            ],
+            "plume_tracks": [],
+            "alerts_issued": [],
+            "last_location": null,
+            "satellite_hotspots_reported": 23
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "error": "no verified plume yet"
+          }
+        },
+        {
+          "tool": "check_satellite",
+          "args": {},
+          "result": {
+            "hotspots_reported": 23,
+            "matches": [],
+            "unmatched_hotspots": 23,
+            "new_since_last_alert": 0,
+            "note": "Satellites pass a few times a day and often miss small or new fires, so no hotspot is not evidence against a fire. A matching hotspot supports the camera evidence; it does not change the alert level."
+          }
+        }
+      ]
+    },
+    {
+      "time": "15:57 PST",
       "epoch": 1731110265,
       "elapsed_min": 57.0,
       "trigger": [
@@ -18,7 +64,7 @@
           "tool": "get_situation",
           "args": {},
           "result": {
-            "time": "16:57",
+            "time": "15:57 PST",
             "minutes_since_watch_started": 57.0,
             "cameras_watching": [
               "bm-n",
@@ -48,7 +94,8 @@
               }
             ],
             "alerts_issued": [],
-            "last_location": null
+            "last_location": null,
+            "satellite_hotspots_reported": 23
           }
         },
         {
@@ -57,11 +104,22 @@
           "result": {
             "error": "no verified plume yet"
           }
+        },
+        {
+          "tool": "check_satellite",
+          "args": {},
+          "result": {
+            "hotspots_reported": 23,
+            "matches": [],
+            "unmatched_hotspots": 23,
+            "new_since_last_alert": 0,
+            "note": "Satellites pass a few times a day and often miss small or new fires, so no hotspot is not evidence against a fire. A matching hotspot supports the camera evidence; it does not change the alert level."
+          }
         }
       ]
     },
     {
-      "time": "17:00",
+      "time": "16:00 PST",
       "epoch": 1731110435,
       "elapsed_min": 59.8,
       "trigger": [
@@ -74,7 +132,7 @@
           "tool": "get_situation",
           "args": {},
           "result": {
-            "time": "17:00",
+            "time": "16:00 PST",
             "minutes_since_watch_started": 59.8,
             "cameras_watching": [
               "bm-n",
@@ -114,7 +172,8 @@
               }
             ],
             "alerts_issued": [],
-            "last_location": null
+            "last_location": null,
+            "satellite_hotspots_reported": 24
           }
         },
         {
@@ -163,6 +222,79 @@
           }
         },
         {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "16:00 PST",
+            "minutes_since_watch_started": 59.8,
+            "cameras_watching": [
+              "bm-n",
+              "hp-e",
+              "mg-n"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-n/1:0",
+                "camera": "bm-n",
+                "first_seen_min_ago": 5,
+                "bearing_deg": 45.6,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A dark column rises from a single ground point and grows larger and denser across the three frames."
+              },
+              {
+                "track_id": "mg-n/1:0",
+                "camera": "mg-n",
+                "first_seen_min_ago": 5,
+                "bearing_deg": 42.6,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark column rises from a single ground point and grows/drifts larger over successive minutes."
+              },
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 114.5,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null,
+            "satellite_hotspots_reported": 24
+          }
+        },
+        {
+          "tool": "check_satellite",
+          "args": {},
+          "result": {
+            "hotspots_reported": 23,
+            "matches": [
+              {
+                "on_bearing_of_camera": "bm-n",
+                "bearing_from_camera_deg": 44.8,
+                "offset_from_plume_bearing_deg": 0.8,
+                "distance_from_camera_km": 22.4,
+                "observed": "15:56 PST",
+                "satellite": "GOES-18 ABI",
+                "lat": 33.306,
+                "lon": -116.6389,
+                "confidence": "processed (filtered)",
+                "pixel_size_m": 3000,
+                "near": "25.2 km WNW of Borrego Springs"
+              }
+            ],
+            "unmatched_hotspots": 22,
+            "new_since_last_alert": 1,
+            "note": "Satellites pass a few times a day and often miss small or new fires, so no hotspot is not evidence against a fire. A matching hotspot supports the camera evidence; it does not change the alert level."
+          }
+        },
+        {
           "tool": "issue_alert",
           "args": {
             "level": "spotted",
@@ -178,7 +310,7 @@
       ]
     },
     {
-      "time": "17:02",
+      "time": "16:02 PST",
       "epoch": 1731110555,
       "elapsed_min": 61.8,
       "trigger": [
@@ -189,7 +321,7 @@
           "tool": "get_situation",
           "args": {},
           "result": {
-            "time": "17:02",
+            "time": "16:02 PST",
             "minutes_since_watch_started": 61.8,
             "cameras_watching": [
               "bm-n",
@@ -231,11 +363,12 @@
             "alerts_issued": [
               {
                 "level": "spotted",
-                "time": "17:00",
+                "time": "16:00 PST",
                 "headline": "Smoke spotted; location not yet fixed"
               }
             ],
-            "last_location": null
+            "last_location": null,
+            "satellite_hotspots_reported": 24
           }
         },
         {
@@ -271,14 +404,36 @@
             "stations": 3,
             "unused_tracks": [],
             "eligible_level": "confirmed",
-            "nearby": []
+            "nearby": [
+              {
+                "name": "Julian",
+                "kind": "town",
+                "distance_km": 24.2,
+                "direction": "N",
+                "phrase": "24.2 km N of Julian"
+              },
+              {
+                "name": "Borrego Springs",
+                "kind": "town",
+                "distance_km": 25.8,
+                "direction": "W",
+                "phrase": "25.8 km W of Borrego Springs"
+              },
+              {
+                "name": "Aguanga",
+                "kind": "town",
+                "distance_km": 26.1,
+                "direction": "SE",
+                "phrase": "26.1 km SE of Aguanga"
+              }
+            ]
           }
         },
         {
           "tool": "get_situation",
           "args": {},
           "result": {
-            "time": "17:02",
+            "time": "16:02 PST",
             "minutes_since_watch_started": 61.8,
             "cameras_watching": [
               "bm-n",
@@ -320,7 +475,7 @@
             "alerts_issued": [
               {
                 "level": "spotted",
-                "time": "17:00",
+                "time": "16:00 PST",
                 "headline": "Smoke spotted; location not yet fixed"
               }
             ],
@@ -339,14 +494,38 @@
                 "mg-n/1:0"
               ],
               "stations": 3
-            }
+            },
+            "satellite_hotspots_reported": 24
+          }
+        },
+        {
+          "tool": "check_satellite",
+          "args": {},
+          "result": {
+            "hotspots_reported": 23,
+            "matches": [
+              {
+                "distance_from_fix_m": 1770,
+                "direction_from_fix": "NNE",
+                "observed": "15:56 PST",
+                "satellite": "GOES-18 ABI",
+                "lat": 33.306,
+                "lon": -116.6389,
+                "confidence": "processed (filtered)",
+                "pixel_size_m": 3000,
+                "near": "25.2 km WNW of Borrego Springs"
+              }
+            ],
+            "unmatched_hotspots": 22,
+            "new_since_last_alert": 0,
+            "note": "Satellites pass a few times a day and often miss small or new fires, so no hotspot is not evidence against a fire. A matching hotspot supports the camera evidence; it does not change the alert level."
           }
         },
         {
           "tool": "issue_alert",
           "args": {
             "level": "confirmed",
-            "headline": "Confirmed: smoke 33.2924, -116.6488",
+            "headline": "Confirmed: smoke 24.2 km N of Julian",
             "message": "Located at 33.2924, -116.6488 by bm-n, hp-e, mg-n with about 1.0 km uncertainty."
           },
           "result": {
@@ -356,12 +535,250 @@
           }
         }
       ]
+    },
+    {
+      "time": "16:09 PST",
+      "epoch": 1731110971,
+      "elapsed_min": 68.8,
+      "trigger": [
+        "satellite hotspot report from GOES-18 ABI"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "16:09 PST",
+            "minutes_since_watch_started": 68.8,
+            "cameras_watching": [
+              "bm-n",
+              "hp-e",
+              "mg-n"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-n/1:0",
+                "camera": "bm-n",
+                "first_seen_min_ago": 14,
+                "bearing_deg": 45.6,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A dark column rises from a single ground point and grows larger and denser across the three frames."
+              },
+              {
+                "track_id": "mg-n/1:0",
+                "camera": "mg-n",
+                "first_seen_min_ago": 14,
+                "bearing_deg": 42.6,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark column rises from a single ground point and grows/drifts larger over successive minutes."
+              },
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 11,
+                "bearing_deg": 114.5,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A column rises from a single ground point and grows into an expanding dark plume across successive frames."
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "16:00 PST",
+                "headline": "Smoke spotted; location not yet fixed"
+              },
+              {
+                "level": "confirmed",
+                "time": "16:02 PST",
+                "headline": "Confirmed: smoke 24.2 km N of Julian"
+              }
+            ],
+            "last_location": {
+              "lat": 33.2924,
+              "lon": -116.6488,
+              "uncertainty_m": 1010,
+              "cameras": [
+                "bm-n",
+                "hp-e",
+                "mg-n"
+              ],
+              "track_ids": [
+                "bm-n/1:0",
+                "hp-e/1:0",
+                "mg-n/1:0"
+              ],
+              "stations": 3
+            },
+            "satellite_hotspots_reported": 25
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": true,
+            "lat": 33.2924,
+            "lon": -116.6488,
+            "uncertainty_m": 1010,
+            "cameras": [
+              "bm-n",
+              "hp-e",
+              "mg-n"
+            ],
+            "track_ids": [
+              "bm-n/1:0",
+              "hp-e/1:0",
+              "mg-n/1:0"
+            ],
+            "stations": 3,
+            "unused_tracks": [],
+            "eligible_level": "confirmed",
+            "nearby": [
+              {
+                "name": "Julian",
+                "kind": "town",
+                "distance_km": 24.2,
+                "direction": "N",
+                "phrase": "24.2 km N of Julian"
+              },
+              {
+                "name": "Borrego Springs",
+                "kind": "town",
+                "distance_km": 25.8,
+                "direction": "W",
+                "phrase": "25.8 km W of Borrego Springs"
+              },
+              {
+                "name": "Aguanga",
+                "kind": "town",
+                "distance_km": 26.1,
+                "direction": "SE",
+                "phrase": "26.1 km SE of Aguanga"
+              }
+            ]
+          }
+        },
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "16:09 PST",
+            "minutes_since_watch_started": 68.8,
+            "cameras_watching": [
+              "bm-n",
+              "hp-e",
+              "mg-n"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-n/1:0",
+                "camera": "bm-n",
+                "first_seen_min_ago": 14,
+                "bearing_deg": 45.6,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A dark column rises from a single ground point and grows larger and denser across the three frames."
+              },
+              {
+                "track_id": "mg-n/1:0",
+                "camera": "mg-n",
+                "first_seen_min_ago": 14,
+                "bearing_deg": 42.6,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark column rises from a single ground point and grows/drifts larger over successive minutes."
+              },
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 11,
+                "bearing_deg": 114.5,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A column rises from a single ground point and grows into an expanding dark plume across successive frames."
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "16:00 PST",
+                "headline": "Smoke spotted; location not yet fixed"
+              },
+              {
+                "level": "confirmed",
+                "time": "16:02 PST",
+                "headline": "Confirmed: smoke 24.2 km N of Julian"
+              }
+            ],
+            "last_location": {
+              "lat": 33.2924,
+              "lon": -116.6488,
+              "uncertainty_m": 1010,
+              "cameras": [
+                "bm-n",
+                "hp-e",
+                "mg-n"
+              ],
+              "track_ids": [
+                "bm-n/1:0",
+                "hp-e/1:0",
+                "mg-n/1:0"
+              ],
+              "stations": 3
+            },
+            "satellite_hotspots_reported": 25
+          }
+        },
+        {
+          "tool": "check_satellite",
+          "args": {},
+          "result": {
+            "hotspots_reported": 24,
+            "matches": [
+              {
+                "distance_from_fix_m": 1210,
+                "direction_from_fix": "SSE",
+                "observed": "16:06 PST",
+                "satellite": "GOES-18 ABI",
+                "lat": 33.2818,
+                "lon": -116.6458,
+                "confidence": "processed (filtered)",
+                "pixel_size_m": 3000,
+                "near": "23.0 km N of Julian"
+              },
+              {
+                "distance_from_fix_m": 1770,
+                "direction_from_fix": "NNE",
+                "observed": "15:56 PST",
+                "satellite": "GOES-18 ABI",
+                "lat": 33.306,
+                "lon": -116.6389,
+                "confidence": "processed (filtered)",
+                "pixel_size_m": 3000,
+                "near": "25.2 km WNW of Borrego Springs"
+              }
+            ],
+            "unmatched_hotspots": 22,
+            "new_since_last_alert": 0,
+            "note": "Satellites pass a few times a day and often miss small or new fires, so no hotspot is not evidence against a fire. A matching hotspot supports the camera evidence; it does not change the alert level."
+          }
+        }
+      ]
     }
   ],
   "alerts": [
     {
       "level": "spotted",
-      "time": "17:00",
+      "time": "16:00 PST",
       "epoch": 1731110435,
       "elapsed_min": 59.8,
       "headline": "Smoke spotted; location not yet fixed",
@@ -389,9 +806,9 @@
         {
           "track_id": "bm-n/1:0",
           "frames": [
-            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20241108_ResortFire_bm-n-mobo-c/1731110119_+00360.jpg",
-            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20241108_ResortFire_bm-n-mobo-c/1731110239_+00480.jpg",
-            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20241108_ResortFire_bm-n-mobo-c/1731110359_+00600.jpg"
+            "data/raw/20241108_ResortFire_bm-n-mobo-c/1731110119_+00360.jpg",
+            "data/raw/20241108_ResortFire_bm-n-mobo-c/1731110239_+00480.jpg",
+            "data/raw/20241108_ResortFire_bm-n-mobo-c/1731110359_+00600.jpg"
           ],
           "box": [
             2775,
@@ -408,9 +825,9 @@
         {
           "track_id": "mg-n/1:0",
           "frames": [
-            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20241108_ResortFire_mg-n-mobo-c/1731110146_+00900.jpg",
-            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20241108_ResortFire_mg-n-mobo-c/1731110265_+01019.jpg",
-            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20241108_ResortFire_mg-n-mobo-c/1731110385_+01139.jpg"
+            "data/raw/20241108_ResortFire_mg-n-mobo-c/1731110146_+00900.jpg",
+            "data/raw/20241108_ResortFire_mg-n-mobo-c/1731110265_+01019.jpg",
+            "data/raw/20241108_ResortFire_mg-n-mobo-c/1731110385_+01139.jpg"
           ],
           "box": [
             2731,
@@ -424,14 +841,29 @@
             "reason": "Dark column rises from a single ground point and grows/drifts larger over successive minutes."
           }
         }
+      ],
+      "satellite": [
+        {
+          "on_bearing_of_camera": "bm-n",
+          "bearing_from_camera_deg": 44.8,
+          "offset_from_plume_bearing_deg": 0.8,
+          "distance_from_camera_km": 22.4,
+          "observed": "15:56 PST",
+          "satellite": "GOES-18 ABI",
+          "lat": 33.306,
+          "lon": -116.6389,
+          "confidence": "processed (filtered)",
+          "pixel_size_m": 3000,
+          "near": "25.2 km WNW of Borrego Springs"
+        }
       ]
     },
     {
       "level": "confirmed",
-      "time": "17:02",
+      "time": "16:02 PST",
       "epoch": 1731110555,
       "elapsed_min": 61.8,
-      "headline": "Confirmed: smoke 33.2924, -116.6488",
+      "headline": "Confirmed: smoke 24.2 km N of Julian",
       "message": "Located at 33.2924, -116.6488 by bm-n, hp-e, mg-n with about 1.0 km uncertainty.",
       "location": {
         "lat": 33.2924,
@@ -479,9 +911,9 @@
         {
           "track_id": "bm-n/1:0",
           "frames": [
-            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20241108_ResortFire_bm-n-mobo-c/1731110119_+00360.jpg",
-            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20241108_ResortFire_bm-n-mobo-c/1731110239_+00480.jpg",
-            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20241108_ResortFire_bm-n-mobo-c/1731110359_+00600.jpg"
+            "data/raw/20241108_ResortFire_bm-n-mobo-c/1731110119_+00360.jpg",
+            "data/raw/20241108_ResortFire_bm-n-mobo-c/1731110239_+00480.jpg",
+            "data/raw/20241108_ResortFire_bm-n-mobo-c/1731110359_+00600.jpg"
           ],
           "box": [
             2775,
@@ -498,9 +930,9 @@
         {
           "track_id": "mg-n/1:0",
           "frames": [
-            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20241108_ResortFire_mg-n-mobo-c/1731110146_+00900.jpg",
-            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20241108_ResortFire_mg-n-mobo-c/1731110265_+01019.jpg",
-            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20241108_ResortFire_mg-n-mobo-c/1731110385_+01139.jpg"
+            "data/raw/20241108_ResortFire_mg-n-mobo-c/1731110146_+00900.jpg",
+            "data/raw/20241108_ResortFire_mg-n-mobo-c/1731110265_+01019.jpg",
+            "data/raw/20241108_ResortFire_mg-n-mobo-c/1731110385_+01139.jpg"
           ],
           "box": [
             2731,
@@ -517,9 +949,9 @@
         {
           "track_id": "hp-e/1:0",
           "frames": [
-            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20241108_ResortFire_hp-e-mobo-c/1731110315_+01072.jpg",
-            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20241108_ResortFire_hp-e-mobo-c/1731110435_+01192.jpg",
-            "/sessions/rcw-018wdittgobvzhqz1yqxzan4/mnt/meta-ai-hack-2026/data/raw/20241108_ResortFire_hp-e-mobo-c/1731110555_+01312.jpg"
+            "data/raw/20241108_ResortFire_hp-e-mobo-c/1731110315_+01072.jpg",
+            "data/raw/20241108_ResortFire_hp-e-mobo-c/1731110435_+01192.jpg",
+            "data/raw/20241108_ResortFire_hp-e-mobo-c/1731110555_+01312.jpg"
           ],
           "box": [
             2146,
@@ -532,6 +964,19 @@
             "confidence": 0.92,
             "reason": "A column rises from a single ground point and grows into an expanding dark plume across successive frames."
           }
+        }
+      ],
+      "satellite": [
+        {
+          "distance_from_fix_m": 1770,
+          "direction_from_fix": "NNE",
+          "observed": "15:56 PST",
+          "satellite": "GOES-18 ABI",
+          "lat": 33.306,
+          "lon": -116.6389,
+          "confidence": "processed (filtered)",
+          "pixel_size_m": 3000,
+          "near": "25.2 km WNW of Borrego Springs"
         }
       ]
     }

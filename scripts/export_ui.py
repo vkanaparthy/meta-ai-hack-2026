@@ -21,6 +21,7 @@ from PIL import Image  # noqa: E402
 from smokespotter.camera import CameraModel  # noqa: E402
 from smokespotter.desk import hhmm  # noqa: E402
 from smokespotter.frames import load_sequence  # noqa: E402
+from smokespotter.geo import haversine_m  # noqa: E402
 from smokespotter.observations import load_fire  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -140,6 +141,15 @@ def export(fire: str) -> dict | None:
 
     alerts = [{k: a.get(k) for k in ("level", "time", "epoch", "headline", "message", "location")}
               for a in tl["alerts"]]
+
+    # satellite hotspots a live system would have had during the replay, near the cameras
+    matched = {(round(m["lat"], 4), round(m["lon"], 4)) for step in tl["timeline"] for c in step["calls"]
+               if c["tool"] == "check_satellite" and isinstance(c["result"], dict)
+               for m in c["result"].get("matches", [])}
+    hotspots = [{"lat": h.lat, "lon": h.lon, "at": h.available_epoch, "observed": hhmm(h.acq_epoch),
+                 "satellite": h.satellite, "matched": (round(h.lat, 4), round(h.lon, 4)) in matched}
+                for h in obs.hotspots if t0 <= h.available_epoch <= obs.t_end
+                and min(haversine_m(h.lat, h.lon, c["lat"], c["lon"]) for c in cameras.values()) <= 60_000]
     ign = {r["fire"]: r for r in rows("ignitions.csv")}.get(fire, {})
     label = fire.replace("Day2", "").replace("fire", " Fire").replace("Fire", " Fire").replace("  ", " ").strip()
     if fire.endswith("Day2"):
@@ -148,7 +158,7 @@ def export(fire: str) -> dict | None:
             "driver": tl["driver"], "t0": t0, "t1": obs.t_end, "t_first_visible": obs.t_first_visible,
             "first_visible_time": hhmm(obs.t_first_visible) if obs.t_first_visible else None,
             "cameras": list(cameras.values()), "tracks": tracks, "states": states, "locations": locations,
-            "alerts": alerts, "log": log, "score": tl["score"],
+            "alerts": alerts, "log": log, "score": tl["score"], "hotspots": hotspots,
             "truth": {"lat": float(ign["lat"]), "lon": float(ign["lon"]), "location": ign.get("location"),
                       "source": ign.get("source")} if ign else None}
     (UI / f"{fire}.json").write_text(json.dumps(data))

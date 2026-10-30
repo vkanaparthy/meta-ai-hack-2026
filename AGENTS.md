@@ -26,6 +26,8 @@ there is no live feed yet.
 | Triangulation | `smokespotter/locate.py`, `scripts/locate.py` | `outputs/<fire>_location.geojson` |
 | Agent replay | `smokespotter/observations.py`, `desk.py`, `agent.py`, `scripts/run_agent.py` | `outputs/<fire>_timeline.json` (live), `_timeline_autopilot.json` (offline) |
 | Open-weights runs | `smokespotter/models.py` (provider switch, cost meter), `agent.OpenMuseAgent`, `scripts/check_open_model.py`, `eval_verifier.py`, `compare_models.py` | `outputs/<seq>/verdicts_open.json`, `<fire>_timeline_open_r*.json`, `verifier_eval_open.json`, `model_comparison.json`, `usage_open.jsonl` |
+| Satellite cross-check | `scripts/download_firms.py`, `scripts/download_goes.py`, `smokespotter/satellite.py`, `goes.py`, `desk.check_satellite`, `scripts/compare_firms.py` | `data/firms/<fire>.csv`, `outputs/firms_comparison.json` |
+| Latency and cost | every model call → `outputs/usage_<provider>.jsonl`; `scripts/benchmark_latency.py`, `scripts/usage_report.py` | `outputs/latency_benchmark.json`, `outputs/usage_report.json` |
 | Replay page | `scripts/export_ui.py`, `ui/index.html` | `ui/data/` |
 | Demo slides | `ui/slides.html` (numbers typed in by hand from `model_comparison.json`) | |
 
@@ -69,6 +71,14 @@ change moves that number, say so explicitly and explain why.
 - Smoke verification judges only a track's **first few frames** (indices 0, 2, 4). A live system cannot see
   the future; don't feed later frames to verification.
 - Rechecks (`recheck_track`) only run for tracks that fit a coherent location with already verified plumes.
+- **Satellite hotspots (NASA FIRMS) support, never decide.** `check_satellite` only reports hotspots published
+  by the replay clock (observation time + `FIRMS_LATENCY_S`, default 60 s per NASA's US ultra-real-time feed),
+  matches them only to camera evidence (near the published fix, or on a verified plume's bearing), and never
+  raises an alert level. A new match may justify one `update` per satellite system (GOES, polar). GOES pixels
+  count from their file's measured S3 publication time (`scripts/download_goes.py`); pixels already hot before
+  the replay are `persistent` and never wake the agent. Don't change latencies to make a fire work out.
+- FIRMS downloads cover a box around the fire's **cameras**, never the official origin, so the agent's
+  satellite view can't leak the answer. The origin is used only in `compare_firms.py` (scoring).
 
 ### 3. Cost and external services
 - **SAM 3.1 and Muse Spark calls cost money and time.** Results are cached in `outputs/`. Don't pass

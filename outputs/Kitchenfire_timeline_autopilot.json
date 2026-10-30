@@ -1,6 +1,7 @@
 {
   "fire": "Kitchenfire",
   "driver": "autopilot",
+  "model": null,
   "muse": "cached",
   "t_start": 1719852650,
   "t_end": 1719857618,
@@ -38,7 +39,8 @@
               }
             ],
             "alerts_issued": [],
-            "last_location": null
+            "last_location": null,
+            "satellite_hotspots_reported": 12
           }
         },
         {
@@ -46,6 +48,17 @@
           "args": {},
           "result": {
             "error": "no verified plume yet"
+          }
+        },
+        {
+          "tool": "check_satellite",
+          "args": {},
+          "result": {
+            "hotspots_reported": 12,
+            "matches": [],
+            "unmatched_hotspots": 12,
+            "new_since_last_alert": 0,
+            "note": "Satellites pass a few times a day and often miss small or new fires, so no hotspot is not evidence against a fire. A matching hotspot supports the camera evidence; it does not change the alert level."
           }
         }
       ]
@@ -94,7 +107,8 @@
               }
             ],
             "alerts_issued": [],
-            "last_location": null
+            "last_location": null,
+            "satellite_hotspots_reported": 12
           }
         },
         {
@@ -160,7 +174,19 @@
               }
             ],
             "alerts_issued": [],
-            "last_location": null
+            "last_location": null,
+            "satellite_hotspots_reported": 12
+          }
+        },
+        {
+          "tool": "check_satellite",
+          "args": {},
+          "result": {
+            "hotspots_reported": 12,
+            "matches": [],
+            "unmatched_hotspots": 12,
+            "new_since_last_alert": 0,
+            "note": "Satellites pass a few times a day and often miss small or new fires, so no hotspot is not evidence against a fire. A matching hotspot supports the camera evidence; it does not change the alert level."
           }
         },
         {
@@ -227,7 +253,8 @@
                 "headline": "Smoke spotted; location not yet fixed"
               }
             ],
-            "last_location": null
+            "last_location": null,
+            "satellite_hotspots_reported": 12
           }
         },
         {
@@ -304,7 +331,19 @@
                 "headline": "Smoke spotted; location not yet fixed"
               }
             ],
-            "last_location": null
+            "last_location": null,
+            "satellite_hotspots_reported": 12
+          }
+        },
+        {
+          "tool": "check_satellite",
+          "args": {},
+          "result": {
+            "hotspots_reported": 12,
+            "matches": [],
+            "unmatched_hotspots": 12,
+            "new_since_last_alert": 0,
+            "note": "Satellites pass a few times a day and often miss small or new fires, so no hotspot is not evidence against a fire. A matching hotspot supports the camera evidence; it does not change the alert level."
           }
         }
       ]
@@ -368,7 +407,8 @@
                 "headline": "Smoke spotted; location not yet fixed"
               }
             ],
-            "last_location": null
+            "last_location": null,
+            "satellite_hotspots_reported": 12
           }
         },
         {
@@ -443,7 +483,19 @@
                 "headline": "Smoke spotted; location not yet fixed"
               }
             ],
-            "last_location": null
+            "last_location": null,
+            "satellite_hotspots_reported": 12
+          }
+        },
+        {
+          "tool": "check_satellite",
+          "args": {},
+          "result": {
+            "hotspots_reported": 12,
+            "matches": [],
+            "unmatched_hotspots": 12,
+            "new_since_last_alert": 0,
+            "note": "Satellites pass a few times a day and often miss small or new fires, so no hotspot is not evidence against a fire. A matching hotspot supports the camera evidence; it does not change the alert level."
           }
         }
       ]
@@ -507,7 +559,8 @@
                 "headline": "Smoke spotted; location not yet fixed"
               }
             ],
-            "last_location": null
+            "last_location": null,
+            "satellite_hotspots_reported": 12
           }
         },
         {
@@ -632,7 +685,19 @@
                 "ws-w/1:0"
               ],
               "stations": 2
-            }
+            },
+            "satellite_hotspots_reported": 12
+          }
+        },
+        {
+          "tool": "check_satellite",
+          "args": {},
+          "result": {
+            "hotspots_reported": 12,
+            "matches": [],
+            "unmatched_hotspots": 12,
+            "new_since_last_alert": 0,
+            "note": "Satellites pass a few times a day and often miss small or new fires, so no hotspot is not evidence against a fire. A matching hotspot supports the camera evidence; it does not change the alert level."
           }
         },
         {
@@ -646,6 +711,244 @@
             "issued": true,
             "level": "provisional",
             "alert_number": 2
+          }
+        }
+      ]
+    },
+    {
+      "time": "10:59 PDT",
+      "epoch": 1719856770,
+      "elapsed_min": 68.7,
+      "trigger": [
+        "satellite hotspot report from GOES-18 ABI"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "10:59 PDT",
+            "minutes_since_watch_started": 68.7,
+            "cameras_watching": [
+              "lp-e",
+              "mlo-s",
+              "pi-e",
+              "ws-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "pi-e/1:0",
+                "camera": "pi-e",
+                "first_seen_min_ago": 26,
+                "bearing_deg": 98.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+              },
+              {
+                "track_id": "pi-e/1:1",
+                "camera": "pi-e",
+                "first_seen_min_ago": 24,
+                "bearing_deg": 95.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete pale plume rises from a point on the ridgeline and expands and drifts laterally across successive frames, matching new wildfire smoke growth."
+              },
+              {
+                "track_id": "ws-w/1:0",
+                "camera": "ws-w",
+                "first_seen_min_ago": 14,
+                "bearing_deg": 298.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A gray column rises from a single point on the ridgeline and expands/drifts across the three frames."
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "10:37 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              },
+              {
+                "level": "provisional",
+                "time": "10:49 PDT",
+                "headline": "Provisional: smoke 11.8 km SSE of Pine Valley"
+              }
+            ],
+            "last_location": {
+              "lat": 32.7227,
+              "lon": -116.484,
+              "uncertainty_m": 1640,
+              "cameras": [
+                "pi-e",
+                "ws-w"
+              ],
+              "track_ids": [
+                "pi-e/1:0",
+                "ws-w/1:0"
+              ],
+              "stations": 2
+            },
+            "satellite_hotspots_reported": 13
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": true,
+            "lat": 32.7227,
+            "lon": -116.484,
+            "uncertainty_m": 1640,
+            "cameras": [
+              "pi-e",
+              "ws-w"
+            ],
+            "track_ids": [
+              "pi-e/1:0",
+              "ws-w/1:0"
+            ],
+            "stations": 2,
+            "unused_tracks": [
+              "pi-e/1:1"
+            ],
+            "eligible_level": "provisional",
+            "nearby": [
+              {
+                "name": "Pine Valley",
+                "kind": "town",
+                "distance_km": 11.8,
+                "direction": "SSE",
+                "phrase": "11.8 km SSE of Pine Valley"
+              },
+              {
+                "name": "Campo",
+                "kind": "town",
+                "distance_km": 13.0,
+                "direction": "N",
+                "phrase": "13.0 km N of Campo"
+              },
+              {
+                "name": "Potrero",
+                "kind": "town",
+                "distance_km": 17.8,
+                "direction": "NE",
+                "phrase": "17.8 km NE of Potrero"
+              }
+            ]
+          }
+        },
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "10:59 PDT",
+            "minutes_since_watch_started": 68.7,
+            "cameras_watching": [
+              "lp-e",
+              "mlo-s",
+              "pi-e",
+              "ws-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "pi-e/1:0",
+                "camera": "pi-e",
+                "first_seen_min_ago": 26,
+                "bearing_deg": 98.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+              },
+              {
+                "track_id": "pi-e/1:1",
+                "camera": "pi-e",
+                "first_seen_min_ago": 24,
+                "bearing_deg": 95.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete pale plume rises from a point on the ridgeline and expands and drifts laterally across successive frames, matching new wildfire smoke growth."
+              },
+              {
+                "track_id": "ws-w/1:0",
+                "camera": "ws-w",
+                "first_seen_min_ago": 14,
+                "bearing_deg": 298.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A gray column rises from a single point on the ridgeline and expands/drifts across the three frames."
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "10:37 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              },
+              {
+                "level": "provisional",
+                "time": "10:49 PDT",
+                "headline": "Provisional: smoke 11.8 km SSE of Pine Valley"
+              }
+            ],
+            "last_location": {
+              "lat": 32.7227,
+              "lon": -116.484,
+              "uncertainty_m": 1640,
+              "cameras": [
+                "pi-e",
+                "ws-w"
+              ],
+              "track_ids": [
+                "pi-e/1:0",
+                "ws-w/1:0"
+              ],
+              "stations": 2
+            },
+            "satellite_hotspots_reported": 13
+          }
+        },
+        {
+          "tool": "check_satellite",
+          "args": {},
+          "result": {
+            "hotspots_reported": 13,
+            "matches": [
+              {
+                "distance_from_fix_m": 1980,
+                "direction_from_fix": "ESE",
+                "observed": "10:56 PDT",
+                "satellite": "GOES-18 ABI",
+                "lat": 32.7141,
+                "lon": -116.4655,
+                "confidence": "processed",
+                "pixel_size_m": 3000,
+                "near": "12.0 km N of Campo"
+              }
+            ],
+            "unmatched_hotspots": 12,
+            "new_since_last_alert": 1,
+            "note": "Satellites pass a few times a day and often miss small or new fires, so no hotspot is not evidence against a fire. A matching hotspot supports the camera evidence; it does not change the alert level."
+          }
+        },
+        {
+          "tool": "issue_alert",
+          "args": {
+            "level": "update",
+            "headline": "Satellite hotspot agrees with the cameras",
+            "message": "GOES-18 ABI observed a hotspot at 10:56 PDT, 1980 m ESE of the camera fix. This supports the camera evidence; the alert level is unchanged."
+          },
+          "result": {
+            "issued": true,
+            "level": "update",
+            "alert_number": 3
           }
         }
       ]
@@ -722,6 +1025,11 @@
                 "level": "provisional",
                 "time": "10:49 PDT",
                 "headline": "Provisional: smoke 11.8 km SSE of Pine Valley"
+              },
+              {
+                "level": "update",
+                "time": "10:59 PDT",
+                "headline": "Satellite hotspot agrees with the cameras"
               }
             ],
             "last_location": {
@@ -737,7 +1045,8 @@
                 "ws-w/1:0"
               ],
               "stations": 2
-            }
+            },
+            "satellite_hotspots_reported": 13
           }
         },
         {
@@ -850,6 +1159,11 @@
                 "level": "provisional",
                 "time": "10:49 PDT",
                 "headline": "Provisional: smoke 11.8 km SSE of Pine Valley"
+              },
+              {
+                "level": "update",
+                "time": "10:59 PDT",
+                "headline": "Satellite hotspot agrees with the cameras"
               }
             ],
             "last_location": {
@@ -865,7 +1179,31 @@
                 "ws-w/1:0"
               ],
               "stations": 2
-            }
+            },
+            "satellite_hotspots_reported": 13
+          }
+        },
+        {
+          "tool": "check_satellite",
+          "args": {},
+          "result": {
+            "hotspots_reported": 13,
+            "matches": [
+              {
+                "distance_from_fix_m": 1980,
+                "direction_from_fix": "ESE",
+                "observed": "10:56 PDT",
+                "satellite": "GOES-18 ABI",
+                "lat": 32.7141,
+                "lon": -116.4655,
+                "confidence": "processed",
+                "pixel_size_m": 3000,
+                "near": "12.0 km N of Campo"
+              }
+            ],
+            "unmatched_hotspots": 12,
+            "new_since_last_alert": 0,
+            "note": "Satellites pass a few times a day and often miss small or new fires, so no hotspot is not evidence against a fire. A matching hotspot supports the camera evidence; it does not change the alert level."
           }
         }
       ]
@@ -966,6 +1304,11 @@
                 "level": "provisional",
                 "time": "10:49 PDT",
                 "headline": "Provisional: smoke 11.8 km SSE of Pine Valley"
+              },
+              {
+                "level": "update",
+                "time": "10:59 PDT",
+                "headline": "Satellite hotspot agrees with the cameras"
               }
             ],
             "last_location": {
@@ -981,7 +1324,8 @@
                 "ws-w/1:0"
               ],
               "stations": 2
-            }
+            },
+            "satellite_hotspots_reported": 14
           }
         },
         {
@@ -1154,6 +1498,11 @@
                 "level": "provisional",
                 "time": "10:49 PDT",
                 "headline": "Provisional: smoke 11.8 km SSE of Pine Valley"
+              },
+              {
+                "level": "update",
+                "time": "10:59 PDT",
+                "headline": "Satellite hotspot agrees with the cameras"
               }
             ],
             "last_location": {
@@ -1171,7 +1520,31 @@
                 "ws-w/1:0"
               ],
               "stations": 3
-            }
+            },
+            "satellite_hotspots_reported": 14
+          }
+        },
+        {
+          "tool": "check_satellite",
+          "args": {},
+          "result": {
+            "hotspots_reported": 13,
+            "matches": [
+              {
+                "distance_from_fix_m": 670,
+                "direction_from_fix": "SE",
+                "observed": "11:01 PDT",
+                "satellite": "GOES-18 ABI",
+                "lat": 32.7141,
+                "lon": -116.4655,
+                "confidence": "processed (filtered)",
+                "pixel_size_m": 3000,
+                "near": "12.0 km N of Campo"
+              }
+            ],
+            "unmatched_hotspots": 12,
+            "new_since_last_alert": 0,
+            "note": "Satellites pass a few times a day and often miss small or new fires, so no hotspot is not evidence against a fire. A matching hotspot supports the camera evidence; it does not change the alert level."
           }
         },
         {
@@ -1184,7 +1557,331 @@
           "result": {
             "issued": true,
             "level": "confirmed",
-            "alert_number": 3
+            "alert_number": 4
+          }
+        }
+      ]
+    },
+    {
+      "time": "11:09 PDT",
+      "epoch": 1719857369,
+      "elapsed_min": 78.7,
+      "trigger": [
+        "satellite hotspot report from GOES-18 ABI"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "11:09 PDT",
+            "minutes_since_watch_started": 78.7,
+            "cameras_watching": [
+              "lp-e",
+              "mlo-s",
+              "pi-e",
+              "ws-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "pi-e/1:0",
+                "camera": "pi-e",
+                "first_seen_min_ago": 36,
+                "bearing_deg": 98.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+              },
+              {
+                "track_id": "pi-e/1:1",
+                "camera": "pi-e",
+                "first_seen_min_ago": 34,
+                "bearing_deg": 95.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete pale plume rises from a point on the ridgeline and expands and drifts laterally across successive frames, matching new wildfire smoke growth."
+              },
+              {
+                "track_id": "ws-w/1:0",
+                "camera": "ws-w",
+                "first_seen_min_ago": 24,
+                "bearing_deg": 298.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A gray column rises from a single point on the ridgeline and expands/drifts across the three frames."
+              },
+              {
+                "track_id": "lp-e/0:0",
+                "camera": "lp-e",
+                "first_seen_min_ago": 10,
+                "bearing_deg": 86.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A localized gray column rises from one point on the ridgeline and grows denser and larger across successive frames."
+              },
+              {
+                "track_id": "mlo-s/1:1",
+                "camera": "mlo-s",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 211.0,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete gray-brown column on the right rises from the horizon and rapidly grows and expands across successive frames."
+              },
+              {
+                "track_id": "mlo-s/1:2",
+                "camera": "mlo-s",
+                "first_seen_min_ago": 6,
+                "bearing_deg": 220.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Gray plume rises from a single ground point and grows/drifts left across frames."
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "10:37 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              },
+              {
+                "level": "provisional",
+                "time": "10:49 PDT",
+                "headline": "Provisional: smoke 11.8 km SSE of Pine Valley"
+              },
+              {
+                "level": "update",
+                "time": "10:59 PDT",
+                "headline": "Satellite hotspot agrees with the cameras"
+              },
+              {
+                "level": "confirmed",
+                "time": "11:07 PDT",
+                "headline": "Confirmed: smoke 12.4 km N of Campo"
+              }
+            ],
+            "last_location": {
+              "lat": 32.7181,
+              "lon": -116.4709,
+              "uncertainty_m": 1480,
+              "cameras": [
+                "lp-e",
+                "pi-e",
+                "ws-w"
+              ],
+              "track_ids": [
+                "lp-e/0:0",
+                "pi-e/1:0",
+                "ws-w/1:0"
+              ],
+              "stations": 3
+            },
+            "satellite_hotspots_reported": 16
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": true,
+            "lat": 32.7181,
+            "lon": -116.4709,
+            "uncertainty_m": 1480,
+            "cameras": [
+              "lp-e",
+              "pi-e",
+              "ws-w"
+            ],
+            "track_ids": [
+              "lp-e/0:0",
+              "pi-e/1:0",
+              "ws-w/1:0"
+            ],
+            "stations": 3,
+            "unused_tracks": [
+              "pi-e/1:1",
+              "mlo-s/1:1",
+              "mlo-s/1:2"
+            ],
+            "eligible_level": "confirmed",
+            "nearby": [
+              {
+                "name": "Campo",
+                "kind": "town",
+                "distance_km": 12.4,
+                "direction": "N",
+                "phrase": "12.4 km N of Campo"
+              },
+              {
+                "name": "Pine Valley",
+                "kind": "town",
+                "distance_km": 12.7,
+                "direction": "SSE",
+                "phrase": "12.7 km SSE of Pine Valley"
+              },
+              {
+                "name": "Hacienda Tecate",
+                "kind": "town",
+                "distance_km": 17.8,
+                "direction": "NNE",
+                "phrase": "17.8 km NNE of Hacienda Tecate"
+              }
+            ]
+          }
+        },
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "11:09 PDT",
+            "minutes_since_watch_started": 78.7,
+            "cameras_watching": [
+              "lp-e",
+              "mlo-s",
+              "pi-e",
+              "ws-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "pi-e/1:0",
+                "camera": "pi-e",
+                "first_seen_min_ago": 36,
+                "bearing_deg": 98.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+              },
+              {
+                "track_id": "pi-e/1:1",
+                "camera": "pi-e",
+                "first_seen_min_ago": 34,
+                "bearing_deg": 95.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete pale plume rises from a point on the ridgeline and expands and drifts laterally across successive frames, matching new wildfire smoke growth."
+              },
+              {
+                "track_id": "ws-w/1:0",
+                "camera": "ws-w",
+                "first_seen_min_ago": 24,
+                "bearing_deg": 298.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A gray column rises from a single point on the ridgeline and expands/drifts across the three frames."
+              },
+              {
+                "track_id": "lp-e/0:0",
+                "camera": "lp-e",
+                "first_seen_min_ago": 10,
+                "bearing_deg": 86.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A localized gray column rises from one point on the ridgeline and grows denser and larger across successive frames."
+              },
+              {
+                "track_id": "mlo-s/1:1",
+                "camera": "mlo-s",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 211.0,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A discrete gray-brown column on the right rises from the horizon and rapidly grows and expands across successive frames."
+              },
+              {
+                "track_id": "mlo-s/1:2",
+                "camera": "mlo-s",
+                "first_seen_min_ago": 6,
+                "bearing_deg": 220.3,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Gray plume rises from a single ground point and grows/drifts left across frames."
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "10:37 PDT",
+                "headline": "Smoke spotted; location not yet fixed"
+              },
+              {
+                "level": "provisional",
+                "time": "10:49 PDT",
+                "headline": "Provisional: smoke 11.8 km SSE of Pine Valley"
+              },
+              {
+                "level": "update",
+                "time": "10:59 PDT",
+                "headline": "Satellite hotspot agrees with the cameras"
+              },
+              {
+                "level": "confirmed",
+                "time": "11:07 PDT",
+                "headline": "Confirmed: smoke 12.4 km N of Campo"
+              }
+            ],
+            "last_location": {
+              "lat": 32.7181,
+              "lon": -116.4709,
+              "uncertainty_m": 1480,
+              "cameras": [
+                "lp-e",
+                "pi-e",
+                "ws-w"
+              ],
+              "track_ids": [
+                "lp-e/0:0",
+                "pi-e/1:0",
+                "ws-w/1:0"
+              ],
+              "stations": 3
+            },
+            "satellite_hotspots_reported": 16
+          }
+        },
+        {
+          "tool": "check_satellite",
+          "args": {},
+          "result": {
+            "hotspots_reported": 14,
+            "matches": [
+              {
+                "distance_from_fix_m": 670,
+                "direction_from_fix": "SE",
+                "observed": "11:06 PDT",
+                "satellite": "GOES-18 ABI",
+                "lat": 32.7141,
+                "lon": -116.4655,
+                "confidence": "processed (filtered)",
+                "pixel_size_m": 3000,
+                "near": "12.0 km N of Campo"
+              },
+              {
+                "distance_from_fix_m": 2510,
+                "direction_from_fix": "NNE",
+                "observed": "11:06 PDT",
+                "satellite": "GOES-18 ABI",
+                "lat": 32.7382,
+                "lon": -116.4587,
+                "confidence": "processed (filtered)",
+                "pixel_size_m": 3000,
+                "near": "11.4 km SE of Pine Valley"
+              }
+            ],
+            "unmatched_hotspots": 12,
+            "new_since_last_alert": 0,
+            "note": "Satellites pass a few times a day and often miss small or new fires, so no hotspot is not evidence against a fire. A matching hotspot supports the camera evidence; it does not change the alert level."
           }
         }
       ]
@@ -1335,6 +2032,126 @@
             "confidence": 0.82,
             "reason": "A gray column rises from a single point on the ridgeline and expands/drifts across the three frames."
           }
+        }
+      ]
+    },
+    {
+      "level": "update",
+      "time": "10:59 PDT",
+      "epoch": 1719856770,
+      "elapsed_min": 68.7,
+      "headline": "Satellite hotspot agrees with the cameras",
+      "message": "GOES-18 ABI observed a hotspot at 10:56 PDT, 1980 m ESE of the camera fix. This supports the camera evidence; the alert level is unchanged.",
+      "location": {
+        "lat": 32.7227,
+        "lon": -116.484,
+        "uncertainty_m": 1640,
+        "cameras": [
+          "pi-e",
+          "ws-w"
+        ],
+        "track_ids": [
+          "pi-e/1:0",
+          "ws-w/1:0"
+        ],
+        "stations": 2
+      },
+      "bearing_lines": [
+        {
+          "camera": "pi-e",
+          "lat": 32.73486486486486,
+          "lon": -116.57807231569551,
+          "bearing_deg": 98.75,
+          "sigma_deg": 1.0,
+          "track_id": "pi-e/1:0"
+        },
+        {
+          "camera": "pi-e",
+          "lat": 32.73486486486486,
+          "lon": -116.57807231569551,
+          "bearing_deg": 95.3,
+          "sigma_deg": 1.0,
+          "track_id": "pi-e/1:1"
+        },
+        {
+          "camera": "ws-w",
+          "lat": 32.64729729729729,
+          "lon": -116.31743205627545,
+          "bearing_deg": 298.27,
+          "sigma_deg": 1.0,
+          "track_id": "ws-w/1:0"
+        }
+      ],
+      "evidence": [
+        {
+          "track_id": "pi-e/1:0",
+          "frames": [
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855239_+00181.jpg",
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855359_+00301.jpg",
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855479_+00421.jpg"
+          ],
+          "box": [
+            1933,
+            1121,
+            2018,
+            1152
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.85,
+            "reason": "Plume originates at a ground point on the ridge and grows and drifts leftward over successive minutes."
+          }
+        },
+        {
+          "track_id": "pi-e/1:1",
+          "frames": [
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855359_+00301.jpg",
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855479_+00421.jpg",
+            "data/raw/20240701_Kitchenfire_pi-e-mobo-c/1719855600_+00542.jpg"
+          ],
+          "box": [
+            1802,
+            1103,
+            1970,
+            1159
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.85,
+            "reason": "A discrete pale plume rises from a point on the ridgeline and expands and drifts laterally across successive frames, matching new wildfire smoke growth."
+          }
+        },
+        {
+          "track_id": "ws-w/1:0",
+          "frames": [
+            "data/raw/20240701_Kitchenfire_ws-w-mobo-c/1719855900_+00719.jpg",
+            "data/raw/20240701_Kitchenfire_ws-w-mobo-c/1719856021_+00840.jpg",
+            "data/raw/20240701_Kitchenfire_ws-w-mobo-c/1719856141_+00960.jpg"
+          ],
+          "box": [
+            2287,
+            1010,
+            2383,
+            1038
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.82,
+            "reason": "A gray column rises from a single point on the ridgeline and expands/drifts across the three frames."
+          }
+        }
+      ],
+      "satellite": [
+        {
+          "distance_from_fix_m": 1980,
+          "direction_from_fix": "ESE",
+          "observed": "10:56 PDT",
+          "satellite": "GOES-18 ABI",
+          "lat": 32.7141,
+          "lon": -116.4655,
+          "confidence": "processed",
+          "pixel_size_m": 3000,
+          "near": "12.0 km N of Campo"
         }
       ]
     },
@@ -1525,6 +2342,19 @@
             "confidence": 0.92,
             "reason": "Gray plume rises from a single ground point and grows/drifts left across frames."
           }
+        }
+      ],
+      "satellite": [
+        {
+          "distance_from_fix_m": 670,
+          "direction_from_fix": "SE",
+          "observed": "11:01 PDT",
+          "satellite": "GOES-18 ABI",
+          "lat": 32.7141,
+          "lon": -116.4655,
+          "confidence": "processed (filtered)",
+          "pixel_size_m": 3000,
+          "near": "12.0 km N of Campo"
         }
       ]
     }

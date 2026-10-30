@@ -12,7 +12,7 @@ from typing import Callable
 from .geo import bearing_deg, haversine_m
 from .locate import Location, best_location
 from .observations import CameraTrack, FireObservations
-from .places import nearby
+from .places import compass as _compass, nearby
 
 LEVELS = ["spotted", "provisional", "confirmed"]
 from zoneinfo import ZoneInfo
@@ -88,6 +88,8 @@ class FireDesk:
     candidate: Location | None = None          # rough fix too uncertain to publish
     facts: list[float] = field(default_factory=list)         # numbers the agent may cite
     log: list[dict] = field(default_factory=list)
+    sat_matches: dict = field(default_factory=dict)          # hotspot key -> match details
+    sat_announced: set = field(default_factory=set)          # satellite systems already cited in an alert
 
     # ---------- helpers ----------
     def _track(self, track_id: str) -> CameraTrack | None:
@@ -139,7 +141,8 @@ class FireDesk:
                "cameras_watching": self.obs.cameras, "plume_tracks": tracks,
                "alerts_issued": [{"level": a["level"], "time": a["time"], "headline": a["headline"]}
                                  for a in self.alerts],
-               "last_location": self.last_location}
+               "last_location": self.last_location,
+               "satellite_hotspots_reported": len(self._sat_available())}
         self._note(out)
         return out
 
@@ -231,6 +234,74 @@ class FireDesk:
         self._note(res)
         return res
 
+    # ---------- satellite cross-check ----------
+    SAT_MAX_RANGE_M = 60_000       # a camera can't see smoke much farther than this
+
+    def _sat_available(self) -> list:
+        return [h for h in self.obs.hotspots if h.available_epoch <= self.now]
+
+    def _new_sat_sources(self) -> set:
+        """Satellite systems (GOES, polar) whose agreement hasn't been cited in an alert yet.
+        One announcement per system: more pixels from a growing fire are not news."""
+        return {k.split(":", 1)[0] for k in self.sat_matches} - self.sat_announced
+
+    def check_satellite(self) -> dict:
+        """NASA FIRMS hotspots reported so far that agree with the camera evidence. Never changes
+        the alert level: it can only strengthen what an alert says."""
+        avail = self._sat_available()
+        note = ("Satellites pass a few times a day and often miss small or new fires, so no hotspot is "
+                "not evidence against a fire. A matching hotspot supports the camera evidence; it does not "
+                "change the alert level.")
+        if not avail:
+            res = {"hotspots_reported": 0, "matches": [], "note": note}
+            self._note(res)
+            return res
+        matches = []
+        fix = self.last_location
+        import math
+        seen = set()
+        for h in reversed(avail):                       # newest first; one entry per sensor pixel
+            src = "GOES" if h.satellite.startswith("GOES") else "polar"
+            key = f"{src}:{h.lat:.3f}:{h.lon:.3f}" if src == "GOES" else f"{src}:{h.acq_epoch}:{h.lat:.4f}:{h.lon:.4f}"
+            if key in seen:
+                continue
+            seen.add(key)
+            m = None
+            if fix:
+                d = haversine_m(fix["lat"], fix["lon"], h.lat, h.lon)
+                if d <= max(3000, 2 * fix["uncertainty_m"]) + h.pixel_m:
+                    m = {"distance_from_fix_m": int(round(d, -1)),
+                         "direction_from_fix": _compass(bearing_deg(fix["lat"], fix["lon"], h.lat, h.lon))}
+            else:
+                for t in self._accepted():
+                    b = bearing_deg(t.lat, t.lon, h.lat, h.lon)
+                    off = abs((b - t.bearing_deg + 180) % 360 - 180)
+                    d = haversine_m(t.lat, t.lon, h.lat, h.lon)
+                    slack = math.degrees(math.atan2(h.pixel_m, max(d, 1.0)))   # coarse pixels
+                    if off <= max(2 * t.sigma_deg, 2.0) + slack and d <= self.SAT_MAX_RANGE_M:
+                        m = {"on_bearing_of_camera": t.camera_id, "bearing_from_camera_deg": round(b, 1),
+                             "offset_from_plume_bearing_deg": round(off, 1),
+                             "distance_from_camera_km": round(d / 1000, 1)}
+                        break
+            if m:
+                m.update({"observed": hhmm(h.acq_epoch), "satellite": h.satellite, "lat": round(h.lat, 4),
+                          "lon": round(h.lon, 4), "confidence": h.confidence,
+                          "pixel_size_m": int(h.pixel_m)})
+                if h.persistent:
+                    m["note"] = "this GOES pixel was already hot before the cameras saw smoke"
+                near = nearby(h.lat, h.lon, k=1)
+                if near:
+                    m["near"] = near[0]["phrase"]
+                matches.append(m)
+                self.sat_matches[key] = m
+        matches.sort(key=lambda m: ("note" in m, 0))        # fresh detections first
+        res = {"hotspots_reported": len(seen), "matches": matches[:5],
+               "unmatched_hotspots": len(seen) - len(matches),
+               "new_since_last_alert": len(self._new_sat_sources()),
+               "note": note}
+        self._note(res)
+        return res
+
     def nearby_places(self, lat: float, lon: float) -> dict:
         res = {"places": nearby(lat, lon)}
         self._note(res)
@@ -245,11 +316,16 @@ class FireDesk:
         if eligible is None:
             return {"error": "no verified smoke: nothing to alert on"}
         issued = [a["level"] for a in self.alerts]
+        new_sat = self._new_sat_sources()
         if level == "update":
-            if not self.alerts or self.last_location is None:
-                return {"error": "update needs an earlier alert and a location"}
+            if not self.alerts:
+                return {"error": "update needs an earlier alert"}
+            if new_sat:
+                pass                          # new satellite corroboration is a real change
+            elif self.last_location is None:
+                return {"error": "update needs a location, or a new satellite hotspot matching the cameras"}
             prev = next((a for a in reversed(self.alerts) if a.get("location")), None)
-            if prev:
+            if prev and not new_sat:
                 moved = haversine_m(prev["location"]["lat"], prev["location"]["lon"],
                                     self.last_location["lat"], self.last_location["lon"])
                 shrank = self.last_location["uncertainty_m"] <= 0.7 * prev["location"]["uncertainty_m"]
@@ -273,6 +349,9 @@ class FireDesk:
                  "evidence": [{"track_id": t.track_id, "frames": [_rel(p) for p in t.verify_frames()],
                                "box": [round(v) for v in t.verify_box()],
                                "status": self.status[t.track_id]} for t in acc]}
+        if self.sat_matches:
+            alert["satellite"] = list(self.sat_matches.values())[-5:]
+            self.sat_announced |= {k.split(":", 1)[0] for k in self.sat_matches}
         self.alerts.append(alert)
         return {"issued": True, "level": level, "alert_number": len(self.alerts)}
 
@@ -291,7 +370,8 @@ class FireDesk:
     def call(self, name: str, args: dict) -> dict:
         fn = {"get_situation": self.get_situation, "verify_track": self.verify_track,
               "recheck_track": self.recheck_track, "locate": self.locate,
-              "nearby_places": self.nearby_places, "issue_alert": self.issue_alert}.get(name)
+              "nearby_places": self.nearby_places, "issue_alert": self.issue_alert,
+              "check_satellite": self.check_satellite}.get(name)
         if fn is None:
             return {"error": f"unknown tool {name}"}
         try:
@@ -323,6 +403,11 @@ TOOLS = [
      "description": "Nearest towns (and peak) to a point, with distance and direction.",
      "parameters": {"type": "object", "properties": {"lat": {"type": "number"}, "lon": {"type": "number"}},
                     "required": ["lat", "lon"]}},
+    {"type": "function", "name": "check_satellite",
+     "description": "NASA FIRMS satellite hotspots reported so far near the cameras, and which agree with the "
+                    "camera evidence (near the fix, or on a verified plume's bearing). Supports an alert's "
+                    "message; never raises the alert level. No hotspot is not evidence against a fire.",
+     "parameters": {"type": "object", "properties": {}}},
     {"type": "function", "name": "issue_alert",
      "description": "Publish an alert to dispatchers. level: 'spotted' (smoke seen, direction only), "
                     "'provisional' (located, uncertain), 'confirmed' (located by 3+ stations or tight "

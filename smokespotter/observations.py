@@ -15,6 +15,7 @@ from .config import ROOT
 from .frames import Frame, load_sequence
 from .locate import TrackBearing
 from .models import verdicts_name
+from .satellite import load_hotspots
 from .sam import Detection
 from .tracks import build_tracks, detections_from_cache, track_summary, union_box
 
@@ -60,6 +61,7 @@ class FireObservations:
     t_end: int
     t_first_visible: int | None         # labelled first visible smoke (for scoring only)
     ignition: tuple[float, float] | None = None   # official point (for scoring only)
+    hotspots: list = field(default_factory=list)  # NASA FIRMS hotspots near the cameras (satellite.Hotspot)
 
 
 def _rows(name: str) -> list[dict]:
@@ -124,4 +126,5 @@ def load_fire(fire: str) -> FireObservations:
     return FireObservations(
         fire=fire, tracks=sorted(tracks, key=lambda t: t.first_epoch), cameras=sorted(cameras),
         t_start=min(starts), t_end=max(ends), t_first_visible=min(visible) if visible else None,
-        ignition=(float(ign["lat"]), float(ign["lon"])) if ign else None)
+        ignition=(float(ign["lat"]), float(ign["lon"])) if ign else None,
+        hotspots=load_hotspots(fire, min(starts)))

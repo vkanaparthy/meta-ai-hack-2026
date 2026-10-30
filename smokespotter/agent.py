@@ -10,6 +10,7 @@ verified). Two drivers share the same tools and guardrails:
 from __future__ import annotations
 
 import json
+import time
 from dataclasses import dataclass
 
 from .desk import TOOLS, FireDesk, hhmm
@@ -28,7 +29,10 @@ You are woken whenever something new is observable. Work like a careful dispatch
    (spotted -> provisional -> confirmed), or as an 'update' when the location moved or tightened.
    Headline under 90 characters. Message 2-4 sentences: what was seen, where (use the nearby place phrase),
    how certain (uncertainty and number of cameras), and what is still unknown.
-5. Only cite numbers that tools returned. If issue_alert returns an error, fix the problem and try again.
+5. Satellite reports: when woken by one, or after locate, you may call check_satellite. A hotspot that
+   agrees with the cameras can be mentioned in an alert, or announced as an 'update' to an earlier alert.
+   It never raises the alert level, and no hotspot is not evidence against a fire.
+6. Only cite numbers that tools returned. If issue_alert returns an error, fix the problem and try again.
 If nothing warrants an alert, end with one short sentence saying why. Be concise."""
 
 
@@ -44,6 +48,21 @@ def events(obs: FireObservations) -> list[Event]:
         ev.setdefault(t.bearing_epoch, []).append(f"new plume track {t.track_id} on camera {t.camera_id}")
         if t.verify_epoch != t.bearing_epoch:
             ev.setdefault(t.verify_epoch, []).append(f"track {t.track_id} now has enough history to verify")
+    # satellite passes: one wake-up per pass that reports hotspots during the replay
+    passes: dict[int, set] = {}
+    seen_pixels = set()
+    for h in sorted(obs.hotspots, key=lambda h: h.available_epoch):
+        if h.persistent:                                   # already hot before the replay
+            continue
+        if h.satellite.startswith("GOES"):                 # wake only on a GOES pixel's first appearance
+            px = (round(h.lat, 2), round(h.lon, 2))
+            if px in seen_pixels:
+                continue
+            seen_pixels.add(px)
+        if obs.t_start <= h.available_epoch <= obs.t_end:
+            passes.setdefault(h.available_epoch, set()).add(h.satellite)
+    for e, sats in passes.items():
+        ev.setdefault(e, []).append(f"satellite hotspot report from {', '.join(sorted(sats))}")
     # merge events less than 90 s apart (cameras are not synchronised)
     merged: list[Event] = []
     for e in sorted(ev):
@@ -77,11 +96,19 @@ class Autopilot:
                     r = call("recheck_track", track_id=t["track_id"])
                     if "corroborated" in str(r.get("result", "")):
                         loc = call("locate")
+        sat = call("check_satellite") if desk._sat_available() else {}
         level = loc.get("eligible_level")
         issued = [a["level"] for a in desk.alerts]
         order = ["spotted", "provisional", "confirmed"]
         if level and (not issued or order.index(level) > max(order.index(l) for l in issued if l in order)):
             call("issue_alert", level=level, **self._text(level, loc))
+        elif sat.get("new_since_last_alert") and desk.alerts:
+            m = sat["matches"][-1]
+            where = (f"{m['distance_from_fix_m']} m {m['direction_from_fix']} of the camera fix"
+                     if "distance_from_fix_m" in m else f"on the bearing of camera {m['on_bearing_of_camera']}")
+            call("issue_alert", level="update", headline="Satellite hotspot agrees with the cameras",
+                 message=f"{m['satellite']} observed a hotspot at {m['observed']}, {where}. "
+                         "This supports the camera evidence; the alert level is unchanged.")
         elif loc.get("located") and any(l in ("provisional", "confirmed") for l in issued):
             r = desk.call("issue_alert", {"level": "update", **self._text("update", loc)})
             if r.get("issued"):
@@ -112,6 +139,7 @@ class MuseAgent:
     def __init__(self, client=None, model: str | None = None, max_rounds: int = 12):
         from .models import client as default_client, reasoning_model
 
+        self.meter = client is None              # log latency/cost for real calls, not test doubles
         self.client = client or default_client()
         self.model = model or reasoning_model()
         self.max_rounds = max_rounds
@@ -134,7 +162,11 @@ class MuseAgent:
         kw = dict(model=self.model, instructions=SYSTEM, tools=TOOLS)
         resp = None
         for _ in range(self.max_rounds):
+            t0 = time.time()
             resp = self.client.responses.create(input=self.history, **kw)
+            if self.meter:
+                from .models import record_call
+                record_call("meta", "agent", self.model, time.time() - t0, getattr(resp, "usage", None))
             for o in resp.output:
                 item = self._as_item(o)
                 if item:

@@ -7,6 +7,7 @@ __pycache__/
 # large, re-downloadable inputs
 data/raw/
 data/dem/
+data/goes/raw/
 
 # outputs: keep only the small results needed to reproduce without an API key
 outputs/**
@@ -20,6 +21,7 @@ outputs/**
 !outputs/verifier_eval_*.json
 !outputs/usage_open.jsonl
 !outputs/model_comparison.json
+!outputs/firms_comparison.json
 !outputs/**/results.json
 !outputs/*_timeline*.json
 !outputs/*_location.geojson

@@ -1,0 +1,2 @@
+latitude,longitude,acq_date,acq_time,satellite,instrument,confidence,frp,daynight,source
+32.85786,-117.14755,2026-06-30,949,N,VIIRS,n,0.51,N,VIIRS_SNPP_SP

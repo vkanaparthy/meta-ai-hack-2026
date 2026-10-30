@@ -38,9 +38,15 @@ class Detection:
 
 def segment_video(mp4: Path, prompt: str = "smoke") -> str:
     """Upload the clip, run SAM 3.1, return the raw output text."""
+    import time
+
+    from .models import record_call
+
     c = client()
+    t0 = time.time()
     with open(mp4, "rb") as fh:
         uploaded = c.files.create(file=fh, purpose="user_data")
+    t_up = time.time()
     chunks: list[str] = []
     with c.responses.stream(
         model=sam_model(),
@@ -57,6 +63,12 @@ def segment_video(mp4: Path, prompt: str = "smoke") -> str:
         for event in stream:
             if event.type == "response.output_text.delta":
                 chunks.append(event.delta)
+        try:
+            usage = stream.get_final_response().usage
+        except Exception:                 # usage is optional; latency is what we need
+            usage = None
+    record_call("meta", "sam_upload", sam_model(), t_up - t0)
+    record_call("meta", "sam_segment", sam_model(), time.time() - t_up, usage)
     return "".join(chunks)
 
 
