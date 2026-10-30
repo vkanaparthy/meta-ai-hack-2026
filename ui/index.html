@@ -551,10 +551,52 @@ const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "
 function tick(now) {
   if (!playing) return;
   const dt = lastFrame ? (now - lastFrame) / 1000 : 0; lastFrame = now;
-  t = Math.min(D.t1, t + dt * Number($("speed").value));
+  const end = DEMO ? DEMO.end : D.t1;
+  t = Math.min(end, t + dt * (DEMO ? DEMO.speed : Number($("speed").value)));
+  const before = shownAlerts;
   render();
-  if (t >= D.t1) { pause(); return; }
+  if (DEMO && shownAlerts > before) {              // let each new alert land before moving on
+    pause(); setTimeout(play, DEMO.hold * 1000); return;
+  }
+  if (t >= end) { pause(); if (DEMO) demoEnd(); return; }
   requestAnimationFrame(tick);
+}
+
+/* ---------- demo mode for recording clips: ?demo=kitchen|junction|grove|resort ----------
+   Opens at the right moment; press R to roll (start your screen recording first). Plays at a
+   fixed speed, pauses briefly on each new alert, and at the end shows the official origin. */
+const DEMOS = {
+  kitchen:  { fire: "Kitchenfire",  from: "10:34", to: "11:09", speed: 80, hold: 1.6, truth: true },
+  junction: { fire: "JunctionFire", from: "17:23", to: "17:36", speed: 40, hold: 1.8, truth: true },
+  grove:    { fire: "GroveFire",    from: "13:02", to: "13:18", speed: 50, hold: 1.6, truth: false },
+  resort:   { fire: "ResortFire",   from: "15:57", to: "16:05", speed: 30, hold: 1.6, truth: true },
+};
+let DEMO = null;
+function epochAt(hhmm) {
+  for (let e = D.t0; e <= D.t1; e += 30) if (fmt.format(new Date(e * 1000)) === hhmm) return e;
+  return D.t0;
+}
+function demoEnd() {
+  setTimeout(() => { if (DEMO.truth && $("tTruth").getAttribute("aria-pressed") !== "true") $("tTruth").click(); }, 700);
+}
+async function demoSetup(name) {
+  const cfg = DEMOS[name]; if (!cfg) return;
+  if (!D || D.fire !== cfg.fire) await loadFire(cfg.fire);
+  DEMO = { ...cfg, start: epochAt(cfg.from), end: epochAt(cfg.to) };
+  if ($("tTruth").getAttribute("aria-pressed") === "true") $("tTruth").click();
+  t = DEMO.start; shownSteps = -1; render(true);
+  document.body.style.cursor = "none";
+  const tip = document.createElement("div");
+  tip.id = "demoTip"; tip.textContent = `Demo: ${name}. Start recording, then press R`;
+  tip.style.cssText = "position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:99;background:#1F2A24;color:#EEF0E6;padding:14px 22px;border-radius:6px;font:600 20px var(--instrument)";
+  document.body.appendChild(tip);
+  document.addEventListener("keydown", e => {
+    if (e.key !== "r" && e.key !== "R") return;
+    $("demoTip")?.remove();
+    t = DEMO.start; shownSteps = -1; render(true);
+    if ($("tTruth").getAttribute("aria-pressed") === "true") $("tTruth").click();
+    setTimeout(play, 1200);
+  });
 }
 function play() { if (t >= D.t1) t = D.t0; playing = true; lastFrame = 0; setIcon(); requestAnimationFrame(tick); }
 function pause() { playing = false; setIcon(); }
@@ -578,12 +620,14 @@ $("tTruth").onclick = e => {
   if (truthMarker) on ? truthMarker.addTo(map) : truthMarker.remove();
 };
 // test hook: ?t=<minutes after first visible smoke> renders a still
-initMap().then(loadIndex).then(() => {
+initMap().then(loadIndex).then(async () => {
   const q = new URLSearchParams(location.search).get("t");
   if (q != null && D && D.t_first_visible) { t = D.t_first_visible + Number(q) * 60; shownSteps = -1; render(); }
   if (new URLSearchParams(location.search).get("truth")) $("tTruth").click();
   const camQ = new URLSearchParams(location.search).get("cam");
   if (camQ && D) { selectedCam = camQ; render(true); }
+  const demoQ = new URLSearchParams(location.search).get("demo");
+  if (demoQ) await demoSetup(demoQ);
 });
 </script>
 </body>

@@ -61,7 +61,8 @@ No false alerts on any fire. Times are measured from the first frame where smoke
 **Same results on Meta's open weights.** With every Muse call moved to **Muse Spark Open** on Baseten, five
 replays of each fire gave the same alerts and the same locations as the hosted Muse Spark 1.3. On 32 hard
 negatives (the same crop from the same camera before smoke appeared) it raised 0 false alarms in 96 checks.
-The whole evaluation cost $6.64. Details and commands: [path D](#d-run-on-muse-spark-open-open-weights).
+The whole evaluation cost $6.64. The smaller **Muse Glimmer 30B**, running on a 48 GB Mac, gave the same verdict
+on all 61 crops it checked, at a median 27 s per check. Details and commands: [path D](#d-run-on-muse-spark-open-open-weights).
 
 * * *
 
@@ -76,7 +77,7 @@ The whole evaluation cost $6.64. Details and commands: [path D](#d-run-on-muse-s
 | Triangulation | Robust least squares with inlier/outlier selection and Monte Carlo uncertainty |
 | Replay page | Plain HTML/JS, MapLibre GL, USGS National Map basemap |
 | Camera data | HPWREN Fire Ignition images Library (FIgLib) |
-| Open weights | **Muse Spark Open** (`meta-models/muse-spark-open-1026`) on Baseten, Chat Completions: smoke checks, rechecks and the agent |
+| Open weights | **Muse Spark Open** (`meta-models/muse-spark-open-1026`) on Baseten, Chat Completions: smoke checks, rechecks and the agent; **Muse Glimmer 30B** locally (Ollama) for the smoke check |
 
 * * *
 
@@ -254,6 +255,19 @@ Smoke checks agreed with Muse Spark 1.3 on 21 of 22 real plumes; the one differe
 it answers, so it needs a generous output cap (`OPEN_MODEL_MAX_TOKENS`, default 8192); with a small one, 27% of
 replies came back empty.
 
+**Muse Glimmer 30B on your own machine.** The smoke check also runs on Glimmer (Apache 2.0) through any
+OpenAI-compatible server, for example Ollama on Apple Silicon (no key, no cost):
+
+```
+ollama pull muse-glimmer:30b-mlx
+python scripts/check_open_model.py --provider glimmer
+python scripts/eval_verifier.py --provider glimmer --repeats 1 --skip-ambiguous
+python scripts/compare_models.py
+```
+
+On a 48 GB Mac it agreed with Muse Spark Open on all 61 crops (24 of 26 real plumes, 0 of 32 hard negatives),
+at a median 27 s per check, well inside the one-minute frame interval. Results: `outputs/verifier_eval_glimmer.json`.
+
 * * *
 
 ## Verify the Setup
@@ -314,8 +328,8 @@ tests/                 unit tests, including a synthetic-terrain calibration rou
 
 ## Planned Features (Future Phases)
 
-- **Muse Glimmer at the edge**: smoke checks on the 30B open model next to the camera, scored with
-  `eval_verifier.py` against Muse Spark Open
+- **Muse Glimmer at the camera site**: the smoke check already runs on a laptop; next, a small box at the
+  mast, and the agent itself on Glimmer
 - **Live mode**: poll current HPWREN images every minute (e.g. a scheduled Modal job) instead of replaying archives
 - **Faster detection of distant plumes**: tighter crops and tracking SAM backwards from a confirmed plume
 - **Calibration for fisheye cameras** whose skylines are too featureless for the current lens model

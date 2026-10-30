@@ -56,6 +56,11 @@ def main() -> int:
         out["verifier_open"] = json.loads(ev.read_text())["summary"]
         print("\nverifier (open weights):")
         print(json.dumps(out["verifier_open"], indent=2))
+    evg = ROOT / "outputs" / "verifier_eval_glimmer.json"
+    if evg.exists():
+        out["verifier_glimmer"] = json.loads(evg.read_text())["summary"]
+        print("\nverifier (Muse Glimmer, local):")
+        print(json.dumps(out["verifier_glimmer"], indent=2))
     usage = ROOT / "outputs" / "usage_open.jsonl"
     if usage.exists():
         rows = [json.loads(l) for l in usage.read_text().splitlines() if l.strip()]

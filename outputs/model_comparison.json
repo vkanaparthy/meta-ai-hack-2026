@@ -344,6 +344,40 @@
       "unparseable": 0
     }
   },
+  "verifier_glimmer": {
+    "after_smoke": {
+      "tracks": 26,
+      "judged_smoke": 24,
+      "judged_smoke_rate": 0.923,
+      "unanimous_across_repeats": 1.0,
+      "agree_with_muse_1_3": 0.955,
+      "compared_with_muse_1_3": 22,
+      "median_confidence": 0.88
+    },
+    "before_smoke": {
+      "tracks": 3,
+      "judged_smoke": 0,
+      "judged_smoke_rate": 0.0,
+      "unanimous_across_repeats": 1.0,
+      "agree_with_muse_1_3": 1.0,
+      "compared_with_muse_1_3": 3,
+      "median_confidence": 0.9
+    },
+    "same_view_before_smoke": {
+      "tracks": 32,
+      "judged_smoke": 0,
+      "judged_smoke_rate": 0.0,
+      "unanimous_across_repeats": 1.0,
+      "agree_with_muse_1_3": null,
+      "compared_with_muse_1_3": 0,
+      "median_confidence": 0.9
+    },
+    "median_seconds_per_check": 27.4,
+    "replies": {
+      "total": 61,
+      "unparseable": 0
+    }
+  },
   "open_weights_spend": {
     "check": {
       "calls": 3,

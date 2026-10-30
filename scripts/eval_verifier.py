@@ -8,6 +8,7 @@ verdict is, and compared with the cached Muse Spark 1.3 verdict where there is o
 
   python scripts/eval_verifier.py --provider open --repeats 3
   python scripts/eval_verifier.py --provider open --fire Kitchenfire --limit 10   # quick look
+  python scripts/eval_verifier.py --provider glimmer --repeats 1 --skip-ambiguous  # local Muse Glimmer
 
 Writes outputs/verifier_eval_<provider>.json (rows + summary). Rerunning resumes: rows already
 done are kept.
@@ -19,6 +20,7 @@ import csv
 import json
 import statistics
 import sys
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
@@ -54,6 +56,9 @@ def summarize(rows: list[dict]) -> dict:
             "compared_with_muse_1_3": len(ref),
             "median_confidence": round(statistics.median(c for r in g for c in r["confidences"]), 2),
         }
+    secs = [x for r in rows for x in r.get("seconds", [])]
+    if secs:
+        out["median_seconds_per_check"] = round(statistics.median(secs), 1)
     replies = [x for r in rows for x in r["reasons"]]
     out["replies"] = {"total": len(replies),
                       "unparseable": sum(x.startswith("unparseable") for x in replies)}
@@ -62,15 +67,20 @@ def summarize(rows: list[dict]) -> dict:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--provider", choices=["meta", "open"], default="open")
+    ap.add_argument("--provider", choices=["meta", "open", "glimmer"], default="open")
     ap.add_argument("--fire", action="append", help="default: every fire in data/fires.csv")
     ap.add_argument("--repeats", type=int, default=3)
     ap.add_argument("--limit", type=int, help="max tracks per fire")
-    ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument("--workers", type=int, default=None, help="parallel checks (default 4; 1 for a local Glimmer)")
+    ap.add_argument("--skip-ambiguous", action="store_true",
+                    help="skip same-view crops taken after the fire started (they may or may not show smoke)")
     ap.add_argument("--earlier", type=int, nargs="*", default=[15, 25],
                     help="hard negatives: minutes before each plume (empty to skip)")
     args = ap.parse_args()
     set_provider(args.provider)
+    if args.workers is None:
+        from smokespotter.models import glimmer_is_local
+        args.workers = 1 if (args.provider == "glimmer" and glimmer_is_local()) else 4
     from smokespotter import muse
 
     out_path = ROOT / "outputs" / f"verifier_eval_{args.provider}.json"
@@ -78,8 +88,9 @@ def main() -> int:
     for r in done.values():
         # empty or cut-off replies are a transport problem, not a verdict: drop and redo them
         keep = [i for i, x in enumerate(r["reasons"]) if not x.startswith("unparseable")]
-        for k in ("votes", "confidences", "reasons"):
-            r[k] = [r[k][i] for i in keep]
+        for k in ("votes", "confidences", "reasons", "seconds"):
+            if k in r:
+                r[k] = [r[k][i] for i in keep if i < len(r[k])]
         if r["group"] == "same_view_earlier":
             r["group"] = "same_view_before_smoke" if r["minutes_from_first_smoke"] < 0 else "same_view_fire_burning"
 
@@ -125,13 +136,17 @@ def main() -> int:
                 nrow["last_frame_minutes_from_first_smoke"] = round(t.frames[j + 4].offset / 60, 1)
                 done[nkey] = nrow
                 nframes = [t.frames[j].path, t.frames[j + 2].path, t.frames[j + 4].path]
+                if args.skip_ambiguous and nrow["group"] == "same_view_fire_burning":
+                    continue
                 for _ in range(max(0, args.repeats - len(nrow["votes"]))):
                     jobs.append((nrow, nframes, box, t.edge_clipped))
 
     print(f"{len(done)} tracks, {len(jobs)} checks to run on {args.provider}")
 
     def check(frames, box, edge):
-        return muse.verify_track(frames, box, at_edge=edge)
+        t0 = time.time()
+        v = muse.verify_track(frames, box, at_edge=edge)
+        return v, time.time() - t0
 
     def save():
         rows = sorted(done.values(), key=lambda r: r["track"])
@@ -144,7 +159,7 @@ def main() -> int:
             for f in as_completed(futs):
                 row = futs[f]
                 try:
-                    v = f.result()
+                    v, secs = f.result()
                 except BudgetExceeded:
                     raise
                 except Exception as e:      # one bad call should not lose the run
@@ -153,8 +168,9 @@ def main() -> int:
                 row["votes"].append(v.is_smoke)
                 row["confidences"].append(v.confidence)
                 row["reasons"].append(v.reason)
+                row.setdefault("seconds", []).append(round(secs, 1))
                 n += 1
-                if n % 20 == 0:
+                if n % (5 if args.provider == "glimmer" else 20) == 0:
                     save()
                     extra = f", spend ${spent_usd():.2f}" if args.provider == "open" else ""
                     print(f"  {n}/{len(jobs)} checks{extra}")

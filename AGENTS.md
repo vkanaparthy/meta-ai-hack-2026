@@ -8,7 +8,9 @@ Guidance for AI coding agents (and humans) working in this repository. Read it b
 FireFinder detects wildfire smoke in fixed mountaintop camera footage (HPWREN), works out where each
 camera points by matching the terrain skyline, triangulates the fire from several cameras, and runs a
 Muse Spark agent that verifies plumes and issues escalating alerts. Every Muse call can also run on the
-open-weight **Muse Spark Open** (Baseten) with `MUSE_PROVIDER=open` or `--provider open`. It is a Meta Global AI Developer
+open-weight **Muse Spark Open** (Baseten) with `MUSE_PROVIDER=open` or `--provider open`, and smoke checks
+on **Muse Glimmer 30B** (local Ollama) with `--provider glimmer`. The Baseten key works only with
+`meta-models/muse-spark-open-1026`; don't try to deploy other models with it. It is a Meta Global AI Developer
 Hackathon entry (Indie track; submission due **Nov 4, 2026, 9 PM ET**). Fires are replayed from archives;
 there is no live feed yet.
 

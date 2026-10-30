@@ -1,6 +1,7 @@
 """Check the open-weights endpoint before spending real budget (costs well under a cent).
 
-  python scripts/check_open_model.py
+  python scripts/check_open_model.py                     # Muse Spark Open on Baseten
+  python scripts/check_open_model.py --provider glimmer  # Muse Glimmer on a local Ollama server
 
 Tests, in order: the key works, the model answers text, it reads an image, it calls a tool.
 """
@@ -12,14 +13,24 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from smokespotter.models import open_chat, open_client, open_model, spent_usd  # noqa: E402
+import argparse  # noqa: E402
+
+from smokespotter import models  # noqa: E402
+from smokespotter.models import spent_usd  # noqa: E402
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--provider", choices=["open", "glimmer"], default="open")
+    args = ap.parse_args()
+    if args.provider == "glimmer":
+        open_client, open_model, open_chat = models.glimmer_client, models.glimmer_model, models.glimmer_chat
+    else:
+        open_client, open_model, open_chat = models.open_client, models.open_model, models.open_chat
     print(f"model: {open_model()}")
     try:
         ids = [m.id for m in open_client().models.list()]
-        hits = [i for i in ids if "muse" in i.lower()]
+        hits = [i for i in ids if "muse" in i.lower() or "glimmer" in i.lower()]
         print(f"1. key ok; Muse models listed: {hits or 'none (listing may be partial)'}")
     except Exception as e:      # some endpoints do not list models; carry on
         print(f"1. could not list models ({e}); trying a call anyway")

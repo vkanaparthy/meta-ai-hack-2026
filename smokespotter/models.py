@@ -1,9 +1,12 @@
 """Model clients.
 
-Two providers serve the Muse reasoning/vision model, picked by MUSE_PROVIDER:
+Three providers serve the Muse reasoning/vision model, picked by MUSE_PROVIDER:
   * meta (default) - Meta Model API, Muse Spark 1.3, Responses API
   * open           - Muse Spark Open (open weights) on a partner endpoint such as
                      Baseten, OpenAI-compatible Chat Completions
+  * glimmer        - Muse Glimmer 30B (Apache 2.0) on any OpenAI-compatible endpoint:
+                     a local Ollama server or a dedicated Baseten deployment (billed
+                     by GPU time, so not metered per call)
 SAM 3.1 always comes from the Meta Model API.
 
 Every open-weights call is metered (outputs/usage_open.jsonl) and refused once the
@@ -45,11 +48,30 @@ def open_client():
     )
 
 
+PROVIDERS = ("meta", "open", "glimmer")
+
+
+@lru_cache(maxsize=1)
+def glimmer_client():
+    """Muse Glimmer on a local OpenAI-compatible server (Ollama by default)."""
+    from openai import OpenAI
+
+    load_env()
+    return OpenAI(base_url=os.getenv("GLIMMER_BASE_URL", "http://localhost:11434/v1"),
+                  api_key=os.getenv("GLIMMER_API_KEY", "ollama"),   # Ollama ignores it
+                  max_retries=2, timeout=900)
+
+
+def glimmer_model() -> str:
+    load_env()
+    return os.getenv("GLIMMER_MODEL", "muse-glimmer:30b-mlx")
+
+
 def provider() -> str:
     load_env()
     p = os.getenv("MUSE_PROVIDER", "meta").strip().lower() or "meta"
-    if p not in ("meta", "open"):
-        raise RuntimeError(f"MUSE_PROVIDER must be 'meta' or 'open', got {p!r}")
+    if p not in PROVIDERS:
+        raise RuntimeError(f"MUSE_PROVIDER must be one of {PROVIDERS}, got {p!r}")
     return p
 
 
@@ -64,6 +86,8 @@ def sam_model() -> str:
 def reasoning_model() -> str:
     if provider() == "open":
         return open_model()
+    if provider() == "glimmer":
+        return glimmer_model()
     return setting("MUSE_REASONING_MODEL", "muse-spark-1.3")
 
 
@@ -135,12 +159,30 @@ def open_chat(messages: list[dict], purpose: str, **kw):
     return resp
 
 
+def glimmer_is_local() -> bool:
+    load_env()
+    url = os.getenv("GLIMMER_BASE_URL", "http://localhost:11434/v1")
+    return "localhost" in url or "127.0.0.1" in url
+
+
+def glimmer_chat(messages: list[dict], purpose: str, **kw):
+    """One call to Muse Glimmer: a local server (Ollama) or a dedicated deployment such as
+    Baseten's (GLIMMER_BASE_URL = its .../environments/production/sync/v1 URL). A dedicated
+    deployment is billed by GPU time, not tokens, so these calls are not metered here."""
+    load_env()
+    effort = os.getenv("GLIMMER_REASONING", "medium")      # low | medium | high | xhigh
+    if effort and not (messages and messages[0].get("role") == "system"):
+        messages = [{"role": "system", "content": f"Reasoning strength: {effort}"}] + messages
+    return glimmer_client().chat.completions.create(model=glimmer_model(), messages=messages, **kw)
+
+
 def ask_vision(prompt: str, image_urls: list[str], purpose: str = "verify") -> str:
     """Text + images in, text out, on whichever provider is selected."""
-    if provider() == "open":
+    if provider() in ("open", "glimmer"):
         content = [{"type": "text", "text": prompt}]
         content += [{"type": "image_url", "image_url": {"url": u}} for u in image_urls]
-        resp = open_chat([{"role": "user", "content": content}], purpose, max_tokens=open_max_tokens())
+        chat = open_chat if provider() == "open" else glimmer_chat
+        resp = chat([{"role": "user", "content": content}], purpose, max_tokens=open_max_tokens())
         return resp.choices[0].message.content or ""
     content = [{"type": "input_text", "text": prompt}]
     content += [{"type": "input_image", "image_url": u} for u in image_urls]
