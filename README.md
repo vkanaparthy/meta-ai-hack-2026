@@ -298,7 +298,7 @@ the agent, and each satellite system can trigger at most one update.
 |---|---|---|---|
 | Kitchen | located 10:49, confirmed 11:07, 119 m | 10:59, 0.7 km | 13:00 |
 | Resort | spotted 16:00, confirmed 16:02 | 15:54, 2.2 km | none in 3 days |
-| Junction | spotted 17:26, confirmed 17:34 | not found in NOAA's archive | none in 3 days |
+| Junction | spotted 17:26, confirmed 17:34 | no scans (gap in NOAA's archive that evening) | none in 3 days |
 | Grove | spotted 13:06, no pin | none | 14:09 |
 | Airport | spotted 13:27, no pin | 13:14, 0.9 km | 13:13 |
 | Bridge | missed | none during the replay | 14:47 |
