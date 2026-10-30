@@ -2,6 +2,7 @@
 for the network what-if study. Public ArcGIS feature service; no key.
 
   python scripts/download_caloes_cameras.py
+  python scripts/download_caloes_cameras.py --layer 1       # Fire Camera Viewsheds
 
 Writes data/cameras/caloes_webcams.geojson and prints the layers and fields it found.
 Camera imagery terms: ALERTCalifornia requires the credit "ALERTCalifornia | UC San Diego".
@@ -26,10 +27,14 @@ def get(url: str) -> dict:
 
 
 def main() -> int:
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--layer", type=int, default=0, help="0 = camera locations, 1 = fire camera viewsheds")
+    args = ap.parse_args()
     info = get(f"{SVC}?f=json")
     layers = info.get("layers", [])
     print("layers:", [(l["id"], l["name"]) for l in layers])
-    point = next((l for l in layers if "loc" in l["name"].lower() or "camera" in l["name"].lower()), layers[0])
+    point = next(l for l in layers if l["id"] == args.layer)
     feats, offset = [], 0
     while True:
         q = urllib.parse.urlencode({"where": "1=1", "outFields": "*", "outSR": 4326, "f": "geojson",
@@ -41,7 +46,7 @@ def main() -> int:
             break
         offset += 1000
         time.sleep(1)
-    out = ROOT / "data" / "cameras" / "caloes_webcams.geojson"
+    out = ROOT / "data" / "cameras" / ("caloes_webcams.geojson" if args.layer == 0 else f"caloes_layer{args.layer}.geojson")
     out.write_text(json.dumps({"type": "FeatureCollection", "features": feats}))
     fields = sorted(feats[0]["properties"]) if feats else []
     print(f"layer {point['id']} ({point['name']}): {len(feats)} cameras")
