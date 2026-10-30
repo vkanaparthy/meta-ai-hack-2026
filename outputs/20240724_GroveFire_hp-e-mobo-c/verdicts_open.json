@@ -1,0 +1,26 @@
+{
+  "1:0": {
+    "is_smoke": false,
+    "confidence": 0.92,
+    "reason": "Isolated mid-air puffy white cumulus with cauliflower texture and no ground-anchored column, dissipating over time rather than growing from a surface ignition point.",
+    "at_edge": false
+  },
+  "1:1": {
+    "is_smoke": false,
+    "confidence": 0.93,
+    "reason": "No ground-anchored rising column; the central dark patch shrinks and fragments between frames instead of growing and drifting upward, consistent with a dissipating cloud not smoke.",
+    "at_edge": false
+  },
+  "1:2": {
+    "is_smoke": false,
+    "confidence": 0.87,
+    "reason": "Detached compact white cauliflower cloud drifts without a ground-anchored rising column, vertical growth, or dispersing plume, consistent with small low cloud/fog rather than wildfire smoke.",
+    "at_edge": false
+  },
+  "0:0": {
+    "is_smoke": true,
+    "confidence": 0.93,
+    "reason": "A narrow vertical column anchored at a single ground point grows taller, denser, and drifts upward across successive frames, consistent with a developing wildfire smoke plume rather than fog or haze.",
+    "at_edge": false
+  }
+}

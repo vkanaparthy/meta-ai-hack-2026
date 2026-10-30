@@ -14,6 +14,7 @@ from .camera import CameraModel
 from .config import ROOT
 from .frames import Frame, load_sequence
 from .locate import TrackBearing
+from .models import verdicts_name
 from .sam import Detection
 from .tracks import build_tracks, detections_from_cache, track_summary, union_box
 
@@ -103,7 +104,8 @@ def load_fire(fire: str) -> FireObservations:
             continue
         model = CameraModel.load(model_path)
         quality = json.loads(model_path.read_text()).get("quality", {})
-        verdicts = json.loads((out / "verdicts.json").read_text()) if (out / "verdicts.json").exists() else {}
+        vpath = out / verdicts_name()
+        verdicts = json.loads(vpath.read_text()) if vpath.exists() else {}
         for oid, ds in build_tracks(dets).items():
             ds = sorted(ds, key=lambda d: d.frame)
             summ = track_summary(oid, ds, W)

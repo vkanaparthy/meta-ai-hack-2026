@@ -1,0 +1,8 @@
+{
+  "0:0": {
+    "is_smoke": false,
+    "confidence": 0.9,
+    "reason": "Bright overexposed white mass shows no coherent ground-anchored column with steady rise/growth and drift, instead exhibiting glare-like blowout and cloud-like fluctuation inconsistent with smoke plume dynamics.",
+    "at_edge": true
+  }
+}

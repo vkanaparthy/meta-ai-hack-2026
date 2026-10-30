@@ -1,0 +1,8 @@
+{
+  "1:0": {
+    "is_smoke": true,
+    "confidence": 0.92,
+    "reason": "Dark gray column anchored to a single ground point steadily grows, billows and drifts upward across frames, consistent with a rising wildfire smoke plume rather than static haze or cloud.",
+    "at_edge": false
+  }
+}

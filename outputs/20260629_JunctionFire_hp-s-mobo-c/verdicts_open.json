@@ -1,0 +1,14 @@
+{
+  "0:0": {
+    "is_smoke": true,
+    "confidence": 0.96,
+    "reason": "A distinct grey column rises from a single ground point and expands vertically and laterally across successive frames, consistent with a growing wildfire smoke plume rather than fog or haze.",
+    "at_edge": false
+  },
+  "0:1": {
+    "is_smoke": false,
+    "confidence": 0.94,
+    "reason": "No rising column from a single ground point and no growing/drifting plume, only a stable horizontal cloud/fog bank persisting across frames with no vertical development.",
+    "at_edge": false
+  }
+}

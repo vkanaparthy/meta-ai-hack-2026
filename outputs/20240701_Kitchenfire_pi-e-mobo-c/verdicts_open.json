@@ -1,0 +1,14 @@
+{
+  "1:0": {
+    "is_smoke": true,
+    "confidence": 0.92,
+    "reason": "Successive frames show localized columnar plume rising from ground contact and expanding/drifting over time, consistent with growing wildfire smoke rather than static fog or haze.",
+    "at_edge": false
+  },
+  "1:1": {
+    "is_smoke": true,
+    "confidence": 0.88,
+    "reason": "Localized ground-anchored white-gray plume rises, expands and drifts coherently across successive frames consistent with a new wildfire smoke plume rather than fog or cloud.",
+    "at_edge": false
+  }
+}

@@ -81,3 +81,36 @@ def test_agent_loop_escalates_through_levels():
     assert levels[0] == "spotted" and levels[-1] == "confirmed"
     assert all(c["tool"] for step in result["timeline"] for c in step["calls"])
     assert len(events(obs)) >= 3
+
+
+def test_open_agent_runs_tools_and_keeps_chat_history():
+    """OpenMuseAgent speaks Chat Completions: assistant tool_calls, then role=tool replies."""
+    from types import SimpleNamespace as NS
+
+    from smokespotter.agent import Event, OpenMuseAgent
+
+    script = [
+        [NS(id="c1", function=NS(name="get_situation", arguments="{}"))],
+        [NS(id="c2", function=NS(name="locate", arguments="{}"))],
+        None,
+    ]
+    sent = []
+
+    def chat(messages, purpose, **kw):
+        sent.append([dict(m) for m in messages])
+        tcs = script.pop(0)
+        msg = NS(content=None if tcs else "Nothing to alert yet.", tool_calls=tcs)
+        return NS(choices=[NS(message=msg)], usage=None)
+
+    class Desk:
+        def call(self, name, args):
+            return {"ok": name}
+
+    agent = OpenMuseAgent(chat=chat)
+    calls = agent.handle(Desk(), Event(1_600_000_000, ["new plume track a/1 on camera a"]))
+    assert [c["tool"] for c in calls] == ["get_situation", "locate", "_agent_says"]
+    last = sent[-1]
+    assert last[0]["role"] == "system"
+    assert [m["role"] for m in last[1:]] == ["user", "assistant", "tool", "assistant", "tool"]
+    assert last[2]["tool_calls"][0]["function"]["name"] == "get_situation"
+    assert last[3]["tool_call_id"] == "c1"

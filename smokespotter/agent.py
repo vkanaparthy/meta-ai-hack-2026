@@ -3,7 +3,8 @@
 The clock steps through the archive; the agent is woken whenever something new
 becomes observable (a plume's bearing is usable, or it has enough history to be
 verified). Two drivers share the same tools and guardrails:
-  * MuseAgent  - Muse Spark decides which tools to call and writes the alerts
+  * MuseAgent      - Muse Spark 1.3 (Meta Model API) decides which tools to call and writes the alerts
+  * OpenMuseAgent  - the same, on Muse Spark Open (open weights, e.g. on Baseten)
   * Autopilot  - a fixed policy, for offline runs and as a fallback
 """
 from __future__ import annotations
@@ -156,15 +157,74 @@ class MuseAgent:
         return calls
 
 
+CHAT_TOOLS = [{"type": "function", "function": {k: v for k, v in t.items() if k != "type"}} for t in TOOLS]
+
+
+class OpenMuseAgent:
+    """Same desk, tools and guardrails, driven by Muse Spark Open (open weights) through
+    an OpenAI-compatible Chat Completions endpoint such as Baseten."""
+    name = "muse-open"
+
+    def __init__(self, chat=None, max_rounds: int = 12):
+        from .models import open_chat, open_model
+
+        self.chat = chat or open_chat
+        self.model = open_model()
+        self.max_rounds = max_rounds
+        from .models import open_max_tokens
+        self.max_tokens = open_max_tokens()
+        self.messages: list[dict] = [{"role": "system", "content": SYSTEM}]
+
+    def handle(self, desk: FireDesk, event: Event) -> list[dict]:
+        calls: list[dict] = []
+        self.messages.append({"role": "user", "content": f"Woken at {hhmm(event.epoch)}: " + "; ".join(event.what)})
+        text = ""
+        for _ in range(self.max_rounds):
+            resp = self.chat(self.messages, "agent", tools=CHAT_TOOLS, max_tokens=self.max_tokens)
+            msg = resp.choices[0].message
+            tcalls = list(msg.tool_calls or [])
+            text = msg.content or ""
+            entry: dict = {"role": "assistant", "content": text}
+            if tcalls:
+                entry["tool_calls"] = [{"id": tc.id, "type": "function",
+                                        "function": {"name": tc.function.name,
+                                                     "arguments": tc.function.arguments or "{}"}}
+                                       for tc in tcalls]
+            self.messages.append(entry)
+            if not tcalls:
+                break
+            for tc in tcalls:
+                try:
+                    args = json.loads(tc.function.arguments or "{}")
+                except json.JSONDecodeError:
+                    args = {}
+                res = desk.call(tc.function.name, args if isinstance(args, dict) else {})
+                calls.append({"tool": tc.function.name, "args": args, "result": res})
+                self.messages.append({"role": "tool", "tool_call_id": tc.id,
+                                      "content": json.dumps(res, default=str)})
+        if text.strip():
+            calls.append({"tool": "_agent_says", "args": {}, "result": text.strip()})
+        return calls
+
+
+def make_agent():
+    """The Muse agent for the selected provider (MUSE_PROVIDER=meta|open)."""
+    from .models import provider
+
+    return OpenMuseAgent() if provider() == "open" else MuseAgent()
+
+
 def run_replay(obs: FireObservations, desk: FireDesk, driver) -> dict:
     timeline = []
     for ev in events(obs):
         desk.now = ev.epoch
+        desk._note({"woken_at": hhmm(ev.epoch)})    # the wake-up time is ours to cite
         calls = driver.handle(desk, ev)
         timeline.append({"time": hhmm(ev.epoch), "epoch": ev.epoch,
                          "elapsed_min": round((ev.epoch - obs.t_start) / 60, 1),
                          "trigger": ev.what, "calls": calls})
-    return {"fire": obs.fire, "driver": driver.name, "muse": desk.muse.name,
+    model = getattr(driver, "model", None)
+    return {"fire": obs.fire, "driver": driver.name, "model": model, "muse": desk.muse.name,
             "t_start": obs.t_start, "t_end": obs.t_end, "timeline": timeline,
             "alerts": desk.alerts, "score": score(obs, desk)}
 

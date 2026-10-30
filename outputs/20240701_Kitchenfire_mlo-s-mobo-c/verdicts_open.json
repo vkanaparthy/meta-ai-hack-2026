@@ -1,0 +1,14 @@
+{
+  "1:1": {
+    "is_smoke": true,
+    "confidence": 0.93,
+    "reason": "Columnar gray plume anchored to ground on right grows vertically and drifts over successive frames, consistent with wildfire smoke rather than flat haze or cloud.",
+    "at_edge": false
+  },
+  "1:2": {
+    "is_smoke": true,
+    "confidence": 0.96,
+    "reason": "Dark gray columnar plume rises from a single ground point and grows in volume and height while drifting across three successive frames, consistent with wildfire smoke.",
+    "at_edge": false
+  }
+}

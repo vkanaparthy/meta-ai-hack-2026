@@ -16,6 +16,10 @@ outputs/**
 !outputs/**/camera_model.json
 !outputs/**/camera_model_free.json
 !outputs/**/verdicts.json
+!outputs/**/verdicts_open.json
+!outputs/verifier_eval_*.json
+!outputs/usage_open.jsonl
+!outputs/model_comparison.json
 !outputs/**/results.json
 !outputs/*_timeline*.json
 !outputs/*_location.geojson

@@ -27,3 +27,13 @@ def test_parse_verdict():
     v = parse_verdict('Sure.\n{"is_smoke": true, "confidence": 0.82, "reason": "rising plume"}')
     assert v.is_smoke and v.confidence == 0.82
     assert not parse_verdict("no json here").is_smoke
+
+
+def test_verdict_retries_empty_replies(monkeypatch):
+    """A reasoning model can return an empty reply; ask again instead of reading it as 'not smoke'."""
+    from smokespotter import muse
+
+    replies = iter(["", '{"is_smoke": true, "confidence": 0.9, "reason": "rising column"}'])
+    monkeypatch.setattr(muse, "ask_vision", lambda *a, **k: next(replies))
+    v = muse._ask_verdict("prompt", [], "verify")
+    assert v.is_smoke and v.reason == "rising column"

@@ -1,0 +1,8 @@
+{
+  "0:0": {
+    "is_smoke": true,
+    "confidence": 0.97,
+    "reason": "Dark gray columnar plume rises from a fixed point near ground and grows vertically and laterally across successive minutes, consistent with a developing wildfire smoke plume.",
+    "at_edge": false
+  }
+}

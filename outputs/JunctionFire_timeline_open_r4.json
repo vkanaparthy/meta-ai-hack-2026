@@ -1,0 +1,1227 @@
+{
+  "fire": "JunctionFire",
+  "driver": "muse-open",
+  "model": "meta-models/muse-spark-open-1026",
+  "muse": "live",
+  "t_start": 1782775670,
+  "t_end": 1782780942,
+  "timeline": [
+    {
+      "time": "17:26 PDT",
+      "epoch": 1782779213,
+      "elapsed_min": 59.0,
+      "trigger": [
+        "new plume track bm-e/0:0 on camera bm-e",
+        "new plume track mg-e/0:0 on camera mg-e",
+        "new plume track vo-w/1:0 on camera vo-w",
+        "track bm-e/0:0 now has enough history to verify",
+        "track mg-e/0:0 now has enough history to verify",
+        "track vo-w/1:0 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "17:26 PDT",
+            "minutes_since_watch_started": 59.0,
+            "cameras_watching": [
+              "bm-e",
+              "hp-e",
+              "hp-s",
+              "mg-e",
+              "vo-n",
+              "vo-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-e/0:0",
+                "camera": "bm-e",
+                "first_seen_min_ago": 5,
+                "bearing_deg": 76.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              },
+              {
+                "track_id": "mg-e/0:0",
+                "camera": "mg-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 87.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              },
+              {
+                "track_id": "vo-w/1:0",
+                "camera": "vo-w",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 285.5,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "bm-e/0:0"
+          },
+          "result": {
+            "track_id": "bm-e/0:0",
+            "state": "smoke",
+            "confidence": 0.97,
+            "reason": "Dark gray columnar plume rises from a fixed point near ground and grows vertically and laterally across successive minutes, consistent with a developing wildfire smoke plume."
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "mg-e/0:0"
+          },
+          "result": {
+            "track_id": "mg-e/0:0",
+            "state": "smoke",
+            "confidence": 0.97,
+            "reason": "Dark gray column rises from a single point behind the ridge and rapidly grows denser and larger across successive frames, consistent with a new wildfire smoke plume, not fog or cloud."
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "vo-w/1:0"
+          },
+          "result": {
+            "track_id": "vo-w/1:0",
+            "state": "smoke",
+            "confidence": 0.94,
+            "reason": "A distinct vertical plume anchored to a single point on the ridgeline grows taller, denser, and drifts downwind across successive frames, matching smoke behavior not fog or haze."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "bearing lines cross, but too uncertain to place (about 20 km); need a camera from another direction",
+            "bearing_lines": [
+              {
+                "camera": "bm-e",
+                "bearing_deg": 76.2,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "mg-e",
+                "bearing_deg": 87.7,
+                "uncertainty_deg": 1.0
+              },
+              {
+                "camera": "vo-w",
+                "bearing_deg": 285.5,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "issue_alert",
+          "args": {
+            "level": "spotted",
+            "headline": "Smoke spotted by 3 cameras \u2013 location uncertain",
+            "message": "Three cameras (bm-e, mg-e, vo-w) verified smoke plumes at 17:26 PDT. Bearings cross but uncertainty remains high (about 20 km), triangulation needs a fourth view. No precise location yet; continued watch for additional camera confirmation."
+          },
+          "result": {
+            "issued": true,
+            "level": "spotted",
+            "alert_number": 1
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "Smoke verified on bm-e, mg-e, vo-w at 17:26 PDT; issued spotted alert as triangulation too uncertain (~20 km). Awaiting additional camera angle to locate."
+        }
+      ]
+    },
+    {
+      "time": "17:29 PDT",
+      "epoch": 1782779371,
+      "elapsed_min": 61.7,
+      "trigger": [
+        "new plume track hp-s/0:0 on camera hp-s"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "17:29 PDT",
+            "minutes_since_watch_started": 61.7,
+            "cameras_watching": [
+              "bm-e",
+              "hp-e",
+              "hp-s",
+              "mg-e",
+              "vo-n",
+              "vo-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-e/0:0",
+                "camera": "bm-e",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 76.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray columnar plume rises from a fixed point near ground and grows vertically and laterally across successive minutes, consistent with a developing wildfire smoke plume."
+              },
+              {
+                "track_id": "mg-e/0:0",
+                "camera": "mg-e",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 87.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray column rises from a single point behind the ridge and rapidly grows denser and larger across successive frames, consistent with a new wildfire smoke plume, not fog or cloud."
+              },
+              {
+                "track_id": "vo-w/1:0",
+                "camera": "vo-w",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 285.5,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A distinct vertical plume anchored to a single point on the ridgeline grows taller, denser, and drifts downwind across successive frames, matching smoke behavior not fog or haze."
+              },
+              {
+                "track_id": "hp-s/0:0",
+                "camera": "hp-s",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 165.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "17:26 PDT",
+                "headline": "Smoke spotted by 3 cameras \u2013 location uncertain"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "New track hp-s/0:0 too new to verify (2 min remaining); existing 3 verified smokes remain too uncertain to locate (~20 km) awaiting hp-s verification for better triangulation."
+        }
+      ]
+    },
+    {
+      "time": "17:32 PDT",
+      "epoch": 1782779549,
+      "elapsed_min": 64.7,
+      "trigger": [
+        "track hp-s/0:0 now has enough history to verify",
+        "new plume track hp-e/1:0 on camera hp-e"
+      ],
+      "calls": [
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "hp-s/0:0"
+          },
+          "result": {
+            "track_id": "hp-s/0:0",
+            "state": "smoke",
+            "confidence": 0.96,
+            "reason": "A distinct grey column rises from a single ground point and expands vertically and laterally across successive frames, consistent with a growing wildfire smoke plume rather than fog or haze."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "bearing lines cross, but too uncertain to place (about 20 km); need a camera from another direction",
+            "bearing_lines": [
+              {
+                "camera": "bm-e",
+                "bearing_deg": 76.2,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "mg-e",
+                "bearing_deg": 87.7,
+                "uncertainty_deg": 1.0
+              },
+              {
+                "camera": "vo-w",
+                "bearing_deg": 285.5,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "hp-s",
+                "bearing_deg": 165.9,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "17:32 PDT",
+            "minutes_since_watch_started": 64.7,
+            "cameras_watching": [
+              "bm-e",
+              "hp-e",
+              "hp-s",
+              "mg-e",
+              "vo-n",
+              "vo-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-e/0:0",
+                "camera": "bm-e",
+                "first_seen_min_ago": 10,
+                "bearing_deg": 76.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray columnar plume rises from a fixed point near ground and grows vertically and laterally across successive minutes, consistent with a developing wildfire smoke plume."
+              },
+              {
+                "track_id": "mg-e/0:0",
+                "camera": "mg-e",
+                "first_seen_min_ago": 10,
+                "bearing_deg": 87.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray column rises from a single point behind the ridge and rapidly grows denser and larger across successive frames, consistent with a new wildfire smoke plume, not fog or cloud."
+              },
+              {
+                "track_id": "vo-w/1:0",
+                "camera": "vo-w",
+                "first_seen_min_ago": 10,
+                "bearing_deg": 285.5,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A distinct vertical plume anchored to a single point on the ridgeline grows taller, denser, and drifts downwind across successive frames, matching smoke behavior not fog or haze."
+              },
+              {
+                "track_id": "hp-s/0:0",
+                "camera": "hp-s",
+                "first_seen_min_ago": 5,
+                "bearing_deg": 165.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A distinct grey column rises from a single ground point and expands vertically and laterally across successive frames, consistent with a growing wildfire smoke plume rather than fog or haze."
+              },
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 143.4,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": true,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "17:26 PDT",
+                "headline": "Smoke spotted by 3 cameras \u2013 location uncertain"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "Four cameras now verify smoke (hp-s/0:0 added) but triangulation remains too uncertain (~20 km) to locate; hp-e/1:0 too new to verify \u2013 no upgrade yet, awaiting clearer geometry."
+        }
+      ]
+    },
+    {
+      "time": "17:34 PDT",
+      "epoch": 1782779691,
+      "elapsed_min": 67.0,
+      "trigger": [
+        "track hp-e/1:0 now has enough history to verify",
+        "new plume track vo-n/0:0 on camera vo-n"
+      ],
+      "calls": [
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "hp-e/1:0"
+          },
+          "result": {
+            "track_id": "hp-e/1:0",
+            "state": "not smoke",
+            "confidence": 0.85,
+            "reason": "Broad diffuse haze/cloud layer spanning the ridgeline shows no clear point-source growth, rise, or drift over successive minutes, consistent with fog/low cloud rather than a developing smoke plume."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "bearing lines cross, but too uncertain to place (about 20 km); need a camera from another direction",
+            "bearing_lines": [
+              {
+                "camera": "bm-e",
+                "bearing_deg": 76.2,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "mg-e",
+                "bearing_deg": 87.7,
+                "uncertainty_deg": 1.0
+              },
+              {
+                "camera": "vo-w",
+                "bearing_deg": 285.5,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "hp-s",
+                "bearing_deg": 165.9,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "17:34 PDT",
+            "minutes_since_watch_started": 67.0,
+            "cameras_watching": [
+              "bm-e",
+              "hp-e",
+              "hp-s",
+              "mg-e",
+              "vo-n",
+              "vo-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-e/0:0",
+                "camera": "bm-e",
+                "first_seen_min_ago": 13,
+                "bearing_deg": 76.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray columnar plume rises from a fixed point near ground and grows vertically and laterally across successive minutes, consistent with a developing wildfire smoke plume."
+              },
+              {
+                "track_id": "mg-e/0:0",
+                "camera": "mg-e",
+                "first_seen_min_ago": 12,
+                "bearing_deg": 87.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray column rises from a single point behind the ridge and rapidly grows denser and larger across successive frames, consistent with a new wildfire smoke plume, not fog or cloud."
+              },
+              {
+                "track_id": "vo-w/1:0",
+                "camera": "vo-w",
+                "first_seen_min_ago": 12,
+                "bearing_deg": 285.5,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A distinct vertical plume anchored to a single point on the ridgeline grows taller, denser, and drifts downwind across successive frames, matching smoke behavior not fog or haze."
+              },
+              {
+                "track_id": "hp-s/0:0",
+                "camera": "hp-s",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 165.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A distinct grey column rises from a single ground point and expands vertically and laterally across successive frames, consistent with a growing wildfire smoke plume rather than fog or haze."
+              },
+              {
+                "track_id": "vo-n/0:0",
+                "camera": "vo-n",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 320.4,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": true,
+                "status": "too new to verify (ready in 6 min)",
+                "reason": null
+              },
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 143.4,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": true,
+                "status": "not smoke",
+                "reason": "Broad diffuse haze/cloud layer spanning the ridgeline shows no clear point-source growth, rise, or drift over successive minutes, consistent with fog/low cloud rather than a developing smoke plume."
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "17:26 PDT",
+                "headline": "Smoke spotted by 3 cameras \u2013 location uncertain"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "recheck_track",
+          "args": {
+            "track_id": "hp-e/1:0"
+          },
+          "result": {
+            "track_id": "hp-e/1:0",
+            "bearing_deg": 143.4,
+            "direction_to_fire_estimate_deg": 139.8,
+            "difference_deg": 3.6,
+            "bearing_uncertainty_deg": 2.5,
+            "consistent": true,
+            "result": "corroborated: now used as supporting evidence; call locate again",
+            "reason": "Dense grey-brown smoke plume visible rising from and hanging over the distant mountain ridge across all three sequential frames, consistent with wildfire smoke and distinct from cloud or haze."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": true,
+            "lat": 33.1922,
+            "lon": -116.6833,
+            "uncertainty_m": 2060,
+            "cameras": [
+              "bm-e",
+              "hp-e",
+              "mg-e"
+            ],
+            "track_ids": [
+              "bm-e/0:0",
+              "hp-e/1:0",
+              "mg-e/0:0"
+            ],
+            "stations": 3,
+            "unused_tracks": [
+              "vo-w/1:0",
+              "hp-s/0:0"
+            ],
+            "eligible_level": "confirmed",
+            "nearby": [
+              {
+                "name": "Julian",
+                "kind": "town",
+                "distance_km": 14.7,
+                "direction": "NNW",
+                "phrase": "14.7 km NNW of Julian"
+              },
+              {
+                "name": "San Diego Country Estates",
+                "kind": "town",
+                "distance_km": 22.6,
+                "direction": "NNE",
+                "phrase": "22.6 km NNE of San Diego Country Estates"
+              },
+              {
+                "name": "Ramona",
+                "kind": "town",
+                "distance_km": 24.0,
+                "direction": "NE",
+                "phrase": "24.0 km NE of Ramona"
+              }
+            ]
+          }
+        },
+        {
+          "tool": "issue_alert",
+          "args": {
+            "level": "confirmed",
+            "headline": "Wildfire confirmed 14.7 km NNW of Julian",
+            "message": "Five plume tracks verified as smoke at 17:34 PDT, with triangulation from 3 cameras (bm-e, hp-e, mg-e) placing fire 14.7 km NNW of Julian with 2060 m uncertainty. Re-examination of an edge view (hp-e) corroborated smoke consistent with the fire location, enabling the fix. Exact perimeter and growth still unknown; continue monitoring for updates."
+          },
+          "result": {
+            "issued": true,
+            "level": "confirmed",
+            "alert_number": 2
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "Confirmed fire triangulated at 33.19, -116.68 (14.7 km NNW of Julian) with 2060 m uncertainty using 3 cameras after recheck of hp-e/1:0 edge view; confirmed alert issued."
+        }
+      ]
+    },
+    {
+      "time": "17:37 PDT",
+      "epoch": 1782779851,
+      "elapsed_min": 69.7,
+      "trigger": [
+        "new plume track hp-s/0:1 on camera hp-s"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "17:37 PDT",
+            "minutes_since_watch_started": 69.7,
+            "cameras_watching": [
+              "bm-e",
+              "hp-e",
+              "hp-s",
+              "mg-e",
+              "vo-n",
+              "vo-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-e/0:0",
+                "camera": "bm-e",
+                "first_seen_min_ago": 15,
+                "bearing_deg": 76.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray columnar plume rises from a fixed point near ground and grows vertically and laterally across successive minutes, consistent with a developing wildfire smoke plume."
+              },
+              {
+                "track_id": "mg-e/0:0",
+                "camera": "mg-e",
+                "first_seen_min_ago": 15,
+                "bearing_deg": 87.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray column rises from a single point behind the ridge and rapidly grows denser and larger across successive frames, consistent with a new wildfire smoke plume, not fog or cloud."
+              },
+              {
+                "track_id": "vo-w/1:0",
+                "camera": "vo-w",
+                "first_seen_min_ago": 15,
+                "bearing_deg": 285.5,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A distinct vertical plume anchored to a single point on the ridgeline grows taller, denser, and drifts downwind across successive frames, matching smoke behavior not fog or haze."
+              },
+              {
+                "track_id": "hp-s/0:0",
+                "camera": "hp-s",
+                "first_seen_min_ago": 10,
+                "bearing_deg": 165.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A distinct grey column rises from a single ground point and expands vertically and laterally across successive frames, consistent with a growing wildfire smoke plume rather than fog or haze."
+              },
+              {
+                "track_id": "vo-n/0:0",
+                "camera": "vo-n",
+                "first_seen_min_ago": 10,
+                "bearing_deg": 320.4,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": true,
+                "status": "too new to verify (ready in 3 min)",
+                "reason": null
+              },
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 143.4,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": true,
+                "status": "corroborated",
+                "reason": "Dense grey-brown smoke plume visible rising from and hanging over the distant mountain ridge across all three sequential frames, consistent with wildfire smoke and distinct from cloud or haze."
+              },
+              {
+                "track_id": "hp-s/0:1",
+                "camera": "hp-s",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 188.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "17:26 PDT",
+                "headline": "Smoke spotted by 3 cameras \u2013 location uncertain"
+              },
+              {
+                "level": "confirmed",
+                "time": "17:34 PDT",
+                "headline": "Wildfire confirmed 14.7 km NNW of Julian"
+              }
+            ],
+            "last_location": {
+              "lat": 33.1922,
+              "lon": -116.6833,
+              "uncertainty_m": 2060,
+              "cameras": [
+                "bm-e",
+                "hp-e",
+                "mg-e"
+              ],
+              "track_ids": [
+                "bm-e/0:0",
+                "hp-e/1:0",
+                "mg-e/0:0"
+              ],
+              "stations": 3
+            }
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "No new alert: hp-s/0:1 too new to verify (2 min), confirmed fire location unchanged awaiting its verification."
+        }
+      ]
+    },
+    {
+      "time": "17:40 PDT",
+      "epoch": 1782780051,
+      "elapsed_min": 73.0,
+      "trigger": [
+        "track hp-s/0:1 now has enough history to verify",
+        "track vo-n/0:0 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "hp-s/0:1"
+          },
+          "result": {
+            "track_id": "hp-s/0:1",
+            "state": "not smoke",
+            "confidence": 0.94,
+            "reason": "No rising column from a single ground point and no growing/drifting plume, only a stable horizontal cloud/fog bank persisting across frames with no vertical development."
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "vo-n/0:0"
+          },
+          "result": {
+            "track_id": "vo-n/0:0",
+            "state": "not smoke",
+            "confidence": 0.9,
+            "reason": "Bright overexposed white mass shows no coherent ground-anchored column with steady rise/growth and drift, instead exhibiting glare-like blowout and cloud-like fluctuation inconsistent with smoke plume dynamics."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": true,
+            "lat": 33.1922,
+            "lon": -116.6833,
+            "uncertainty_m": 2060,
+            "cameras": [
+              "bm-e",
+              "hp-e",
+              "mg-e"
+            ],
+            "track_ids": [
+              "bm-e/0:0",
+              "hp-e/1:0",
+              "mg-e/0:0"
+            ],
+            "stations": 3,
+            "unused_tracks": [
+              "vo-w/1:0",
+              "hp-s/0:0"
+            ],
+            "eligible_level": "confirmed",
+            "nearby": [
+              {
+                "name": "Julian",
+                "kind": "town",
+                "distance_km": 14.7,
+                "direction": "NNW",
+                "phrase": "14.7 km NNW of Julian"
+              },
+              {
+                "name": "San Diego Country Estates",
+                "kind": "town",
+                "distance_km": 22.6,
+                "direction": "NNE",
+                "phrase": "22.6 km NNE of San Diego Country Estates"
+              },
+              {
+                "name": "Ramona",
+                "kind": "town",
+                "distance_km": 24.0,
+                "direction": "NE",
+                "phrase": "24.0 km NE of Ramona"
+              }
+            ]
+          }
+        },
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "17:40 PDT",
+            "minutes_since_watch_started": 73.0,
+            "cameras_watching": [
+              "bm-e",
+              "hp-e",
+              "hp-s",
+              "mg-e",
+              "vo-n",
+              "vo-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-e/0:0",
+                "camera": "bm-e",
+                "first_seen_min_ago": 19,
+                "bearing_deg": 76.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray columnar plume rises from a fixed point near ground and grows vertically and laterally across successive minutes, consistent with a developing wildfire smoke plume."
+              },
+              {
+                "track_id": "mg-e/0:0",
+                "camera": "mg-e",
+                "first_seen_min_ago": 18,
+                "bearing_deg": 87.7,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray column rises from a single point behind the ridge and rapidly grows denser and larger across successive frames, consistent with a new wildfire smoke plume, not fog or cloud."
+              },
+              {
+                "track_id": "vo-w/1:0",
+                "camera": "vo-w",
+                "first_seen_min_ago": 18,
+                "bearing_deg": 285.5,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A distinct vertical plume anchored to a single point on the ridgeline grows taller, denser, and drifts downwind across successive frames, matching smoke behavior not fog or haze."
+              },
+              {
+                "track_id": "hp-s/0:0",
+                "camera": "hp-s",
+                "first_seen_min_ago": 13,
+                "bearing_deg": 165.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A distinct grey column rises from a single ground point and expands vertically and laterally across successive frames, consistent with a growing wildfire smoke plume rather than fog or haze."
+              },
+              {
+                "track_id": "vo-n/0:0",
+                "camera": "vo-n",
+                "first_seen_min_ago": 13,
+                "bearing_deg": 320.4,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": true,
+                "status": "not smoke",
+                "reason": "Bright overexposed white mass shows no coherent ground-anchored column with steady rise/growth and drift, instead exhibiting glare-like blowout and cloud-like fluctuation inconsistent with smoke plume dynamics."
+              },
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 10,
+                "bearing_deg": 143.4,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": true,
+                "status": "corroborated",
+                "reason": "Dense grey-brown smoke plume visible rising from and hanging over the distant mountain ridge across all three sequential frames, consistent with wildfire smoke and distinct from cloud or haze."
+              },
+              {
+                "track_id": "hp-s/0:1",
+                "camera": "hp-s",
+                "first_seen_min_ago": 5,
+                "bearing_deg": 188.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "No rising column from a single ground point and no growing/drifting plume, only a stable horizontal cloud/fog bank persisting across frames with no vertical development."
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "17:26 PDT",
+                "headline": "Smoke spotted by 3 cameras \u2013 location uncertain"
+              },
+              {
+                "level": "confirmed",
+                "time": "17:34 PDT",
+                "headline": "Wildfire confirmed 14.7 km NNW of Julian"
+              }
+            ],
+            "last_location": {
+              "lat": 33.1922,
+              "lon": -116.6833,
+              "uncertainty_m": 2060,
+              "cameras": [
+                "bm-e",
+                "hp-e",
+                "mg-e"
+              ],
+              "track_ids": [
+                "bm-e/0:0",
+                "hp-e/1:0",
+                "mg-e/0:0"
+              ],
+              "stations": 3
+            }
+          }
+        },
+        {
+          "tool": "recheck_track",
+          "args": {
+            "track_id": "hp-s/0:1"
+          },
+          "result": {
+            "track_id": "hp-s/0:1",
+            "bearing_deg": 188.7,
+            "direction_to_fire_estimate_deg": 143.3,
+            "difference_deg": 45.4,
+            "bearing_uncertainty_deg": 6.0,
+            "consistent": false,
+            "result": "does not line up with the verified plumes; not rechecked"
+          }
+        },
+        {
+          "tool": "recheck_track",
+          "args": {
+            "track_id": "vo-n/0:0"
+          },
+          "result": {
+            "track_id": "vo-n/0:0",
+            "bearing_deg": 320.4,
+            "direction_to_fire_estimate_deg": 313.7,
+            "difference_deg": 6.7,
+            "bearing_uncertainty_deg": 6.0,
+            "consistent": true,
+            "result": "still not smoke",
+            "reason": "Three successive frames are severely overexposed by sun glare with only white cumulus clouds visible and no distinct grey/brown smoke column or haze above the ridgeline."
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "No new alert warranted; two newest tracks verified as not smoke (hp-s/0:1 unrelated, vo-n/0:0 still glare/cloud on recheck) and location unchanged at 14.7 km NNW of Julian with 2060 m uncertainty, already confirmed."
+        }
+      ]
+    }
+  ],
+  "alerts": [
+    {
+      "level": "spotted",
+      "time": "17:26 PDT",
+      "epoch": 1782779213,
+      "elapsed_min": 59.0,
+      "headline": "Smoke spotted by 3 cameras \u2013 location uncertain",
+      "message": "Three cameras (bm-e, mg-e, vo-w) verified smoke plumes at 17:26 PDT. Bearings cross but uncertainty remains high (about 20 km), triangulation needs a fourth view. No precise location yet; continued watch for additional camera confirmation.",
+      "location": null,
+      "bearing_lines": [
+        {
+          "camera": "bm-e",
+          "lat": 33.162972972972966,
+          "lon": -116.80892384304393,
+          "bearing_deg": 76.16,
+          "sigma_deg": 6.0,
+          "track_id": "bm-e/0:0"
+        },
+        {
+          "camera": "mg-e",
+          "lat": 33.18972972972973,
+          "lon": -116.75967704238137,
+          "bearing_deg": 87.69,
+          "sigma_deg": 1.0,
+          "track_id": "mg-e/0:0"
+        },
+        {
+          "camera": "vo-w",
+          "lat": 33.14036036036036,
+          "lon": -116.6184937237128,
+          "bearing_deg": 285.51,
+          "sigma_deg": 6.0,
+          "track_id": "vo-w/1:0"
+        }
+      ],
+      "evidence": [
+        {
+          "track_id": "bm-e/0:0",
+          "frames": [
+            "data/raw/20260629_JunctionFire_bm-e-mobo-c/1782778934_+00720.jpg",
+            "data/raw/20260629_JunctionFire_bm-e-mobo-c/1782779054_+00840.jpg",
+            "data/raw/20260629_JunctionFire_bm-e-mobo-c/1782779174_+00960.jpg"
+          ],
+          "box": [
+            770,
+            949,
+            1010,
+            1062
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.97,
+            "reason": "Dark gray columnar plume rises from a fixed point near ground and grows vertically and laterally across successive minutes, consistent with a developing wildfire smoke plume."
+          }
+        },
+        {
+          "track_id": "mg-e/0:0",
+          "frames": [
+            "data/raw/20260629_JunctionFire_mg-e-mobo-c/1782778962_+00378.jpg",
+            "data/raw/20260629_JunctionFire_mg-e-mobo-c/1782779082_+00498.jpg",
+            "data/raw/20260629_JunctionFire_mg-e-mobo-c/1782779202_+00618.jpg"
+          ],
+          "box": [
+            1073,
+            766,
+            1519,
+            936
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.97,
+            "reason": "Dark gray column rises from a single point behind the ridge and rapidly grows denser and larger across successive frames, consistent with a new wildfire smoke plume, not fog or cloud."
+          }
+        },
+        {
+          "track_id": "vo-w/1:0",
+          "frames": [
+            "data/raw/20260629_JunctionFire_vo-w-mobo-c/1782778972_+00902.jpg",
+            "data/raw/20260629_JunctionFire_vo-w-mobo-c/1782779092_+01022.jpg",
+            "data/raw/20260629_JunctionFire_vo-w-mobo-c/1782779213_+01143.jpg"
+          ],
+          "box": [
+            2642,
+            976,
+            2969,
+            1122
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.94,
+            "reason": "A distinct vertical plume anchored to a single point on the ridgeline grows taller, denser, and drifts downwind across successive frames, matching smoke behavior not fog or haze."
+          }
+        }
+      ]
+    },
+    {
+      "level": "confirmed",
+      "time": "17:34 PDT",
+      "epoch": 1782779691,
+      "elapsed_min": 67.0,
+      "headline": "Wildfire confirmed 14.7 km NNW of Julian",
+      "message": "Five plume tracks verified as smoke at 17:34 PDT, with triangulation from 3 cameras (bm-e, hp-e, mg-e) placing fire 14.7 km NNW of Julian with 2060 m uncertainty. Re-examination of an edge view (hp-e) corroborated smoke consistent with the fire location, enabling the fix. Exact perimeter and growth still unknown; continue monitoring for updates.",
+      "location": {
+        "lat": 33.1922,
+        "lon": -116.6833,
+        "uncertainty_m": 2060,
+        "cameras": [
+          "bm-e",
+          "hp-e",
+          "mg-e"
+        ],
+        "track_ids": [
+          "bm-e/0:0",
+          "hp-e/1:0",
+          "mg-e/0:0"
+        ],
+        "stations": 3
+      },
+      "bearing_lines": [
+        {
+          "camera": "bm-e",
+          "lat": 33.162972972972966,
+          "lon": -116.80892384304393,
+          "bearing_deg": 76.16,
+          "sigma_deg": 6.0,
+          "track_id": "bm-e/0:0"
+        },
+        {
+          "camera": "mg-e",
+          "lat": 33.18972972972973,
+          "lon": -116.75967704238137,
+          "bearing_deg": 87.69,
+          "sigma_deg": 1.0,
+          "track_id": "mg-e/0:0"
+        },
+        {
+          "camera": "vo-w",
+          "lat": 33.14036036036036,
+          "lon": -116.6184937237128,
+          "bearing_deg": 285.51,
+          "sigma_deg": 6.0,
+          "track_id": "vo-w/1:0"
+        },
+        {
+          "camera": "hp-s",
+          "lat": 33.36378378378378,
+          "lon": -116.83579336801176,
+          "bearing_deg": 165.94,
+          "sigma_deg": 6.0,
+          "track_id": "hp-s/0:0"
+        },
+        {
+          "camera": "hp-e",
+          "lat": 33.36378378378378,
+          "lon": -116.83579336801176,
+          "bearing_deg": 143.41,
+          "sigma_deg": 2.5,
+          "track_id": "hp-e/1:0"
+        }
+      ],
+      "evidence": [
+        {
+          "track_id": "bm-e/0:0",
+          "frames": [
+            "data/raw/20260629_JunctionFire_bm-e-mobo-c/1782778934_+00720.jpg",
+            "data/raw/20260629_JunctionFire_bm-e-mobo-c/1782779054_+00840.jpg",
+            "data/raw/20260629_JunctionFire_bm-e-mobo-c/1782779174_+00960.jpg"
+          ],
+          "box": [
+            770,
+            949,
+            1010,
+            1062
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.97,
+            "reason": "Dark gray columnar plume rises from a fixed point near ground and grows vertically and laterally across successive minutes, consistent with a developing wildfire smoke plume."
+          }
+        },
+        {
+          "track_id": "mg-e/0:0",
+          "frames": [
+            "data/raw/20260629_JunctionFire_mg-e-mobo-c/1782778962_+00378.jpg",
+            "data/raw/20260629_JunctionFire_mg-e-mobo-c/1782779082_+00498.jpg",
+            "data/raw/20260629_JunctionFire_mg-e-mobo-c/1782779202_+00618.jpg"
+          ],
+          "box": [
+            1073,
+            766,
+            1519,
+            936
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.97,
+            "reason": "Dark gray column rises from a single point behind the ridge and rapidly grows denser and larger across successive frames, consistent with a new wildfire smoke plume, not fog or cloud."
+          }
+        },
+        {
+          "track_id": "vo-w/1:0",
+          "frames": [
+            "data/raw/20260629_JunctionFire_vo-w-mobo-c/1782778972_+00902.jpg",
+            "data/raw/20260629_JunctionFire_vo-w-mobo-c/1782779092_+01022.jpg",
+            "data/raw/20260629_JunctionFire_vo-w-mobo-c/1782779213_+01143.jpg"
+          ],
+          "box": [
+            2642,
+            976,
+            2969,
+            1122
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.94,
+            "reason": "A distinct vertical plume anchored to a single point on the ridgeline grows taller, denser, and drifts downwind across successive frames, matching smoke behavior not fog or haze."
+          }
+        },
+        {
+          "track_id": "hp-s/0:0",
+          "frames": [
+            "data/raw/20260629_JunctionFire_hp-s-mobo-c/1782779251_+00959.jpg",
+            "data/raw/20260629_JunctionFire_hp-s-mobo-c/1782779371_+01079.jpg",
+            "data/raw/20260629_JunctionFire_hp-s-mobo-c/1782779492_+01200.jpg"
+          ],
+          "box": [
+            311,
+            1003,
+            522,
+            1100
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.96,
+            "reason": "A distinct grey column rises from a single ground point and expands vertically and laterally across successive frames, consistent with a growing wildfire smoke plume rather than fog or haze."
+          }
+        },
+        {
+          "track_id": "hp-e/1:0",
+          "frames": [
+            "data/raw/20260629_JunctionFire_hp-e-mobo-c/1782779430_+01138.jpg",
+            "data/raw/20260629_JunctionFire_hp-e-mobo-c/1782779549_+01257.jpg",
+            "data/raw/20260629_JunctionFire_hp-e-mobo-c/1782779669_+01377.jpg"
+          ],
+          "box": [
+            2985,
+            1002,
+            3072,
+            1095
+          ],
+          "status": {
+            "state": "corroborated",
+            "confidence": 0.95,
+            "reason": "Dense grey-brown smoke plume visible rising from and hanging over the distant mountain ridge across all three sequential frames, consistent with wildfire smoke and distinct from cloud or haze."
+          }
+        }
+      ]
+    }
+  ],
+  "score": {
+    "spotted_min_after_first_smoke": 19.1,
+    "provisional_min_after_first_smoke": null,
+    "confirmed_min_after_first_smoke": 27.0,
+    "final_error_m": 1906,
+    "final_uncertainty_m": 2060
+  }
+}

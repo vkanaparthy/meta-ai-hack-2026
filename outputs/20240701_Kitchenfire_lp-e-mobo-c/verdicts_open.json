@@ -1,0 +1,8 @@
+{
+  "0:0": {
+    "is_smoke": true,
+    "confidence": 0.88,
+    "reason": "A distinct columnar plume originates from a single ground point and grows taller/denser and drifts over successive minutes, consistent with rising smoke rather than fog, cloud, or haze.",
+    "at_edge": false
+  }
+}

@@ -96,7 +96,8 @@ def run(folder: Path, args) -> dict | None:
     if args.verify:
         from smokespotter.muse import verify_track
 
-        cache_path = out / "verdicts.json"
+        from smokespotter.models import verdicts_name
+        cache_path = out / verdicts_name()
         cache = (json.loads(cache_path.read_text())
                  if cache_path.exists() and not (args.refresh or args.reverify) else {})
         ranked = sorted(tracks, key=lambda k: -len(tracks[k]))[: args.max_verify]

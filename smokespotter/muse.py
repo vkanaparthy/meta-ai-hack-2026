@@ -11,7 +11,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from .models import client, reasoning_model
+from .models import ask_vision
 
 PROMPT = """You are verifying a wildfire smoke detection from a fixed mountaintop camera.
 The images are crops of the SAME region at successive times (earliest first), about a minute apart.
@@ -59,17 +59,22 @@ def parse_verdict(text: str) -> Verdict:
         return Verdict(False, 0.0, f"unparseable reply: {text[:120]}")
 
 
+def _ask_verdict(prompt: str, images: list[str], purpose: str, tries: int = 3) -> Verdict:
+    """Ask, and ask again if the reply is empty or cut off (no parseable JSON)."""
+    v = Verdict(False, 0.0, "unparseable reply: ")
+    for _ in range(tries):
+        v = parse_verdict(ask_vision(prompt, images, purpose=purpose))
+        if not v.reason.startswith("unparseable reply"):
+            return v
+    return v
+
+
 def verify_track(frame_paths: list[Path], box: tuple[float, float, float, float],
                  at_edge: bool = False) -> Verdict:
     """frame_paths: 2-4 frames of the track, earliest first. box: union box in original pixels.
     at_edge: the region touches the image border (plume may be cut off)."""
-    content = [{"type": "input_text", "text": PROMPT + (EDGE_NOTE if at_edge else "")}]
-    content += [{"type": "input_image", "image_url": _crop_data_url(p, box)} for p in frame_paths]
-    resp = client().responses.create(
-        model=reasoning_model(),
-        input=[{"type": "message", "role": "user", "content": content}],
-    )
-    return parse_verdict(resp.output_text)
+    return _ask_verdict(PROMPT + (EDGE_NOTE if at_edge else ""),
+                        [_crop_data_url(p, box) for p in frame_paths], "verify")
 
 
 RECHECK_PROMPT = """You are re-examining a camera view that an earlier check doubted.
@@ -84,10 +89,5 @@ Reply with JSON only: {{"is_smoke": true|false, "confidence": 0.0-1.0, "reason":
 
 
 def recheck_track(frame_paths: list[Path], box: tuple[float, float, float, float], context: str) -> Verdict:
-    content = [{"type": "input_text", "text": RECHECK_PROMPT.format(context=context)}]
-    content += [{"type": "input_image", "image_url": _crop_data_url(p, box, pad=1.5)} for p in frame_paths]
-    resp = client().responses.create(
-        model=reasoning_model(),
-        input=[{"type": "message", "role": "user", "content": content}],
-    )
-    return parse_verdict(resp.output_text)
+    return _ask_verdict(RECHECK_PROMPT.format(context=context),
+                        [_crop_data_url(p, box, pad=1.5) for p in frame_paths], "recheck")

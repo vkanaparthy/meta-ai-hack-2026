@@ -1,0 +1,2228 @@
+{
+  "provider": "open",
+  "summary": {
+    "after_smoke": {
+      "tracks": 26,
+      "judged_smoke": 24,
+      "judged_smoke_rate": 0.923,
+      "unanimous_across_repeats": 1.0,
+      "agree_with_muse_1_3": 0.955,
+      "compared_with_muse_1_3": 22,
+      "median_confidence": 0.93
+    },
+    "before_smoke": {
+      "tracks": 3,
+      "judged_smoke": 0,
+      "judged_smoke_rate": 0.0,
+      "unanimous_across_repeats": 1.0,
+      "agree_with_muse_1_3": 1.0,
+      "compared_with_muse_1_3": 3,
+      "median_confidence": 0.92
+    },
+    "same_view_before_smoke": {
+      "tracks": 32,
+      "judged_smoke": 0,
+      "judged_smoke_rate": 0.0,
+      "unanimous_across_repeats": 1.0,
+      "agree_with_muse_1_3": null,
+      "compared_with_muse_1_3": 0,
+      "median_confidence": 0.93
+    },
+    "same_view_fire_burning": {
+      "tracks": 24,
+      "judged_smoke": 10,
+      "judged_smoke_rate": 0.417,
+      "unanimous_across_repeats": 0.875,
+      "agree_with_muse_1_3": null,
+      "compared_with_muse_1_3": 0,
+      "median_confidence": 0.88
+    },
+    "replies": {
+      "total": 255,
+      "unparseable": 0
+    }
+  },
+  "rows": [
+    {
+      "track": "AirportFire:marconi-n/0:0",
+      "fire": "AirportFire",
+      "camera": "marconi-n",
+      "frames": 25,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 16.0,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.97,
+        0.96,
+        0.96
+      ],
+      "reasons": [
+        "Anchored vertical column rises from behind ridge and grows denser with expanding bright pyrocumulus cap over successive minutes, consistent with wildfire smoke and inconsistent with fog, haze, or cloud.",
+        "Narrow vertical column anchored behind ridge grows denser and taller with an expanding bright cauliflower top over successive minutes, characteristic of a developing wildfire smoke plume/pyrocumulus.",
+        "Tall vertical column anchored to single ground source grows and rises over minutes with dark base and expanding bright cauliflower top, classic pyrocumulus-topped wildfire smoke, not static fog/haze or cloud layer."
+      ]
+    },
+    {
+      "track": "AirportFire:marconi-n/0:0@-15min",
+      "fire": "AirportFire",
+      "camera": "marconi-n",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 1.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.85,
+        0.88,
+        0.78
+      ],
+      "reasons": [
+        "Thin dark vertical column anchored behind ridge persists and slightly intensifies across successive frames, exhibiting rising plume behavior unlike static haze or cloud.",
+        "A distinct dark gray vertical column anchored to a single point on the distant ridgeline grows taller and denser across successive frames, consistent with a wildfire smoke plume rather than static haze or cloud.",
+        "Persistent narrow dark vertical column anchored at distant ridgeline shows slight increase in density/height across successive frames consistent with rising wildfire smoke rather than transient cloud, fog, haze or shadow."
+      ],
+      "last_frame_minutes_from_first_smoke": 5.0
+    },
+    {
+      "track": "AirportFire:marconi-n/0:0@-25min",
+      "fire": "AirportFire",
+      "camera": "marconi-n",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -9.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.96,
+        0.93,
+        0.97
+      ],
+      "reasons": [
+        "No ground-anchored rising, growing, or drifting plume develops across frames; only static haze and a faint distant cloud remain unchanged.",
+        "No ground-anchored column that rises, grows and drifts; only static distant haze and a small unchanged fair-weather cloud are visible across the sequence.",
+        "No rising, growing or drifting column from a ground point appears across the three successive frames; only static distant haze and clear sky persist."
+      ],
+      "last_frame_minutes_from_first_smoke": -5.0
+    },
+    {
+      "track": "AirportFire:starr-n/0:0",
+      "fire": "AirportFire",
+      "camera": "starr-n",
+      "frames": 20,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 20.0,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.95,
+        0.93,
+        0.93
+      ],
+      "reasons": [
+        "Gray-brown column rises from a single ground point and expands/drifts upward over successive frames, characteristic of a growing wildfire smoke plume rather than cloud or haze.",
+        "Narrow column anchored to single ground point rises vertically, expands and drifts slightly over successive frames, characteristic of a growing wildfire smoke plume rather than static haze or cloud.",
+        "Tall gray-brown column anchored to a single ground point rises, expands vertically, and drifts downwind across successive frames, consistent with wildfire smoke and not fog, cloud, haze, or dust."
+      ]
+    },
+    {
+      "track": "AirportFire:starr-n/0:0@-15min",
+      "fire": "AirportFire",
+      "camera": "starr-n",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 5.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.78,
+        0.84,
+        0.71
+      ],
+      "reasons": [
+        "A faint gray-white column appears near the ground in the central valley and grows taller and more defined across the successive frames, consistent with a new rising smoke plume rather than static haze.",
+        "A narrow vertical plume emerges from a point source on the mid-distance hillside and grows denser/taller across successive frames, consistent with a new smoke plume rather than static haze.",
+        "A faint ground-anchored plume newly appears and grows vertically above the left-center ridge in the final frame, distinct from uniform haze and without cloud-like drift."
+      ],
+      "last_frame_minutes_from_first_smoke": 9.0
+    },
+    {
+      "track": "AirportFire:starr-n/0:0@-25min",
+      "fire": "AirportFire",
+      "camera": "starr-n",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -5.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.96,
+        0.92,
+        0.96
+      ],
+      "reasons": [
+        "No point-source plume emerges or grows across the three frames; the view shows only static distant haze and a small high cloud with no rising, drifting smoke column.",
+        "No new rising, growing, or drifting plume from a ground point across sequential frames; only persistent uniform haze and a small static high cloud remain unchanged.",
+        "No new ground-anchored rising plume appears or grows/drifts across the three frames; only static hazy background and a small distant high cloud remain unchanged."
+      ],
+      "last_frame_minutes_from_first_smoke": -1.0
+    },
+    {
+      "track": "AirportFire:stgo-e/1:0",
+      "fire": "AirportFire",
+      "camera": "stgo-e",
+      "frames": 25,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 15.0,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.94,
+        0.93,
+        0.95
+      ],
+      "reasons": [
+        "Dense gray column rises from a single point behind the ridge and grows taller and more turbulent across frames, consistent with a new wildfire smoke plume rather than fog or cloud.",
+        "Dark gray column rises from a fixed ground point on the ridgeline and expands vertically and drifts over successive minutes, characteristic of a growing wildfire smoke plume.",
+        "Dense gray column rises from a single point behind the ridge and grows taller and more diffuse across successive frames, consistent with a developing wildfire smoke plume rather than static fog, cloud, or haze."
+      ]
+    },
+    {
+      "track": "AirportFire:stgo-e/1:0@-15min",
+      "fire": "AirportFire",
+      "camera": "stgo-e",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 0.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.93,
+        0.97,
+        0.97
+      ],
+      "reasons": [
+        "No localized plume rising from a ground point or growing/drifting over time, only static distant haze consistent with haze/fog layer.",
+        "No rising point-source plume develops across the three frames, only static distant haze and no growing vertical column or drift typical of wildfire smoke.",
+        "No anchored smoke column appears or grows across frames, only static distant haze and consistent background haze remains unchanged."
+      ],
+      "last_frame_minutes_from_first_smoke": 4.0
+    },
+    {
+      "track": "AirportFire:stgo-e/1:0@-25min",
+      "fire": "AirportFire",
+      "camera": "stgo-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -10.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.97,
+        0.96,
+        0.97
+      ],
+      "reasons": [
+        "No point-source plume rises, grows, or drifts across the three sequential frames, only static clear sky and unchanged distant haze.",
+        "No ground-anchored rising column that grows and drifts over time is visible across the three sequential frames, only static distant haze and clear sky with no temporal plume development.",
+        "No rising, growing plume visible across frames; distant haze layer remains static without columnar growth or drift, consistent with atmospheric haze not smoke."
+      ],
+      "last_frame_minutes_from_first_smoke": -6.0
+    },
+    {
+      "track": "AirportFire:stgo-e/1:1",
+      "fire": "AirportFire",
+      "camera": "stgo-e",
+      "frames": 3,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 20.0,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.92,
+        0.91,
+        0.88
+      ],
+      "reasons": [
+        "Dark gray columnar plume on left and center expands, billows, and drifts between frames originating near ground level, consistent with growing wildfire smoke rather than static fog, haze, or cloud.",
+        "Dense dark-gray columnar plume rises from a point behind the ridge and expands/drifts leftward across successive frames, consistent with growing wildfire smoke rather than fog, haze, or cloud.",
+        "Dark gray columnar plume rises from ground point and expands/drifts between frames, consistent with growing smoke rather than white uniform fog, haze layer, or cloud shadow."
+      ]
+    },
+    {
+      "track": "AirportFire:stgo-e/1:1@-15min",
+      "fire": "AirportFire",
+      "camera": "stgo-e",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 5.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.96,
+        0.92,
+        0.96
+      ],
+      "reasons": [
+        "No rising point-source plume or growth; only static uniform haze/fog layer over valley with no columnar development across frames.",
+        "No point-source rising and growing column appears across the three frames, only a static uniform haze/fog layer with unchanged brightness and no vertical development indicative of smoke.",
+        "No rising, growing column from a ground point is visible across the sequence; only static uniform haze/fog with a transient bird/insect artifact and no plume development."
+      ],
+      "last_frame_minutes_from_first_smoke": 9.0
+    },
+    {
+      "track": "AirportFire:stgo-e/1:1@-25min",
+      "fire": "AirportFire",
+      "camera": "stgo-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -5.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.92,
+        0.94,
+        0.95
+      ],
+      "reasons": [
+        "No localized point-source plume rising, growing, or drifting is visible across frames, only static uniform haze consistent with fog/haze, not wildfire smoke.",
+        "No point-source columnar plume with growth or drift observed; only static uniform haze layer persists unchanged across all three frames.",
+        "No point-source columnar plume with growth or drift is visible across frames, only a static uniform distant haze layer consistent with fog/haze not smoke."
+      ],
+      "last_frame_minutes_from_first_smoke": -1.0
+    },
+    {
+      "track": "BonnyFire:hp-e/0:0",
+      "fire": "BonnyFire",
+      "camera": "hp-e",
+      "frames": 29,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 12.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.93,
+        0.94,
+        0.92
+      ],
+      "reasons": [
+        "A distinct gray column rises from a single ground point and grows taller and denser while drifting slightly downwind across the three successive frames, consistent with a developing wildfire smoke plume.",
+        "A distinct column rises from a single ground point and grows denser and taller over successive minutes, consistent with a developing wildfire smoke plume rather than static haze or cloud.",
+        "Narrow gray column rises from a single ground point and grows vertically and drifts across successive minute-apart frames, consistent with a developing wildfire smoke plume."
+      ]
+    },
+    {
+      "track": "BonnyFire:hp-e/0:0@-15min",
+      "fire": "BonnyFire",
+      "camera": "hp-e",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": -3.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.96,
+        0.96,
+        0.93
+      ],
+      "reasons": [
+        "No rising, growing, and drifting column originating near the ground is visible across the three sequential frames, only static terrain and high clouds inconsistent with a new smoke plume.",
+        "No ground-anchored, rising and growing plume is visible across the three sequential frames, only static terrain, cloud shadows, and unchanged cumulus clouds.",
+        "No new ground-anchored, vertically rising and expanding plume appears across successive frames; only stable terrain and unchanged high cumulus clouds are visible."
+      ],
+      "last_frame_minutes_from_first_smoke": 1.0
+    },
+    {
+      "track": "BonnyFire:hp-e/0:0@-25min",
+      "fire": "BonnyFire",
+      "camera": "hp-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -13.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.93,
+        0.94,
+        0.93
+      ],
+      "reasons": [
+        "No point-source plume rising, growing and drifting is visible across the three frames, only stable background clouds/haze and minor cloud-shadow shifts with no new smoke development.",
+        "No persistent ground-anchored plume that grows and drifts is visible across the three frames, only static terrain, distant haze, and slowly moving cumulus clouds with shifting shadows.",
+        "No ground-anchored rising and growing plume appears across the three successive frames; only stable distant haze, high cumulus clouds, and cloud shadows are visible."
+      ],
+      "last_frame_minutes_from_first_smoke": -9.0
+    },
+    {
+      "track": "BonnyFire:hp-e/0:1",
+      "fire": "BonnyFire",
+      "camera": "hp-e",
+      "frames": 8,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 20.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.95,
+        0.95,
+        0.96
+      ],
+      "reasons": [
+        "Dark gray column rises vertically from a single ground point and grows/drifts upward across successive frames, consistent with a wildfire plume not fog or cloud.",
+        "Dense gray column rises from a single ground point and grows vertically and laterally while drifting downwind across sequential frames, matching wildfire smoke development rather than fog, cloud, or haze.",
+        "Distinct dark gray column rises from a single ground point and grows vertically and drifts consistently across frames, characteristic of wildfire smoke not fog or cloud."
+      ]
+    },
+    {
+      "track": "BonnyFire:hp-e/0:1@-15min",
+      "fire": "BonnyFire",
+      "camera": "hp-e",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 5.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.88,
+        0.88,
+        0.82
+      ],
+      "reasons": [
+        "A new dark grey columnar plume appears rising from a single point on the distant ridgeline in the final frame after being absent in earlier frames, growing vertically and drifting consistent with smoke rather than static cloud or haze.",
+        "A distinct narrow gray column emerges in the last frame rising from a single point on the ridgeline and growing vertically where prior frames were clear, consistent with a new smoke plume.",
+        "A narrow gray-brown column emerges in the last frame rising from a single point on the ridgeline where the first two frames were clear, growing vertically consistent with a new smoke plume rather than fog, haze layer, or cloud."
+      ],
+      "last_frame_minutes_from_first_smoke": 9.0
+    },
+    {
+      "track": "BonnyFire:hp-e/0:1@-25min",
+      "fire": "BonnyFire",
+      "camera": "hp-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -5.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.92,
+        0.92,
+        0.94
+      ],
+      "reasons": [
+        "No point-source vertical plume appears or grows across the three successive frames, only stable high clouds over unchanged mountain terrain.",
+        "No ground-anchored plume that grows and drifts is visible across frames, only stable terrain with distant clouds and a slowly moving cloud shadow at bottom-left.",
+        "No rising, growing, or drifting column from a ground point; only static distant haze and small cumulus clouds with no temporal development consistent with smoke."
+      ],
+      "last_frame_minutes_from_first_smoke": -1.0
+    },
+    {
+      "track": "BonnyFire:hp-n/1:0",
+      "fire": "BonnyFire",
+      "camera": "hp-n",
+      "frames": 29,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 12.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.94,
+        0.94,
+        0.94
+      ],
+      "reasons": [
+        "A gray column originates from a single ground point and grows denser and taller while drifting upward across successive frames, consistent with a rising smoke plume not fog or cloud.",
+        "Dark columnar plume originates from a single ground point and grows taller/denser across successive minutes, consistent with rising wildfire smoke, not fog or cloud.",
+        "Dark column rises from a single ground point and grows vertically and downwind across successive frames, consistent with a new wildfire smoke plume rather than static haze or cloud."
+      ]
+    },
+    {
+      "track": "BonnyFire:hp-n/1:0@-15min",
+      "fire": "BonnyFire",
+      "camera": "hp-n",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": -3.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.93,
+        0.97,
+        0.92
+      ],
+      "reasons": [
+        "No ground-anchored rising plume that grows and drifts is visible across the sequence; only distant haze and normal cumulus clouds with moving cloud shadows are present.",
+        "No rising, growing columnar plume from a ground point is visible across the sequence; frames show only stable sky, distant terrain, and a slowly moving cloud shadow.",
+        "No point-source rising column; only static distant haze and high clouds with no growth or drift consistent with smoke."
+      ],
+      "last_frame_minutes_from_first_smoke": 1.0
+    },
+    {
+      "track": "BonnyFire:hp-n/1:0@-25min",
+      "fire": "BonnyFire",
+      "camera": "hp-n",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -13.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.96,
+        0.95,
+        0.96
+      ],
+      "reasons": [
+        "No rising, growing, or drifting plume anchored to the ground is visible across the three frames; only static terrain, distant haze, and stable high clouds remain unchanged.",
+        "No rising columnar plume originating from a ground point is visible across the three frames, only stable high clouds and stationary terrain with shifting cloud shadows.",
+        "No ground-anchored columnar plume forms, grows or drifts across the three frames; only static terrain, distant haze and minor cloud-shadow shifts are visible."
+      ],
+      "last_frame_minutes_from_first_smoke": -9.0
+    },
+    {
+      "track": "BonnyFire:hp-n/1:1",
+      "fire": "BonnyFire",
+      "camera": "hp-n",
+      "frames": 23,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 18.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.96,
+        0.97,
+        0.97
+      ],
+      "reasons": [
+        "Dark column anchored to a single ground point grows taller, denser, and drifts downwind across successive minutes, consistent with a rising wildfire smoke plume not fog or cloud.",
+        "Dark gray column anchored to a single ground point grows vertically and in density across successive frames while drifting, matching wildfire smoke development not fog or cloud.",
+        "Dark gray column anchored to single ground point grows denser and taller vertically across successive frames, consistent with rising wildfire smoke plume."
+      ]
+    },
+    {
+      "track": "BonnyFire:hp-n/1:1@-15min",
+      "fire": "BonnyFire",
+      "camera": "hp-n",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 3.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.93,
+        0.9,
+        0.91
+      ],
+      "reasons": [
+        "No point-source plume rises, grows, or drifts across frames; only stable distant haze and slowly shifting high clouds are visible.",
+        "No anchored column rising from the ground and growing/drifting across the three frames is visible, only static fair-weather clouds and stable valley haze with no temporal plume development.",
+        "No point-source rising/growing/drifting plume visible across successive frames; scene shows only static scattered high clouds and stable distant haze over the mountain horizon."
+      ],
+      "last_frame_minutes_from_first_smoke": 7.0
+    },
+    {
+      "track": "BonnyFire:hp-n/1:1@-25min",
+      "fire": "BonnyFire",
+      "camera": "hp-n",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -7.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.94,
+        0.96,
+        0.95
+      ],
+      "reasons": [
+        "No persistent ground-anchored rising plume that grows and drifts across frames is visible, only stable cumulus clouds, atmospheric haze, and static cloud shadows over the valley.",
+        "No ground-anchored, growing and drifting column appears across the sequential frames; terrain and clouds remain static with no new plume development.",
+        "No ground-anchored plume that grows and drifts over time is visible; the sequence shows a static vista with unchanged distant clouds and haze and no new smoke column."
+      ],
+      "last_frame_minutes_from_first_smoke": -3.0
+    },
+    {
+      "track": "GroveFire:hp-e/0:0",
+      "fire": "GroveFire",
+      "camera": "hp-e",
+      "frames": 37,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 3.5,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.95,
+        0.95,
+        0.95
+      ],
+      "reasons": [
+        "A distinct column rises from a single ground point and grows vertically and laterally across successive frames, consistent with a developing wildfire smoke plume.",
+        "A distinct column rises from a single ground point and grows taller, denser, and more vertical across successive frames consistent with a developing wildfire smoke plume.",
+        "Distinct vertical plume anchored to a single ground point grows taller and denser across successive frames, consistent with rising wildfire smoke rather than static fog or cloud."
+      ]
+    },
+    {
+      "track": "GroveFire:hp-e/0:0@-15min",
+      "fire": "GroveFire",
+      "camera": "hp-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -11.5,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.84,
+        0.88,
+        0.87
+      ],
+      "reasons": [
+        "No point-source plume rising from ground with growth/drift across frames; diffuse vertical graying is broad, hangs from cloud base and persists as haze/virga, not an expanding smoke column.",
+        "No point-source rising and expanding plume develops across the sequence, only static distant haze and low cloud layers with no vertical growth or drift.",
+        "No coherent plume rising from a single ground point and expanding/drifting over the 3 frames \u2014 the static diffuse vertical darkening is consistent with distant rain shaft/haze/cloud rather than wildfire smoke."
+      ],
+      "last_frame_minutes_from_first_smoke": -7.5
+    },
+    {
+      "track": "GroveFire:hp-e/0:0@-25min",
+      "fire": "GroveFire",
+      "camera": "hp-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -21.5,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.94,
+        0.93,
+        0.92
+      ],
+      "reasons": [
+        "No anchored vertical plume rising from a ground point; only cloud shadows and sunlit patches shifting rapidly across the valley floor.",
+        "No anchored rising column with growth and drift is visible across the three frames; variation is shifting cloud shadows and light patches on the valley floor beneath dark overcast virga, not smoke.",
+        "No rising, growing plume from a point source is visible; the bright area is sunlit ground with shifting cloud shadows and distant rain/virga, not smoke."
+      ],
+      "last_frame_minutes_from_first_smoke": -17.5
+    },
+    {
+      "track": "GroveFire:hp-e/1:0",
+      "fire": "GroveFire",
+      "camera": "hp-e",
+      "frames": 12,
+      "group": "before_smoke",
+      "minutes_from_first_smoke": -22.5,
+      "edge_clipped": false,
+      "meta_1_3": false,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.95,
+        0.93,
+        0.95
+      ],
+      "reasons": [
+        "Isolated bright white puff aloft detached from ground with cauliflower cumulus texture, drifting and reshaping as a small convective cloud rather than a ground-anchored rising smoke column.",
+        "Detached bright white cauliflower-topped cumulus cloud suspended mid-air with no ground-anchored base or rising/drifting plume structure, typical of convective cloud not wildfire smoke.",
+        "Isolated bright white cumulus cloud aloft shows convective vertical growth with no ground-anchored column, growth, or drift consistent with a wildfire smoke plume."
+      ]
+    },
+    {
+      "track": "GroveFire:hp-e/1:0@-15min",
+      "fire": "GroveFire",
+      "camera": "hp-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -37.5,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.95,
+        0.97,
+        0.97
+      ],
+      "reasons": [
+        "Vertical streaks descend from the cloud base as virga/rain shaft with no point-source rise from the ground and no growth/drift characteristic of a smoke plume.",
+        "Vertical diffuse streaks descend from the cloud base to the ground as a precipitation/virga shaft and do not originate from a single ground point or rise/drift like smoke.",
+        "Vertical translucent shafts descend from cloud base without a ground point source and show no rising growth, consistent with precipitation virga/fog rather than a wildfire smoke plume."
+      ],
+      "last_frame_minutes_from_first_smoke": -33.5
+    },
+    {
+      "track": "GroveFire:hp-e/1:1",
+      "fire": "GroveFire",
+      "camera": "hp-e",
+      "frames": 3,
+      "group": "before_smoke",
+      "minutes_from_first_smoke": -6.5,
+      "edge_clipped": false,
+      "meta_1_3": false,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.92,
+        0.92,
+        0.89
+      ],
+      "reasons": [
+        "The isolated dark mass shrinks and fragments across successive frames instead of rising, growing, and drifting from a fixed ground point, consistent with a dissipating low cloud rather than a wildfire smoke plume.",
+        "The central dark feature shrinks and dissipates between frames instead of growing and rising from a ground-anchored point, indicating a dissipating cloud fragment rather than a smoke plume.",
+        "Isolated dark patch suspended in sky with no ground-anchored base shrinks and fragments between frames instead of growing and rising, indicating dissipating cloud rather than wildfire smoke."
+      ]
+    },
+    {
+      "track": "GroveFire:hp-e/1:1@-15min",
+      "fire": "GroveFire",
+      "camera": "hp-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -21.5,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.88,
+        0.92,
+        0.89
+      ],
+      "reasons": [
+        "The narrow column at lower-left descends from the cloud base and persists without upward growth from a ground point source, consistent with a funnel/scud convective feature rather than a rising, expanding wildfire smoke plume.",
+        "The narrow column descends from the cloud base and tapers downward rather than rising, growing and drifting from a fixed ground point like wildfire smoke, consistent with virga/funnel look-alike.",
+        "The narrow column is a cloud-base-attached funnel/scud vortex, not a new ground-sourced smoke plume that grows and drifts over time."
+      ],
+      "last_frame_minutes_from_first_smoke": -17.5
+    },
+    {
+      "track": "GroveFire:hp-e/1:1@-25min",
+      "fire": "GroveFire",
+      "camera": "hp-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -31.5,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.96,
+        0.97,
+        0.95
+      ],
+      "reasons": [
+        "The sequence shows a broad storm cloud deck with flat, diffuse rain shafts at the base and no discrete ground-anchored point source that rises, grows, and drifts as smoke would.",
+        "No discrete ground-anchored rising plume is visible; the dark, diffuse mass is a broad, static cloud deck/shelf cloud spanning the frame with no columnar growth or drift characteristic of smoke.",
+        "No point-source rising plume observed, only a static broad cloud deck with uniform bases persisting unchanged across frames, consistent with weather clouds not wildfire smoke."
+      ],
+      "last_frame_minutes_from_first_smoke": -27.5
+    },
+    {
+      "track": "GroveFire:hp-e/1:2",
+      "fire": "GroveFire",
+      "camera": "hp-e",
+      "frames": 47,
+      "group": "before_smoke",
+      "minutes_from_first_smoke": -6.5,
+      "edge_clipped": false,
+      "meta_1_3": false,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.88,
+        0.9,
+        0.88
+      ],
+      "reasons": [
+        "Detached puffy white mass with no ground-anchored rising column shows minimal change over minutes, consistent with small cumulus cloud/fog patch rather than a growing, drifting smoke plume.",
+        "Detached cauliflower-like white puff with no ground-anchored rising column, showing stable cumulus-cloud morphology rather than a growing, drifting smoke plume originating from a single point.",
+        "Detached bright white cauliflower puff floating above haze layer resembles small cumulus cloud without ground-anchored columnar rise, vertical growth, or drifting plume typical of wildfire smoke."
+      ]
+    },
+    {
+      "track": "GroveFire:hp-e/1:2@-15min",
+      "fire": "GroveFire",
+      "camera": "hp-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -21.5,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.88,
+        0.87,
+        0.68
+      ],
+      "reasons": [
+        "Isolated small white puff in mid-sky with no ground-anchored column, vertical rise, or sustained growth/drift, consistent with a small cumulus cloud/fog fragment not a wildfire smoke plume.",
+        "Small isolated white puff in lower-right appears detached from ground with no rising column and minimal drift, consistent with transient low cloud/haze rather than a growing ground-anchored smoke plume.",
+        "Small isolated white puff appears in last two frames without ground-anchored rising column or sustained vertical growth/drift, consistent with low cloud/haze puff rather than wildfire smoke plume."
+      ],
+      "last_frame_minutes_from_first_smoke": -17.5
+    },
+    {
+      "track": "GroveFire:hp-e/1:2@-25min",
+      "fire": "GroveFire",
+      "camera": "hp-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -31.5,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.91,
+        0.92,
+        0.91
+      ],
+      "reasons": [
+        "No rising, expanding column anchored to the ground develops across the three frames; the scene shows only static high clouds and a persistent horizontal haze layer with no vertical growth or drift consistent with smoke.",
+        "No ground-anchored, growing, and drifting column appears across the three frames; the feature is a static horizontal cloud/haze layer with no vertical rise or expansion typical of smoke.",
+        "Sequence shows a static horizontal haze/cloud deck with no vertical column, point-source origin, growth or drift over ~3 minutes, consistent with meteorological clouds not a developing smoke plume."
+      ],
+      "last_frame_minutes_from_first_smoke": -27.5
+    },
+    {
+      "track": "GroveFire:tp-w/0:0",
+      "fire": "GroveFire",
+      "camera": "tp-w",
+      "frames": 23,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 17.4,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.92,
+        0.91,
+        0.92
+      ],
+      "reasons": [
+        "Narrow column anchored to a single ground point rises vertically and expands in volume across successive minutes, consistent with a growing wildfire smoke plume rather than fog or haze.",
+        "Column anchored to a single point on the ridgeline grows vertically and expands over successive frames, consistent with a rising drift of wildfire smoke rather than static haze or cloud.",
+        "Narrow column rises from single ground point and grows vertically and in density across successive minutes, consistent with wildfire smoke plume not fog or cloud."
+      ]
+    },
+    {
+      "track": "GroveFire:tp-w/0:0@-15min",
+      "fire": "GroveFire",
+      "camera": "tp-w",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 2.4,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        true,
+        true
+      ],
+      "confidences": [
+        0.78,
+        0.62,
+        0.62
+      ],
+      "reasons": [
+        "Static vertical haze/virga shaft beneath bright cloud base shows no clear growth, upward rise or drift from a ground point over successive minutes, consistent with precipitation/haze rather than new smoke plume.",
+        "Faint narrow column anchored to single point on ridgeline persists across frames with subtle vertical growth and drift, consistent with early small smoke plume not broad fog/haze.",
+        "Faint narrow vertical column anchored to a point on the ridgeline persists and slowly expands upward across successive frames, consistent with a small early-stage smoke plume rather than diffuse fog, haze, or virga."
+      ],
+      "last_frame_minutes_from_first_smoke": 6.4
+    },
+    {
+      "track": "GroveFire:tp-w/0:0@-25min",
+      "fire": "GroveFire",
+      "camera": "tp-w",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -7.6,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.89,
+        0.9,
+        0.88
+      ],
+      "reasons": [
+        "No distinct point-source column rising from the ground is seen and the diffuse vertical haze on the right dissipates over the sequence rather than growing and drifting as smoke would.",
+        "No point-source rising column; diffuse haze/virga streak on right fades over sequence rather than growing and drifting upward from ground, consistent with fog/haze/precipitation not smoke.",
+        "No anchored point-source plume shows growth and drift over time; diffuse vertical veil is static and dissipating, consistent with haze/fog or virga rather than wildfire smoke."
+      ],
+      "last_frame_minutes_from_first_smoke": -3.6
+    },
+    {
+      "track": "JunctionFire:bm-e/0:0",
+      "fire": "JunctionFire",
+      "camera": "bm-e",
+      "frames": 29,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 12.0,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.96,
+        0.96,
+        0.96
+      ],
+      "reasons": [
+        "Gray-black column originates at a fixed ground point and grows taller, denser, and drifts over minutes, consistent with a rising wildfire smoke plume not fog or cloud.",
+        "Gray-brown columnar plume originates from a single point on the ground and grows vertically and laterally across successive frames, consistent with rising wildfire smoke rather than fog or cloud.",
+        "Dark gray column rises from single ground point and grows denser/taller and drifts across minutes, consistent with wildfire smoke not fog or cloud."
+      ]
+    },
+    {
+      "track": "JunctionFire:bm-e/0:0@-15min",
+      "fire": "JunctionFire",
+      "camera": "bm-e",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": -3.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.74,
+        0.82,
+        0.72
+      ],
+      "reasons": [
+        "A narrow vertical plume appears in the third frame centered above the distant ridge where none existed in the first two frames, rising from a point near the ground and growing, consistent with a nascent wildfire smoke plume rather than a static haze layer.",
+        "A narrow vertical column rises from a single point on the distant ridgeline in the third frame that was absent in the first two frames, distinct from the low horizontal haze layer, consistent with a nascent smoke plume growing over time.",
+        "A narrow vertical pale column appears in the third frame rising from a single ground point on the distant ridge and growing where no plume existed in the first two frames, distinct from the static horizontal haze layer, consistent with a new smoke plume."
+      ],
+      "last_frame_minutes_from_first_smoke": 1.0
+    },
+    {
+      "track": "JunctionFire:bm-e/0:0@-25min",
+      "fire": "JunctionFire",
+      "camera": "bm-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -13.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.96,
+        0.97,
+        0.93
+      ],
+      "reasons": [
+        "No coherent column of smoke rising, growing and drifting from a single ground point appears across the sequence, only a static distant haze layer and unchanged sky.",
+        "No new rising columnar plume develops from a ground point across the three sequential frames; the scene remains static with only persistent distant haze and no growth or drift indicative of smoke.",
+        "No discrete rising column from a ground point appears or grows across the three frames; only static distant haze and unchanged landscape are visible."
+      ],
+      "last_frame_minutes_from_first_smoke": -9.0
+    },
+    {
+      "track": "JunctionFire:hp-e/1:0",
+      "fire": "JunctionFire",
+      "camera": "hp-e",
+      "frames": 12,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 19.0,
+      "edge_clipped": true,
+      "meta_1_3": false,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.71,
+        0.85,
+        0.74
+      ],
+      "reasons": [
+        "Right-edge vertical column and diffuse over-ridge haze persist and slowly expand/drift upward across frames consistent with a truncated rising smoke plume, not a static cloud layer.",
+        "Right-side vertical column persists and feeds a dense gray plume that expands and drifts left across successive frames, consistent with rising smoke despite the edge-cropped base.",
+        "Right-edge vertical column rises and feeds a spreading gray-brown mass that persists and drifts laterally with turbulent smoke-like texture, consistent with a truncated plume whose base is near/outside the edge."
+      ]
+    },
+    {
+      "track": "JunctionFire:hp-e/1:0@-15min",
+      "fire": "JunctionFire",
+      "camera": "hp-e",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 4.0,
+      "edge_clipped": true,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.88,
+        0.87,
+        0.88
+      ],
+      "reasons": [
+        "No rising, expanding plume develops across frames; only a thin static horizontal haze layer persists above the ridge with no vertical growth or drift, consistent with fog/haze not smoke.",
+        "Visible haze is a flat, horizontal layer over the ridgeline that does not show a rising column, growth from a point source, or drift over successive minutes.",
+        "Transient horizontal haze/low-cloud band appears in middle frame without vertical rise, growth, or drift and vanishes in next frame, matching a look-alike haze layer rather than a persistent rising smoke plume."
+      ],
+      "last_frame_minutes_from_first_smoke": 8.0
+    },
+    {
+      "track": "JunctionFire:hp-e/1:0@-25min",
+      "fire": "JunctionFire",
+      "camera": "hp-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -6.0,
+      "edge_clipped": true,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.88,
+        0.82,
+        0.71
+      ],
+      "reasons": [
+        "No growing, rising or drifting column appears across the three frames; only static distant haze and terrain remain unchanged, with no smoke-like development even allowing for an edge-cut plume.",
+        "The visible haze is a diffuse, horizontal low-level layer spanning the valley that remains largely static across frames with no localized point-source growth, rise, or drift characteristic of smoke.",
+        "No localized rising column with growth/drift is visible, only a diffuse increase in haze obscuring the mountain consistent with atmospheric haze/fog rather than a smoke plume."
+      ],
+      "last_frame_minutes_from_first_smoke": -2.0
+    },
+    {
+      "track": "JunctionFire:hp-s/0:0",
+      "fire": "JunctionFire",
+      "camera": "hp-s",
+      "frames": 22,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 16.0,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.95,
+        0.96,
+        0.96
+      ],
+      "reasons": [
+        "Dense gray-white column rises from a single point on the mountainside and expands/drifts leeward across frames, consistent with a growing wildfire smoke plume rather than fog or cloud.",
+        "Columnar plume rises from a single ground point and grows vertically and drifts across frames, consistent with wildfire smoke not fog or cloud.",
+        "Distinct columnar gray-white plume rooted at a single ground fire point grows vertically and expands downwind across successive frames, unlike static fog, haze, or glare."
+      ]
+    },
+    {
+      "track": "JunctionFire:hp-s/0:0@-15min",
+      "fire": "JunctionFire",
+      "camera": "hp-s",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 1.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        true,
+        true,
+        false
+      ],
+      "confidences": [
+        0.65,
+        0.72,
+        0.88
+      ],
+      "reasons": [
+        "A small localized gray puff appears and grows vertically above the left ridge crest across the three minutes while surrounding haze remains static, consistent with an incipient point-source smoke plume rather than uniform haze or cloud layer.",
+        "A small dark grey plume anchored to the central ridgeline appears in frame 2 and thickens/extends in frame 3, showing growth and drift consistent with rising smoke rather than static haze or distant cloud bank.",
+        "No distinct vertical plume originating from a ground point that grows and drifts; only a diffuse, static horizontal haze layer persists over the distant ridge across all three frames."
+      ],
+      "last_frame_minutes_from_first_smoke": 5.0
+    },
+    {
+      "track": "JunctionFire:hp-s/0:0@-25min",
+      "fire": "JunctionFire",
+      "camera": "hp-s",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -9.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.9,
+        0.91,
+        0.93
+      ],
+      "reasons": [
+        "No rising point-source plume is visible; the scene shows only persistent horizontal haze and small static low-cloud fragments along the distant ridge with no vertical growth or drift across frames.",
+        "No rising ground-anchored plume with growth/drift; only static distant haze layer and low clouds unchanged across successive frames.",
+        "No ground-anchored plume rises, grows, and drifts across the three frames, only static distant haze and thin horizontal low clouds with no vertical column development."
+      ],
+      "last_frame_minutes_from_first_smoke": -5.0
+    },
+    {
+      "track": "JunctionFire:hp-s/0:1",
+      "fire": "JunctionFire",
+      "camera": "hp-s",
+      "frames": 10,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 24.0,
+      "edge_clipped": false,
+      "meta_1_3": false,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.92,
+        0.89,
+        0.93
+      ],
+      "reasons": [
+        "No vertical column anchored to ground point with upward growth; features are scattered low clouds/haze layers drifting horizontally and dissipating, not an expanding smoke plume.",
+        "No new vertically-anchored, growing and drifting plume is present; the visible features are scattered horizontal clouds/haze layers that persist without smoke-like columnar growth from a ground point.",
+        "No point-source rising column with growth/drift observed over successive minutes; visible features are static horizontal stratocumulus/haze layers that dissipate laterally, not a developing smoke plume."
+      ]
+    },
+    {
+      "track": "JunctionFire:hp-s/0:1@-15min",
+      "fire": "JunctionFire",
+      "camera": "hp-s",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 9.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.88,
+        0.88,
+        0.89
+      ],
+      "reasons": [
+        "No point-source vertical column rising and expanding from the ground; dark patches remain as static horizontal masses above the horizon consistent with low clouds/haze, not a growing drifting smoke plume.",
+        "No sustained vertical column rising from a single ground point and growing/drifting; transient dark patches shift horizontally and dissipate like low clouds/haze rather than smoke.",
+        "No ground-anchored vertical column that grows and drifts; the persistent low haze layer and detached dark patches remain horizontal and disconnected, consistent with fog/low clouds not wildfire smoke."
+      ],
+      "last_frame_minutes_from_first_smoke": 13.0
+    },
+    {
+      "track": "JunctionFire:hp-s/0:1@-25min",
+      "fire": "JunctionFire",
+      "camera": "hp-s",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": -1.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.92,
+        0.93,
+        0.9
+      ],
+      "reasons": [
+        "No ground-anchored rising column is visible across the three frames, only persistent scattered clouds above a stable haze layer with no growth or drift characteristic of smoke.",
+        "No ground-anchored columnar plume rising and growing/drifting; only persistent low inversion haze layer and scattered cumulus clouds with minor drift and no vertical development from a point source.",
+        "No rising, growing column from a ground point across frames; stable low haze/fog layer and scattered cumulus clouds remain unchanged, not characteristic of developing smoke plume."
+      ],
+      "last_frame_minutes_from_first_smoke": 3.0
+    },
+    {
+      "track": "JunctionFire:mg-e/0:0",
+      "fire": "JunctionFire",
+      "camera": "mg-e",
+      "frames": 34,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 6.3,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.96,
+        0.98,
+        0.96
+      ],
+      "reasons": [
+        "Dark gray plume rises from a single ground point behind the ridge and grows rapidly in volume and height across successive frames, consistent with wildfire smoke rather than static fog or cloud.",
+        "Dark grey column originates from a single point behind the ridge and rapidly grows in volume and height across successive frames, consistent with a developing wildfire smoke plume.",
+        "Dark gray plume rises from a single point behind the ridge and grows denser, taller, and wider across successive minutes, consistent with wildfire smoke rather than fog or haze."
+      ]
+    },
+    {
+      "track": "JunctionFire:mg-e/0:0@-15min",
+      "fire": "JunctionFire",
+      "camera": "mg-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -8.7,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.97,
+        0.96,
+        0.96
+      ],
+      "reasons": [
+        "All three frames are nearly identical with clear blue sky and no rising, growing, or drifting plume originating from the ground.",
+        "No point-source rising, growing, and drifting plume appears across the three sequential frames; the landscape remains static and clear with no smoke development.",
+        "No rising, growing column from a ground point appears across the three successive frames; the landscape and sky remain clear and unchanged."
+      ],
+      "last_frame_minutes_from_first_smoke": -4.7
+    },
+    {
+      "track": "JunctionFire:mg-e/0:0@-25min",
+      "fire": "JunctionFire",
+      "camera": "mg-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -18.7,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.96,
+        0.93,
+        0.96
+      ],
+      "reasons": [
+        "No ground-anchored, growing and drifting columnar plume is visible across the three successive frames, with only static clear sky and distant haze present.",
+        "No anchored rising plume that grows and drifts over successive frames; only static distant haze and stable clear sky with no columnar development.",
+        "No rising, growing, or drifting column appears across the three successive frames; scene remains static with clear sky and unchanged distant haze."
+      ],
+      "last_frame_minutes_from_first_smoke": -14.7
+    },
+    {
+      "track": "JunctionFire:vo-n/0:0",
+      "fire": "JunctionFire",
+      "camera": "vo-n",
+      "frames": 10,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 20.0,
+      "edge_clipped": true,
+      "meta_1_3": false,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.9,
+        0.89,
+        0.89
+      ],
+      "reasons": [
+        "No anchored rising column with growth and drift, amorphous bright white mass is consistent with cloud and sun glare/overexposure rather than smoke.",
+        "Bright overexposed white mass lacks a coherent columnar structure and shows cloud/glare-like fluctuations with no consistent rising, growing and drifting motion from a ground point.",
+        "Bright white mass fluctuates with overexposure between frames without a persistent ground-anchored rising column or steady directional growth and drift, consistent with sunlit cloud/glare rather than smoke."
+      ]
+    },
+    {
+      "track": "JunctionFire:vo-n/0:0@-15min",
+      "fire": "JunctionFire",
+      "camera": "vo-n",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 5.0,
+      "edge_clipped": true,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.93,
+        0.9,
+        0.92
+      ],
+      "reasons": [
+        "Expansive bright white puffy mass is low cumulus cloud/haze with broad horizontal base and no anchored narrow column rising, growing and drifting as smoke would.",
+        "The feature is a broad, bright white cumulus cloud deck expanding horizontally and vertically, not a discrete plume rising and drifting from a point source.",
+        "Bright white cumulus mass expands horizontally along bottom edge like low cloud/fog intrusion with no coherent rising columnar plume or drift characteristic of smoke."
+      ],
+      "last_frame_minutes_from_first_smoke": 9.0
+    },
+    {
+      "track": "JunctionFire:vo-n/0:0@-25min",
+      "fire": "JunctionFire",
+      "camera": "vo-n",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -5.0,
+      "edge_clipped": true,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.92,
+        0.88,
+        0.87
+      ],
+      "reasons": [
+        "Visible white masses are isolated cumulus clouds with no coherent rising column, vertical growth, or drift from a point source, consistent with fair-weather clouds/glare rather than a developing smoke plume.",
+        "Visible white mass is isolated cumulus with sharp cauliflower edges that forms and drifts as a cloud puff without a coherent rising/expanding smoke column from a point source.",
+        "Isolated bright white puffs appear and drift slightly across blue sky without a ground-anchored column, vertical rise, or expanding plume growth, consistent with small fair-weather clouds rather than wildfire smoke."
+      ],
+      "last_frame_minutes_from_first_smoke": -1.0
+    },
+    {
+      "track": "JunctionFire:vo-w/1:0",
+      "fire": "JunctionFire",
+      "camera": "vo-w",
+      "frames": 25,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 15.0,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.92,
+        0.92,
+        0.89
+      ],
+      "reasons": [
+        "A distinct gray vertical column rises from a single point on the ridgeline and grows taller/denser across successive frames, consistent with a developing wildfire smoke plume rather than static haze or cloud.",
+        "A distinct vertical column anchored to a single ground point grows, billows and drifts upward across the three frames, characteristic of a smoke plume and unlike flat haze, fog or cloud.",
+        "Vertical gray column anchored at same ridgetop point grows taller, denser and drifts in third frame, showing smoke-like rise and expansion not consistent with static fog, haze or cloud."
+      ]
+    },
+    {
+      "track": "JunctionFire:vo-w/1:0@-15min",
+      "fire": "JunctionFire",
+      "camera": "vo-w",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 0.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.71,
+        0.68,
+        0.62
+      ],
+      "reasons": [
+        "A thin vertical column appears in the last frame rising from a single point on the mid-distance ridgeline where nothing existed in prior frames, distinct from the persistent valley haze layer and consistent with a small incipient smoke plume.",
+        "A thin vertical column anchored to the ground appears and grows in the center-midground in the third frame where none existed in prior frames, consistent with a new rising smoke plume rather than horizontal haze or cloud.",
+        "A faint narrow vertical column emerges from a single point on the central ridgeline in the final frame and rises upward, distinct from the diffuse static valley haze and low clouds and consistent with an incipient smoke plume."
+      ],
+      "last_frame_minutes_from_first_smoke": 4.0
+    },
+    {
+      "track": "JunctionFire:vo-w/1:0@-25min",
+      "fire": "JunctionFire",
+      "camera": "vo-w",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -10.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.94,
+        0.88,
+        0.92
+      ],
+      "reasons": [
+        "No ground-anchored vertical plume develops, only scattered high cumulus clouds forming and drifting horizontally aloft with no rising column.",
+        "No point-source column rising and growing from the ground; only a static low haze/fog layer on the horizon and small high cumulus clouds drifting horizontally.",
+        "No persistent ground-anchored rising plume is visible; only high clouds drift and uniform distant haze remains static, consistent with haze/clouds not smoke."
+      ],
+      "last_frame_minutes_from_first_smoke": -6.0
+    },
+    {
+      "track": "Kitchenfire:lp-e/0:0",
+      "fire": "Kitchenfire",
+      "camera": "lp-e",
+      "frames": 15,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 26.0,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.89,
+        0.89,
+        0.86
+      ],
+      "reasons": [
+        "Column originates from single ground point on ridgeline and grows vertically and drifts across successive minute-apart frames, consistent with rising smoke not layered haze, fog, or cloud.",
+        "A compact gray-brown column anchored to a single point on the ridgeline rises, expands and drifts over successive minutes, consistent with a growing wildfire smoke plume rather than fog, cloud or haze.",
+        "Localized gray column rises from a single point on the ridgeline and steadily grows in height and density across successive frames consistent with a new smoke plume."
+      ]
+    },
+    {
+      "track": "Kitchenfire:lp-e/0:0@-15min",
+      "fire": "Kitchenfire",
+      "camera": "lp-e",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 11.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.78,
+        0.85,
+        0.71
+      ],
+      "reasons": [
+        "Faint low-lying horizontal haze just above ridgeline shows no anchored point source, vertical rise, or growing drifting column across successive frames, consistent with distant haze/fog not smoke.",
+        "No distinct point-source column rising and growing over time, only a faint static diffuse haze layer near the horizon with no vertical development or drift.",
+        "Faint whitish haze above the ridge shows no distinct vertical column, growth, or drift from a ground point over ~2 minutes, consistent with stable distant haze/fog rather than a developing smoke plume."
+      ],
+      "last_frame_minutes_from_first_smoke": 15.0
+    },
+    {
+      "track": "Kitchenfire:lp-e/0:0@-25min",
+      "fire": "Kitchenfire",
+      "camera": "lp-e",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 1.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        true,
+        false,
+        false
+      ],
+      "confidences": [
+        0.65,
+        0.78,
+        0.82
+      ],
+      "reasons": [
+        "Compact whitish puff anchored to ridgeline point grows and drifts horizontally across successive frames consistent with a nascent smoke plume, not a static haze layer, fog, or glare artifact.",
+        "Feature is a flat diffuse haze layer along the ridgeline that spreads horizontally without vertical columnar rise from a point source, consistent with fog/haze not smoke.",
+        "Diffuse whitish patch spreads horizontally along the ridgeline as a low haze/fog layer without a persistent, vertically rising column anchored to a single ground point."
+      ],
+      "last_frame_minutes_from_first_smoke": 5.0
+    },
+    {
+      "track": "Kitchenfire:mlo-s/1:1",
+      "fire": "Kitchenfire",
+      "camera": "mlo-s",
+      "frames": 8,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 32.0,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.94,
+        0.96,
+        0.94
+      ],
+      "reasons": [
+        "Plume originates at a ground point and vertically grows, expands and drifts consistently across sequential frames, characteristic of wildfire smoke rather than static haze or cloud.",
+        "Columnar gray plume rises from a fixed ground point on the right and grows denser and taller across successive minutes, consistent with wildfire smoke rather than static haze or cloud.",
+        "Columnar plume originates near ground on right and rapidly grows taller and denser while drifting upward across successive frames, consistent with wildfire smoke not fog or cloud."
+      ]
+    },
+    {
+      "track": "Kitchenfire:mlo-s/1:1@-15min",
+      "fire": "Kitchenfire",
+      "camera": "mlo-s",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 17.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.92,
+        0.9,
+        0.82
+      ],
+      "reasons": [
+        "No discrete rising, growing, and drifting plume from a ground point across successive frames; scene is static with only persistent distant haze layers and no smoke column development.",
+        "No ground-anchored vertical column that grows and drifts is visible across the three frames; only static distant haze and mountain layers remain unchanged.",
+        "No isolated ground-anchored plume with progressive vertical growth and drift is visible across the sequence, only diffuse persistent bluish valley haze layers consistent with atmospheric haze rather than smoke."
+      ],
+      "last_frame_minutes_from_first_smoke": 21.0
+    },
+    {
+      "track": "Kitchenfire:mlo-s/1:1@-25min",
+      "fire": "Kitchenfire",
+      "camera": "mlo-s",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 7.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.78,
+        0.82,
+        0.84
+      ],
+      "reasons": [
+        "No distinct ground-anchored rising column or progressive growth/drift is visible across the three frames; the faint valley haze remains static and diffuse, consistent with persistent atmospheric haze rather than a new smoke plume.",
+        "Faint low-level haze in lower right shows no clear anchored growth, vertical rise, or drift across ~2 minutes, consistent with static haze/valley layer rather than a new expanding smoke plume.",
+        "No persistent ground-anchored rising column that grows and drifts across the three minute-apart frames, only faint diffuse valley haze that remains static/dissipates consistent with haze/fog not developing smoke."
+      ],
+      "last_frame_minutes_from_first_smoke": 11.0
+    },
+    {
+      "track": "Kitchenfire:mlo-s/1:2",
+      "fire": "Kitchenfire",
+      "camera": "mlo-s",
+      "frames": 7,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 33.0,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.96,
+        0.96,
+        0.95
+      ],
+      "reasons": [
+        "Gray-brown column anchored to single point on ridgeline grows in volume and drifts downwind across successive frames, consistent with a new wildfire smoke plume rather than static haze or cloud.",
+        "A distinct gray-brown column rises from a single ground point in the valley and billows upward, growing and drifting across successive frames consistent with wildfire smoke.",
+        "Gray-brown column rises from single ground point on ridgeline and grows/drifts downwind across successive frames, consistent with wildfire smoke not fog or cloud."
+      ]
+    },
+    {
+      "track": "Kitchenfire:mlo-s/1:2@-15min",
+      "fire": "Kitchenfire",
+      "camera": "mlo-s",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 18.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.88,
+        0.88,
+        0.89
+      ],
+      "reasons": [
+        "A localized gray-white column rises from a single point near the valley floor and grows vertically while drifting slightly over successive minutes, consistent with a new smoke plume not fog, haze, or cloud.",
+        "Discrete columnar plume anchored to ground in valley center grows and drifts slightly across frames despite clear, cloud-free sky.",
+        "A discrete pale-gray column rises from a single ground point in the mid-distance and grows vertically and drifts slightly across frames, consistent with a developing wildfire smoke plume rather than fog or cloud."
+      ],
+      "last_frame_minutes_from_first_smoke": 22.0
+    },
+    {
+      "track": "Kitchenfire:mlo-s/1:2@-25min",
+      "fire": "Kitchenfire",
+      "camera": "mlo-s",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 8.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.88,
+        0.88,
+        0.88
+      ],
+      "reasons": [
+        "A localized gray-white column anchored to the valley floor grows taller and denser across the three frames, showing vertical rise and drift consistent with a new wildfire smoke plume rather than static haze or cloud.",
+        "A discrete column rises from a single ground point in the mid-valley and grows taller and denser across frames while drifting, consistent with a developing smoke plume rather than static haze or cloud.",
+        "Small localized gray-white column anchored in valley grows taller and more defined across successive frames, showing vertical rise and drift consistent with new smoke plume rather than static haze or fog."
+      ],
+      "last_frame_minutes_from_first_smoke": 12.0
+    },
+    {
+      "track": "Kitchenfire:pi-e/1:0",
+      "fire": "Kitchenfire",
+      "camera": "pi-e",
+      "frames": 37,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 3.0,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.9,
+        0.89,
+        0.88
+      ],
+      "reasons": [
+        "White-gray columns originate from a ground point and grow, rise and drift downwind across successive frames, consistent with developing wildfire smoke rather than static fog or haze.",
+        "Columnar plume anchored to a ground point on the ridgeline visibly grows, rises, and drifts leftward across the three successive frames, consistent with wildfire smoke rather than static fog or haze.",
+        "Columnar plume originates at a ground point on the ridge and grows, billows, and drifts leftward across successive frames consistent with rising wildfire smoke, not uniform fog or haze."
+      ]
+    },
+    {
+      "track": "Kitchenfire:pi-e/1:0@-15min",
+      "fire": "Kitchenfire",
+      "camera": "pi-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -12.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.92,
+        0.88,
+        0.88
+      ],
+      "reasons": [
+        "No coherent plume rising from a ground point and growing/drifting across frames is visible, only static distant haze and terrain with no temporal plume development.",
+        "No point-source rising column or temporal growth/drift across the three frames; static bluish haze matches distant atmospheric haze/blur, not a new smoke plume.",
+        "No ground-anchored rising plume that grows and drifts; frames show static hazy terrain with no temporal development of smoke."
+      ],
+      "last_frame_minutes_from_first_smoke": -8.0
+    },
+    {
+      "track": "Kitchenfire:pi-e/1:0@-25min",
+      "fire": "Kitchenfire",
+      "camera": "pi-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -22.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.88,
+        0.9,
+        0.82
+      ],
+      "reasons": [
+        "No rising, growing plume from a ground point is visible across the three frames, with only a faint static haze unchanged over time consistent with distant haze/cloud not wildfire smoke.",
+        "No rising, growing or drifting plume from a ground point appears across the sequential frames, only static haze with no temporal development.",
+        "No distinct ground-anchored column that grows and drifts across the three minute-apart frames is visible, only static bluish haze over the ridgelines consistent with haze layers not smoke."
+      ],
+      "last_frame_minutes_from_first_smoke": -18.0
+    },
+    {
+      "track": "Kitchenfire:pi-e/1:1",
+      "fire": "Kitchenfire",
+      "camera": "pi-e",
+      "frames": 35,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 5.0,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.91,
+        0.92,
+        0.91
+      ],
+      "reasons": [
+        "Distinct ground-anchored whitish plumes rise, expand, and drift consistently across frames indicating growing wildfire smoke rather than static haze or fog.",
+        "Two distinct columnar gray-white plumes rise from ground points and expand/drift vertically across successive minutes, consistent with growing wildfire smoke rather than static haze or fog layer.",
+        "Distinct white-gray columns rise from a ground source and grow/drift coherently over successive minutes, characteristic of wildfire smoke not fog or cloud."
+      ]
+    },
+    {
+      "track": "Kitchenfire:pi-e/1:1@-15min",
+      "fire": "Kitchenfire",
+      "camera": "pi-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -10.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.9,
+        0.94,
+        0.92
+      ],
+      "reasons": [
+        "No anchored, growing and drifting columnar plume emerges across the three successive frames; the mountainous terrain and horizon remain static with no smoke development.",
+        "No rising, growing, or drifting column appears across the three successive frames, only static distant haze over stable ridgelines.",
+        "No rising, growing, or drifting columnar plume appears across the three frames, only static distant haze and unchanged terrain with no point-source growth."
+      ],
+      "last_frame_minutes_from_first_smoke": -6.0
+    },
+    {
+      "track": "Kitchenfire:pi-e/1:1@-25min",
+      "fire": "Kitchenfire",
+      "camera": "pi-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -20.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.92,
+        0.93,
+        0.94
+      ],
+      "reasons": [
+        "No rising, growing, or drifting plume develops across the three frames, only static distant haze and terrain with no point-source column.",
+        "No ground-anchored rising column or growing/drifting plume develops across successive frames, only static distant haze and terrain remains unchanged.",
+        "No distinct rising column or growing/drifting plume appears across the three sequential frames; the view shows only static distant haze and mountain terrain."
+      ],
+      "last_frame_minutes_from_first_smoke": -16.0
+    },
+    {
+      "track": "Kitchenfire:ws-w/1:0",
+      "fire": "Kitchenfire",
+      "camera": "ws-w",
+      "frames": 29,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 12.0,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.88,
+        0.87,
+        0.87
+      ],
+      "reasons": [
+        "A distinct columnar gray plume rises from a single point near the ground behind the ridge and grows taller and more diffuse while drifting downwind across the 3 frames.",
+        "A ground-anchored columnar plume rises, expands and drifts rightward with increasing opacity across successive frames, consistent with a growing wildfire smoke plume.",
+        "Vertical gray column originates from a single ground point and grows/disperses downwind across frames, consistent with a developing smoke plume rather than static haze or cloud."
+      ]
+    },
+    {
+      "track": "Kitchenfire:ws-w/1:0@-15min",
+      "fire": "Kitchenfire",
+      "camera": "ws-w",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": -3.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.78,
+        0.78,
+        0.82
+      ],
+      "reasons": [
+        "A small columnar plume emerges from a single ground point and grows in the final frame, rising and drifting unlike static haze, fog, or cloud layers.",
+        "A small distinct columnar plume anchored to a ground point appears only in the final frame and rises vertically, consistent with a new growing smoke plume rather than static haze or cloud.",
+        "A small vertical plume appears in the last frame rising from a single ground point where none existed in earlier frames, growing and consistent with incipient smoke."
+      ],
+      "last_frame_minutes_from_first_smoke": 1.0
+    },
+    {
+      "track": "Kitchenfire:ws-w/1:0@-25min",
+      "fire": "Kitchenfire",
+      "camera": "ws-w",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -13.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.96,
+        0.9,
+        0.93
+      ],
+      "reasons": [
+        "No rising, growing, or drifting plume appears across the three successive frames; the scene is static with no smoke origin point.",
+        "No evolving ground-anchored rising column or growing/drifting plume across ~2 minutes; frames are nearly identical with no smoke signature.",
+        "No rising, growing, or drifting columnar plume from a ground point across successive frames; scene is static showing only terrain and clear sky with no smoke development."
+      ],
+      "last_frame_minutes_from_first_smoke": -9.0
+    },
+    {
+      "track": "ResortFire:bm-n/1:0",
+      "fire": "ResortFire",
+      "camera": "bm-n",
+      "frames": 35,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 6.0,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.92,
+        0.89,
+        0.91
+      ],
+      "reasons": [
+        "A dark, ground-anchored column visibly grows, rises, and drifts over successive minutes, consistent with a developing wildfire smoke plume rather than static haze or cloud.",
+        "A dark gray column rises from a single point behind the ridgeline and grows taller and wider across the three minute-apart frames, consistent with a rising and drifting smoke plume rather than fog or cloud.",
+        "Distinct columnar plume anchored to a single ground point that grows denser and taller across sequential frames, consistent with a rising wildfire smoke plume rather than static haze or cloud."
+      ]
+    },
+    {
+      "track": "ResortFire:bm-n/1:0@-15min",
+      "fire": "ResortFire",
+      "camera": "bm-n",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -9.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.9,
+        0.92,
+        0.9
+      ],
+      "reasons": [
+        "No rising column or growth/drift visible across frames, only static bright haze/glare over the valley consistent with overexposure/haze layer not smoke.",
+        "No distinct growing and drifting plume from a single ground point across the three frames; the bright static area is overexposed sky/haze, not expanding smoke.",
+        "No ground-anchored, growing and drifting plume is visible across the three frames, only static bright haze/overexposure consistent with fog or glare, not wildfire smoke."
+      ],
+      "last_frame_minutes_from_first_smoke": -5.0
+    },
+    {
+      "track": "ResortFire:bm-n/1:0@-25min",
+      "fire": "ResortFire",
+      "camera": "bm-n",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -19.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.92,
+        0.92,
+        0.93
+      ],
+      "reasons": [
+        "No distinct ground-anchored plume that grows and drifts over successive frames; static bright haze/overexposure unchanged across time consistent with haze not smoke.",
+        "No point-source column that grows and drifts over successive minutes is visible; the haze and bright horizon remain static with no new plume development.",
+        "No anchored rising and growing plume appears across sequential frames; only static overexposed sky and distant mountain haze is visible with no temporal evolution."
+      ],
+      "last_frame_minutes_from_first_smoke": -15.0
+    },
+    {
+      "track": "ResortFire:hp-e/1:0",
+      "fire": "ResortFire",
+      "camera": "hp-e",
+      "frames": 23,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 17.9,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.96,
+        0.96,
+        0.96
+      ],
+      "reasons": [
+        "A gray column rises from a single ground point and grows into a billowing, drifting plume over successive minutes, characteristic of wildfire smoke rather than fog or cloud.",
+        "Distinct vertical column anchored to ground source grows, darkens and mushrooms over ~3 minutes while drifting slightly, consistent with a developing wildfire smoke plume.",
+        "Dense gray column rising from a single ground point in the valley grows and billows upward across successive frames, consistent with a new wildfire smoke plume rather than fog or cloud."
+      ]
+    },
+    {
+      "track": "ResortFire:hp-e/1:0@-15min",
+      "fire": "ResortFire",
+      "camera": "hp-e",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -13.2,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.97,
+        0.97,
+        0.98
+      ],
+      "reasons": [
+        "All three sequential frames show identical clear sky and terrain with no point-source plume, growth, or drift indicative of smoke.",
+        "No rising, growing, or drifting plume appears across the three successive frames; the view remains static with clear sky and no smoke signature.",
+        "All three sequential frames show identical clear sky and terrain with no emerging, growing, or drifting ground-anchored plume."
+      ],
+      "last_frame_minutes_from_first_smoke": -7.2
+    },
+    {
+      "track": "ResortFire:mg-n/1:0",
+      "fire": "ResortFire",
+      "camera": "mg-n",
+      "frames": 26,
+      "group": "after_smoke",
+      "minutes_from_first_smoke": 15.0,
+      "edge_clipped": false,
+      "meta_1_3": true,
+      "votes": [
+        true,
+        true,
+        true
+      ],
+      "confidences": [
+        0.94,
+        0.93,
+        0.93
+      ],
+      "reasons": [
+        "Dark gray plume rises from a single ground point and grows in volume and lateral spread across successive frames, characteristic of a developing wildfire smoke column rather than fog, cloud, or haze.",
+        "Dark gray column anchored behind ridgeline grows vertically and expands downwind across three minute-apart frames, consistent with a rising and drifting wildfire smoke plume rather than static haze or cloud.",
+        "Dark gray column originates from a single ground point on the ridge and grows vertically and laterally into a billowing plume across successive frames, consistent with wildfire smoke not fog or haze."
+      ]
+    },
+    {
+      "track": "ResortFire:mg-n/1:0@-15min",
+      "fire": "ResortFire",
+      "camera": "mg-n",
+      "frames": 3,
+      "group": "same_view_fire_burning",
+      "minutes_from_first_smoke": 0.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.96,
+        0.95,
+        0.93
+      ],
+      "reasons": [
+        "No new point-source plume appears across the three frames; the scene remains static with only distant haze and no growing, rising, or drifting smoke column.",
+        "No visible rising, growing, or drifting plume appears across the three successive frames; the mountain and sky remain static and clear with no smoke-like development.",
+        "No rising, growing, or drifting plume with a ground origin appears across the sequence; the scene remains static with only distant haze unchanged between frames."
+      ],
+      "last_frame_minutes_from_first_smoke": 4.0
+    },
+    {
+      "track": "ResortFire:mg-n/1:0@-25min",
+      "fire": "ResortFire",
+      "camera": "mg-n",
+      "frames": 3,
+      "group": "same_view_before_smoke",
+      "minutes_from_first_smoke": -10.0,
+      "edge_clipped": false,
+      "meta_1_3": null,
+      "votes": [
+        false,
+        false,
+        false
+      ],
+      "confidences": [
+        0.96,
+        0.96,
+        0.95
+      ],
+      "reasons": [
+        "No rising, growing and drifting plume from a ground point is visible across the three successive frames; the scene remains static with unchanged mountains and vegetation.",
+        "No rising, growing, or drifting column anchored to ground appears across the three sequential frames; the scene remains static with only distant haze and no smoke development.",
+        "No new rising, growing, or drifting plume appears over the minute-apart sequence; the view shows only static mountains, haze, and vegetation with no coherent smoke column from a ground point."
+      ],
+      "last_frame_minutes_from_first_smoke": -6.0
+    }
+  ]
+}

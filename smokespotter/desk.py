@@ -58,7 +58,8 @@ def live_backend() -> MuseBackend:
         v = muse.verify_track(t.verify_frames(), t.verify_box(), at_edge=t.edge_clipped)
         d = {"is_smoke": v.is_smoke, "confidence": v.confidence, "reason": v.reason, "at_edge": t.edge_clipped}
         from .config import ROOT
-        path = ROOT / "outputs" / t.sequence / "verdicts.json"
+        from .models import verdicts_name
+        path = ROOT / "outputs" / t.sequence / verdicts_name()
         cache = _json.loads(path.read_text()) if path.exists() else {}
         cache[t.oid] = d
         path.write_text(_json.dumps(cache, indent=2))
@@ -259,7 +260,8 @@ class FireDesk:
                 return {"error": f"evidence supports at most '{eligible}', not '{level}'"}
             if level in issued:
                 return {"error": f"a '{level}' alert was already issued; use 'update' for changes"}
-        bad = [n for n in re.findall(r"\d+(?:\.\d+)?", headline + " " + message) if not self._citable(float(n))]
+        text = re.sub(r"(?<=\d),(?=\d{3}\b)", "", headline + " " + message)   # 1,010 -> 1010
+        bad = [n for n in re.findall(r"\d+(?:\.\d+)?", text) if not self._citable(float(n))]
         if bad:
             return {"error": f"numbers not produced by any tool: {bad}. Only cite tool outputs."}
         alert = {"level": level, "time": hhmm(self.now), "epoch": self.now, "elapsed_min": self._elapsed(),

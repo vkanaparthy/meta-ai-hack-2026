@@ -1,0 +1,8 @@
+{
+  "1:0": {
+    "is_smoke": true,
+    "confidence": 0.89,
+    "reason": "A discrete grey plume rises from a single point on the ridgeline and grows/drifts rightward across successive frames, consistent with a developing wildfire smoke plume rather than static fog, haze, or cloud.",
+    "at_edge": false
+  }
+}

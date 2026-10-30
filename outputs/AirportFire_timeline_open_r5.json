@@ -1,0 +1,490 @@
+{
+  "fire": "AirportFire",
+  "driver": "muse-open",
+  "model": "meta-models/muse-spark-open-1026",
+  "muse": "live",
+  "t_start": 1725909813,
+  "t_end": 1725915758,
+  "timeline": [
+    {
+      "time": "13:25 PDT",
+      "epoch": 1725913534,
+      "elapsed_min": 62.0,
+      "trigger": [
+        "new plume track starr-n/0:0 on camera starr-n",
+        "new plume track stgo-e/1:0 on camera stgo-e"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:25 PDT",
+            "minutes_since_watch_started": 62.0,
+            "cameras_watching": [
+              "marconi-n",
+              "starr-n",
+              "stgo-e"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "starr-n/0:0",
+                "camera": "starr-n",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 354.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              },
+              {
+                "track_id": "stgo-e/1:0",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 138.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "No alert yet: both new plume tracks are too new to verify (ready in ~2 min) and no smoke has been verified."
+        }
+      ]
+    },
+    {
+      "time": "13:27 PDT",
+      "epoch": 1725913654,
+      "elapsed_min": 64.0,
+      "trigger": [
+        "track starr-n/0:0 now has enough history to verify",
+        "track stgo-e/1:0 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:27 PDT",
+            "minutes_since_watch_started": 64.0,
+            "cameras_watching": [
+              "marconi-n",
+              "starr-n",
+              "stgo-e"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "starr-n/0:0",
+                "camera": "starr-n",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 354.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              },
+              {
+                "track_id": "stgo-e/1:0",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 138.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "starr-n/0:0"
+          },
+          "result": {
+            "track_id": "starr-n/0:0",
+            "state": "smoke",
+            "confidence": 0.96,
+            "reason": "Distinct vertical column anchored to a ground point rises, expands and drifts downwind across frames consistent with a growing wildfire smoke plume not fog or cloud."
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "stgo-e/1:0"
+          },
+          "result": {
+            "track_id": "stgo-e/1:0",
+            "state": "smoke",
+            "confidence": 0.96,
+            "reason": "Gray-brown plume originates at a single ground point behind the ridge and grows vertically and drifts while expanding across three successive frames, consistent with wildfire smoke, not fog or cloud."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "plumes from fewer than two stations, or bearings that do not intersect consistently",
+            "bearing_lines": [
+              {
+                "camera": "starr-n",
+                "bearing_deg": 354.3,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "stgo-e",
+                "bearing_deg": 138.7,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "issue_alert",
+          "args": {
+            "level": "spotted",
+            "headline": "Smoke spotted from two cameras, location pending triangulation",
+            "message": "Two plume tracks verified as wildfire smoke on starr-n (bearing 354.3\u00b0 \u00b16.0\u00b0) and stgo-e (bearing 138.7\u00b0 \u00b16.0\u00b0) at 13:27 PDT. Cross-camera triangulation not yet consistent, so no fixed location available. Continuing to watch for additional views to tighten location."
+          },
+          "result": {
+            "issued": true,
+            "level": "spotted",
+            "alert_number": 1
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "Spotted alert issued for two verified smoke plumes; triangulation pending additional camera views."
+        }
+      ]
+    },
+    {
+      "time": "13:30 PDT",
+      "epoch": 1725913835,
+      "elapsed_min": 67.0,
+      "trigger": [
+        "new plume track stgo-e/1:1 on camera stgo-e"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:30 PDT",
+            "minutes_since_watch_started": 67.0,
+            "cameras_watching": [
+              "marconi-n",
+              "starr-n",
+              "stgo-e"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "starr-n/0:0",
+                "camera": "starr-n",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 354.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Distinct vertical column anchored to a ground point rises, expands and drifts downwind across frames consistent with a growing wildfire smoke plume not fog or cloud."
+              },
+              {
+                "track_id": "stgo-e/1:0",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 7,
+                "bearing_deg": 138.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Gray-brown plume originates at a single ground point behind the ridge and grows vertically and drifts while expanding across three successive frames, consistent with wildfire smoke, not fog or cloud."
+              },
+              {
+                "track_id": "stgo-e/1:1",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 143.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "13:27 PDT",
+                "headline": "Smoke spotted from two cameras, location pending triangulation"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "stgo-e/1:1"
+          },
+          "result": {
+            "track_id": "stgo-e/1:1",
+            "state": "smoke",
+            "confidence": 0.94,
+            "reason": "Dark gray columnar plume originates from a single ground-level point and visibly grows, densifies and drifts upward between frames, consistent with rising wildfire smoke not fog or low cloud."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "plumes from fewer than two stations, or bearings that do not intersect consistently",
+            "bearing_lines": [
+              {
+                "camera": "starr-n",
+                "bearing_deg": 354.3,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "stgo-e",
+                "bearing_deg": 138.7,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "stgo-e",
+                "bearing_deg": 143.3,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "No new alert: three smoke tracks are now verified but cross-camera bearings remain inconsistent for triangulation; highest support remains at spotted level already issued."
+        }
+      ]
+    },
+    {
+      "time": "13:40 PDT",
+      "epoch": 1725914438,
+      "elapsed_min": 77.1,
+      "trigger": [
+        "new plume track marconi-n/0:0 on camera marconi-n"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:40 PDT",
+            "minutes_since_watch_started": 77.1,
+            "cameras_watching": [
+              "marconi-n",
+              "starr-n",
+              "stgo-e"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "starr-n/0:0",
+                "camera": "starr-n",
+                "first_seen_min_ago": 17,
+                "bearing_deg": 354.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Distinct vertical column anchored to a ground point rises, expands and drifts downwind across frames consistent with a growing wildfire smoke plume not fog or cloud."
+              },
+              {
+                "track_id": "stgo-e/1:0",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 17,
+                "bearing_deg": 138.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Gray-brown plume originates at a single ground point behind the ridge and grows vertically and drifts while expanding across three successive frames, consistent with wildfire smoke, not fog or cloud."
+              },
+              {
+                "track_id": "stgo-e/1:1",
+                "camera": "stgo-e",
+                "first_seen_min_ago": 12,
+                "bearing_deg": 143.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray columnar plume originates from a single ground-level point and visibly grows, densifies and drifts upward between frames, consistent with rising wildfire smoke not fog or low cloud."
+              },
+              {
+                "track_id": "marconi-n/0:0",
+                "camera": "marconi-n",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 332.0,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "13:27 PDT",
+                "headline": "Smoke spotted from two cameras, location pending triangulation"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "No alert yet: new track marconi-n/0:0 is too new to verify (ready in ~2 min); existing three verified smoke tracks remain inconsistent for triangulation."
+        }
+      ]
+    },
+    {
+      "time": "13:42 PDT",
+      "epoch": 1725914558,
+      "elapsed_min": 79.1,
+      "trigger": [
+        "track marconi-n/0:0 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "marconi-n/0:0"
+          },
+          "result": {
+            "track_id": "marconi-n/0:0",
+            "state": "smoke",
+            "confidence": 0.94,
+            "reason": "Narrow column anchored at ground point behind ridge rises vertically and expands over successive frames with a developing white pyrocumulus top characteristic of wildfire smoke, not fog or low cloud."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "bearing lines cross, but too uncertain to place (about 11 km); need a camera from another direction",
+            "bearing_lines": [
+              {
+                "camera": "starr-n",
+                "bearing_deg": 354.3,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "stgo-e",
+                "bearing_deg": 138.7,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "stgo-e",
+                "bearing_deg": 143.3,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "marconi-n",
+                "bearing_deg": 332.0,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "No new alert: fourth smoke track verified on marconi-n, but triangulation remains too uncertain (~11 km uncertainty) for provisional; awaiting additional directional view."
+        }
+      ]
+    }
+  ],
+  "alerts": [
+    {
+      "level": "spotted",
+      "time": "13:27 PDT",
+      "epoch": 1725913654,
+      "elapsed_min": 64.0,
+      "headline": "Smoke spotted from two cameras, location pending triangulation",
+      "message": "Two plume tracks verified as wildfire smoke on starr-n (bearing 354.3\u00b0 \u00b16.0\u00b0) and stgo-e (bearing 138.7\u00b0 \u00b16.0\u00b0) at 13:27 PDT. Cross-camera triangulation not yet consistent, so no fixed location available. Continuing to watch for additional views to tighten location.",
+      "location": null,
+      "bearing_lines": [
+        {
+          "camera": "starr-n",
+          "lat": 33.612252252252254,
+          "lon": -117.54913460687456,
+          "bearing_deg": 354.27,
+          "sigma_deg": 6.0,
+          "track_id": "starr-n/0:0"
+        },
+        {
+          "camera": "stgo-e",
+          "lat": 33.70918918918919,
+          "lon": -117.53021659987415,
+          "bearing_deg": 138.66,
+          "sigma_deg": 6.0,
+          "track_id": "stgo-e/1:0"
+        }
+      ],
+      "evidence": [
+        {
+          "track_id": "starr-n/0:0",
+          "frames": [
+            "data/raw/20240909_BridgeFire_starr-n-mobo-c/1725913413_+01201.jpg",
+            "data/raw/20240909_BridgeFire_starr-n-mobo-c/1725913532_+01320.jpg",
+            "data/raw/20240909_BridgeFire_starr-n-mobo-c/1725913653_+01441.jpg"
+          ],
+          "box": [
+            1398,
+            614,
+            1688,
+            1037
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.96,
+            "reason": "Distinct vertical column anchored to a ground point rises, expands and drifts downwind across frames consistent with a growing wildfire smoke plume not fog or cloud."
+          }
+        },
+        {
+          "track_id": "stgo-e/1:0",
+          "frames": [
+            "data/raw/20240909_BridgeFire_stgo-e-mobo-c/1725913415_+00901.jpg",
+            "data/raw/20240909_BridgeFire_stgo-e-mobo-c/1725913534_+01020.jpg",
+            "data/raw/20240909_BridgeFire_stgo-e-mobo-c/1725913654_+01140.jpg"
+          ],
+          "box": [
+            2431,
+            673,
+            2971,
+            1339
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.96,
+            "reason": "Gray-brown plume originates at a single ground point behind the ridge and grows vertically and drifts while expanding across three successive frames, consistent with wildfire smoke, not fog or cloud."
+          }
+        }
+      ]
+    }
+  ],
+  "score": {
+    "spotted_min_after_first_smoke": 24.0,
+    "provisional_min_after_first_smoke": null,
+    "confirmed_min_after_first_smoke": null
+  }
+}

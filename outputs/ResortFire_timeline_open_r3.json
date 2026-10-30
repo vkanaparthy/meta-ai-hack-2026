@@ -1,0 +1,456 @@
+{
+  "fire": "ResortFire",
+  "driver": "muse-open",
+  "model": "meta-models/muse-spark-open-1026",
+  "muse": "live",
+  "t_start": 1731106846,
+  "t_end": 1731112159,
+  "timeline": [
+    {
+      "time": "15:57 PST",
+      "epoch": 1731110265,
+      "elapsed_min": 57.0,
+      "trigger": [
+        "new plume track bm-n/1:0 on camera bm-n",
+        "new plume track mg-n/1:0 on camera mg-n"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "15:57 PST",
+            "minutes_since_watch_started": 57.0,
+            "cameras_watching": [
+              "bm-n",
+              "hp-e",
+              "mg-n"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-n/1:0",
+                "camera": "bm-n",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 45.6,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              },
+              {
+                "track_id": "mg-n/1:0",
+                "camera": "mg-n",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 42.6,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "No action yet \u2014 both new plume tracks (bm-n/1:0, mg-n/1:0) are too new to verify for ~2 minutes; will re-check once ready."
+        }
+      ]
+    },
+    {
+      "time": "16:00 PST",
+      "epoch": 1731110435,
+      "elapsed_min": 59.8,
+      "trigger": [
+        "track bm-n/1:0 now has enough history to verify",
+        "track mg-n/1:0 now has enough history to verify",
+        "new plume track hp-e/1:0 on camera hp-e"
+      ],
+      "calls": [
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "bm-n/1:0"
+          },
+          "result": {
+            "track_id": "bm-n/1:0",
+            "state": "smoke",
+            "confidence": 0.92,
+            "reason": "A coherent dark plume anchored to a single point on the ridgeline grows vertically and expands over ~2 minutes across the three frames, consistent with a rising and drifting wildfire smoke column rather than static fog, haze, or cloud."
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "mg-n/1:0"
+          },
+          "result": {
+            "track_id": "mg-n/1:0",
+            "state": "smoke",
+            "confidence": 0.92,
+            "reason": "Dark gray column anchored to a single ground point steadily grows, billows and drifts upward across frames, consistent with a rising wildfire smoke plume rather than static haze or cloud."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "bearing lines cross, but too uncertain to place (about 34 km); need a camera from another direction",
+            "bearing_lines": [
+              {
+                "camera": "bm-n",
+                "bearing_deg": 45.6,
+                "uncertainty_deg": 2.5
+              },
+              {
+                "camera": "mg-n",
+                "bearing_deg": 42.6,
+                "uncertainty_deg": 2.5
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "16:00 PST",
+            "minutes_since_watch_started": 59.8,
+            "cameras_watching": [
+              "bm-n",
+              "hp-e",
+              "mg-n"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "bm-n/1:0",
+                "camera": "bm-n",
+                "first_seen_min_ago": 5,
+                "bearing_deg": 45.6,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A coherent dark plume anchored to a single point on the ridgeline grows vertically and expands over ~2 minutes across the three frames, consistent with a rising and drifting wildfire smoke column rather than static fog, haze, or cloud."
+              },
+              {
+                "track_id": "mg-n/1:0",
+                "camera": "mg-n",
+                "first_seen_min_ago": 5,
+                "bearing_deg": 42.6,
+                "bearing_uncertainty_deg": 2.5,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Dark gray column anchored to a single ground point steadily grows, billows and drifts upward across frames, consistent with a rising wildfire smoke plume rather than static haze or cloud."
+              },
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 114.5,
+                "bearing_uncertainty_deg": 1.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "issue_alert",
+          "args": {
+            "level": "spotted",
+            "headline": "Smoke spotted from 2 cameras northeast \u2014 location still uncertain",
+            "message": "Two cameras (bm-n bearing 45.6\u00b0 and mg-n bearing 42.6\u00b0) verified wildfire smoke. Bearing lines cross but with ~34 km uncertainty, too uncertain to place precisely. Need a camera from another direction to triangulate; no location yet."
+          },
+          "result": {
+            "issued": true,
+            "level": "spotted",
+            "alert_number": 1
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "Spotted alert issued based on 2 verified smoke tracks; awaiting additional camera view for precise location."
+        }
+      ]
+    },
+    {
+      "time": "16:02 PST",
+      "epoch": 1731110555,
+      "elapsed_min": 61.8,
+      "trigger": [
+        "track hp-e/1:0 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "hp-e/1:0"
+          },
+          "result": {
+            "track_id": "hp-e/1:0",
+            "state": "smoke",
+            "confidence": 0.96,
+            "reason": "A dark gray column anchored to a single point in the valley rises, thickens and drifts upward across successive frames, consistent with a growing wildfire smoke plume rather than fog or cloud."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": true,
+            "lat": 33.2924,
+            "lon": -116.6488,
+            "uncertainty_m": 1010,
+            "cameras": [
+              "bm-n",
+              "hp-e",
+              "mg-n"
+            ],
+            "track_ids": [
+              "bm-n/1:0",
+              "hp-e/1:0",
+              "mg-n/1:0"
+            ],
+            "stations": 3,
+            "unused_tracks": [],
+            "eligible_level": "confirmed",
+            "nearby": [
+              {
+                "name": "Julian",
+                "kind": "town",
+                "distance_km": 24.2,
+                "direction": "N",
+                "phrase": "24.2 km N of Julian"
+              },
+              {
+                "name": "Borrego Springs",
+                "kind": "town",
+                "distance_km": 25.8,
+                "direction": "W",
+                "phrase": "25.8 km W of Borrego Springs"
+              },
+              {
+                "name": "Aguanga",
+                "kind": "town",
+                "distance_km": 26.1,
+                "direction": "SE",
+                "phrase": "26.1 km SE of Aguanga"
+              }
+            ]
+          }
+        },
+        {
+          "tool": "issue_alert",
+          "args": {
+            "level": "confirmed",
+            "headline": "Wildfire confirmed 24 km N of Julian \u2014 3 cameras triangulate",
+            "message": "Third camera hp-e now verifies smoke (bearing 114.5\u00b0), joining bm-n and mg-n. Triangulation places fire at 24.2 km N of Julian with 1010m uncertainty using 3 stations. Fire location tight and well-corroborated; cause and spread not yet known."
+          },
+          "result": {
+            "issued": true,
+            "level": "confirmed",
+            "alert_number": 2
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "Confirmed fire triangulated 24.2 km N of Julian with 3-camera fix at 1010m uncertainty \u2014 dispatch notified."
+        }
+      ]
+    }
+  ],
+  "alerts": [
+    {
+      "level": "spotted",
+      "time": "16:00 PST",
+      "epoch": 1731110435,
+      "elapsed_min": 59.8,
+      "headline": "Smoke spotted from 2 cameras northeast \u2014 location still uncertain",
+      "message": "Two cameras (bm-n bearing 45.6\u00b0 and mg-n bearing 42.6\u00b0) verified wildfire smoke. Bearing lines cross but with ~34 km uncertainty, too uncertain to place precisely. Need a camera from another direction to triangulate; no location yet.",
+      "location": null,
+      "bearing_lines": [
+        {
+          "camera": "bm-n",
+          "lat": 33.162972972972966,
+          "lon": -116.80892384304393,
+          "bearing_deg": 45.57,
+          "sigma_deg": 2.5,
+          "track_id": "bm-n/1:0"
+        },
+        {
+          "camera": "mg-n",
+          "lat": 33.18972972972973,
+          "lon": -116.75967704238137,
+          "bearing_deg": 42.63,
+          "sigma_deg": 2.5,
+          "track_id": "mg-n/1:0"
+        }
+      ],
+      "evidence": [
+        {
+          "track_id": "bm-n/1:0",
+          "frames": [
+            "data/raw/20241108_ResortFire_bm-n-mobo-c/1731110119_+00360.jpg",
+            "data/raw/20241108_ResortFire_bm-n-mobo-c/1731110239_+00480.jpg",
+            "data/raw/20241108_ResortFire_bm-n-mobo-c/1731110359_+00600.jpg"
+          ],
+          "box": [
+            2775,
+            952,
+            2861,
+            1022
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.92,
+            "reason": "A coherent dark plume anchored to a single point on the ridgeline grows vertically and expands over ~2 minutes across the three frames, consistent with a rising and drifting wildfire smoke column rather than static fog, haze, or cloud."
+          }
+        },
+        {
+          "track_id": "mg-n/1:0",
+          "frames": [
+            "data/raw/20241108_ResortFire_mg-n-mobo-c/1731110146_+00900.jpg",
+            "data/raw/20241108_ResortFire_mg-n-mobo-c/1731110265_+01019.jpg",
+            "data/raw/20241108_ResortFire_mg-n-mobo-c/1731110385_+01139.jpg"
+          ],
+          "box": [
+            2731,
+            903,
+            2861,
+            998
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.92,
+            "reason": "Dark gray column anchored to a single ground point steadily grows, billows and drifts upward across frames, consistent with a rising wildfire smoke plume rather than static haze or cloud."
+          }
+        }
+      ]
+    },
+    {
+      "level": "confirmed",
+      "time": "16:02 PST",
+      "epoch": 1731110555,
+      "elapsed_min": 61.8,
+      "headline": "Wildfire confirmed 24 km N of Julian \u2014 3 cameras triangulate",
+      "message": "Third camera hp-e now verifies smoke (bearing 114.5\u00b0), joining bm-n and mg-n. Triangulation places fire at 24.2 km N of Julian with 1010m uncertainty using 3 stations. Fire location tight and well-corroborated; cause and spread not yet known.",
+      "location": {
+        "lat": 33.2924,
+        "lon": -116.6488,
+        "uncertainty_m": 1010,
+        "cameras": [
+          "bm-n",
+          "hp-e",
+          "mg-n"
+        ],
+        "track_ids": [
+          "bm-n/1:0",
+          "hp-e/1:0",
+          "mg-n/1:0"
+        ],
+        "stations": 3
+      },
+      "bearing_lines": [
+        {
+          "camera": "bm-n",
+          "lat": 33.162972972972966,
+          "lon": -116.80892384304393,
+          "bearing_deg": 45.57,
+          "sigma_deg": 2.5,
+          "track_id": "bm-n/1:0"
+        },
+        {
+          "camera": "mg-n",
+          "lat": 33.18972972972973,
+          "lon": -116.75967704238137,
+          "bearing_deg": 42.63,
+          "sigma_deg": 2.5,
+          "track_id": "mg-n/1:0"
+        },
+        {
+          "camera": "hp-e",
+          "lat": 33.36378378378378,
+          "lon": -116.83579336801176,
+          "bearing_deg": 114.54,
+          "sigma_deg": 1.0,
+          "track_id": "hp-e/1:0"
+        }
+      ],
+      "evidence": [
+        {
+          "track_id": "bm-n/1:0",
+          "frames": [
+            "data/raw/20241108_ResortFire_bm-n-mobo-c/1731110119_+00360.jpg",
+            "data/raw/20241108_ResortFire_bm-n-mobo-c/1731110239_+00480.jpg",
+            "data/raw/20241108_ResortFire_bm-n-mobo-c/1731110359_+00600.jpg"
+          ],
+          "box": [
+            2775,
+            952,
+            2861,
+            1022
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.92,
+            "reason": "A coherent dark plume anchored to a single point on the ridgeline grows vertically and expands over ~2 minutes across the three frames, consistent with a rising and drifting wildfire smoke column rather than static fog, haze, or cloud."
+          }
+        },
+        {
+          "track_id": "mg-n/1:0",
+          "frames": [
+            "data/raw/20241108_ResortFire_mg-n-mobo-c/1731110146_+00900.jpg",
+            "data/raw/20241108_ResortFire_mg-n-mobo-c/1731110265_+01019.jpg",
+            "data/raw/20241108_ResortFire_mg-n-mobo-c/1731110385_+01139.jpg"
+          ],
+          "box": [
+            2731,
+            903,
+            2861,
+            998
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.92,
+            "reason": "Dark gray column anchored to a single ground point steadily grows, billows and drifts upward across frames, consistent with a rising wildfire smoke plume rather than static haze or cloud."
+          }
+        },
+        {
+          "track_id": "hp-e/1:0",
+          "frames": [
+            "data/raw/20241108_ResortFire_hp-e-mobo-c/1731110315_+01072.jpg",
+            "data/raw/20241108_ResortFire_hp-e-mobo-c/1731110435_+01192.jpg",
+            "data/raw/20241108_ResortFire_hp-e-mobo-c/1731110555_+01312.jpg"
+          ],
+          "box": [
+            2146,
+            956,
+            2307,
+            1103
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.96,
+            "reason": "A dark gray column anchored to a single point in the valley rises, thickens and drifts upward across successive frames, consistent with a growing wildfire smoke plume rather than fog or cloud."
+          }
+        }
+      ]
+    }
+  ],
+  "score": {
+    "spotted_min_after_first_smoke": 19.8,
+    "provisional_min_after_first_smoke": null,
+    "confirmed_min_after_first_smoke": 21.8,
+    "final_error_m": 1035,
+    "final_uncertainty_m": 1010
+  }
+}

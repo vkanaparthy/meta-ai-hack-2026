@@ -1,0 +1,8 @@
+{
+  "0:0": {
+    "is_smoke": true,
+    "confidence": 0.97,
+    "reason": "Dark gray column rises from a single point behind the ridge and rapidly grows denser and larger across successive frames, consistent with a new wildfire smoke plume, not fog or cloud.",
+    "at_edge": false
+  }
+}

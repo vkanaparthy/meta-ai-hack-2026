@@ -1,0 +1,8 @@
+{
+  "1:0": {
+    "is_smoke": true,
+    "confidence": 0.96,
+    "reason": "A dark gray column anchored to a single point in the valley rises, thickens and drifts upward across successive frames, consistent with a growing wildfire smoke plume rather than fog or cloud.",
+    "at_edge": false
+  }
+}

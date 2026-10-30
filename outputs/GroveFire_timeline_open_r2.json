@@ -1,0 +1,688 @@
+{
+  "fire": "GroveFire",
+  "driver": "muse-open",
+  "model": "meta-models/muse-spark-open-1026",
+  "muse": "live",
+  "t_start": 1721848775,
+  "t_end": 1721853825,
+  "timeline": [
+    {
+      "time": "12:38 PDT",
+      "epoch": 1721849914,
+      "elapsed_min": 19.0,
+      "trigger": [
+        "new plume track hp-e/1:0 on camera hp-e"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "12:38 PDT",
+            "minutes_since_watch_started": 19.0,
+            "cameras_watching": [
+              "hp-e",
+              "tp-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 121.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "Too new to verify hp-e/1:0 \u2014 will re-evaluate when ready in ~2 min; no alert yet."
+        }
+      ]
+    },
+    {
+      "time": "12:40 PDT",
+      "epoch": 1721850034,
+      "elapsed_min": 21.0,
+      "trigger": [
+        "track hp-e/1:0 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "12:40 PDT",
+            "minutes_since_watch_started": 21.0,
+            "cameras_watching": [
+              "hp-e",
+              "tp-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 121.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "hp-e/1:0"
+          },
+          "result": {
+            "track_id": "hp-e/1:0",
+            "state": "not smoke",
+            "confidence": 0.92,
+            "reason": "Isolated mid-air puffy white cumulus with cauliflower texture and no ground-anchored column, dissipating over time rather than growing from a surface ignition point."
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "12:40: hp-e/1:0 judged not smoke (isolated puffy cumulus, no ground column) \u2014 no fire evidence; no alert."
+        }
+      ]
+    },
+    {
+      "time": "12:54 PDT",
+      "epoch": 1721850873,
+      "elapsed_min": 35.0,
+      "trigger": [
+        "new plume track hp-e/1:1 on camera hp-e",
+        "new plume track hp-e/1:2 on camera hp-e"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "12:54 PDT",
+            "minutes_since_watch_started": 35.0,
+            "cameras_watching": [
+              "hp-e",
+              "tp-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 18,
+                "bearing_deg": 121.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "Isolated mid-air puffy white cumulus with cauliflower texture and no ground-anchored column, dissipating over time rather than growing from a surface ignition point."
+              },
+              {
+                "track_id": "hp-e/1:1",
+                "camera": "hp-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 99.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              },
+              {
+                "track_id": "hp-e/1:2",
+                "camera": "hp-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 111.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "hp-e/1:1"
+          },
+          "result": {
+            "track_id": "hp-e/1:1",
+            "state": "not smoke",
+            "confidence": 0.93,
+            "reason": "No ground-anchored rising column; the central dark patch shrinks and fragments between frames instead of growing and drifting upward, consistent with a dissipating cloud not smoke."
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "12:54: hp-e/1:1 also not smoke (shrinking fragmenting patch, no rising column); hp-e/1:2 too new to verify \u2014 no verified smoke, no alert."
+        }
+      ]
+    },
+    {
+      "time": "12:56 PDT",
+      "epoch": 1721850995,
+      "elapsed_min": 37.0,
+      "trigger": [
+        "track hp-e/1:2 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "12:56 PDT",
+            "minutes_since_watch_started": 37.0,
+            "cameras_watching": [
+              "hp-e",
+              "tp-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 20,
+                "bearing_deg": 121.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "Isolated mid-air puffy white cumulus with cauliflower texture and no ground-anchored column, dissipating over time rather than growing from a surface ignition point."
+              },
+              {
+                "track_id": "hp-e/1:1",
+                "camera": "hp-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 99.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "No ground-anchored rising column; the central dark patch shrinks and fragments between frames instead of growing and drifting upward, consistent with a dissipating cloud not smoke."
+              },
+              {
+                "track_id": "hp-e/1:2",
+                "camera": "hp-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 111.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "hp-e/1:2"
+          },
+          "result": {
+            "track_id": "hp-e/1:2",
+            "state": "not smoke",
+            "confidence": 0.87,
+            "reason": "Detached compact white cauliflower cloud drifts without a ground-anchored rising column, vertical growth, or dispersing plume, consistent with small low cloud/fog rather than wildfire smoke."
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "No verified smoke on any track (hp-e/1:2 also low cloud, no ground-anchored column) \u2014 no alert warranted."
+        }
+      ]
+    },
+    {
+      "time": "13:04 PDT",
+      "epoch": 1721851475,
+      "elapsed_min": 45.0,
+      "trigger": [
+        "new plume track hp-e/0:0 on camera hp-e"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:04 PDT",
+            "minutes_since_watch_started": 45.0,
+            "cameras_watching": [
+              "hp-e",
+              "tp-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 28,
+                "bearing_deg": 121.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "Isolated mid-air puffy white cumulus with cauliflower texture and no ground-anchored column, dissipating over time rather than growing from a surface ignition point."
+              },
+              {
+                "track_id": "hp-e/1:1",
+                "camera": "hp-e",
+                "first_seen_min_ago": 12,
+                "bearing_deg": 99.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "No ground-anchored rising column; the central dark patch shrinks and fragments between frames instead of growing and drifting upward, consistent with a dissipating cloud not smoke."
+              },
+              {
+                "track_id": "hp-e/1:2",
+                "camera": "hp-e",
+                "first_seen_min_ago": 12,
+                "bearing_deg": 111.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "Detached compact white cauliflower cloud drifts without a ground-anchored rising column, vertical growth, or dispersing plume, consistent with small low cloud/fog rather than wildfire smoke."
+              },
+              {
+                "track_id": "hp-e/0:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 59.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "hp-e/0:0 too new to verify (ready in ~2 min); no verified smoke yet, so no alert."
+        }
+      ]
+    },
+    {
+      "time": "13:06 PDT",
+      "epoch": 1721851595,
+      "elapsed_min": 47.0,
+      "trigger": [
+        "track hp-e/0:0 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:06 PDT",
+            "minutes_since_watch_started": 47.0,
+            "cameras_watching": [
+              "hp-e",
+              "tp-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 30,
+                "bearing_deg": 121.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "Isolated mid-air puffy white cumulus with cauliflower texture and no ground-anchored column, dissipating over time rather than growing from a surface ignition point."
+              },
+              {
+                "track_id": "hp-e/1:1",
+                "camera": "hp-e",
+                "first_seen_min_ago": 14,
+                "bearing_deg": 99.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "No ground-anchored rising column; the central dark patch shrinks and fragments between frames instead of growing and drifting upward, consistent with a dissipating cloud not smoke."
+              },
+              {
+                "track_id": "hp-e/1:2",
+                "camera": "hp-e",
+                "first_seen_min_ago": 14,
+                "bearing_deg": 111.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "Detached compact white cauliflower cloud drifts without a ground-anchored rising column, vertical growth, or dispersing plume, consistent with small low cloud/fog rather than wildfire smoke."
+              },
+              {
+                "track_id": "hp-e/0:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 59.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "unverified",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "hp-e/0:0"
+          },
+          "result": {
+            "track_id": "hp-e/0:0",
+            "state": "smoke",
+            "confidence": 0.93,
+            "reason": "A narrow vertical column anchored at a single ground point grows taller, denser, and drifts upward across successive frames, consistent with a developing wildfire smoke plume rather than fog or haze."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "plumes from fewer than two stations, or bearings that do not intersect consistently",
+            "bearing_lines": [
+              {
+                "camera": "hp-e",
+                "bearing_deg": 59.7,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "issue_alert",
+          "args": {
+            "level": "spotted",
+            "headline": "Smoke spotted NE of hp-e, bearing 59.7\u00b0",
+            "message": "Single plume hp-e/0:0 verified as wildfire smoke from hp-e at bearing 59.7\u00b0 \u00b16.0\u00b0. Location not yet triangulated as only one camera has corroborated smoke. Second camera view needed to confirm position and rule out false detection."
+          },
+          "result": {
+            "issued": true,
+            "level": "spotted",
+            "alert_number": 1
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "Alert issued: hp-e/0:0 verified smoke on single camera (hp-e 59.7\u00b0), location pending second view."
+        }
+      ]
+    },
+    {
+      "time": "13:23 PDT",
+      "epoch": 1721852625,
+      "elapsed_min": 64.2,
+      "trigger": [
+        "new plume track tp-w/0:0 on camera tp-w"
+      ],
+      "calls": [
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:23 PDT",
+            "minutes_since_watch_started": 64.2,
+            "cameras_watching": [
+              "hp-e",
+              "tp-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 47,
+                "bearing_deg": 121.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "Isolated mid-air puffy white cumulus with cauliflower texture and no ground-anchored column, dissipating over time rather than growing from a surface ignition point."
+              },
+              {
+                "track_id": "hp-e/1:1",
+                "camera": "hp-e",
+                "first_seen_min_ago": 31,
+                "bearing_deg": 99.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "No ground-anchored rising column; the central dark patch shrinks and fragments between frames instead of growing and drifting upward, consistent with a dissipating cloud not smoke."
+              },
+              {
+                "track_id": "hp-e/1:2",
+                "camera": "hp-e",
+                "first_seen_min_ago": 31,
+                "bearing_deg": 111.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "Detached compact white cauliflower cloud drifts without a ground-anchored rising column, vertical growth, or dispersing plume, consistent with small low cloud/fog rather than wildfire smoke."
+              },
+              {
+                "track_id": "hp-e/0:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 21,
+                "bearing_deg": 59.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A narrow vertical column anchored at a single ground point grows taller, denser, and drifts upward across successive frames, consistent with a developing wildfire smoke plume rather than fog or haze."
+              },
+              {
+                "track_id": "tp-w/0:0",
+                "camera": "tp-w",
+                "first_seen_min_ago": 2,
+                "bearing_deg": 244.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "too new to verify (ready in 2 min)",
+                "reason": null
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "13:06 PDT",
+                "headline": "Smoke spotted NE of hp-e, bearing 59.7\u00b0"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "tp-w/0:0 too new to verify (ready in ~2 min); awaiting second camera confirmation \u2014 no new alert yet."
+        }
+      ]
+    },
+    {
+      "time": "13:25 PDT",
+      "epoch": 1721852745,
+      "elapsed_min": 66.2,
+      "trigger": [
+        "track tp-w/0:0 now has enough history to verify"
+      ],
+      "calls": [
+        {
+          "tool": "verify_track",
+          "args": {
+            "track_id": "tp-w/0:0"
+          },
+          "result": {
+            "track_id": "tp-w/0:0",
+            "state": "smoke",
+            "confidence": 0.93,
+            "reason": "Narrow column originates at single ground point on ridge and grows taller, denser, and more billowed across successive minutes, consistent with rising wildfire smoke not fog or cloud."
+          }
+        },
+        {
+          "tool": "locate",
+          "args": {},
+          "result": {
+            "located": false,
+            "reason": "plumes from fewer than two stations, or bearings that do not intersect consistently",
+            "bearing_lines": [
+              {
+                "camera": "hp-e",
+                "bearing_deg": 59.7,
+                "uncertainty_deg": 6.0
+              },
+              {
+                "camera": "tp-w",
+                "bearing_deg": 244.3,
+                "uncertainty_deg": 6.0
+              }
+            ],
+            "eligible_level": "spotted"
+          }
+        },
+        {
+          "tool": "get_situation",
+          "args": {},
+          "result": {
+            "time": "13:25 PDT",
+            "minutes_since_watch_started": 66.2,
+            "cameras_watching": [
+              "hp-e",
+              "tp-w"
+            ],
+            "plume_tracks": [
+              {
+                "track_id": "hp-e/1:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 49,
+                "bearing_deg": 121.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "Isolated mid-air puffy white cumulus with cauliflower texture and no ground-anchored column, dissipating over time rather than growing from a surface ignition point."
+              },
+              {
+                "track_id": "hp-e/1:1",
+                "camera": "hp-e",
+                "first_seen_min_ago": 33,
+                "bearing_deg": 99.9,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "No ground-anchored rising column; the central dark patch shrinks and fragments between frames instead of growing and drifting upward, consistent with a dissipating cloud not smoke."
+              },
+              {
+                "track_id": "hp-e/1:2",
+                "camera": "hp-e",
+                "first_seen_min_ago": 33,
+                "bearing_deg": 111.2,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "not smoke",
+                "reason": "Detached compact white cauliflower cloud drifts without a ground-anchored rising column, vertical growth, or dispersing plume, consistent with small low cloud/fog rather than wildfire smoke."
+              },
+              {
+                "track_id": "hp-e/0:0",
+                "camera": "hp-e",
+                "first_seen_min_ago": 23,
+                "bearing_deg": 59.7,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "A narrow vertical column anchored at a single ground point grows taller, denser, and drifts upward across successive frames, consistent with a developing wildfire smoke plume rather than fog or haze."
+              },
+              {
+                "track_id": "tp-w/0:0",
+                "camera": "tp-w",
+                "first_seen_min_ago": 4,
+                "bearing_deg": 244.3,
+                "bearing_uncertainty_deg": 6.0,
+                "at_image_edge": false,
+                "status": "smoke",
+                "reason": "Narrow column originates at single ground point on ridge and grows taller, denser, and more billowed across successive minutes, consistent with rising wildfire smoke not fog or cloud."
+              }
+            ],
+            "alerts_issued": [
+              {
+                "level": "spotted",
+                "time": "13:06 PDT",
+                "headline": "Smoke spotted NE of hp-e, bearing 59.7\u00b0"
+              }
+            ],
+            "last_location": null
+          }
+        },
+        {
+          "tool": "_agent_says",
+          "args": {},
+          "result": "Two-camera smoke confirmed (hp-e 59.7\u00b0 and tp-w 244.3\u00b0 verified) but bearings do not yet triangulate to a consistent location \u2014 no location update warranted beyond existing spotted alert."
+        }
+      ]
+    }
+  ],
+  "alerts": [
+    {
+      "level": "spotted",
+      "time": "13:06 PDT",
+      "epoch": 1721851595,
+      "elapsed_min": 47.0,
+      "headline": "Smoke spotted NE of hp-e, bearing 59.7\u00b0",
+      "message": "Single plume hp-e/0:0 verified as wildfire smoke from hp-e at bearing 59.7\u00b0 \u00b16.0\u00b0. Location not yet triangulated as only one camera has corroborated smoke. Second camera view needed to confirm position and rule out false detection.",
+      "location": null,
+      "bearing_lines": [
+        {
+          "camera": "hp-e",
+          "lat": 33.36378378378378,
+          "lon": -116.83579336801176,
+          "bearing_deg": 59.75,
+          "sigma_deg": 6.0,
+          "track_id": "hp-e/0:0"
+        }
+      ],
+      "evidence": [
+        {
+          "track_id": "hp-e/0:0",
+          "frames": [
+            "data/raw/20240724_GroveFire_hp-e-mobo-c/1721851355_+00210.jpg",
+            "data/raw/20240724_GroveFire_hp-e-mobo-c/1721851475_+00330.jpg",
+            "data/raw/20240724_GroveFire_hp-e-mobo-c/1721851595_+00450.jpg"
+          ],
+          "box": [
+            571,
+            1010,
+            680,
+            1173
+          ],
+          "status": {
+            "state": "smoke",
+            "confidence": 0.93,
+            "reason": "A narrow vertical column anchored at a single ground point grows taller, denser, and drifts upward across successive frames, consistent with a developing wildfire smoke plume rather than fog or haze."
+          }
+        }
+      ]
+    }
+  ],
+  "score": {
+    "spotted_min_after_first_smoke": 7.0,
+    "provisional_min_after_first_smoke": null,
+    "confirmed_min_after_first_smoke": null
+  }
+}
