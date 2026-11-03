@@ -35,6 +35,13 @@ def ease(u: float) -> float:
 
 
 def main() -> int:
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--no-captions", action="store_true", help="for use under a voiceover")
+    ap.add_argument("--fps", type=int, default=FPS)
+    ap.add_argument("--out", default="outputs/media/skyline_snap.mp4")
+    args = ap.parse_args()
+    fps = args.fps
     fitted = CameraModel.load(ROOT / "outputs" / SEQ / "camera_model.json")
     guess = replace(fitted, heading_deg=90.0, pitch_deg=0.0, roll_deg=0.0)    # "camera faces east, level"
     d = np.load(ROOT / "outputs" / "skyline" / f"{STATION}.npz")
@@ -72,15 +79,15 @@ def main() -> int:
         (7.8, 12.0, f"Now every pixel is a compass bearing: smoke at {track.bearing_deg:.1f}°"),
     ]
     total = beats[-1][1]
-    out = ROOT / "outputs" / "media" / "skyline_snap.mp4"
+    out = ROOT / args.out
     out.parent.mkdir(parents=True, exist_ok=True)
     ff = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24",
-                           "-s", f"{OUT_W}x{OUT_H}", "-r", str(FPS), "-i", "-", "-c:v", "libx264",
+                           "-s", f"{OUT_W}x{OUT_H}", "-r", str(fps), "-i", "-", "-c:v", "libx264",
                            "-preset", "veryfast", "-crf", "18", "-pix_fmt", "yuv420p", "-movflags", "+faststart",
                            str(out)], stdin=subprocess.PIPE)
     cache: dict[float, np.ndarray] = {}
-    for i in range(int(total * FPS)):
-        s = i / FPS
+    for i in range(int(total * fps)):
+        s = i / fps
         p = ease((s - 3.8) / 2.2)
         z = ease((s - 7.8) / 1.6)
         win = tuple(a + (b - a) * z for a, b in zip(full, zoom))
@@ -124,11 +131,12 @@ def main() -> int:
                 tw = dr.textlength(label, font=font)
                 dr.rounded_rectangle((X + 16, 40, X + 40 + tw, 104), 8, fill=(20, 26, 22, int(0.8 * a2)))
                 dr.text((X + 28, 46), label, font=font, fill=WHITE + (a2,))
-        cap = next(c for b0, b1, c in beats if b0 <= s < b1)
-        tw = dr.textlength(cap, font=small)
-        dr.rounded_rectangle(((OUT_W - tw) / 2 - 28, OUT_H - 128, (OUT_W + tw) / 2 + 28, OUT_H - 56), 10,
-                             fill=(20, 26, 22, 200))
-        dr.text(((OUT_W - tw) / 2, OUT_H - 118), cap, font=small, fill=WHITE)
+        if not args.no_captions:
+            cap = next(c for b0, b1, c in beats if b0 <= s < b1)
+            tw = dr.textlength(cap, font=small)
+            dr.rounded_rectangle(((OUT_W - tw) / 2 - 28, OUT_H - 128, (OUT_W + tw) / 2 + 28, OUT_H - 56), 10,
+                                 fill=(20, 26, 22, 200))
+            dr.text(((OUT_W - tw) / 2, OUT_H - 118), cap, font=small, fill=WHITE)
         ff.stdin.write(frame.tobytes())
     ff.stdin.close()
     ff.wait()
