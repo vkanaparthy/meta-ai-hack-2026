@@ -66,8 +66,11 @@ button, select { font: inherit; color: inherit; }
 .scrub .done { position: absolute; left: 0; top: 19px; height: 2px; background: var(--ink); }
 .scrub .head { position: absolute; top: 11px; width: 2px; height: 18px; background: var(--ink); transform: translateX(-1px); }
 .scrub .notch { position: absolute; top: 12px; width: 10px; height: 16px; border-radius: 2px; transform: translateX(-5px); }
-.scrub .smoke { position: absolute; top: 30px; font-family: var(--instrument); font-size: 12px; color: var(--contour); transform: translateX(-2px); white-space: nowrap; }
+.scrub .smoke { position: absolute; top: 30px; width: 1px; height: 0; transform: translateX(-1px); }
 .scrub .smoke::before { content: ""; position: absolute; left: 1px; top: -12px; width: 1px; height: 10px; background: var(--contour); }
+.scrubkey { grid-column: 3 / 5; grid-row: 2; display: flex; flex-wrap: wrap; gap: 2px 10px; margin-top: -8px; font-family: var(--instrument); font-size: 12px; color: var(--ink-2); }
+.scrubkey i { display: inline-block; width: 7px; height: 11px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+.scrubkey i.tick { width: 1px; height: 11px; border-radius: 0; background: var(--contour); margin: 0 5px 0 3px; }
 .scrub input:focus-visible + .rail { outline: 2px solid var(--water); outline-offset: 8px; }
 .speed { font-family: var(--instrument); font-size: 15px; background: transparent; border: 1px solid var(--line); border-radius: 3px; padding: 4px 6px; }
 .toggles { position: absolute; top: 10px; left: 10px; z-index: 3; display: flex; gap: 6px; }
@@ -146,7 +149,8 @@ button, select { font: inherit; color: inherit; }
   body { grid-template-columns: 1fr; grid-template-rows: auto 70vh auto; grid-template-areas: "bar" "stage" "desk"; height: auto; }
   .desk { border-left: 0; border-top: 1px solid var(--line); }
   .bar { grid-template-columns: 1fr; gap: 10px; }
-  .transport { grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "clock play speed" "scrub scrub scrub"; gap: 6px 10px; }
+  .transport { grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "clock play speed" "scrub scrub scrub" "key key key"; gap: 6px 10px; }
+  .transport .scrubkey { grid-area: key; margin-top: -4px; }
   .transport .clock { grid-area: clock; } .transport .play { grid-area: play; }
   .transport .scrub { grid-area: scrub; } .transport .speed { grid-area: speed; }
   .clock { min-width: 0; }
@@ -173,6 +177,7 @@ button, select { font: inherit; color: inherit; }
     <select class="speed" id="speed" aria-label="Playback speed">
       <option value="15">15×</option><option value="30" selected>30×</option><option value="60">60×</option><option value="120">120×</option>
     </select>
+    <div class="scrubkey" id="scrubKey" aria-label="Timeline key"></div>
   </div>
 </header>
 
@@ -276,6 +281,7 @@ async function loadFire(name) {
 
 function buildScrub() {
   const s = $("scrub"); s.querySelectorAll(".notch,.smoke").forEach(n => n.remove());
+  const key = [];
   const pct = e => ((e - D.t0) / (D.t1 - D.t0) * 100) + "%";
   for (const a of D.alerts) {
     const n = document.createElement("div"); n.className = "notch";
@@ -284,8 +290,18 @@ function buildScrub() {
   }
   if (D.t_first_visible) {
     const m = document.createElement("div"); m.className = "smoke"; m.style.left = pct(D.t_first_visible);
-    m.textContent = "smoke first visible"; s.appendChild(m);
+    s.appendChild(m);
+    key.push(`<span title="Labelled by HPWREN's archive, for scoring only. FireFinder's own detections appear as boxes on the cameras."><i class="tick"></i>smoke visible (archive label)</span>`);
   }
+  // key for the alert notches (their own tooltips sit under the slider and can't be hovered)
+  const upd = D.alerts.some(a => a.level === "update");
+  const conf = D.alerts.some(a => a.level === "confirmed");
+  for (const l of ["spotted", "provisional", "confirmed", "update"].filter(l => D.alerts.some(a => a.level === l)))
+    if (!(l === "update" && conf))
+      key.push(`<span><i style="background:${LEVEL_COLOR[l]}"></i>${l}${l === "confirmed" && upd ? " / update" : ""}</span>`);
+  if (D.alerts.length) key.splice(D.t_first_visible ? 1 : 0, 0, "<span>alerts:</span>");
+  else key.push("<span>no alerts on this fire</span>");
+  $("scrubKey").innerHTML = key.join("");
 }
 
 function minutesAfter(m) { return m == null ? "–" : `${Math.round(m)} min`; }
